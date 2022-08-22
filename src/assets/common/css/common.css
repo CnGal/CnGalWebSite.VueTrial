@@ -1,0 +1,11 @@
+.single-row-dot {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.rows-dot {
+	display: -webkit-box;
+	overflow: hidden;
+	-webkit-line-clamp: var(--row-dot-line, 2);
+	-webkit-box-orient: vertical;
+}

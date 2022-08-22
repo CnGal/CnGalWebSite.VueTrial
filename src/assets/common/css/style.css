@@ -1,0 +1,26 @@
+:root {
+	--main-color: #f06292;
+	--hover-color: #fbf1f4;
+	--body-color: #f5f6f7;
+	--block-color: #181c32;
+	--gray-color: #7e8299;
+	--white-color: #fcfcfd;
+}
+
+:root {
+	--header-height: 64px;
+	--header-mobile-height: 48px;
+	--main-width: 80vw;
+	--main-mobile-width: 100vw;
+}
+
+@font-face {
+	font-family: "Material Design Icons";
+	src: url(/public/fonts/materialdesignicons-webfont.woff2);
+}
+
+@media screen and (max-width: 768px) {
+	:root {
+		--main-width: calc(100vw - 24px);
+	}
+}

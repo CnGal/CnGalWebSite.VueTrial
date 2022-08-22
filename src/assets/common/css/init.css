@@ -1,0 +1,25 @@
+body,h1,h2,h3,h4,h5,h6  {
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:focus-visible,
+button:focus-visible {
+	outline: thin dotted #333;
+}
+
+img {
+	vertical-align: middle;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	list-style: none;
+}
