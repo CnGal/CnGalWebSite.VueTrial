@@ -14,8 +14,7 @@
 
 @media screen and (max-width: 768px) {
 	.main {
-		margin: 0;
-		padding: 12px;
+		margin: var(--main-margin);
 	}
 }
 </style>

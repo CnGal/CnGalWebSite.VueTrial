@@ -5,31 +5,7 @@
 			v-for="(item, index) in props.list"
 			:key="index"
 		>
-			<a
-				:href="item.disPlayValue || `/entries/index/${item.id}`"
-				:target="item.disPlayValue ? '_blank' : null"
-			>
-				<img
-					loading="lazy"
-					class="game-card-img"
-					:src="item.image"
-					:alt="item.disPlayName"
-				/>
-				<div class="info">
-					<div class="name rows-dot">{{ item.disPlayName }}</div>
-					<div class="read-comment">
-						<span v-if="~item.readCount" class="read">
-							<gal-icon icon="eye" size="14px"></gal-icon
-							>{{ item.readCount }}</span
-						>
-
-						<span v-if="~item.commentCount" class="comment">
-							<gal-icon icon="comments" size="14px"></gal-icon
-							>{{ item.commentCount }}</span
-						>
-					</div>
-				</div>
-			</a>
+			<gal-game-card :cardInfo="item"></gal-game-card>
 		</li>
 	</ul>
 </template>
@@ -54,22 +30,6 @@ const props = defineProps({
 }
 .game-card-item {
 	width: calc((100% - (16px * 5)) / 6);
-}
-.game-card-img {
-	width: 100%;
-}
-.info {
-	color: var(--block-color);
-	margin-block-start: 8px;
-}
-.read-comment {
-	display: flex;
-	color: var(--gray-color);
-	font-size: 14px;
-}
-.read,
-.comment {
-	flex: 1;
 }
 
 @media screen and (max-width: 1200px) {

@@ -27,4 +27,10 @@ onMounted(() => {
 .link-button {
 	color: var(--main-color);
 }
+
+@media screen and (max-width: 768px) {
+	.link-button {
+		font-size: 12px;
+	}
+}
 </style>

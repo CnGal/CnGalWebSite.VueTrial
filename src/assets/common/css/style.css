@@ -1,10 +1,11 @@
 :root {
-	--main-color: #f06292;
+	--main-color: var(--pink-color);
 	--hover-color: #fbf1f4;
 	--body-color: #f5f6f7;
 	--block-color: #181c32;
 	--gray-color: #7e8299;
 	--white-color: #fcfcfd;
+	--pink-color: #f06292;
 }
 
 :root {
@@ -14,13 +15,14 @@
 	--main-mobile-width: 100vw;
 }
 
-@font-face {
-	font-family: "Material Design Icons";
-	src: url(/public/fonts/materialdesignicons-webfont.woff2);
+:root {
+	--main-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.075);
+	--main-border-radius: 4px;
 }
 
 @media screen and (max-width: 768px) {
 	:root {
-		--main-width: calc(100vw - 24px);
+		--main-margin: 12px;
+		--main-width: calc(100vw - calc(var(--main-margin) * 2));
 	}
 }

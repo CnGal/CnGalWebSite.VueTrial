@@ -11,10 +11,7 @@
 
 <style scoped>
 .card {
-	background-color: var(--white-color);
-	padding: 1em;
-}
-.card-main {
-	margin-block-start: 12px;
+	box-shadow: var(--main-shadow);
+	border-radius: var(--main-border-radius);
 }
 </style>

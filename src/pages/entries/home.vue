@@ -33,7 +33,6 @@ let freeGames = ref([]);
 	if (data.length <= 12) {
 		list = data;
 	} else {
-		// 选取列表中最后三项，以及在其它项中随机选取三项
 		let set = new Set();
 		while (set.size < 12) {
 			set.add(getRandom(0, data.length - 1));

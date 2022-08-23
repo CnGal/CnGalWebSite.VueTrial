@@ -18,6 +18,8 @@ import tag from "./components/common/tag/tag.vue";
 import card from "./components/common/card/card.vue";
 import cardHeader from "./components/common/card/cardHeader.vue";
 import noWrapGameList from "./components/common/gameCard/noWrapGameList.vue";
+import newsCard from "./components/common/gameCard/newsCard.vue";
+import gameCard from "./components/common/gameCard/gameCard.vue";
 
 const app = createApp(App);
 
@@ -29,6 +31,8 @@ app.component("galTag", tag);
 app.component("galCard", card);
 app.component("galCardHeader", cardHeader);
 app.component("galNoWrapGameList", noWrapGameList);
+app.component("galNewsCard", newsCard);
+app.component("galGameCard", gameCard);
 
 app.use(router);
 app.use(createPinia());

@@ -13,10 +13,27 @@
 .card-header {
 	display: flex;
 	justify-content: space-between;
+	background-color: var(--white-color);
 	height: 35px;
+	line-height: 35px;
+	padding: 1em 1em 12px;
 }
 h2 {
 	color: var(--main-color);
 	font-size: 1.25em;
+}
+
+@media screen and (max-width: 768px) {
+	h2 {
+		font-size: 14px;
+		font-weight: normal;
+	}
+	.card-header {
+		margin-block-end: 12px;
+		padding-block-start: 0;
+		padding-block-end: 0;
+		box-shadow: var(--main-shadow);
+		border-radius: var(--main-border-radius);
+	}
 }
 </style>

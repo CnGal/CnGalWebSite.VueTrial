@@ -21,6 +21,7 @@ import iconEye from "../../base/icons/eye.vue";
 import iconComments from "../../base/icons/comments.vue";
 import iconGift from "../../base/icons/gift.vue";
 import iconMenu from "../../base/icons/menu.vue";
+import iconBullhorn from "../../base/icons/bullhorn.vue";
 
 const props = defineProps({
 	icon: {
@@ -72,6 +73,8 @@ const getComponent = (name) => {
 			return iconGift;
 		case "menu":
 			return iconMenu;
+		case "bullhorn":
+			return iconBullhorn;
 	}
 };
 </script>

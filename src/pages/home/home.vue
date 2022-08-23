@@ -16,7 +16,7 @@
 				</template>
 			</gal-card-header>
 		</template>
-		<gal-news-list></gal-news-list>
+		<gal-news-list :list="newsList"></gal-news-list>
 	</gal-card>
 	<gal-card class="card">
 		<template v-slot:header>
@@ -119,11 +119,16 @@
 import { ref } from "vue";
 import galBanner from "../../components/home/banner/banner.vue";
 import galWelcome from "../../components/home/welcome/welcome.vue";
-import galNewsList from "../../components/home/news/newslist.vue";
+import galNewsList from "../../components/home/gameCard/newsCardlist.vue";
 import galGameCardList from "../../components/home/gameCard/gameCardList.vue";
+
+import { useStore } from "../../store/index.js";
+const store = useStore();
+const isMobile = store.isMobile;
 
 // 获取 近期新作列表
 import {
+	getHomeNewsView,
 	getHomeRecentIssuelGameView,
 	getHomeNewestGameView,
 	getHomeArticlesView,
@@ -131,12 +136,17 @@ import {
 	getHomeNoticesView,
 	getHomeFriendLinksView
 } from "../../api/homeAPI/index.js";
+let newsList = ref([]);
 let recentIssuelGameList = ref([]);
 let newestGameView = ref([]);
 let articlesView = ref([]);
 let recentEditView = ref([]);
 let noticesView = ref([]);
 let friendLinksList = ref([]);
+(async () => {
+	const data = await getHomeNewsView();
+	newsList.value = data.data.splice(0, isMobile ? 3 : 6);
+})();
 (async () => {
 	const data = await getHomeRecentIssuelGameView();
 	recentIssuelGameList.value = data.data;

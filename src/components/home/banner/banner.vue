@@ -17,6 +17,7 @@
 			<img src="/images/logo.png" alt="" />
 		</div>
 		<gal-icon-button
+			v-if="!isMobile"
 			@click="prevImg"
 			class="prevImg"
 			:icon="'left'"
@@ -26,6 +27,7 @@
 			:bgHoverColor="'#666'"
 		></gal-icon-button>
 		<gal-icon-button
+			v-if="!isMobile"
 			@click="nextImg"
 			class="nextImg"
 			:icon="'right'"
@@ -40,6 +42,10 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { getHomeCarouselsView } from "../../../api/homeAPI/index.js";
+
+import { useStore } from "../../../store/index.js";
+const store = useStore();
+const isMobile = store.isMobile;
 
 const getRandom = (min, max) => {
 	return Math.floor(Math.random() * (max - min + 1) + min);
@@ -137,11 +143,11 @@ onMounted(() => {
 }
 .banner-inner::before {
 	content: "";
-	flex: 1 0 var(--main-width, 80vw);
+	flex: 1 0 var(--main-width);
 }
 .banner-item {
-	flex: 1 0 var(--main-width, 80vw);
-	margin-inline-start: calc(-1 * var(--main-width, 80vw));
+	flex: 1 0 var(--main-width);
+	margin-inline-start: calc(-1 * var(--main-width));
 	z-index: -1;
 	opacity: 0;
 }
@@ -202,7 +208,7 @@ onMounted(() => {
 		transform: translateX(0);
 	}
 	100% {
-		transform: translateX(-88vw);
+		transform: translateX(calc(-1.1 * var(--main-width)));
 	}
 }
 
@@ -228,7 +234,7 @@ onMounted(() => {
 		transform: translateX(0);
 	}
 	100% {
-		transform: translateX(88vw);
+		transform: translateX(calc(1.1 * var(--main-width)));
 	}
 }
 </style>
