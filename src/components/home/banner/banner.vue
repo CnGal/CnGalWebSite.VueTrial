@@ -159,8 +159,6 @@ onMounted(() => {
 	position: absolute;
 	top: calc(50% - 15px);
 	left: 90%;
-	width: 30px;
-	height: 30px;
 	z-index: 3;
 	color: #fff;
 	opacity: 0.6;
@@ -173,7 +171,7 @@ onMounted(() => {
 	position: absolute;
 	width: 30px;
 	height: 30px;
-	z-index: 9;
+	z-index: 8;
 	top: calc(50% - 15px);
 	left: 100%;
 }
