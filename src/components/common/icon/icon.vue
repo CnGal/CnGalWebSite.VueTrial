@@ -1,5 +1,5 @@
 <template>
-	<component class="icon" :is="getComponent(props.icon)"></component>
+	<component class="icon" :is="iconMap[props.icon]"></component>
 </template>
 
 <script setup>
@@ -34,48 +34,27 @@ const props = defineProps({
 	}
 });
 
-const getComponent = (name) => {
-	switch (name) {
-		case "shareAll":
-			return iconShareAll;
-		case "qq":
-		case "QQ":
-			return iconQQ;
-		case "weibo":
-			return iconWeibo;
-		case "search":
-			return iconSearch;
-		case "login":
-			return iconLogin;
-		case "settings":
-			return iconSettings;
-		case "right":
-			return iconRight;
-		case "left":
-			return iconLeft;
-		case "newspaper":
-			return iconNewspaper;
-		case "send":
-			return iconSend;
-		case "send2":
-			return iconSend2;
-		case "pencil":
-			return iconPencil;
-		case "note":
-			return iconNote;
-		case "star":
-			return iconStar;
-		case "eye":
-			return iconEye;
-		case "comments":
-			return iconComments;
-		case "gift":
-			return iconGift;
-		case "menu":
-			return iconMenu;
-		case "bullhorn":
-			return iconBullhorn;
-	}
+const iconMap = {
+	shareAll: iconShareAll,
+	qq: iconQQ,
+	QQ: iconQQ,
+	weibo: iconWeibo,
+	search: iconSearch,
+	login: iconLogin,
+	settings: iconSettings,
+	right: iconRight,
+	left: iconLeft,
+	newspaper: iconNewspaper,
+	send: iconSend,
+	send2: iconSend2,
+	pencil: iconPencil,
+	note: iconNote,
+	star: iconStar,
+	eye: iconEye,
+	comments: iconComments,
+	gift: iconGift,
+	menu: iconMenu,
+	bullhorn: iconBullhorn
 };
 </script>
 

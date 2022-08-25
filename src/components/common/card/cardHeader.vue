@@ -13,7 +13,7 @@
 .card-header {
 	display: flex;
 	justify-content: space-between;
-	background-color: var(--white-color);
+	background-color: var(--card-bg-color);
 	height: 35px;
 	line-height: 35px;
 	padding: 1em 1em 12px;

@@ -149,19 +149,19 @@ let friendLinksList = ref([]);
 })();
 (async () => {
 	const data = await getHomeRecentIssuelGameView();
-	recentIssuelGameList.value = data.data;
+	recentIssuelGameList.value = data.data.splice(0, isMobile ? 6 : 12);
 })();
 (async () => {
 	const data = await getHomeNewestGameView();
-	newestGameView.value = data.data;
+	newestGameView.value = data.data.splice(0, isMobile ? 6 : 12);
 })();
 (async () => {
 	const data = await getHomeArticlesView();
-	articlesView.value = data.data;
+	articlesView.value = data.data.splice(0, isMobile ? 6 : 12);
 })();
 (async () => {
 	const data = await getHomeRecentEditView();
-	recentEditView.value = data.data;
+	recentEditView.value = data.data.splice(0, isMobile ? 6 : 12);
 })();
 (async () => {
 	const data = await getHomeNoticesView();
