@@ -9,7 +9,7 @@
 			:icon="item.icon"
 			circle
 			size="48px"
-			:tooltipText="item.text"
+			v-gal-tooltip="item.text"
 		></gal-icon-button>
 	</gal-header>
 	<gal-header-mobile v-else>

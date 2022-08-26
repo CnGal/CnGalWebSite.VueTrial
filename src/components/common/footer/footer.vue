@@ -14,6 +14,7 @@
 				<a
 					href="https://jq.qq.com/?_wv=1027&k=mG6qNvyg"
 					target="_blank"
+					v-gal-tooltip="'QQ'"
 				>
 					<gal-icon
 						class="icon"
@@ -21,7 +22,11 @@
 						:size="'45.72px'"
 					></gal-icon>
 				</a>
-				<a href="https://weibo.com/cngalorg" target="_blank">
+				<a
+					href="https://weibo.com/cngalorg"
+					target="_blank"
+					v-gal-tooltip="'微博'"
+				>
 					<gal-icon
 						class="icon"
 						:icon="'weibo'"

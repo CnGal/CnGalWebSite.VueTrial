@@ -20,21 +20,21 @@
 			v-if="!isMobile"
 			@click="prevImg"
 			class="prevImg"
-			:icon="'left'"
+			icon="left"
 			circle
-			:tooltipText="'上一张'"
-			:bgColor="'#333'"
-			:bgHoverColor="'#666'"
+			v-gal-tooltip="'上一张'"
+			bgColor="#333"
+			bgHoverColor="#666"
 		></gal-icon-button>
 		<gal-icon-button
 			v-if="!isMobile"
 			@click="nextImg"
 			class="nextImg"
-			:icon="'right'"
+			icon="right"
 			circle
-			:tooltipText="'下一张'"
-			:bgColor="'#333'"
-			:bgHoverColor="'#666'"
+			v-gal-tooltip="'下一张'"
+			bgColor="#333"
+			bgHoverColor="#666"
 		></gal-icon-button>
 	</div>
 </template>
@@ -61,7 +61,7 @@ const getBannerList = async () => {
 		// 选取列表中前三项，以及在其它项中随机选取三项
 		let set = new Set([0, 1, 2]);
 		while (set.size < 6) {
-			set.add(getRandom(3, data.length-1));
+			set.add(getRandom(3, data.length - 1));
 		}
 		set.forEach((value) => {
 			list.push(data[value]);

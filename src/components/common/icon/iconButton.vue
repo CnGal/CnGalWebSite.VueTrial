@@ -1,16 +1,7 @@
 <template>
-	<button
-		v-bind="$attrs"
-		ref="iconWrap"
-		class="icon-wrap"
-		@mouseenter="showTooltip"
-		@mouseleave="hideTooltip"
-	>
+	<button v-bind="$attrs" ref="iconWrap" class="icon-wrap">
 		<gal-icon :icon="props.icon" :size="'24px'"></gal-icon>
 	</button>
-	<gal-tooltip ref="tooltip" v-if="props.tooltip">
-		<span>{{ props.tooltipText }}</span>
-	</gal-tooltip>
 </template>
 
 <script setup>
@@ -18,11 +9,6 @@ import { ref, onMounted } from "vue";
 
 const props = defineProps({
 	icon: String,
-	tooltip: {
-		type: Boolean,
-		default: true
-	},
-	tooltipText: String,
 	bgColor: {
 		type: String,
 		default: "transparent"
@@ -35,14 +21,6 @@ const props = defineProps({
 });
 
 const iconWrap = ref();
-
-const tooltip = ref();
-const showTooltip = (ev) => {
-	tooltip.value.showTooltip(ev);
-};
-const hideTooltip = (ev) => {
-	tooltip.value.hideTooltip(ev);
-};
 
 onMounted(() => {
 	if (iconWrap.value.hasAttribute("circle")) {
