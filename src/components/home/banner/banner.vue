@@ -58,10 +58,10 @@ const getBannerList = async () => {
 	if (data.length <= 6) {
 		list = data;
 	} else {
-		// 选取列表中最后三项，以及在其它项中随机选取三项
-		let set = new Set([data.length - 1, data.length - 2, data.length - 3]);
+		// 选取列表中前三项，以及在其它项中随机选取三项
+		let set = new Set([0, 1, 2]);
 		while (set.size < 6) {
-			set.add(getRandom(0, data.length - 4));
+			set.add(getRandom(3, data.length));
 		}
 		set.forEach((value) => {
 			list.push(data[value]);
