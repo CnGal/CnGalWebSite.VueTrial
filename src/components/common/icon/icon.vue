@@ -22,6 +22,11 @@ import iconComments from "../../base/icons/comments.vue";
 import iconGift from "../../base/icons/gift.vue";
 import iconMenu from "../../base/icons/menu.vue";
 import iconBullhorn from "../../base/icons/bullhorn.vue";
+import iconHome from "../../base/icons/home.vue";
+import iconArchive from "../../base/icons/archive.vue";
+import iconCake from "../../base/icons/cake.vue";
+import iconStickerText from "../../base/icons/sticker-text.vue";
+import iconTimer from "../../base/icons/timer.vue";
 
 const props = defineProps({
 	icon: {
@@ -54,7 +59,12 @@ const iconMap = {
 	comments: iconComments,
 	gift: iconGift,
 	menu: iconMenu,
-	bullhorn: iconBullhorn
+	bullhorn: iconBullhorn,
+	home: iconHome,
+	archive: iconArchive,
+	cake: iconCake,
+	stickerText: iconStickerText,
+	timer: iconTimer
 };
 </script>
 

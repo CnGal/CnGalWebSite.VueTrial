@@ -25,10 +25,11 @@
 			size="48px"
 		></gal-icon-button>
 	</gal-header-mobile>
-	<gal-main>
+	<gal-main class="main" :class="{ 'main-mobile': isMobile }">
 		<router-view></router-view>
 	</gal-main>
 	<gal-footer v-if="!isMobile" class="footer"></gal-footer>
+	<gal-footer-mobile v-else></gal-footer-mobile>
 </template>
 
 <script setup>
@@ -39,6 +40,7 @@ import galLogo from "../components/common/logo/logo.vue";
 import galNav from "../components/common/nav/nav.vue";
 import galMain from "../components/common/main/main.vue";
 import galFooter from "../components/common/footer/footer.vue";
+import galFooterMobile from "../components/common/footer/footer-mobile.vue";
 
 import { useStore } from "../store/index.js";
 const store = useStore();
@@ -83,5 +85,8 @@ const headerIconList = ref([
 	font-size: large;
 	flex: 1;
 	font-weight: normal;
+}
+.main-mobile {
+	margin-block-end: 56px;
 }
 </style>

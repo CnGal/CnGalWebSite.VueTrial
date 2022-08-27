@@ -10,7 +10,10 @@
 import { ref } from "vue";
 
 const props = defineProps({
-	list: [Object]
+	list: {
+		type: [Object],
+		required: true
+	}
 });
 </script>
 

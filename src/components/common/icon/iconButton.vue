@@ -8,7 +8,10 @@
 import { ref, onMounted } from "vue";
 
 const props = defineProps({
-	icon: String,
+	icon: {
+		type: String,
+		required: true
+	},
 	bgColor: {
 		type: String,
 		default: "transparent"

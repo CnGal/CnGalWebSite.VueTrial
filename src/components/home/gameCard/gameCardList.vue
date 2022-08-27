@@ -5,7 +5,7 @@
 			v-for="(item, index) in props.list"
 			:key="index"
 		>
-			<gal-game-card :cardInfo="item"></gal-game-card>
+			<gal-home-game-card :cardInfo="item"></gal-home-game-card>
 		</li>
 	</ul>
 </template>
@@ -14,7 +14,10 @@
 import { ref } from "vue";
 
 const props = defineProps({
-	list: [Object]
+	list: {
+		type: [Object],
+		required: true
+	}
 });
 </script>
 

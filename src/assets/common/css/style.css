@@ -17,7 +17,7 @@
 }
 
 :root {
-	--main-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.075);
+	--main-shadow: 0 2px 4px rgba(0, 0, 0, 0.075);
 	--main-border-radius: 4px;
 }
 
