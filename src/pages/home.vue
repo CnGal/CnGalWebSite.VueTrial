@@ -73,6 +73,7 @@ const headerIconList = ref([
 :deep(.headerIcon) {
 	margin-inline-end: 24px;
 	color: var(--main-color);
+	font-size: 24px;
 }
 .title,
 :deep(.mobile-header-icon) {

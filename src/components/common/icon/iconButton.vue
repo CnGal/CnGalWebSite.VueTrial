@@ -1,11 +1,11 @@
 <template>
-	<button v-bind="$attrs" ref="iconWrap" class="icon-wrap">
-		<gal-icon :icon="props.icon" :size="'24px'"></gal-icon>
+	<button ref="iconButton" class="icon-button">
+		<gal-icon :icon="props.icon" :size="iconSize"></gal-icon>
 	</button>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, useAttrs } from "vue";
 
 const props = defineProps({
 	icon: {
@@ -23,38 +23,43 @@ const props = defineProps({
 	}
 });
 
-const iconWrap = ref();
+const attrs = useAttrs();
+const iconButton = ref();
+
+let iconSize = ref("");
 
 onMounted(() => {
-	if (iconWrap.value.hasAttribute("circle")) {
-		iconWrap.value.removeAttribute("circle");
-		iconWrap.value.classList.add("circle");
+	iconSize.value = window
+		.getComputedStyle(iconButton.value, null)
+		.getPropertyValue("font-size");
+
+	if (attrs.hasOwnProperty("circle")) {
+		iconButton.value.removeAttribute("circle");
+		iconButton.value.classList.add("circle");
 	}
 
 	if (props.bgHoverColor) {
-		iconWrap.value.style.setProperty("--hover-color", props.bgHoverColor);
+		iconButton.value.style.setProperty(
+			"--main-hover-color",
+			props.bgHoverColor
+		);
 	}
 });
 </script>
 
 <style scoped>
-.icon-wrap {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+.icon-button {
 	width: v-bind("props.size");
+	line-height: v-bind("props.size");
 	aspect-ratio: 1 / 1;
 	background-color: v-bind("props.bgColor");
 	border: none;
 	cursor: pointer;
 }
-.icon-wrap:hover {
-	background-color: var(--hover-color, #fbf1f4);
+.icon-button:hover {
+	background-color: var(--main-hover-color);
 }
-.icon-wrap.circle {
+.icon-button.circle {
 	border-radius: 50%;
-}
-.icon-wrap :deep(.icon) {
-	margin: 0;
 }
 </style>

@@ -14,7 +14,7 @@
 			</a>
 		</div>
 		<div class="banner-kanban">
-			<img src="/images/logo.png" alt="" />
+			<img src="/images/logo.png" alt="转场图片" />
 		</div>
 		<gal-icon-button
 			v-if="!isMobile"
@@ -42,14 +42,11 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { getHomeCarouselsView } from "../../../api/homeAPI/index.js";
+import { nonRepeatRandomList } from "../../../assets/common/js/random.js";
 
 import { useStore } from "../../../store/index.js";
 const store = useStore();
 const isMobile = store.isMobile;
-
-const getRandom = (min, max) => {
-	return Math.floor(Math.random() * (max - min + 1) + min);
-};
 
 let bannerList = ref([]);
 const getBannerList = async () => {
@@ -59,10 +56,7 @@ const getBannerList = async () => {
 		list = data;
 	} else {
 		// 选取列表中前三项，以及在其它项中随机选取三项
-		let set = new Set([0, 1, 2]);
-		while (set.size < 6) {
-			set.add(getRandom(3, data.length - 1));
-		}
+		const set = nonRepeatRandomList(3, data.length - 1, 6, [0, 1, 2]);
 		set.forEach((value) => {
 			list.push(data[value]);
 		});
@@ -102,7 +96,7 @@ const bannerAnimation = (className) => {
 		}
 	);
 };
-const nextImg = (ev) => {
+const nextImg = () => {
 	if (!activating) {
 		activating = true;
 		nextActive.value =
@@ -111,7 +105,7 @@ const nextImg = (ev) => {
 	}
 };
 
-const prevImg = (ev) => {
+const prevImg = () => {
 	if (!activating) {
 		activating = true;
 		nextActive.value =

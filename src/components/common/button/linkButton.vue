@@ -1,6 +1,10 @@
 <template>
 	<a ref="linkButton" class="link-button">
-		<gal-icon :icon="props.icon" :size="size"></gal-icon>
+		<gal-icon
+			:icon="props.icon"
+			:size="size"
+			class="link-button-icon"
+		></gal-icon>
 		<span>{{ props.text }}</span>
 	</a>
 </template>
@@ -26,6 +30,9 @@ onMounted(() => {
 <style scoped>
 .link-button {
 	color: var(--main-color);
+}
+.link-button-icon {
+	margin-inline-end: 0.5em;
 }
 
 @media screen and (max-width: 768px) {

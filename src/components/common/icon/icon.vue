@@ -27,6 +27,7 @@ import iconArchive from "../../base/icons/archive.vue";
 import iconCake from "../../base/icons/cake.vue";
 import iconStickerText from "../../base/icons/sticker-text.vue";
 import iconTimer from "../../base/icons/timer.vue";
+import iconRefresh from "../../base/icons/refresh.vue";
 
 const props = defineProps({
 	icon: {
@@ -64,7 +65,8 @@ const iconMap = {
 	archive: iconArchive,
 	cake: iconCake,
 	stickerText: iconStickerText,
-	timer: iconTimer
+	timer: iconTimer,
+	refresh: iconRefresh
 };
 </script>
 
@@ -72,7 +74,5 @@ const iconMap = {
 .icon {
 	width: v-bind("props.size");
 	aspect-ratio: 1 / 1;
-	margin-inline-end: 0.5em;
-	vertical-align: middle;
 }
 </style>

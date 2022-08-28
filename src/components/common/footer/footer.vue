@@ -8,7 +8,7 @@
 				/>
 				<div>愿每一个CnGal创作者的作品都能不被忘记</div>
 			</div>
-			<div class="icon-wrap">
+			<address class="icon-wrap">
 				<!-- QQ的图标以 1/16 处为边界制作 path 路径。
 				为保证同一大小 QQ的 size 需为 40*(16/14) ~= 45.72 -->
 				<a
@@ -33,7 +33,7 @@
 						:size="'40px'"
 					></gal-icon>
 				</a>
-			</div>
+			</address>
 		</div>
 		<div class="about">
 			<a href="/about">关于我们</a>

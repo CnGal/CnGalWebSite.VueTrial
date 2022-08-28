@@ -1,7 +1,7 @@
 :root {
 	--main-color: var(--pink-color);
 	--card-bg-color: var(--white-color);
-	--hover-color: #fbf1f4;
+	--main-hover-color: #fbf1f4;
 	--body-color: #f5f6f7;
 	--block-color: #181c32;
 	--gray-color: #7e8299;

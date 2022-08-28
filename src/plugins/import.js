@@ -13,6 +13,7 @@ import noWrapGameList from "../components/common/gameCard/noWrapGameList.vue";
 import newsCard from "../components/common/gameCard/newsCard.vue";
 import homeGameCard from "../components/home/gameCard/gameCard.vue";
 import commonGameCard from "../components/common/gameCard/gameCard.vue";
+import refreshGameCardList from "../components/common/gameCard/refreshGameCardList.vue";
 
 import tooltip from "../components/common/tooltip/import";
 
@@ -29,6 +30,7 @@ const importPlugin = {
 		app.component("galNewsCard", newsCard);
 		app.component("galHomeGameCard", homeGameCard);
 		app.component("galGameCard", commonGameCard);
+		app.component("galRefreshGameCardList", refreshGameCardList);
 
 		app.use(tooltip);
 	}
