@@ -11,7 +11,10 @@
 					class="card-item"
 					ref="cardItem"
 				>
-					<gal-game-card :cardInfo="item"></gal-game-card>
+					<component
+						:is="props.cardName"
+						:cardInfo="item"
+					></component>
 				</li>
 			</ul>
 		</div>
@@ -26,6 +29,10 @@ import { ref, onMounted } from "vue";
 const props = defineProps({
 	list: {
 		type: [Object],
+		required: true
+	},
+	cardName: {
+		type: String,
 		required: true
 	}
 });

@@ -4,4 +4,8 @@ async function getFreeGames() {
 	return await axios.get("/api/steam/GetFreeGames");
 }
 
-export { getFreeGames };
+async function getAllDiscountSteamGame() {
+	return await axios.get("/api/steam/GetAllDiscountSteamGame");
+}
+
+export { getFreeGames, getAllDiscountSteamGame };

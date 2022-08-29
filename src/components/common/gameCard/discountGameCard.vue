@@ -1,13 +1,15 @@
 <template>
-	<a :href="`/entries/index/${props.cardInfo.id}`" class="game-card">
+	<a :href="`/entries/index/${props.cardInfo.entryId}`" class="game-card">
 		<img
 			loading="lazy"
 			class="game-card-img"
-			:src="props.cardInfo.mainImage"
-			:alt="props.cardInfo.disPlayName"
+			:src="props.cardInfo.image"
+			:alt="props.cardInfo.disPlayName || props.cardInfo.name"
 		/>
 		<div class="info">
-			<h5 class="name rows-dot">{{ props.cardInfo.displayName }}</h5>
+			<h5 class="name rows-dot">
+				{{ props.cardInfo.displayName || props.cardInfo.name }}
+			</h5>
 			<div class="brief-introduction rows-dot">
 				{{ props.cardInfo.briefIntroduction }}
 			</div>
@@ -26,7 +28,7 @@ const props = defineProps({
 
 <style scoped>
 .game-card {
-	--row-dot-line: 4;
+	--row-dot-line: 3;
 }
 .name {
 	--row-dot-line: 2;
