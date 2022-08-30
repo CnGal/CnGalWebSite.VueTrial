@@ -123,8 +123,6 @@ import galNewsList from "../../components/home/gameCard/newsCardlist.vue";
 import galGameCardList from "../../components/home/gameCard/gameCardList.vue";
 
 import { useStore } from "../../store/index.js";
-const store = useStore();
-const isMobile = store.isMobile;
 
 // 获取 近期新作列表
 import {
@@ -136,6 +134,10 @@ import {
 	getHomeNoticesView,
 	getHomeFriendLinksView
 } from "../../api/homeAPI/index.js";
+
+const store = useStore();
+const isMobile = store.isMobile;
+
 let newsList = ref([]);
 let recentIssuelGameList = ref([]);
 let newestGameView = ref([]);

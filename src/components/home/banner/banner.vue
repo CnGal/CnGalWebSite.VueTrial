@@ -1,5 +1,5 @@
 <template>
-	<div class="banner-inner">
+	<div class="container">
 		<div
 			class="banner-item"
 			v-for="(item, index) in bannerList"
@@ -9,11 +9,18 @@
 			}"
 			:key="index"
 		>
-			<a :href="item.link">
+			<a
+				:href="item.link"
+				target="_blank"
+				:tabindex="active === index ? 0 : -1"
+				@focus="stopAnimation"
+				@blur="restartAnimation"
+				@keyup="keyboardHandler"
+			>
 				<img class="banner-img" :src="item.image" :alt="item.note" />
 			</a>
 		</div>
-		<div class="banner-kanban">
+		<div class="transition-img" aria-hidden="true">
 			<img src="/images/logo.png" alt="转场图片" />
 		</div>
 		<gal-icon-button
@@ -23,8 +30,7 @@
 			icon="left"
 			circle
 			v-gal-tooltip="'上一张'"
-			bgColor="#333"
-			bgHoverColor="#666"
+			tabindex="-1"
 		></gal-icon-button>
 		<gal-icon-button
 			v-if="!isMobile"
@@ -33,8 +39,7 @@
 			icon="right"
 			circle
 			v-gal-tooltip="'下一张'"
-			bgColor="#333"
-			bgHoverColor="#666"
+			tabindex="-1"
 		></gal-icon-button>
 	</div>
 </template>
@@ -48,6 +53,7 @@ import { useStore } from "../../../store/index.js";
 const store = useStore();
 const isMobile = store.isMobile;
 
+// 获取 banner 列表
 let bannerList = ref([]);
 const getBannerList = async () => {
 	const { data } = await getHomeCarouselsView();
@@ -65,8 +71,8 @@ const getBannerList = async () => {
 };
 getBannerList();
 
-const active = ref(0);
-const nextActive = ref(1);
+const active = ref(0); // 当前展示
+const nextActive = ref(1); // 预计下一张展示
 const bannerListEl = ref();
 
 let timer, autoAnimation;
@@ -101,7 +107,7 @@ const nextImg = () => {
 		activating = true;
 		nextActive.value =
 			active.value + 1 >= bannerList.value.length ? 0 : active.value + 1;
-		bannerAnimation("right-animation");
+		bannerAnimation("right-left-animation");
 	}
 };
 
@@ -112,32 +118,55 @@ const prevImg = () => {
 			active.value - 1 < 0
 				? bannerList.value.length - 1
 				: active.value - 1;
-		bannerAnimation("left-animation");
+		bannerAnimation("left-right-animation");
 	}
+};
+
+const stopAnimation = () => {
+	clearTimeout(timer);
+};
+const restartAnimation = () => {
+	timer = setTimeout(autoAnimation, 6000);
 };
 
 let activating = false;
 
+const keyboardHandler = (ev) => {
+	switch (ev.key) {
+		case "ArrowRight":
+			nextImg();
+			break;
+		case "ArrowLeft":
+			prevImg();
+			break;
+		default:
+			break;
+	}
+};
+
 onMounted(() => {
 	autoAnimation = () => {
-		activating = true;
-		nextActive.value =
-			active.value + 1 >= bannerList.value.length ? 0 : active.value + 1;
-		bannerAnimation("right-animation");
+		activating = false;
+		nextImg();
 	};
 	timer = setTimeout(autoAnimation, 5000);
 });
 </script>
 
 <style scoped>
-.banner-inner {
+.container {
 	display: flex;
 	overflow: hidden;
 	position: relative;
 }
-.banner-inner::before {
+/* 这里是占位框 为了更方便的将所有的 item 叠加在一起*/
+.container::before {
 	content: "";
 	flex: 1 0 var(--main-width);
+}
+.container:focus-within {
+	outline: thin dotted #333;
+	outline-offset: 1px;
 }
 .banner-item {
 	flex: 1 0 var(--main-width);
@@ -162,12 +191,19 @@ onMounted(() => {
 	z-index: 3;
 	color: #fff;
 	opacity: 0.6;
+	width: 32px;
+	font-size: 24px;
+	background-color: #333;
 }
 :deep(.prevImg) {
 	left: 10%;
 }
+:deep(.nextImg:hover),
+:deep(.prevImg:hover) {
+	background-color: #666;
+}
 
-.banner-kanban {
+.transition-img {
 	position: absolute;
 	width: 30px;
 	height: 30px;
@@ -175,19 +211,19 @@ onMounted(() => {
 	top: calc(50% - 15px);
 	left: 100%;
 }
-.banner-kanban img {
+.transition-img img {
 	width: 100%;
 }
 
-.banner-next-active.right-animation {
+.banner-next-active.right-left-animation {
 	opacity: 1;
 	z-index: 3;
-	animation: right-animation1 1s linear;
+	animation: right-left-animation 1s linear;
 }
-.banner-next-active.right-animation ~ .banner-kanban {
-	animation: right-animation1a 1s linear;
+.banner-next-active.right-left-animation ~ .transition-img {
+	animation: right-left-animation-sub 1s linear;
 }
-@keyframes right-animation1 {
+@keyframes right-left-animation {
 	0% {
 		clip-path: polygon(110% 0, 100% 50%, 110% 100%, 210% 100%, 210% 0);
 	}
@@ -195,7 +231,7 @@ onMounted(() => {
 		clip-path: polygon(0 0, -10% 50%, 0 100%, 100% 100%, 100% 0);
 	}
 }
-@keyframes right-animation1a {
+@keyframes right-left-animation-sub {
 	0% {
 		transform: translateX(0);
 	}
@@ -204,16 +240,16 @@ onMounted(() => {
 	}
 }
 
-.banner-next-active.left-animation {
+.banner-next-active.left-right-animation {
 	opacity: 1;
 	z-index: 3;
-	animation: left-animation1 1s linear;
+	animation: left-right-animation 1s linear;
 }
-.banner-next-active.left-animation ~ .banner-kanban {
+.banner-next-active.left-right-animation ~ .transition-img {
 	left: -30px;
-	animation: left-animation1a 1s linear;
+	animation: left-right-animation-sub 1s linear;
 }
-@keyframes left-animation1 {
+@keyframes left-right-animation {
 	0% {
 		clip-path: polygon(-10% 0, 0 50%, -10% 100%, -110% 100%, -110% 0);
 	}
@@ -221,7 +257,7 @@ onMounted(() => {
 		clip-path: polygon(100% 0, 110% 50%, 100% 100%, 0 100%, 0 0);
 	}
 }
-@keyframes left-animation1a {
+@keyframes left-right-animation-sub {
 	0% {
 		transform: translateX(0);
 	}

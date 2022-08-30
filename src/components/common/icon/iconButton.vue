@@ -49,8 +49,10 @@ onMounted(() => {
 
 <style scoped>
 .icon-button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	width: v-bind("props.size");
-	line-height: v-bind("props.size");
 	aspect-ratio: 1 / 1;
 	background-color: v-bind("props.bgColor");
 	border: none;
