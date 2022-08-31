@@ -8,6 +8,7 @@
 				'banner-active': active === index
 			}"
 			:key="index"
+			:aria-hidden="active === index ? false : true"
 		>
 			<a
 				:href="item.link"

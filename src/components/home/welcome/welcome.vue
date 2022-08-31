@@ -8,6 +8,8 @@
 			></gal-icon>
 			<a
 				href="https://qun.qq.com/qqweb/qunpro/share?_wv=3&_wwv=128&inviteCode=onAQQ&from=246610&biz=ka"
+				target="_blank"
+				tabindex="-1"
 				>点击加入 CnGal QQ频道</a
 			>
 		</div>
@@ -18,7 +20,12 @@
 				class="welcome-icon"
 			></gal-icon>
 			欢迎加入CnGal玩家交流群：
-			<a href="https://jq.qq.com/?_wv=1027&k=mG6qNvyg">128446539</a>
+			<a
+				href="https://jq.qq.com/?_wv=1027&k=mG6qNvyg"
+				target="_blank"
+				tabindex="-1"
+				>128446539</a
+			>
 		</div>
 		<div class="item">
 			<gal-icon
@@ -27,7 +34,12 @@
 				class="welcome-icon"
 			></gal-icon
 			>CnGal资料站编辑者交流与BUG反馈群：
-			<a href="https://jq.qq.com/?_wv=1027&k=JzuI1IkF">761794704</a>
+			<a
+				href="https://jq.qq.com/?_wv=1027&k=JzuI1IkF"
+				target="_blank"
+				tabindex="-1"
+				>761794704</a
+			>
 			&nbsp;欢迎加入
 		</div>
 	</address>

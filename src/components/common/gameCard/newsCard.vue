@@ -1,14 +1,14 @@
 <template>
 	<div class="news-card">
-		<a :href="`/entries/index/${props.newsInfo.groupId}/10`">
+		<router-link :to="`/entries/index/${props.newsInfo.groupId}`">
 			<img
 				class="new-img"
 				loading="lazy"
 				:src="props.newsInfo.image"
-				alt=""
+				:alt="props.newsInfo.title"
 			/>
-		</a>
-		<a :href="props.newsInfo.link" class="text-info">
+		</router-link>
+		<a :href="props.newsInfo.link" class="text-info" target="_blank">
 			<div>
 				<gal-tag
 					class="tag"

@@ -10,6 +10,7 @@
 				</template>
 				<template v-slot:end>
 					<gal-link-button
+						to="/articles/news"
 						:text="'查看更多'"
 						:icon="'shareAll'"
 					></gal-link-button>

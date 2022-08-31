@@ -1,7 +1,11 @@
 <template>
 	<h1>
 		<router-link class="logo" to="/">
-			<img src="/images/logo.png" alt="logo" class="logoImg" />
+			<img
+				src="/images/logo.png"
+				alt="CnGal资料站 logo"
+				class="logoImg"
+			/>
 			<span class="logoText">CnGal资料站</span>
 		</router-link>
 	</h1>

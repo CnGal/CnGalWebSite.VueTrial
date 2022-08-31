@@ -23,6 +23,7 @@ const showTooltip = (ev) => {
 	tooltip.translateX.value = translate.translateX;
 	tooltip.translateY.value = translate.translateY;
 	tooltip.visible.value = true;
+	tooltip.text.value = ev.target.getAttribute("data-tooltip-text");
 };
 const hideTooltip = (ev) => {
 	tooltip.visible.value = false;
@@ -33,6 +34,8 @@ export default {
 		if (!tooltip && binding.value) {
 			createTooltip(el, binding);
 		}
+		el.setAttribute("data-tooltip-text", binding.value);
+		el.setAttribute("aria-describedby", "gal-tooltip");
 		el.addEventListener("mouseenter", showTooltip);
 		el.addEventListener("mouseleave", hideTooltip);
 	}

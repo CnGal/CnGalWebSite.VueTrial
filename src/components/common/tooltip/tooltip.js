@@ -17,7 +17,9 @@ const createTooltipComponent = (options) => {
 						style: {
 							transform: `translate(${data.translateX}, ${data.translateY})`,
 							display: data.visible ? "block" : "none"
-						}
+						},
+						role: "tooltip",
+						"aria-hidden": true
 					},
 					data.text
 				);
