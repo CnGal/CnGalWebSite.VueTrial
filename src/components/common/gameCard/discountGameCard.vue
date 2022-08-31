@@ -1,14 +1,14 @@
 <template>
-	<a :href="`/entries/index/${props.cardInfo.entryId}`" class="game-card">
+	<a :href="`/entries/index/${props.cardInfo.id}`" class="game-card">
 		<img
 			loading="lazy"
 			class="game-card-img"
-			:src="props.cardInfo.image"
-			:alt="props.cardInfo.disPlayName || props.cardInfo.name"
+			:src="props.cardInfo.mainImage"
+			:alt="props.cardInfo.name"
 		/>
 		<div class="info">
 			<h5 class="name rows-dot">
-				{{ props.cardInfo.displayName || props.cardInfo.name }}
+				{{ props.cardInfo.name }}
 			</h5>
 			<div class="brief-introduction rows-dot">
 				{{ props.cardInfo.briefIntroduction }}
