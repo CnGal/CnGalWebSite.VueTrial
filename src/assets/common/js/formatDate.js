@@ -1,4 +1,4 @@
-export const formatDate = (date) => {
+export const formatDateWithHowLong = (date) => {
 	const willFormatDate = new Date(date).getTime();
 	const now = Date.now();
 	const diff = now - willFormatDate;
@@ -18,4 +18,14 @@ export const formatDate = (date) => {
 		default:
 			return `${Math.floor(diff / (1000 * 60 * 60 * 24 * 30 * 12))}年前`;
 	}
+};
+
+export const formatDateWithYMD = (date) => {
+	const willFormatDate = new Date(date);
+
+	const year = willFormatDate.getFullYear();
+	const month = willFormatDate.getMonth() + 1;
+	const day = willFormatDate.getDate();
+
+	return `${year}年${month}月${day}日`;
 };

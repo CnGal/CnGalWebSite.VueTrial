@@ -28,6 +28,11 @@ import iconCake from "../../base/icons/cake.vue";
 import iconStickerText from "../../base/icons/sticker-text.vue";
 import iconTimer from "../../base/icons/timer.vue";
 import iconRefresh from "../../base/icons/refresh.vue";
+import iconAlignVerticalTop from "../../base/icons/align-vertical-top.vue";
+import iconThumbsUp from "../../base/icons/thumbs-up.vue";
+import iconCalendarCheck from "../../base/icons/calendar-check.vue";
+import iconChartArea from "../../base/icons/chart-area.vue";
+import iconDollar from "../../base/icons/dollar.vue";
 
 const props = defineProps({
 	icon: {
@@ -66,7 +71,12 @@ const iconMap = {
 	cake: iconCake,
 	stickerText: iconStickerText,
 	timer: iconTimer,
-	refresh: iconRefresh
+	refresh: iconRefresh,
+	alignVerticalTop: iconAlignVerticalTop,
+	thumbsUp: iconThumbsUp,
+	calendarCheck: iconCalendarCheck,
+	chartArea: iconChartArea,
+	dollar: iconDollar
 };
 </script>
 

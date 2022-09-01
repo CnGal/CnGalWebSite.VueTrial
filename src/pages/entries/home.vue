@@ -3,7 +3,7 @@
 		<template v-slot:header>
 			<gal-card-header>
 				<template v-slot:start>
-					<gal-icon icon="gift" size="1em"></gal-icon
+					<gal-icon class="icon" icon="gift" size="1em"></gal-icon
 					>&nbsp;&nbsp;免费游戏
 				</template>
 				<template v-slot:end>
@@ -29,7 +29,7 @@
 		<template v-slot:header>
 			<gal-card-header>
 				<template v-slot:start>
-					<gal-icon icon="gift" size="1em"></gal-icon
+					<gal-icon class="icon" icon="dollar" size="1em"></gal-icon
 					>&nbsp;&nbsp;打折游戏
 				</template>
 				<template v-slot:end>
@@ -101,4 +101,8 @@ let allDiscountGames = ref([]);
 })();
 </script>
 
-<style scoped></style>
+<style scoped>
+.icon {
+	vertical-align: middle;
+}
+</style>

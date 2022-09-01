@@ -1,26 +1,41 @@
 <template>
 	<nav class="nav">
 		<ul class="nav-menu">
-			<li class="nav-menu-item">
-				<router-link to="/">首页</router-link>
-			</li>
-			<li class="nav-menu-item">
-				<router-link to="/entries">词条</router-link>
-			</li>
-			<li class="nav-menu-item">
-				<a href="#">文章</a>
-			</li>
-			<li class="nav-menu-item">
-				<a href="#">广场</a>
-			</li>
-			<li class="nav-menu-item">
-				<a href="#">周年庆</a>
+			<li
+				class="nav-menu-item"
+				v-for="(item, index) in navList"
+				:key="index"
+			>
+				<router-link :to="item.link">{{ item.text }}</router-link>
 			</li>
 		</ul>
 	</nav>
 </template>
 
-<script setup></script>
+<script setup>
+const navList = [
+	{
+		link: "/",
+		text: "首页"
+	},
+	{
+		link: "/entries",
+		text: "词条"
+	},
+	{
+		link: "/",
+		text: "CV"
+	},
+	{
+		link: "/",
+		text: "文章"
+	},
+	{
+		link: "/",
+		text: "广场"
+	}
+];
+</script>
 
 <style scoped>
 .nav,

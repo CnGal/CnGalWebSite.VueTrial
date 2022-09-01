@@ -14,6 +14,7 @@
 				{{ props.cardInfo.briefIntroduction }}
 			</div>
 		</div>
+		<slot name="sub"></slot>
 	</a>
 </template>
 

@@ -1,41 +1,49 @@
 <template>
 	<nav class="nav">
 		<ul class="nav-menu">
-			<li class="nav-menu-item">
-				<router-link to="/">
-					<gal-icon icon="home" size="24px"></gal-icon>
-					<div>主页</div>
+			<li
+				class="nav-menu-item"
+				v-for="(item, index) in navList"
+				:key="index"
+			>
+				<router-link :to="item.link">
+					<gal-icon :icon="item.icon" size="24px"></gal-icon>
+					<div>{{ item.text }}</div>
 				</router-link>
-			</li>
-			<li class="nav-menu-item">
-				<router-link to="/entries">
-					<gal-icon icon="archive" size="24px"></gal-icon>
-					<div>词条</div></router-link
-				>
-			</li>
-			<li class="nav-menu-item">
-				<router-link to="/entries">
-					<gal-icon icon="cake" size="24px"></gal-icon>
-					<div>周年庆</div></router-link
-				>
-			</li>
-			<li class="nav-menu-item">
-				<router-link to="/entries">
-					<gal-icon icon="stickerText" size="24px"></gal-icon>
-					<div>文章</div></router-link
-				>
-			</li>
-			<li class="nav-menu-item">
-				<router-link to="/entries">
-					<gal-icon icon="timer" size="24px"></gal-icon>
-					<div>广场</div></router-link
-				>
 			</li>
 		</ul>
 	</nav>
 </template>
 
-<script setup></script>
+<script setup>
+const navList = [
+	{
+		link: "/",
+		text: "首页",
+		icon: "home"
+	},
+	{
+		link: "/entries",
+		text: "词条",
+		icon: "archive"
+	},
+	{
+		link: "/",
+		text: "CV",
+		icon: "alignVerticalTop"
+	},
+	{
+		link: "/",
+		text: "文章",
+		icon: "stickerText"
+	},
+	{
+		link: "/",
+		text: "广场",
+		icon: "timer"
+	}
+];
+</script>
 
 <style scoped>
 .nav-menu {
@@ -53,8 +61,5 @@
 	align-items: center;
 	color: var(--gray-color);
 	font-size: 12px;
-}
-.nav-menu-item :deep(.icon) {
-	margin-inline-end: 0;
 }
 </style>

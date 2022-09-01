@@ -17,7 +17,9 @@
 					:color="'#fff'"
 				></gal-tag>
 				<span class="user">{{ props.newsInfo.title }}</span>
-				<span class="date">{{ formatDate(props.newsInfo.time) }}</span>
+				<span class="date">{{
+					formatDateWithHowLong(props.newsInfo.time)
+				}}</span>
 			</div>
 			<div class="new-text single-row-dot">
 				<span>{{ props.newsInfo.text }}</span>
@@ -28,7 +30,7 @@
 
 <script setup>
 // 引入 formatDate 格式化日期
-import { formatDate } from "../../../assets/common/js/formatDate.js";
+import { formatDateWithHowLong } from "../../../assets/common/js/formatDate.js";
 
 const props = defineProps({
 	newsInfo: {

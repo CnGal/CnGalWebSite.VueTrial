@@ -1,23 +1,38 @@
 <template>
-	<a :href="`/entries/index/${props.cardInfo.id}`" class="game-card">
-		<img
-			loading="lazy"
-			class="game-card-img"
-			:src="props.cardInfo.mainImage"
-			:alt="props.cardInfo.name"
-		/>
-		<div class="info">
-			<h5 class="name rows-dot">
-				{{ props.cardInfo.name }}
-			</h5>
-			<div class="brief-introduction rows-dot">
-				{{ props.cardInfo.briefIntroduction }}
+	<gal-free-game-card :cardInfo="props.cardInfo" class="game-card">
+		<template v-slot:sub>
+			<div class="steam-info">
+				<div class="info">
+					<div v-if="props.cardInfo.evaluationCount">
+						<gal-icon class="icon" icon="thumbsUp"></gal-icon>
+						<span>{{
+							`${props.cardInfo.recommendationRate}% 好评 （${props.cardInfo.evaluationCount}条评测）`
+						}}</span>
+					</div>
+					<div>
+						<gal-icon class="icon" icon="calendarCheck"></gal-icon>
+						<span>{{
+							formatDateWithYMD(props.cardInfo.publishTime)
+						}}</span>
+					</div>
+					<div v-if="~props.cardInfo.cutLowest">
+						<gal-icon class="icon" icon="chartArea"></gal-icon>
+						<span
+							>{{ props.cardInfo.priceLowestString }} -
+							{{ props.cardInfo.cutLowest }}%
+						</span>
+					</div>
+				</div>
+				<div class="price">
+					<!-- todo -->
+				</div>
 			</div>
-		</div>
-	</a>
+		</template>
+	</gal-free-game-card>
 </template>
 
 <script setup>
+import { formatDateWithYMD } from "../../../assets/common/js/formatDate.js";
 const props = defineProps({
 	cardInfo: {
 		type: Object,
@@ -30,33 +45,13 @@ const props = defineProps({
 .game-card {
 	--row-dot-line: 3;
 }
-.name {
-	--row-dot-line: 2;
-}
-.game-card {
-	border-radius: var(--main-border-radius);
-	display: block;
-	height: 100%;
-	overflow: hidden;
-	box-shadow: var(--main-shadow);
-}
-.game-card-img {
-	width: 100%;
-	aspect-ratio: 460 / 215;
-	object-fit: cover;
-}
-.info {
-	padding: 1em;
-}
-.name {
-	color: var(--block-color);
-	font-size: 20px;
-}
-.brief-introduction {
+.steam-info {
+	display: flex;
 	font-size: 14px;
 	color: var(--block-color);
 }
-
-@media screen and (max-width: 768px) {
+.icon {
+	color: var(--main-color);
+	margin-inline-end: 1em;
 }
 </style>
