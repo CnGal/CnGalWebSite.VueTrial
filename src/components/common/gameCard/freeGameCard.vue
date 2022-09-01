@@ -4,11 +4,11 @@
 			loading="lazy"
 			class="game-card-img"
 			:src="props.cardInfo.mainImage"
-			:alt="props.cardInfo.disPlayName || props.cardInfo.name"
+			:alt="props.cardInfo.name"
 		/>
 		<div class="info">
 			<h5 class="name rows-dot">
-				{{ props.cardInfo.displayName || props.cardInfo.name }}
+				{{ props.cardInfo.name }}
 			</h5>
 			<div class="brief-introduction rows-dot">
 				{{ props.cardInfo.briefIntroduction }}
