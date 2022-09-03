@@ -33,3 +33,18 @@ li {
 address {
 	font-style: normal;
 }
+
+::-webkit-scrollbar {
+	width: 5px;
+	height: 5px;
+	margin: 5px 0;
+}
+::-webkit-scrollbar-thumb {
+	margin: 5px 0;
+	border-radius: 15px;
+	background-image: linear-gradient(#aaa8a8, #aaa8a8);
+}
+::-webkit-scrollbar-track {
+	margin: 5px 0;
+	border-radius: 15px;
+}

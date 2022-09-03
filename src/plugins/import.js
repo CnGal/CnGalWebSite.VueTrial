@@ -15,6 +15,9 @@ import homeGameCard from "../components/home/gameCard/gameCard.vue";
 import commonFreeGameCard from "../components/common/gameCard/freeGameCard.vue";
 import commonDiscountGameCard from "../components/common/gameCard/discountGameCard.vue";
 import refreshGameCardList from "../components/common/gameCard/refreshGameCardList.vue";
+import entriesGameCGsCardList from "../components/entries/gameCard/gameCGsCardList.vue";
+import entriesGameCGsCard from "../components/entries/gameCard/gameCGsCard.vue";
+import entriesGameCGPreview from "../components/entries/gameCard/gameCGPreview.vue";
 
 import tooltip from "../components/common/tooltip/import";
 
@@ -33,6 +36,9 @@ const importPlugin = {
 		app.component("galFreeGameCard", commonFreeGameCard);
 		app.component("galDiscountGameCard", commonDiscountGameCard);
 		app.component("galRefreshGameCardList", refreshGameCardList);
+		app.component("galEntriesGameCGsCardList", entriesGameCGsCardList);
+		app.component("galEntriesGameCGsCard", entriesGameCGsCard);
+		app.component("galEntriesGameCGPreview", entriesGameCGPreview);
 
 		app.use(tooltip);
 	}

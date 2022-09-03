@@ -33,6 +33,7 @@ import iconThumbsUp from "../../base/icons/thumbs-up.vue";
 import iconCalendarCheck from "../../base/icons/calendar-check.vue";
 import iconChartArea from "../../base/icons/chart-area.vue";
 import iconDollar from "../../base/icons/dollar.vue";
+import iconPicture from "../../base/icons/picture.vue";
 
 const props = defineProps({
 	icon: {
@@ -76,7 +77,8 @@ const iconMap = {
 	thumbsUp: iconThumbsUp,
 	calendarCheck: iconCalendarCheck,
 	chartArea: iconChartArea,
-	dollar: iconDollar
+	dollar: iconDollar,
+	picture: iconPicture
 };
 </script>
 

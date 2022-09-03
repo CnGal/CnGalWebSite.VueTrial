@@ -4,6 +4,8 @@ import HomeIndex from "../pages/home/home.vue";
 import EntriesHome from "../pages/entries/home.vue";
 import ArticlesNews from "../pages/article/news.vue";
 
+import _test_icon from "../pages/_test/_icon.vue";
+
 const routes = [
 	{
 		path: "/",
@@ -28,6 +30,16 @@ const routes = [
 		]
 	}
 ];
+
+routes.push(
+	...[
+		{
+			path: "/_test/_icon",
+			name: "_test_icon",
+			component: _test_icon
+		}
+	]
+);
 
 const router = createRouter({
 	history: createWebHistory(),

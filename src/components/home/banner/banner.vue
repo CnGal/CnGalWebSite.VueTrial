@@ -15,7 +15,7 @@
 				target="_blank"
 				:tabindex="active === index ? 0 : -1"
 				@focus="stopAnimation"
-				@blur="restartAnimation"
+				@blur="startAnimation"
 				@keyup="keyboardHandler"
 			>
 				<img class="banner-img" :src="item.image" :alt="item.note" />
@@ -46,7 +46,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import { getHomeCarouselsView } from "../../../api/homeAPI/index.js";
 import { nonRepeatRandomList } from "../../../assets/common/js/random.js";
 
@@ -77,10 +77,18 @@ const nextActive = ref(1); // 预计下一张展示
 const bannerListEl = ref();
 
 let timer, autoAnimation;
+let activating = false;
+
+const stopAnimation = () => {
+	clearTimeout(timer);
+};
+const startAnimation = () => {
+	timer = setTimeout(autoAnimation, 6000);
+};
 
 const refreshTimeout = () => {
-	clearTimeout(timer);
-	timer = setTimeout(autoAnimation, 6000);
+	stopAnimation();
+	startAnimation();
 };
 
 const bannerAnimation = (className) => {
@@ -123,15 +131,6 @@ const prevImg = () => {
 	}
 };
 
-const stopAnimation = () => {
-	clearTimeout(timer);
-};
-const restartAnimation = () => {
-	timer = setTimeout(autoAnimation, 6000);
-};
-
-let activating = false;
-
 const keyboardHandler = (ev) => {
 	switch (ev.key) {
 		case "ArrowRight":
@@ -151,6 +150,11 @@ onMounted(() => {
 		nextImg();
 	};
 	timer = setTimeout(autoAnimation, 5000);
+});
+
+onUnmounted(() => {
+	// 在组件卸载时清理掉正在运行的定时器
+	stopAnimation();
 });
 </script>
 

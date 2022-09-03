@@ -4,6 +4,8 @@
 <gal-icon icon="iconName" size="iconSize"></gal-icon>
 ```
 
+> http://127.0.0.1:8081/_test/_icon 运行后在该页面可以查看图标样式
+
 ### 属性
 
 -   icon
@@ -12,7 +14,7 @@
     -   required: true
 
     目前支持值
-    shareAll qq QQ weibo search login settings right left newspaper send send2 pencil note star eye comments gift menu bullhorn home archive cake stickerText timer refresh alignVerticalTop thumbsUp calendarCheck chartArea dollar
+    shareAll qq QQ weibo search login settings right left newspaper send send2 pencil note star eye comments gift menu bullhorn home archive cake stickerText timer refresh alignVerticalTop thumbsUp calendarCheck chartArea dollar picture
 
 -   size
 

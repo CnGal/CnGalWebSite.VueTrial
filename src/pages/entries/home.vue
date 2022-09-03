@@ -1,5 +1,5 @@
 <template>
-	<gal-card>
+	<gal-card class="card">
 		<template v-slot:header>
 			<gal-card-header>
 				<template v-slot:start>
@@ -25,7 +25,7 @@
 			:list="allFreeGames"
 		></gal-refresh-game-card-list>
 	</gal-card>
-	<gal-card>
+	<gal-card class="card">
 		<template v-slot:header>
 			<gal-card-header>
 				<template v-slot:start>
@@ -51,13 +51,18 @@
 			:list="allDiscountGames"
 		></gal-refresh-game-card-list>
 	</gal-card>
+	<galEntriesGameCGsCardList
+		class="card"
+		:list="gameCGs"
+	></galEntriesGameCGsCardList>
 </template>
 
 <script setup>
 import { ref } from "vue";
 import {
 	getFreeGames,
-	getAllDiscountSteamGame
+	getAllDiscountSteamGame,
+	getGameCGs
 } from "../../api/entriesAPI/index.js";
 import { nonRepeatRandomList } from "../../assets/common/js/random.js";
 
@@ -69,6 +74,8 @@ let freeGames = ref([]);
 let allFreeGames = ref([]);
 let discountGames = ref([]);
 let allDiscountGames = ref([]);
+let gameCGs = ref([]);
+let allGameCGs = ref([]);
 (async () => {
 	const { data } = await getFreeGames();
 	let list = [];
@@ -99,10 +106,28 @@ let allDiscountGames = ref([]);
 	discountGames.value = list;
 	allDiscountGames.value = data;
 })();
+(async () => {
+	const { data } = await getGameCGs();
+	let list = [];
+	if (data.length <= 2) {
+		list = data;
+	} else {
+		// 在列表中随机选取2项
+		const set = nonRepeatRandomList(0, data.length - 1, 2);
+		set.forEach((value) => {
+			list.push(data[value]);
+		});
+	}
+	gameCGs.value = list;
+	allGameCGs.value = data;
+})();
 </script>
 
 <style scoped>
 .icon {
 	vertical-align: middle;
+}
+.card {
+	margin-block-start: 16px;
 }
 </style>
