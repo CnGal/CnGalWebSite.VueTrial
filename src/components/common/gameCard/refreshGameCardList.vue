@@ -12,7 +12,7 @@
 		</ul>
 		<button class="refresh-btn" @click="setShowData">
 			<gal-icon icon="refresh" class="icon" size="12px"></gal-icon>
-			换一组免费游戏
+			{{ props.refreshText }}
 		</button>
 	</div>
 </template>
@@ -20,6 +20,9 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { nonRepeatRandomList } from "../../../assets/common/js/random.js";
+
+// todo
+// 将 list 和 setShowData 提到父组件中
 const props = defineProps({
 	list: {
 		type: [Object],
@@ -28,6 +31,10 @@ const props = defineProps({
 	cardName: {
 		type: String,
 		required: true
+	},
+	refreshText: {
+		type: String,
+		default: "刷新"
 	}
 });
 

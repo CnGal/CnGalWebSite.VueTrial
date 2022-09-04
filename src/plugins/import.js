@@ -18,6 +18,9 @@ import refreshGameCardList from "../components/common/gameCard/refreshGameCardLi
 import entriesGameCGsCardList from "../components/entries/gameCard/gameCGsCardList.vue";
 import entriesGameCGsCard from "../components/entries/gameCard/gameCGsCard.vue";
 import entriesGameCGPreview from "../components/entries/gameCard/gameCGPreview.vue";
+import entriesGameRolesCardList from "../components/entries/gameCard/gameRolesCardList.vue";
+import entriesGameRolesCard from "../components/entries/gameCard/gameRolesCard.vue";
+import entriesGameRolesPreview from "../components/entries/gameCard/gameRolesPreview.vue";
 
 import tooltip from "../components/common/tooltip/import";
 
@@ -39,6 +42,9 @@ const importPlugin = {
 		app.component("galEntriesGameCGsCardList", entriesGameCGsCardList);
 		app.component("galEntriesGameCGsCard", entriesGameCGsCard);
 		app.component("galEntriesGameCGPreview", entriesGameCGPreview);
+		app.component("galEntriesGameRolesCardList", entriesGameRolesCardList);
+		app.component("galEntriesGameRolesCard", entriesGameRolesCard);
+		app.component("galEntriesGameRolesPreview", entriesGameRolesPreview);
 
 		app.use(tooltip);
 	}

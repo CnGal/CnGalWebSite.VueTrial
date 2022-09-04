@@ -34,6 +34,7 @@ import iconCalendarCheck from "../../base/icons/calendar-check.vue";
 import iconChartArea from "../../base/icons/chart-area.vue";
 import iconDollar from "../../base/icons/dollar.vue";
 import iconPicture from "../../base/icons/picture.vue";
+import iconUsers from "../../base/icons/users.vue";
 
 const props = defineProps({
 	icon: {
@@ -78,7 +79,8 @@ const iconMap = {
 	calendarCheck: iconCalendarCheck,
 	chartArea: iconChartArea,
 	dollar: iconDollar,
-	picture: iconPicture
+	picture: iconPicture,
+	users: iconUsers
 };
 </script>
 

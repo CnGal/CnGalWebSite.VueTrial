@@ -15,8 +15,11 @@ export const formatDateWithHowLong = (date) => {
 			return `${Math.floor(s)}天前`;
 		case (s = diff / (1000 * 60 * 60 * 24 * 30)) < 12:
 			return `${Math.floor(s)}月前`;
+		case (s = diff / (1000 * 60 * 60 * 24 * 30 * 12)) > 0:
+			return `${Math.floor(s)}年前`;
 		default:
-			return `${Math.floor(diff / (1000 * 60 * 60 * 24 * 30 * 12))}年前`;
+			// 错误处理
+			return -1;
 	}
 };
 

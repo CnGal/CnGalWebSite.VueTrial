@@ -14,7 +14,7 @@
     -   required: true
 
     目前支持值
-    shareAll qq QQ weibo search login settings right left newspaper send send2 pencil note star eye comments gift menu bullhorn home archive cake stickerText timer refresh alignVerticalTop thumbsUp calendarCheck chartArea dollar picture
+    shareAll qq QQ weibo search login settings right left newspaper send send2 pencil note star eye comments gift menu bullhorn home archive cake stickerText timer refresh alignVerticalTop thumbsUp calendarCheck chartArea dollar picture users
 
 -   size
 

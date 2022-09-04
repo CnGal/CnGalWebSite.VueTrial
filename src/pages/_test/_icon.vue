@@ -36,7 +36,8 @@ const iconList = [
 	"calendarCheck",
 	"chartArea",
 	"dollar",
-	"picture"
+	"picture",
+	"users"
 ];
 </script>
 
