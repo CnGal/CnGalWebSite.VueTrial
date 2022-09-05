@@ -56,7 +56,7 @@ const props = defineProps({
 	padding: 1em;
 }
 .img {
-	width: 116px;
+	height: 116px;
 	object-fit: cover;
 	aspect-ratio: 1 / 1;
 	border-radius: 50%;
@@ -79,7 +79,7 @@ const props = defineProps({
 		width: 100%;
 	}
 	.img {
-		width: 80px;
+		height: 80px;
 	}
 }
 </style>

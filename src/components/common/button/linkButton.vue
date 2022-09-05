@@ -36,13 +36,11 @@ onMounted(() => {
 	color: var(--main-color);
 	font-size: 14px;
 	padding: 0 1em;
+	display: flex;
+	column-gap: 0.5em;
 }
 .link-button:hover {
 	background-color: #fbf1f4;
-}
-.link-button-icon {
-	margin-inline-end: 0.5em;
-	vertical-align: middle;
 }
 
 @media screen and (max-width: 768px) {

@@ -13,9 +13,9 @@
 .card-header {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 	background-color: var(--card-bg-color);
-	height: 35px;
-	line-height: 35px;
+	min-height: 35px;
 	padding: 1em 1em 12px;
 }
 h2 {

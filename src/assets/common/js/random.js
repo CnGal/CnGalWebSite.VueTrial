@@ -13,4 +13,18 @@ const nonRepeatRandomList = (min, max, size, initList) => {
 	return set;
 };
 
-export { nonRepeatRandomList, getRandom };
+const getNonRepeatRandomList = (data, wantLength) => {
+	if (data.length <= wantLength) {
+		return data;
+	} else {
+		let list = [];
+		// 在列表中随机选取 wantLength 项
+		const set = nonRepeatRandomList(0, data.length - 1, wantLength);
+		set.forEach((i) => {
+			list.push(data[i]);
+		});
+		return list;
+	}
+};
+
+export { nonRepeatRandomList, getRandom, getNonRepeatRandomList };

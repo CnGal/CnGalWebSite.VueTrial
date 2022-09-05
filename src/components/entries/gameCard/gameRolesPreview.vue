@@ -3,8 +3,8 @@
 		:src="props.cardInfo.image"
 		:alt="props.cardInfo.name"
 		class="img"
-		:class="{ active: props.cardInfo.id === active }"
-		@click="changeActive(props.cardInfo.id)"
+		:class="{ active: props.cardInfo.id === active.id }"
+		@click="changeActive(props.cardInfo.id, true)"
 	/>
 </template>
 
