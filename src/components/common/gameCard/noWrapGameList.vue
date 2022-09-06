@@ -11,10 +11,7 @@
 					class="card-item"
 					ref="cardItem"
 				>
-					<component
-						:is="props.cardName"
-						:cardInfo="item"
-					></component>
+					<component :is="props.cardName" :data="item"></component>
 				</li>
 			</ul>
 		</div>
@@ -25,7 +22,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 const props = defineProps({
 	list: {
 		type: [Object],

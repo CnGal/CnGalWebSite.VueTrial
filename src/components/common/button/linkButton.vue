@@ -1,11 +1,12 @@
 <template>
 	<router-link class="link-button" :to="props.to">
 		<gal-icon
+			v-if="props.icon"
 			:icon="props.icon"
 			:size="size"
 			class="link-button-icon"
 		></gal-icon>
-		<span ref="linkButtonText">{{ props.text }}</span>
+		<span ref="linkButtonText" v-if="props.text" v-text="props.text"></span>
 	</router-link>
 </template>
 
@@ -17,7 +18,7 @@ const props = defineProps({
 	text: String,
 	to: {
 		type: String,
-		default: "/"
+		required: true
 	}
 });
 

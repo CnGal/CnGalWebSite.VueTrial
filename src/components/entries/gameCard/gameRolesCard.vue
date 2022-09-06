@@ -75,6 +75,10 @@ const props = defineProps({
 	}
 }
 @media screen and (max-width: 768px) {
+	.container {
+		background-color: transparent;
+		padding: 0;
+	}
 	.item {
 		width: 100%;
 	}

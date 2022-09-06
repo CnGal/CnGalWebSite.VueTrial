@@ -1,10 +1,10 @@
 <template>
 	<img
-		:src="props.cardInfo.image"
-		:alt="props.cardInfo.note || 'CG'"
+		:src="props.data.image"
+		:alt="props.data.note || 'CG'"
 		class="img"
-		:class="{ active: props.cardInfo.index === active }"
-		@click="changeActive(props.cardInfo.index)"
+		:class="{ active: props.data.index === active }"
+		@click="changeActive(props.data.index)"
 	/>
 </template>
 
@@ -12,7 +12,7 @@
 import { ref, inject } from "vue";
 
 const props = defineProps({
-	cardInfo: {
+	data: {
 		type: Object,
 		required: true
 	}

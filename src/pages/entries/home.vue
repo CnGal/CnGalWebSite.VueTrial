@@ -8,6 +8,7 @@
 				</template>
 				<template v-slot:end>
 					<gal-link-button
+						to="/"
 						class="link-button"
 						:text="'查看更多'"
 						:icon="'shareAll'"
@@ -16,13 +17,13 @@
 			</gal-card-header>
 		</template>
 		<gal-no-wrap-game-list
-			cardName="galFreeGameCard"
+			cardName="galNormalGameCard"
 			:list="freeGames"
 			v-if="!isMobile"
 		></gal-no-wrap-game-list>
 		<gal-refresh-game-card-list
 			v-else
-			cardName="galFreeGameCard"
+			cardName="galNormalGameCard"
 			:data="freeGames"
 			:changeData="changeFreeGames"
 			refreshText="换一组免费游戏"
@@ -37,6 +38,7 @@
 				</template>
 				<template v-slot:end>
 					<gal-link-button
+						to="/"
 						class="link-button"
 						:text="'查看更多'"
 						:icon="'shareAll'"

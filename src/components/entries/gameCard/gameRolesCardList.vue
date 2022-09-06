@@ -1,5 +1,5 @@
 <template>
-	<div class="container">
+	<div class="container roles-card">
 		<gal-card>
 			<template v-slot:header>
 				<gal-card-header>
@@ -13,6 +13,7 @@
 					</template>
 					<template v-slot:end>
 						<gal-link-button
+							to="/"
 							class="link-button"
 							:text="'查看详情'"
 							:icon="'shareAll'"
@@ -91,6 +92,9 @@ provide("changeActive", changeActive);
 </script>
 
 <style scoped>
+.roles-card {
+	padding-block-end: 4px;
+}
 .refresh-btn {
 	display: block;
 	font-size: 12px;
@@ -98,7 +102,7 @@ provide("changeActive", changeActive);
 	border-radius: 1em;
 	background-color: var(--pink-color);
 	color: var(--white-color);
-	margin: 0 auto;
+	margin: 1em auto;
 }
 .icon {
 	margin-inline-end: 8px;

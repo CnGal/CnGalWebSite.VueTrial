@@ -1,32 +1,30 @@
 <template>
 	<a
-		:href="
-			props.cardInfo.disPlayValue || `/entries/index/${props.cardInfo.id}`
-		"
-		:target="props.cardInfo.disPlayValue ? '_blank' : null"
+		:href="props.data.disPlayValue || `/entries/index/${props.data.id}`"
+		:target="props.data.disPlayValue ? '_blank' : null"
 		class="game-card"
 	>
 		<img
 			loading="lazy"
 			class="game-card-img"
-			:src="props.cardInfo.image"
-			:alt="props.cardInfo.disPlayName"
+			:src="props.data.image"
+			:alt="props.data.disPlayName"
 		/>
 		<div class="info">
-			<div class="name rows-dot">{{ props.cardInfo.disPlayName }}</div>
+			<div class="name rows-dot">{{ props.data.disPlayName }}</div>
 		</div>
 		<div
-			v-if="~props.cardInfo.readCount && ~props.cardInfo.commentCount"
+			v-if="~props.data.readCount && ~props.data.commentCount"
 			class="read-comment"
 		>
-			<span v-if="~props.cardInfo.readCount" class="read">
+			<span v-if="~props.data.readCount" class="read">
 				<gal-icon icon="eye" size="14px"></gal-icon
-				>{{ props.cardInfo.readCount }}</span
+				>{{ props.data.readCount }}</span
 			>
 
-			<span v-if="~props.cardInfo.commentCount" class="comment">
+			<span v-if="~props.data.commentCount" class="comment">
 				<gal-icon icon="comments" size="14px"></gal-icon
-				>{{ props.cardInfo.commentCount }}</span
+				>{{ props.data.commentCount }}</span
 			>
 		</div>
 	</a>
@@ -34,7 +32,7 @@
 
 <script setup>
 const props = defineProps({
-	cardInfo: {
+	data: {
 		type: Object,
 		required: true
 	}

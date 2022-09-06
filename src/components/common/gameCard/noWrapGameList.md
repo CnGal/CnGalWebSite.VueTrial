@@ -12,3 +12,10 @@
     -   required: true
 
     接收 card 信息
+
+-   cardName
+
+    -   type: String
+    -   required: true
+
+    内部 card 的组件名称

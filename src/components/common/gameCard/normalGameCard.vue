@@ -1,17 +1,17 @@
 <template>
-	<a :href="`/entries/index/${props.cardInfo.id}`" class="game-card">
+	<a :href="`/entries/index/${props.data.id}`" class="game-card">
 		<img
 			loading="lazy"
 			class="game-card-img"
-			:src="props.cardInfo.mainImage"
-			:alt="props.cardInfo.name"
+			:src="props.data.mainImage"
+			:alt="props.data.name"
 		/>
 		<div class="info">
 			<h5 class="name rows-dot">
-				{{ props.cardInfo.name }}
+				{{ props.data.name }}
 			</h5>
 			<div class="brief-introduction rows-dot">
-				{{ props.cardInfo.briefIntroduction }}
+				{{ props.data.briefIntroduction }}
 			</div>
 		</div>
 		<slot name="sub"></slot>
@@ -20,7 +20,7 @@
 
 <script setup>
 const props = defineProps({
-	cardInfo: {
+	data: {
 		type: Object,
 		required: true
 	}

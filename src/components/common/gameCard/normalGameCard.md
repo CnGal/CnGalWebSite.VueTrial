@@ -1,7 +1,7 @@
 ## 使用
 
 ```
-<gal-home-game-card :data="data"></gal-home-game-card>
+<gal-game-card :data="data"></gal-game-card>
 ```
 
 ### 属性

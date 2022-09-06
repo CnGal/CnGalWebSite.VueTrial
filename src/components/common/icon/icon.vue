@@ -35,6 +35,7 @@ import iconChartArea from "../../base/icons/chart-area.vue";
 import iconDollar from "../../base/icons/dollar.vue";
 import iconPicture from "../../base/icons/picture.vue";
 import iconUsers from "../../base/icons/users.vue";
+import iconRandom from "../../base/icons/random.vue";
 
 const props = defineProps({
 	icon: {
@@ -80,7 +81,8 @@ const iconMap = {
 	chartArea: iconChartArea,
 	dollar: iconDollar,
 	picture: iconPicture,
-	users: iconUsers
+	users: iconUsers,
+	random: iconRandom
 };
 </script>
 

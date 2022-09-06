@@ -27,7 +27,7 @@ const navList = [
 		text: "CV"
 	},
 	{
-		link: "/",
+		link: "/article",
 		text: "文章"
 	},
 	{

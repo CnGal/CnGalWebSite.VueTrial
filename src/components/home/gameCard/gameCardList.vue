@@ -5,7 +5,7 @@
 			v-for="(item, index) in props.list"
 			:key="index"
 		>
-			<gal-home-game-card :cardInfo="item"></gal-home-game-card>
+			<gal-home-game-card :data="item"></gal-home-game-card>
 		</li>
 	</ul>
 </template>

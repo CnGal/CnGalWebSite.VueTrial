@@ -1,7 +1,7 @@
 ## 使用
 
 ```
-<gal-news-card :cardInfo="data"></gal-news-card>
+<gal-news-card :newsInfo="data"></gal-news-card>
 ```
 
 ### 属性

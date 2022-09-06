@@ -37,7 +37,8 @@ const iconList = [
 	"chartArea",
 	"dollar",
 	"picture",
-	"users"
+	"users",
+	"random"
 ];
 </script>
 

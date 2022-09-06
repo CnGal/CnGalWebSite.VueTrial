@@ -1,12 +1,12 @@
 ## 使用
 
 ```
-<gal-game-card :cardInfo="data"></gal-game-card>
+<gal-discount-game-card :data="data"></gal-discount-game-card>
 ```
 
 ### 属性
 
--   cardInfo
+-   data
 
     -   type: Object
     -   required: true

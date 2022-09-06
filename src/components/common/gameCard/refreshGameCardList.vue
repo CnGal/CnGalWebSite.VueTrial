@@ -7,7 +7,7 @@
 				class="card-item"
 				ref="cardItem"
 			>
-				<component :is="props.cardName" :cardInfo="item"></component>
+				<component :is="props.cardName" :data="item"></component>
 			</li>
 		</ul>
 		<button class="refresh-btn" @click="props?.changeData">

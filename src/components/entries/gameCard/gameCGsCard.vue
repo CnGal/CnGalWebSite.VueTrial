@@ -1,16 +1,14 @@
 <template>
 	<img
 		class="cg-show"
-		:src="props.cardInfo.pictures[active].image"
-		:alt="
-			props.cardInfo.pictures[active].note || props.cardInfo.name + 'CG'
-		"
+		:src="props.data.pictures[active].image"
+		:alt="props.data.pictures[active].note || props.data.name + 'CG'"
 	/>
 	<gal-no-wrap-game-list
 		class="cg-preview"
 		cardName="galEntriesGameCGPreview"
 		:list="
-			props.cardInfo.pictures.map((item, index) => {
+			props.data.pictures.map((item, index) => {
 				item.index = index;
 				return item;
 			})
@@ -22,7 +20,7 @@
 import { ref, provide } from "vue";
 
 const props = defineProps({
-	cardInfo: {
+	data: {
 		type: Object,
 		required: true
 	}

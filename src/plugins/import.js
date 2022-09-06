@@ -12,7 +12,7 @@ import cardHeader from "../components/common/card/cardHeader.vue";
 import noWrapGameList from "../components/common/gameCard/noWrapGameList.vue";
 import newsCard from "../components/common/gameCard/newsCard.vue";
 import homeGameCard from "../components/home/gameCard/gameCard.vue";
-import commonFreeGameCard from "../components/common/gameCard/freeGameCard.vue";
+import normalGameCard from "../components/common/gameCard/normalGameCard.vue";
 import commonDiscountGameCard from "../components/common/gameCard/discountGameCard.vue";
 import refreshGameCardList from "../components/common/gameCard/refreshGameCardList.vue";
 import entriesGameCGsCardList from "../components/entries/gameCard/gameCGsCardList.vue";
@@ -36,7 +36,7 @@ const importPlugin = {
 		app.component("galNoWrapGameList", noWrapGameList);
 		app.component("galNewsCard", newsCard);
 		app.component("galHomeGameCard", homeGameCard);
-		app.component("galFreeGameCard", commonFreeGameCard);
+		app.component("galNormalGameCard", normalGameCard);
 		app.component("galDiscountGameCard", commonDiscountGameCard);
 		app.component("galRefreshGameCardList", refreshGameCardList);
 		app.component("galEntriesGameCGsCardList", entriesGameCGsCardList);

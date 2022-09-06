@@ -28,6 +28,7 @@
 				</template>
 				<template v-slot:end>
 					<gal-link-button
+						to="/"
 						:text="'查看更多'"
 						:icon="'shareAll'"
 					></gal-link-button>
@@ -45,6 +46,7 @@
 				</template>
 				<template v-slot:end>
 					<gal-link-button
+						to="/"
 						:text="'查看更多'"
 						:icon="'shareAll'"
 					></gal-link-button>
@@ -62,6 +64,7 @@
 				</template>
 				<template v-slot:end>
 					<gal-link-button
+						to="/"
 						:text="'查看更多'"
 						:icon="'shareAll'"
 					></gal-link-button>
@@ -79,6 +82,7 @@
 				</template>
 				<template v-slot:end>
 					<gal-link-button
+						to="/"
 						:text="'查看更多'"
 						:icon="'shareAll'"
 					></gal-link-button>
@@ -95,6 +99,7 @@
 				</template>
 				<template v-slot:end>
 					<gal-link-button
+						to="/"
 						:text="'查看更多'"
 						:icon="'shareAll'"
 					></gal-link-button>

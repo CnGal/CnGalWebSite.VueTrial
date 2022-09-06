@@ -33,7 +33,7 @@ const navList = [
 		icon: "alignVerticalTop"
 	},
 	{
-		link: "/",
+		link: "/article",
 		text: "文章",
 		icon: "stickerText"
 	},

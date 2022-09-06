@@ -17,13 +17,14 @@
 					</template>
 					<template v-slot:end>
 						<gal-link-button
+							to="/"
 							:text="'查看详情'"
 							:icon="'shareAll'"
 						></gal-link-button>
 					</template>
 				</gal-card-header>
 			</template>
-			<galEntriesGameCGsCard :cardInfo="item"></galEntriesGameCGsCard>
+			<galEntriesGameCGsCard :data="item"></galEntriesGameCGsCard>
 		</gal-card>
 	</div>
 </template>

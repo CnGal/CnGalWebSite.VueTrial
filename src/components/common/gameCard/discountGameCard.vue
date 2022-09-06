@@ -1,10 +1,10 @@
 <template>
-	<gal-free-game-card :cardInfo="props.cardInfo" class="game-card">
+	<gal-normal-game-card :data="props.data" class="game-card">
 		<template v-slot:sub>
 			<div class="steam-info">
 				<div class="info">
 					<div
-						v-if="props.cardInfo.evaluationCount"
+						v-if="props.data.evaluationCount"
 						class="evaluation-count"
 					>
 						<div>
@@ -12,52 +12,46 @@
 						</div>
 						<div>
 							<span
-								>{{ props.cardInfo.recommendationRate }}%
-								好评&nbsp;
+								>{{ props.data.recommendationRate }}% 好评&nbsp;
 							</span>
 							<wbr />
 							<span :style="{ display: 'inline-block' }"
-								>({{
-									props.cardInfo.evaluationCount
-								}}条评测)</span
+								>({{ props.data.evaluationCount }}条评测)</span
 							>
 						</div>
 					</div>
 					<div>
 						<gal-icon class="icon" icon="calendarCheck"></gal-icon>
 						<span>{{
-							formatDateWithYMD(props.cardInfo.publishTime)
+							formatDateWithYMD(props.data.publishTime)
 						}}</span>
 					</div>
-					<div v-if="~props.cardInfo.cutLowest">
+					<div v-if="~props.data.cutLowest">
 						<gal-icon class="icon" icon="chartArea"></gal-icon>
 						<span
-							>{{ props.cardInfo.priceLowestString }} -
-							{{ props.cardInfo.cutLowest }}%
+							>{{ props.data.priceLowestString }} -
+							{{ props.data.cutLowest }}%
 						</span>
 					</div>
 				</div>
 				<div class="price">
 					<div class="price-now">
-						{{ props.cardInfo.priceNowString }}
+						{{ props.data.priceNowString }}
 					</div>
-					<div class="cut-now">{{ props.cardInfo.cutNow }}% OFF</div>
+					<div class="cut-now">{{ props.data.cutNow }}% OFF</div>
 					<div class="original-price">
-						{{
-							"¥ " +
-							(props.cardInfo.originalPrice / 100).toFixed(2)
-						}}
+						{{ "¥ " + (props.data.originalPrice / 100).toFixed(2) }}
 					</div>
 				</div>
 			</div>
 		</template>
-	</gal-free-game-card>
+	</gal-normal-game-card>
 </template>
 
 <script setup>
 import { formatDateWithYMD } from "../../../assets/common/js/formatDate.js";
 const props = defineProps({
-	cardInfo: {
+	data: {
 		type: Object,
 		required: true
 	}
