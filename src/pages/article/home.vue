@@ -114,7 +114,6 @@ const weeklyNewsOverview = ref([]);
 const gameEvaluations = ref([]);
 (async () => {
 	const { data } = await getGameEvaluations();
-	console.log(data);
 	gameEvaluations.value = getNonRepeatRandomList(data, 2);
 })();
 </script>

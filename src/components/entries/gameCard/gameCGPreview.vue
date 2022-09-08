@@ -1,7 +1,7 @@
 <template>
 	<img
-		:src="props.data.image"
-		:alt="props.data.note || 'CG'"
+		:src="props.data.image || props.data.mainImage"
+		:alt="props.data.note || props.data.displayName || props.data.name"
 		class="img"
 		:class="{ active: props.data.index === active }"
 		@click="changeActive(props.data.index)"

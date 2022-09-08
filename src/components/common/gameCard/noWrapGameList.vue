@@ -1,6 +1,11 @@
 <template>
 	<div class="card-wrap">
-		<gal-button class="prev" @click="prevList" :disabled="cannotPrevList">
+		<gal-button
+			v-if="buttonShow"
+			class="prev"
+			@click="prevList"
+			:disabled="cannotPrevList"
+		>
 			<gal-icon icon="left" size="24px"></gal-icon>
 		</gal-button>
 		<div class="card-list-wrap">
@@ -15,14 +20,19 @@
 				</li>
 			</ul>
 		</div>
-		<gal-button class="next" @click="nextList" :disabled="cannotNextList">
+		<gal-button
+			v-if="buttonShow"
+			class="next"
+			@click="nextList"
+			:disabled="cannotNextList"
+		>
 			<gal-icon icon="right" size="24px"></gal-icon>
 		</gal-button>
 	</div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 const props = defineProps({
 	list: {
 		type: [Object],
@@ -68,6 +78,25 @@ const prevList = () => {
 		-1 * cardItemWidth * nowTranslate.value + "px"
 	} - ${16 * nowTranslate.value}px))`;
 };
+
+const buttonShow = ref(true);
+const canScroll = () => {
+	if (cardItem.value.length > 4) {
+		buttonShow.value = true;
+		return;
+	}
+	let widthCount = 0;
+	cardItem.value.forEach((item) => {
+		widthCount += item.getBoundingClientRect().width;
+	});
+	if (widthCount <= cardList.value.getBoundingClientRect().width) {
+		buttonShow.value = false;
+	}
+};
+
+onMounted(() => {
+	canScroll();
+});
 </script>
 
 <style scoped>

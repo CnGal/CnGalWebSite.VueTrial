@@ -19,11 +19,15 @@
 				</span>
 			</div>
 		</header>
-		<main class="main-text" v-html="props.data.briefIntroduction"></main>
+		<main
+			class="markdown-body"
+			v-html="props.data.briefIntroduction"
+		></main>
 	</article>
 </template>
 
 <script setup>
+import "github-markdown-css";
 import { formatDateWithYMD } from "../../../assets/common/js/formatDate";
 
 const props = defineProps({
@@ -35,9 +39,6 @@ const props = defineProps({
 </script>
 
 <style scoped>
-.main-text :deep(img) {
-	max-width: 100%;
-}
 .heading {
 	text-align: center;
 }
@@ -50,5 +51,10 @@ const props = defineProps({
 }
 .info > span {
 	margin-inline-end: 1em;
+}
+
+.markdown-body :deep(a) {
+	word-break: break-all;
+	color: var(--main-color);
 }
 </style>
