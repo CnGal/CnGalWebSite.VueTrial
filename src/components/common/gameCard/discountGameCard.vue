@@ -23,7 +23,7 @@
 					<div>
 						<gal-icon class="icon" icon="calendarCheck"></gal-icon>
 						<span>{{
-							formatDateWithYMD(props.data.publishTime)
+							formatDateWithYMD(props.data.publishTime, "zh")
 						}}</span>
 					</div>
 					<div v-if="~props.data.cutLowest">

@@ -34,10 +34,12 @@ const iconList = [
 	"alignVerticalTop",
 	"thumbsUp",
 	"calendarCheck",
+	"calendarAlt",
 	"chartArea",
 	"dollar",
 	"picture",
 	"users",
+	"user",
 	"random"
 ];
 </script>

@@ -23,12 +23,22 @@ export const formatDateWithHowLong = (date) => {
 	}
 };
 
-export const formatDateWithYMD = (date) => {
+export const formatDateWithYMD = (date, i18n) => {
 	const willFormatDate = new Date(date);
 
 	const year = willFormatDate.getFullYear();
 	const month = willFormatDate.getMonth() + 1;
 	const day = willFormatDate.getDate();
 
-	return `${year}年${month}月${day}日`;
+	if (i18n === "zh") {
+		return `${year}年${month}月${day}日`;
+	} else {
+		return (
+			year +
+			"-" +
+			month.toString().padStart(2, "0") +
+			"-" +
+			day.toString().padStart(2, "0")
+		);
+	}
 };

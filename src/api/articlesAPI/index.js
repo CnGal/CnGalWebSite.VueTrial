@@ -4,4 +4,12 @@ async function getRandomArticles() {
 	return await axios.get("/api/articles/GetRandomArticles");
 }
 
-export { getRandomArticles };
+async function getWeeklyNewsOverview() {
+	return await axios.get("/api/news/GetWeeklyNewsOverview");
+}
+
+async function getGameEvaluations() {
+	return await axios.get("/api/articles/GetGameEvaluations");
+}
+
+export { getRandomArticles, getWeeklyNewsOverview, getGameEvaluations };

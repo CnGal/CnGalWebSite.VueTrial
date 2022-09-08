@@ -10,7 +10,11 @@
 				<component :is="props.cardName" :data="item"></component>
 			</li>
 		</ul>
-		<button class="refresh-btn" @click="props?.changeData">
+		<button
+			v-if="props.refreshText"
+			class="refresh-btn"
+			@click="props?.changeData"
+		>
 			<gal-icon icon="refresh" class="icon" size="12px"></gal-icon>
 			{{ props.refreshText }}
 		</button>
@@ -28,10 +32,12 @@ const props = defineProps({
 		required: true
 	},
 	refreshText: {
-		type: String,
-		default: "刷新"
+		type: String
 	},
-	changeData: Function
+	changeData: {
+		type: Function,
+		default: Function.prototype
+	}
 });
 </script>
 

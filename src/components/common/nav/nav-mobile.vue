@@ -2,9 +2,12 @@
 	<nav class="nav">
 		<ul class="nav-menu">
 			<li
-				class="nav-menu-item"
+				class="nav-item"
 				v-for="(item, index) in navList"
 				:key="index"
+				:class="{
+					active: isActivePath(item.link)
+				}"
 			>
 				<router-link :to="item.link">
 					<gal-icon :icon="item.icon" size="24px"></gal-icon>
@@ -16,6 +19,9 @@
 </template>
 
 <script setup>
+import { useRoute } from "vue-router";
+const route = useRoute();
+
 const navList = [
 	{
 		link: "/",
@@ -43,17 +49,24 @@ const navList = [
 		icon: "timer"
 	}
 ];
+
+const isActivePath = (path) => {
+	if (path === "/") {
+		return route.fullPath === "/";
+	}
+	return route.fullPath.startsWith(path);
+};
 </script>
 
 <style scoped>
 .nav-menu {
 	display: flex;
 }
-.nav-menu-item {
+.nav-item {
 	flex: 1;
 	height: 56px;
 }
-.nav-menu-item a {
+.nav-item a {
 	display: flex;
 	height: 100%;
 	flex-direction: column;
@@ -61,5 +74,8 @@ const navList = [
 	align-items: center;
 	color: var(--gray-color);
 	font-size: 12px;
+}
+.nav-item.active a {
+	color: var(--main-color);
 }
 </style>

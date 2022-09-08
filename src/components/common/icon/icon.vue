@@ -31,10 +31,12 @@ import iconRefresh from "../../base/icons/refresh.vue";
 import iconAlignVerticalTop from "../../base/icons/align-vertical-top.vue";
 import iconThumbsUp from "../../base/icons/thumbs-up.vue";
 import iconCalendarCheck from "../../base/icons/calendar-check.vue";
+import iconCalendarAlt from "../../base/icons/calendar-alt.vue";
 import iconChartArea from "../../base/icons/chart-area.vue";
 import iconDollar from "../../base/icons/dollar.vue";
 import iconPicture from "../../base/icons/picture.vue";
 import iconUsers from "../../base/icons/users.vue";
+import iconUser from "../../base/icons/user.vue";
 import iconRandom from "../../base/icons/random.vue";
 
 const props = defineProps({
@@ -78,10 +80,12 @@ const iconMap = {
 	alignVerticalTop: iconAlignVerticalTop,
 	thumbsUp: iconThumbsUp,
 	calendarCheck: iconCalendarCheck,
+	calendarAlt: iconCalendarAlt,
 	chartArea: iconChartArea,
 	dollar: iconDollar,
 	picture: iconPicture,
 	users: iconUsers,
+	user: iconUser,
 	random: iconRandom
 };
 </script>

@@ -19,6 +19,8 @@
 	padding: 1em 1em 12px;
 }
 h2 {
+	display: flex;
+	align-items: center;
 	color: var(--main-color);
 	font-size: 1.25em;
 }
