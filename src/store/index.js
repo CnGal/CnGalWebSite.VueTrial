@@ -6,10 +6,8 @@ export const useStore = defineStore("main", {
 			isMobile: !!navigator.userAgent.match(/(Android|iPhone|Mobile)/i),
 			// localStorage 中存在就取 localStorage, 如果没有就给一个默认值
 			theme: JSON.parse(
-				localStorage.getItem("theme") || {
-					color: "#f44336",
-					isDark: false
-				}
+				localStorage.getItem("theme") ||
+					'{"color": "#f44336","isDark": false}'
 			)
 		};
 	},

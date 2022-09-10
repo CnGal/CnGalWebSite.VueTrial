@@ -10,7 +10,7 @@ import { ref, onMounted } from "vue";
 const props = defineProps({
 	bgColor: {
 		type: String,
-		required: true
+		default: "var(--card-bg-color)"
 	}
 });
 
@@ -24,9 +24,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.button {
-	--button-bg-color: var(--card-bg-color);
-}
 .button {
 	background-color: var(--button-bg-color);
 	border: none;
