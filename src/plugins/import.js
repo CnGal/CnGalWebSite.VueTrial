@@ -16,13 +16,12 @@ import normalGameCard from "../components/common/gameCard/normalGameCard.vue";
 import commonDiscountGameCard from "../components/common/gameCard/discountGameCard.vue";
 import refreshGameCardList from "../components/common/gameCard/refreshGameCardList.vue";
 import evaluation from "../components/common/article/evaluation.vue";
+import gamePreview from "../components/common/gameCard/gamePreview.vue";
 
 import entriesGameCGsCardList from "../components/entries/gameCard/gameCGsCardList.vue";
 import entriesGameCGsCard from "../components/entries/gameCard/gameCGsCard.vue";
-import entriesGameCGPreview from "../components/entries/gameCard/gameCGPreview.vue";
 import entriesGameRolesCardList from "../components/entries/gameCard/gameRolesCardList.vue";
 import entriesGameRolesCard from "../components/entries/gameCard/gameRolesCard.vue";
-import entriesGameRolesPreview from "../components/entries/gameCard/gameRolesPreview.vue";
 
 import articlesGameEvaluationCardList from "../components/articles/gameCard/gameEvaluationCardList.vue";
 import articlesGameEvaluationCard from "../components/articles/gameCard/gameEvaluationCard.vue";
@@ -45,13 +44,12 @@ const importPlugin = {
 		app.component("galDiscountGameCard", commonDiscountGameCard);
 		app.component("galRefreshGameCardList", refreshGameCardList);
 		app.component("galEvaluation", evaluation);
+		app.component("galGamePreview", gamePreview);
 
 		app.component("galEntriesGameCGsCardList", entriesGameCGsCardList);
 		app.component("galEntriesGameCGsCard", entriesGameCGsCard);
-		app.component("galEntriesGameCGPreview", entriesGameCGPreview);
 		app.component("galEntriesGameRolesCardList", entriesGameRolesCardList);
 		app.component("galEntriesGameRolesCard", entriesGameRolesCard);
-		app.component("galEntriesGameRolesPreview", entriesGameRolesPreview);
 
 		app.component(
 			"galArticlesGameEvaluationCardList",

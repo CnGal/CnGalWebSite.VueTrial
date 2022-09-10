@@ -3,8 +3,12 @@
 		:src="props.data.image || props.data.mainImage"
 		:alt="props.data.note || props.data.displayName || props.data.name"
 		class="img"
-		:class="{ active: props.data.index === active }"
-		@click="changeActive(props.data.index)"
+		:class="{ active: isActive() }"
+		@click="
+			changeActive(
+				active.type === 'id' ? props.data.id : props.data.index
+			)
+		"
 	/>
 </template>
 
@@ -20,6 +24,13 @@ const props = defineProps({
 
 const active = inject("active");
 const changeActive = inject("changeActive");
+
+const isActive = () => {
+	if (active.value.type === "id") {
+		return props.data.id === active.value.active.id;
+	}
+	return props.data.index === active.value.active;
+};
 </script>
 
 <style scoped>

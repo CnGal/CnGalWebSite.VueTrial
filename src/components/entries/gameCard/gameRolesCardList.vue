@@ -9,7 +9,7 @@
 							icon="users"
 							size="1em"
 						></gal-icon
-						>&nbsp;&nbsp;{{ activeList.name }} 角色预览
+						>&nbsp;&nbsp;{{ activeData.active.name }} 角色预览
 					</template>
 					<template v-slot:end>
 						<gal-link-button
@@ -21,10 +21,10 @@
 					</template>
 				</gal-card-header>
 				<gal-entries-game-roles-card
-					:list="activeList"
+					:list="activeData.active"
 				></gal-entries-game-roles-card>
 				<gal-no-wrap-game-list
-					cardName="galEntriesGameRolesPreview"
+					cardName="galGamePreview"
 					v-if="!isMobile"
 					:list="gameRoles"
 				></gal-no-wrap-game-list>
@@ -73,21 +73,22 @@ gameRoles.value = getNonRepeatRandomList(data, normalShowCardCount);
 allGameRoles.value = data;
 data = undefined;
 
-const changeActive = (newActive, isID) => {
-	if (isID) {
-		activeIndex.value = allGameRoles.value.findIndex(
-			(item) => item.id === newActive
-		);
-	} else {
-		activeIndex.value = newActive;
-	}
+const changeActive = (newActive) => {
+	activeIndex.value = allGameRoles.value.findIndex(
+		(item) => item.id === newActive
+	);
 };
 
 const activeIndex = ref(0);
 changeActive(gameRoles.value[0].id, true);
-const activeList = computed(() => allGameRoles.value[activeIndex.value]);
+const activeData = computed(() => {
+	return {
+		active: allGameRoles.value[activeIndex.value],
+		type: "id"
+	};
+});
 
-provide("active", activeList);
+provide("active", activeData);
 provide("changeActive", changeActive);
 </script>
 

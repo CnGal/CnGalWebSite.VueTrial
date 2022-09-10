@@ -32,7 +32,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, nextTick } from "vue";
 const props = defineProps({
 	list: {
 		type: [Object],
@@ -95,7 +95,9 @@ const canScroll = () => {
 };
 
 onMounted(() => {
-	canScroll();
+	nextTick(() => {
+		canScroll();
+	});
 });
 </script>
 

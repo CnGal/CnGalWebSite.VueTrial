@@ -6,7 +6,7 @@
 	/>
 	<gal-no-wrap-game-list
 		class="cg-preview"
-		cardName="galEntriesGameCGPreview"
+		cardName="galGamePreview"
 		:list="
 			props.data.pictures.map((item, index) => {
 				item.index = index;
@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-import { ref, provide } from "vue";
+import { ref, provide, computed } from "vue";
 
 const props = defineProps({
 	data: {
@@ -32,7 +32,13 @@ const changeActive = (newActive) => {
 	active.value = newActive;
 };
 
-provide("active", active);
+const activeData = computed(() => {
+	return {
+		active: active.value,
+		type: "index"
+	};
+});
+provide("active", activeData);
 provide("changeActive", changeActive);
 </script>
 
