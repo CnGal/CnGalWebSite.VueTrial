@@ -18,7 +18,12 @@
 				@blur="startAnimation"
 				@keyup="keyboardHandler"
 			>
-				<img class="banner-img" :src="item.image" :alt="item.note" />
+				<img
+					class="banner-img"
+					loading="lazy"
+					:src="item.image"
+					:alt="item.note"
+				/>
 			</a>
 		</div>
 		<div class="transition-img" aria-hidden="true">

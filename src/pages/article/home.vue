@@ -63,7 +63,9 @@
 		></gal-refresh-game-card-list>
 	</gal-card>
 	<galArticlesGameEvaluationCardList
+		class="card"
 		:list="gameEvaluations"
+		v-if="!isMobile"
 	></galArticlesGameEvaluationCardList>
 </template>
 

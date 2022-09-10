@@ -32,7 +32,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, nextTick } from "vue";
+import { ref, onMounted } from "vue";
 const props = defineProps({
 	list: {
 		type: [Object],
@@ -81,6 +81,9 @@ const prevList = () => {
 
 const buttonShow = ref(true);
 const canScroll = () => {
+	if (!cardItem.value) {
+		return;
+	}
 	if (cardItem.value.length > 4) {
 		buttonShow.value = true;
 		return;
@@ -95,9 +98,7 @@ const canScroll = () => {
 };
 
 onMounted(() => {
-	nextTick(() => {
-		canScroll();
-	});
+	canScroll();
 });
 </script>
 
@@ -113,10 +114,8 @@ onMounted(() => {
 }
 .prev,
 .next {
-	border: none;
 	width: 52px;
 	color: var(--gray-color);
-	cursor: pointer;
 }
 .prev:disabled,
 .next:disabled {

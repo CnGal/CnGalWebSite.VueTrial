@@ -7,6 +7,7 @@ import icon from "../components/common/icon/icon.vue";
 import button from "../components/common/button/button.vue";
 import linkButton from "../components/common/button/linkButton.vue";
 import tag from "../components/common/tag/tag.vue";
+import dialog from "../components/common/dialog/dialog.vue";
 import card from "../components/common/card/card.vue";
 import cardHeader from "../components/common/card/cardHeader.vue";
 import noWrapGameList from "../components/common/gameCard/noWrapGameList.vue";
@@ -35,6 +36,7 @@ const importPlugin = {
 		app.component("galIcon", icon);
 		app.component("galLinkButton", linkButton);
 		app.component("galTag", tag);
+		app.component("galDialog", dialog);
 		app.component("galCard", card);
 		app.component("galCardHeader", cardHeader);
 		app.component("galNoWrapGameList", noWrapGameList);
