@@ -1,17 +1,17 @@
 <template>
 	<a
-		:href="props.data.disPlayValue || `/entries/index/${props.data.id}`"
-		:target="props.data.disPlayValue ? '_blank' : null"
+		:href="props.data.url"
+		:target="props.data.isOutlink ? '_blank' : null"
 		class="game-card"
 	>
 		<img
 			loading="lazy"
 			class="game-card-img"
 			:src="props.data.image"
-			:alt="props.data.disPlayName"
+			:alt="props.data.name"
 		/>
 		<div class="info">
-			<div class="name rows-dot">{{ props.data.disPlayName }}</div>
+			<div class="name rows-dot">{{ props.data.name }}</div>
 		</div>
 		<div
 			v-if="~props.data.readCount && ~props.data.commentCount"
