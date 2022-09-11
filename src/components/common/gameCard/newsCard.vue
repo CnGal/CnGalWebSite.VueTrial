@@ -10,7 +10,7 @@
 		</router-link>
 		<a :href="props.newsInfo.link" class="text-info" target="_blank">
 			<div>
-				<gal-tag class="tag" :text="props.newsInfo.type"></gal-tag>
+				<gal-tag class="tag">{{ props.newsInfo.type }}</gal-tag>
 				<span class="user">{{ props.newsInfo.title }}</span>
 				<span class="date">{{
 					formatDateWithHowLong(props.newsInfo.time)

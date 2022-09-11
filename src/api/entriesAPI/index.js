@@ -16,4 +16,14 @@ async function getGameRoles() {
 	return await axios.get("/api/entries/GetGameRoles");
 }
 
-export { getFreeGames, getAllDiscountSteamGame, getGameCGs, getGameRoles };
+async function getEntryViewByID(id) {
+	return await axios.get("/api/entries/GetEntryView/" + id);
+}
+
+export {
+	getFreeGames,
+	getAllDiscountSteamGame,
+	getGameCGs,
+	getGameRoles,
+	getEntryViewByID
+};

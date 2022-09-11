@@ -40,8 +40,8 @@
 					<gal-link-button
 						to="/"
 						class="link-button"
-						:text="'查看更多'"
-						:icon="'shareAll'"
+						text="查看更多"
+						icon="shareAll"
 					></gal-link-button>
 				</template>
 			</gal-card-header>

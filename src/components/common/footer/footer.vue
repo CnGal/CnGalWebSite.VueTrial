@@ -29,7 +29,7 @@
 				>
 					<gal-icon
 						class="icon"
-						:icon="'weibo'"
+						:icon="'weiboFill'"
 						:size="'40px'"
 					></gal-icon>
 				</a>

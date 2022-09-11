@@ -8,7 +8,9 @@
 const iconList = [
 	"shareAll",
 	"qq",
+	"qqFill",
 	"weibo",
+	"weiboFill",
 	"search",
 	"login",
 	"settings",
@@ -26,6 +28,7 @@ const iconList = [
 	"menu",
 	"bullhorn",
 	"home",
+	"homeFill",
 	"archive",
 	"cake",
 	"stickerText",
@@ -35,12 +38,20 @@ const iconList = [
 	"thumbsUp",
 	"calendarCheck",
 	"calendarAlt",
+	"calendarPlus",
 	"chartArea",
 	"dollar",
 	"picture",
 	"users",
 	"user",
-	"random"
+	"random",
+	"steam",
+	"info",
+	"gamepad",
+	"idCard",
+	"coffee",
+	"link",
+	"externalLinkSquareAlt"
 ];
 </script>
 

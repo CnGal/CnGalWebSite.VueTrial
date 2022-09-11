@@ -39,6 +39,7 @@ onMounted(() => {
 	padding: 0.5em 1em;
 	display: flex;
 	column-gap: 0.5em;
+	justify-content: center;
 }
 html:not(.theme-dark) .link-button {
 	color: var(--main-color);

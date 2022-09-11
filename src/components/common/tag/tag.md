@@ -1,13 +1,5 @@
 ## 使用
 
 ```
-<gal-tag :text="text"></gal-tag>
+<gal-tag>text</gal-tag>
 ```
-
-### 属性
-
--   text
-
-    -   type: String
-
-    tag 内文字

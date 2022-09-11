@@ -1,6 +1,6 @@
 <template>
 	<img
-		:src="props.data.image || props.data.mainImage"
+		:src="props.data.image || props.data.mainImage || props.data.url"
 		:alt="props.data.note || props.data.displayName || props.data.name"
 		class="img"
 		:class="{ active: isActive() }"

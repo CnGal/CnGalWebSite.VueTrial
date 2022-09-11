@@ -1,17 +1,26 @@
 <template>
 	<img
 		class="cg-show"
-		:src="props.data.pictures[active].image"
-		:alt="props.data.pictures[active].note || props.data.name + 'CG'"
+		:src="
+			props.data.pictures &&
+			(props.data.pictures[active].image ||
+				props.data.pictures[active].url)
+		"
+		:alt="
+			(props.data.pictures && props.data.pictures[active].note) ||
+			props.data.name + 'CG'
+		"
 	/>
 	<gal-no-wrap-game-list
 		class="cg-preview"
 		cardName="galGamePreview"
 		:list="
-			props.data.pictures.map((item, index) => {
-				item.index = index;
-				return item;
-			})
+			(props.data.pictures &&
+				props.data.pictures.map((item, index) => {
+					item.index = index;
+					return item;
+				})) ||
+			[]
 		"
 	></gal-no-wrap-game-list>
 </template>

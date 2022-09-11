@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../pages/home.vue";
 import HomeIndex from "../pages/home/home.vue";
 import EntriesHome from "../pages/entries/home.vue";
+import EntriesIndex from "../pages/entries/index/entries.vue";
 import ArticlesHome from "../pages/article/home.vue";
 import ArticlesNews from "../pages/article/news.vue";
 
@@ -22,6 +23,11 @@ const routes = [
 				path: "/entries",
 				name: "entries",
 				component: EntriesHome
+			},
+			{
+				path: "/entries/index/:id",
+				name: "entriesIndex",
+				component: EntriesIndex
 			},
 			{
 				path: "/article",

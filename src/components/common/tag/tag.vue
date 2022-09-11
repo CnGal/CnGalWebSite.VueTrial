@@ -1,13 +1,11 @@
 <template>
-	<span ref="tag" class="tag">{{ props.text }}</span>
+	<span ref="tag" class="tag">
+		<slot></slot>
+	</span>
 </template>
 
 <script setup>
 import { ref } from "vue";
-
-const props = defineProps({
-	text: String
-});
 </script>
 
 <style scoped>
