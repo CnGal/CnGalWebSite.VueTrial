@@ -5,8 +5,6 @@
 	icon="iconName"
 	circle
 	size="size"
-	bgColor="color"
-	bgHoverColor="color"
 ></gal-icon-button>
 ```
 
@@ -22,19 +20,6 @@
 -   circle
 
     设置是否为圆形
-
--   bgColor
-
-    -   type: String
-    -   default: transparent
-
-    设置 button 颜色
-
--   bgHoverColor
-
-    -   type: String
-
-    设置 button 在 hover 时的颜色
 
 -   size
 

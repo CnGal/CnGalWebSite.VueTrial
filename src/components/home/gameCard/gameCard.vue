@@ -53,7 +53,7 @@ const props = defineProps({
 	object-fit: cover;
 }
 .name {
-	color: var(--block-color);
+	color: var(--main-font-color);
 	margin-block-start: 8px;
 }
 .read-comment {

@@ -101,9 +101,12 @@ provide("changeActive", changeActive);
 	font-size: 12px;
 	border: none;
 	border-radius: 1em;
-	background-color: var(--pink-color);
+	background-color: var(--main-color);
 	color: var(--white-color);
 	margin: 1em auto;
+}
+.theme-dark .refresh-btn {
+	background-color: var(--main-bg-color);
 }
 .icon {
 	margin-inline-end: 8px;

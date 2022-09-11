@@ -10,7 +10,7 @@ import { ref, onMounted } from "vue";
 const props = defineProps({
 	bgColor: {
 		type: String,
-		default: "var(--card-bg-color)"
+		default: "var(--main-bg-color)"
 	}
 });
 

@@ -110,7 +110,7 @@ onMounted(() => {
 	display: flex;
 	padding: 1em;
 	padding-block-start: 0;
-	background-color: var(--card-bg-color);
+	background-color: var(--main-bg-color);
 }
 .prev,
 .next {

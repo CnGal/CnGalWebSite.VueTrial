@@ -65,10 +65,9 @@ const props = defineProps({
 .steam-info {
 	display: flex;
 	font-size: 14px;
-	color: var(--block-color);
+	color: var(--main-font-color);
 }
 .icon {
-	color: var(--main-color);
 	margin-inline-end: 1em;
 }
 .info {
@@ -90,6 +89,10 @@ const props = defineProps({
 .cut-now {
 	font-size: 14px;
 	color: var(--main-color);
+}
+.theme-dark .price-now,
+.theme-dark .cut-now {
+	color: var(--main-font-color);
 }
 .original-price {
 	color: var(--gray-color);

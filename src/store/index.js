@@ -15,6 +15,8 @@ export const useStore = defineStore("main", {
 	actions: {
 		changeTheme(theme) {
 			this.theme.color = theme.color;
+			// 当颜色为 #000000 时，设置夜间模式
+			this.theme.isDark = !!(theme.color === "#000000");
 			localStorage.setItem("theme", JSON.stringify(this.theme));
 		}
 	}

@@ -48,16 +48,18 @@ const props = defineProps({
 }
 .info {
 	padding: 1em;
+	color: var(--main-font-color);
 }
 .name {
-	color: var(--block-color);
 	font-size: 20px;
 }
 .brief-introduction {
 	font-size: 14px;
-	color: var(--block-color);
 }
 
 @media screen and (max-width: 768px) {
+	.game-card {
+		background-color: var(--main-bg-color);
+	}
 }
 </style>

@@ -47,7 +47,7 @@ const props = defineProps({
 }
 .gameCG-container {
 	flex: 1;
-	background-color: var(--card-bg-color);
+	background-color: var(--main-bg-color);
 }
 
 @media screen and (max-width: 992px) {

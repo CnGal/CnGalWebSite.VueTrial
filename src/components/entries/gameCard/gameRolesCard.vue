@@ -40,7 +40,8 @@ const props = defineProps({
 	flex-wrap: wrap;
 	column-gap: var(--column-gap);
 	row-gap: 12px;
-	background-color: var(--card-bg-color);
+	background-color: var(--main-bg-color);
+	color: var(--main-font-color);
 	overflow: hidden;
 	max-height: 480px;
 }
@@ -50,7 +51,7 @@ const props = defineProps({
 .item {
 	width: calc((100% - (var(--column-gap) * 2)) / 3);
 	display: flex;
-	background-color: var(--card-bg-color);
+	background-color: var(--main-bg-color);
 	box-shadow: var(--main-shadow);
 	box-sizing: border-box;
 	padding: 1em;

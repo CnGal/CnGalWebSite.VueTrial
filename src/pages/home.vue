@@ -34,7 +34,7 @@
 
 	<gal-dialog ref="settingDialog">
 		<gal-card class="setting-dialog">
-			<h2>主题设置</h2>
+			<h2 class="dialog-title">主题设置</h2>
 			<h3>主题颜色</h3>
 			<p>
 				你可以从下方选择一个喜欢的颜色作为主题颜色，选择黑色可以进入夜间模式
@@ -122,10 +122,15 @@ const changeTheme = (theme) => {
 	margin-inline-start: 32px;
 	flex: 1;
 }
-:deep(.headerIcon) {
+.headerIcon {
 	margin-inline-end: 24px;
-	color: var(--main-color);
 	font-size: 24px;
+}
+.mobile-header-icon {
+	font-size: 24px;
+}
+html:not(.theme-dark) .headerIcon {
+	color: var(--pink-color);
 }
 .title,
 :deep(.mobile-header-icon) {
@@ -144,9 +149,14 @@ const changeTheme = (theme) => {
 }
 
 .setting-dialog {
-	background-color: var(--card-bg-color);
 	width: 440px;
 	padding: 24px;
+}
+.dialog-title {
+	color: var(--main-color);
+}
+.theme-dark .dialog-title {
+	color: var(--main-font-color);
 }
 .color {
 	width: 28px;

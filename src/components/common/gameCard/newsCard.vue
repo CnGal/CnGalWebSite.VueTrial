@@ -10,12 +10,7 @@
 		</router-link>
 		<a :href="props.newsInfo.link" class="text-info" target="_blank">
 			<div>
-				<gal-tag
-					class="tag"
-					:text="props.newsInfo.type"
-					:bgColor="'var(--main-color)'"
-					:color="'#fff'"
-				></gal-tag>
+				<gal-tag class="tag" :text="props.newsInfo.type"></gal-tag>
 				<span class="user">{{ props.newsInfo.title }}</span>
 				<span class="date">{{
 					formatDateWithHowLong(props.newsInfo.time)
@@ -47,13 +42,13 @@ const props = defineProps({
 	column-gap: 8px;
 	overflow: hidden;
 	padding: 0.5em 0.75em;
-	background-color: var(--white-color);
+	background-color: var(--main-bg-color);
 }
 .text-info {
 	display: flex;
 	flex: 1 1 auto;
 	width: 0;
-	color: var(--block-color, #000);
+	color: var(--main-font-color);
 	font-size: 14px;
 	line-height: 1.5;
 	flex-direction: column;

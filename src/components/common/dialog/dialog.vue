@@ -37,6 +37,10 @@ defineExpose({
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	color: var(--main-font-color);
+}
+.dialog-content {
+	background-color: var(--main-bg-color);
 }
 .overlay {
 	position: absolute;
@@ -44,5 +48,8 @@ defineExpose({
 	height: 100vh;
 	z-index: -1;
 	background-color: #21212177;
+}
+.theme-dark .overlay {
+	background-color: #cccccc77;
 }
 </style>

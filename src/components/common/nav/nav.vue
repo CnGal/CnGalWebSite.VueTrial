@@ -53,7 +53,7 @@ const isActivePath = (path) => {
 <style scoped>
 .nav,
 .nav-menu,
-.nav-menu-item {
+.nav-item {
 	height: 100%;
 }
 .nav-menu {
@@ -69,16 +69,19 @@ const isActivePath = (path) => {
 
 .nav-item a {
 	display: block;
-	color: #00000088;
+	color: var(--main-font-color);
 	font-size: 14px;
 	height: 100%;
 	line-height: var(--header-height, 64px);
 }
 .nav-item.active a {
-	color: var(--main-color);
+	color: var(--pink-color);
 }
 .nav-item a:hover {
 	background-color: #f7f7f7;
+}
+.theme-dark .nav-item a:hover {
+	background-color: #2e2e2e;
 }
 .nav-item.active a:hover {
 	background-color: var(--main-hover-color);

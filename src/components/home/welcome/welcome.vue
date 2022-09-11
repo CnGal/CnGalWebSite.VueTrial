@@ -50,8 +50,8 @@
 <style scoped>
 .welcome {
 	display: flex;
-	background-color: var(--card-bg-color);
-	color: var(--block-color);
+	background-color: var(--main-bg-color);
+	color: var(--main-font-color);
 	overflow: hidden;
 	box-sizing: border-box;
 	box-shadow: var(--main-shadow);
@@ -76,7 +76,7 @@
 	margin-inline-end: 0.5em;
 }
 .item a {
-	color: var(--block-color);
+	color: var(--main-font-color);
 	text-decoration: underline;
 }
 

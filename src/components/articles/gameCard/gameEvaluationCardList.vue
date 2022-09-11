@@ -43,7 +43,6 @@ const props = defineProps({
 }
 .evaluation-container {
 	flex: 1;
-	background-color: var(--card-bg-color);
 }
 
 @media screen and (max-width: 992px) {

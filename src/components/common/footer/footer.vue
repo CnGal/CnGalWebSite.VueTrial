@@ -67,17 +67,26 @@
 
 <style scoped>
 a {
-	color: var(--gray-color);
+	color: var(--main-font-color);
 }
 .icon-wrap a,
 a:hover {
 	color: var(--main-color);
 }
+.theme-dark .icon-wrap a {
+	color: var(--main-font-color);
+}
+.theme-dark a:hover {
+	color: #616161;
+}
 .footer {
 	padding: 8px 0.75em;
 	font-size: 14px;
-	background-color: var(--white-color);
-	color: var(--block-color);
+	background-color: var(--main-bg-color);
+	color: var(--main-font-color);
+}
+.theme-dark .footer {
+	color: var(--white-color);
 }
 .contact {
 	margin: auto;
@@ -105,8 +114,5 @@ a:hover {
 	display: flex;
 	align-items: center;
 	column-gap: 16px;
-}
-.icon-wrap :deep(.icon) {
-	margin: 0;
 }
 </style>

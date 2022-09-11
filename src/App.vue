@@ -9,9 +9,17 @@ const store = useStore();
 
 store.$subscribe((_, state) => {
 	document.body.style.setProperty("--main-color", state.theme.color);
+	if (state.theme.isDark) {
+		document.documentElement.classList.add("theme-dark");
+	} else {
+		document.documentElement.classList.remove("theme-dark");
+	}
 });
 onMounted(() => {
 	document.body.style.setProperty("--main-color", store.theme.color);
+	if (store.theme.isDark) {
+		document.documentElement.classList.add("theme-dark");
+	}
 });
 </script>
 

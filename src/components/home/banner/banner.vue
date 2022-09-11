@@ -169,13 +169,13 @@ onUnmounted(() => {
 	overflow: hidden;
 	position: relative;
 }
-/* 这里是占位框 为了更方便的将所有的 item 叠加在一起*/
+/* 这里是占位框 为了更方便的将所有的 item 叠放在一起 */
 .container::before {
 	content: "";
 	flex: 1 0 var(--main-width);
 }
 .container:focus-within {
-	outline: thin dotted #333;
+	outline: thin dotted #c9d1d9;
 	outline-offset: 1px;
 }
 .banner-item {
@@ -191,10 +191,11 @@ onUnmounted(() => {
 
 .banner-img {
 	width: 100%;
+	aspect-ratio: 1024 / 200;
 	object-fit: cover;
 }
-:deep(.nextImg),
-:deep(.prevImg) {
+.nextImg,
+.prevImg {
 	position: absolute;
 	top: calc(50% - 15px);
 	left: 90%;
@@ -205,12 +206,12 @@ onUnmounted(() => {
 	font-size: 24px;
 	background-color: #333;
 }
-:deep(.prevImg) {
+.prevImg {
 	left: 10%;
 }
-:deep(.nextImg:hover),
-:deep(.prevImg:hover) {
-	background-color: #666;
+.nextImg:hover,
+.prevImg:hover {
+	background-color: #414141;
 }
 
 .transition-img {

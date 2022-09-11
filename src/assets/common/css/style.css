@@ -1,8 +1,5 @@
 :root {
 	--main-color: var(--pink-color);
-	--card-bg-color: var(--white-color);
-	--main-hover-color: #fbf1f4;
-	--body-color: #f5f6f7;
 	--block-color: #181c32;
 	--gray-color: #7e8299;
 	--white-color: #fff;
@@ -19,6 +16,19 @@
 :root {
 	--main-shadow: 0 2px 4px rgba(0, 0, 0, 0.075);
 	--main-border-radius: 4px;
+}
+
+:root {
+	--main-bg-color: var(--white-color);
+	--main-font-color: var(--block-color);
+	--main-hover-color: #fbf1f4;
+	--body-color: #f5f6f7;
+}
+.theme-dark:root {
+	--main-bg-color: #242424;
+	--main-font-color: #c9d1d9;
+	--main-hover-color: #414141;
+	--body-color: #303030;
 }
 
 @media screen and (max-width: 768px) {

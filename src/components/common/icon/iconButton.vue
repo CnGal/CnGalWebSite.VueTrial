@@ -12,11 +12,6 @@ const props = defineProps({
 		type: String,
 		required: true
 	},
-	bgColor: {
-		type: String,
-		default: "transparent"
-	},
-	bgHoverColor: String,
 	size: {
 		type: String,
 		default: "24px"
@@ -37,13 +32,6 @@ onMounted(() => {
 		iconButton.value.removeAttribute("circle");
 		iconButton.value.classList.add("circle");
 	}
-
-	if (props.bgHoverColor) {
-		iconButton.value.style.setProperty(
-			"--main-hover-color",
-			props.bgHoverColor
-		);
-	}
 });
 </script>
 
@@ -54,9 +42,10 @@ onMounted(() => {
 	align-items: center;
 	width: v-bind("props.size");
 	aspect-ratio: 1 / 1;
-	background-color: v-bind("props.bgColor");
+	background-color: inherit;
 	border: none;
 	cursor: pointer;
+	color: var(--main-font-color);
 }
 .icon-button:hover {
 	background-color: var(--main-hover-color);

@@ -3,22 +3,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 
-const tag = ref();
 const props = defineProps({
-	text: String,
-	bgColor: String,
-	color: String
-});
-
-onMounted(() => {
-	if (props.bgColor) {
-		tag.value.style.setProperty("--tag-bg-color", props.bgColor);
-	}
-	if (props.color) {
-		tag.value.style.setProperty("--tag-color", props.color);
-	}
+	text: String
 });
 </script>
 
@@ -26,8 +14,11 @@ onMounted(() => {
 .tag {
 	display: inline-block;
 	padding: 0 5px;
-	background-color: var(--tag-bg-color, transparent);
-	color: var(--tag-color, #000);
+	background-color: var(--main-color);
+	color: #fff;
 	border-radius: 5px;
+}
+.theme-dark .tag {
+	background-color: #808080;
 }
 </style>

@@ -34,14 +34,17 @@ onMounted(() => {
 
 <style scoped>
 .link-button {
-	color: var(--main-color);
+	color: var(--main-font-color);
 	font-size: 14px;
-	padding: 0 1em;
+	padding: 0.5em 1em;
 	display: flex;
 	column-gap: 0.5em;
 }
+html:not(.theme-dark) .link-button {
+	color: var(--main-color);
+}
 .link-button:hover {
-	background-color: #fbf1f4;
+	background-color: var(--main-hover-color);
 }
 
 @media screen and (max-width: 768px) {

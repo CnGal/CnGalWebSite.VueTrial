@@ -14,14 +14,17 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	background-color: var(--card-bg-color);
+	color: var(--main-font-color);
+	background-color: var(--main-bg-color);
 	min-height: 35px;
 	padding: 1em 1em 12px;
+}
+html:not(.theme-dark) .card-header {
+	color: var(--main-color);
 }
 h2 {
 	display: flex;
 	align-items: center;
-	color: var(--main-color);
 	font-size: 1.25em;
 }
 

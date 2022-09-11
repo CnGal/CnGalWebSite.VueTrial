@@ -11,7 +11,7 @@
 			>
 				<router-link :to="item.link">
 					<gal-icon :icon="item.icon" size="24px"></gal-icon>
-					<div>{{ item.text }}</div>
+					<div class="nav-text">{{ item.text }}</div>
 				</router-link>
 			</li>
 		</ul>
@@ -34,7 +34,7 @@ const navList = [
 		icon: "archive"
 	},
 	{
-		link: "/",
+		link: "/cv",
 		text: "CV",
 		icon: "alignVerticalTop"
 	},
@@ -44,13 +44,14 @@ const navList = [
 		icon: "stickerText"
 	},
 	{
-		link: "/",
+		link: "/square",
 		text: "广场",
 		icon: "timer"
 	}
 ];
 
 const isActivePath = (path) => {
+	console.log(path);
 	if (path === "/") {
 		return route.fullPath === "/";
 	}
@@ -72,10 +73,19 @@ const isActivePath = (path) => {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	color: var(--gray-color);
+	color: var(--main-font-color);
 	font-size: 12px;
 }
 .nav-item.active a {
 	color: var(--main-color);
+}
+.theme-dark .nav-item.active a {
+	color: var(--main-font-color);
+}
+.nav-text {
+	display: none;
+}
+.nav-item.active .nav-text {
+	display: block;
 }
 </style>

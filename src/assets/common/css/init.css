@@ -15,7 +15,7 @@ a {
 
 a:focus-visible,
 button:focus-visible {
-	outline: thin dotted #333;
+	outline: thin dotted #c9d1d9;
 }
 
 img {
@@ -43,7 +43,7 @@ address {
 ::-webkit-scrollbar-thumb {
 	margin: 5px 0;
 	border-radius: 15px;
-	background-image: linear-gradient(#aaa8a8, #aaa8a8);
+	background-image: linear-gradient(#c9d1d9, #c9d1d9);
 }
 ::-webkit-scrollbar-track {
 	margin: 5px 0;

@@ -34,7 +34,7 @@ const props = defineProps({
 	);
 	column-gap: var(--column-gap);
 	row-gap: 8px;
-	background-color: var(--card-bg-color);
+	background-color: var(--main-bg-color);
 	justify-content: center;
 	padding-block-end: 1em;
 }

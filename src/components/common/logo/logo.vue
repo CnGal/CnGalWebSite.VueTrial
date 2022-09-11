@@ -15,8 +15,15 @@
 
 <style scoped>
 .logo {
+	--logo-font-color: var(--pink-color);
+}
+.theme-dark .logo {
+	--logo-font-color: var(--main-font-color);
+}
+.logo {
 	display: flex;
 	align-items: center;
+	column-gap: 8px;
 }
 .logoImg {
 	height: 35px;
@@ -24,8 +31,7 @@
 }
 .logoText {
 	font-size: 24px;
-	color: var(--main-color, #f06292);
-	margin-inline-start: 8px;
+	color: var(--logo-font-color, #f06292);
 }
 
 @media screen and (max-width: 1200px) {
