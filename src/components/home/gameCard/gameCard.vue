@@ -19,12 +19,12 @@
 		>
 			<span v-if="~props.data.readCount" class="read">
 				<gal-icon icon="eye" size="14px"></gal-icon
-				>{{ props.data.readCount }}</span
+				>&nbsp;{{ props.data.readCount }}</span
 			>
 
 			<span v-if="~props.data.commentCount" class="comment">
 				<gal-icon icon="comments" size="14px"></gal-icon
-				>{{ props.data.commentCount }}</span
+				>&nbsp;{{ props.data.commentCount }}</span
 			>
 		</div>
 	</a>
@@ -64,6 +64,7 @@ const props = defineProps({
 .read,
 .comment {
 	flex: 1;
+	display: flex;
 }
 
 @media screen and (max-width: 768px) {
