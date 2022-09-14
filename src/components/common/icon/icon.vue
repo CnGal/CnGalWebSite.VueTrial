@@ -50,6 +50,9 @@ import iconCoffee from "../../base/icons/coffee.vue";
 import iconLink from "../../base/icons/link.vue";
 import iconTags from "../../base/icons/tags.vue";
 import iconExternalLinkSquareAlt from "../../base/icons/external-link-square-alt.vue";
+import iconAnchor from "../../base/icons/anchor.vue";
+import iconSitemap from "../../base/icons/sitemap.vue";
+import iconChild from "../../base/icons/child.vue";
 
 const props = defineProps({
 	icon: {
@@ -110,7 +113,10 @@ const iconMap = {
 	coffee: iconCoffee,
 	link: iconLink,
 	tags: iconTags,
-	externalLinkSquareAlt: iconExternalLinkSquareAlt
+	externalLinkSquareAlt: iconExternalLinkSquareAlt,
+	anchor: iconAnchor,
+	sitemap: iconSitemap,
+	child: iconChild
 };
 </script>
 

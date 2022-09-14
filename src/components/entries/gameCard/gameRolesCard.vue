@@ -1,6 +1,6 @@
 <template>
-	<div class="container" :class="{ mobile: isMobile }">
-		<div v-for="item in props.list?.roles" :key="item.id" class="item">
+	<div class="container" ref="roles" :class="{ mobile: isMobile }">
+		<div v-for="item in props.roles" :key="item.id" class="item">
 			<img :src="item.mainImage" :alt="item.name" class="img" />
 			<div>
 				<h5 class="name">{{ item.name }}</h5>
@@ -13,16 +13,68 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import { useStore } from "../../../store/index.js";
 const store = useStore();
 const isMobile = store.isMobile;
 
 const props = defineProps({
-	list: {
+	roles: {
 		type: [Object],
 		required: true
+	},
+	rowHasCellTotal: {
+		type: [Object, Number],
+		default: {
+			xLarge: 3,
+			large: 2,
+			medium: 2,
+			small: 1
+		}
 	}
+});
+
+const roles = ref();
+const changeWidth = () => {
+	const getCellWidth = () => {
+		const pageWidth = window.innerWidth;
+		const { xLarge, large, medium, small } =
+			typeof props.rowHasCellTotal === "number"
+				? {
+						xLarge: props.rowHasCellTotal,
+						large: props.rowHasCellTotal,
+						xLmediumarge: props.rowHasCellTotal,
+						small: props.rowHasCellTotal
+				  }
+				: props.rowHasCellTotal;
+
+		if (pageWidth > 1200) {
+			return `calc((100% - (var(--column-gap) * ${
+				xLarge - 1
+			})) / ${xLarge})`;
+		} else if (pageWidth > 992) {
+			return `calc((100% - (var(--column-gap) * ${
+				large - 1
+			})) / ${large})`;
+		} else if (pageWidth > 768) {
+			return `calc((100% - (var(--column-gap) * ${
+				medium - 1
+			})) / ${medium})`;
+		} else {
+			return `calc((100% - (var(--column-gap) * ${
+				small - 1
+			})) / ${small})`;
+		}
+	};
+	roles.value.style.setProperty("--cell-width", getCellWidth());
+};
+
+onMounted(() => {
+	changeWidth();
+	window.addEventListener("resize", changeWidth);
+});
+onUnmounted(() => {
+	window.removeEventListener("resize", changeWidth);
 });
 </script>
 
@@ -49,7 +101,7 @@ const props = defineProps({
 	overflow: auto;
 }
 .item {
-	width: calc((100% - (var(--column-gap) * 2)) / 3);
+	width: var(--cell-width);
 	display: flex;
 	background-color: var(--main-bg-color);
 	box-shadow: var(--main-shadow);
@@ -70,18 +122,10 @@ const props = defineProps({
 	font-size: 14px;
 }
 
-@media screen and (max-width: 1200px) {
-	.item {
-		width: calc((100% - (var(--column-gap) * 1)) / 2);
-	}
-}
 @media screen and (max-width: 768px) {
 	.container {
 		background-color: transparent;
 		padding: 0;
-	}
-	.item {
-		width: 100%;
 	}
 	.img {
 		height: 80px;

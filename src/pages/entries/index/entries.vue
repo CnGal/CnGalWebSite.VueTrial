@@ -191,7 +191,14 @@
 					<span>{{ item.displayValue }}</span>
 				</div>
 			</gal-card>
-			<gal-card class="extra-card">
+			<gal-card
+				class="extra-card"
+				v-if="
+					info.information &&
+					(info.information[0].modifier === '相关网站' ||
+						info.information[0].informations.includes('官网'))
+				"
+			>
 				<template v-slot:header>
 					<gal-card-header>
 						<template v-slot:start>
@@ -242,6 +249,56 @@
 					}}</gal-tag>
 				</div>
 			</gal-card>
+			<gal-card class="extra-card" v-if="info.staffs?.length">
+				<template v-slot:header>
+					<gal-card-header>
+						<template v-slot:start>
+							<gal-icon
+								class="icon"
+								icon="sitemap"
+								size="1em"
+							></gal-icon
+							>&nbsp;&nbsp;Staff
+						</template>
+					</gal-card-header>
+				</template>
+				<div>
+					<div
+						v-for="(item, index) in info.staffs[0].staffList"
+						:key="index"
+					>
+						<gal-tag>{{ item.modifier }}</gal-tag>
+						<gal-link-button
+							class="publishers-item"
+							v-for="item in item.names"
+							:key="item.id"
+							:to="item.id ? '/entries/index/' + item.id : '#'"
+							:text="item.displayName"
+							:style="{ display: 'inline-flex' }"
+						></gal-link-button>
+					</div>
+				</div>
+			</gal-card>
+			<gal-card class="extra-card" v-if="info.roles?.length">
+				<template v-slot:header>
+					<gal-card-header>
+						<template v-slot:start>
+							<gal-icon
+								class="icon"
+								icon="child"
+								size="1em"
+							></gal-icon
+							>&nbsp;&nbsp;登场角色
+						</template>
+					</gal-card-header>
+				</template>
+				<div>
+					<gal-entries-game-roles-card
+						:roles="info.roles"
+						:rowHasCellTotal="1"
+					></gal-entries-game-roles-card>
+				</div>
+			</gal-card>
 		</div>
 	</div>
 </template>
@@ -260,9 +317,11 @@ const infomationIcons = (name) => {
 		QQ群: "qqFill",
 		别称: "idCard",
 		发行时间: "calendarPlus",
+		发行方式: "bullhorn",
 		官网: "coffee",
 		微博: "weibo",
-		爱发电: "externalLinkSquareAlt"
+		爱发电: "externalLinkSquareAlt",
+		引擎: "anchor"
 	};
 	return icons[name];
 };
@@ -291,6 +350,9 @@ a,
 	padding: 16px;
 	background-color: var(--main-bg-color);
 	column-gap: 16px;
+}
+.main-header img {
+	max-width: 512px;
 }
 .production-title,
 .production-item,
@@ -321,12 +383,10 @@ a,
 	margin-block-start: 12px;
 }
 .main-extra {
-	width: calc((100% - 16px) / 3 * 1);
-	order: 2;
+	width: min(calc((100% - 16px) / 3 * 1), 400px);
 }
 .main-main {
-	width: calc((100% - 16px) / 3 * 2);
-	order: 1;
+	flex: calc((100% - 16px) / 3 * 2);
 }
 .extra-card {
 	background-color: var(--main-bg-color);
