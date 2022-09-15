@@ -4,8 +4,28 @@
 			<img :src="item.mainImage" :alt="item.name" class="img" />
 			<div>
 				<h5 class="name">{{ item.name }}</h5>
-				<div class="introduction rows-dot">
+				<div
+					class="introduction rows-dot"
+					:style="{
+						'--row-dot-line': item.addInfors.length ? 3 : undefined
+					}"
+				>
 					{{ item.briefIntroduction }}
+				</div>
+				<div v-if="item.addInfors.length">
+					<div
+						v-for="(addInfor, index) in item.addInfors"
+						:key="index"
+						class="addInfors-item"
+					>
+						<gal-tag>{{ addInfor.modifier }}</gal-tag>
+						<gal-link-button
+							v-for="item in addInfor.contents"
+							:key="item.id"
+							:to="'/entries/index/' + item.id"
+							:text="item.displayName"
+						></gal-link-button>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -120,6 +140,11 @@ onUnmounted(() => {
 }
 .introduction {
 	font-size: 14px;
+}
+
+.addInfors-item {
+	display: inline-flex;
+	align-items: center;
 }
 
 @media screen and (max-width: 768px) {

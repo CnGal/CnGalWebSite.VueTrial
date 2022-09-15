@@ -54,7 +54,8 @@ const iconList = [
 	"externalLinkSquareAlt",
 	"anchor",
 	"sitemap",
-	"child"
+	"child",
+	"alertOutline"
 ];
 </script>
 

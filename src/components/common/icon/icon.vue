@@ -53,6 +53,7 @@ import iconExternalLinkSquareAlt from "../../base/icons/external-link-square-alt
 import iconAnchor from "../../base/icons/anchor.vue";
 import iconSitemap from "../../base/icons/sitemap.vue";
 import iconChild from "../../base/icons/child.vue";
+import iconAlertOutline from "../../base/icons/alert-outline.vue";
 
 const props = defineProps({
 	icon: {
@@ -116,7 +117,8 @@ const iconMap = {
 	externalLinkSquareAlt: iconExternalLinkSquareAlt,
 	anchor: iconAnchor,
 	sitemap: iconSitemap,
-	child: iconChild
+	child: iconChild,
+	alertOutline: iconAlertOutline
 };
 </script>
 

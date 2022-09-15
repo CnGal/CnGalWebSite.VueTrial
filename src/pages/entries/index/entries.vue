@@ -159,7 +159,7 @@
 				class="extra-card"
 				v-if="
 					info.information &&
-					info.information[0].modifier !== '相关网站'
+					info.information.some((i) => i.modifier === '基本信息')
 				"
 			>
 				<template v-slot:header>
@@ -175,10 +175,9 @@
 					</gal-card-header>
 				</template>
 				<div
-					v-for="(item, index) in (info.information &&
-						info.information[0].informations.filter(
-							(i) => i.displayName !== '官网'
-						)) ||
+					v-for="(item, index) in info.information
+						.find((i) => i.modifier === '基本信息')
+						.informations.filter((i) => i.displayName !== '官网') ||
 					[]"
 					:key="index"
 				>
@@ -195,8 +194,15 @@
 				class="extra-card"
 				v-if="
 					info.information &&
-					(info.information[0].modifier === '相关网站' ||
-						info.information[0].informations.includes('官网'))
+					info.information.some(
+						(i) =>
+							i.modifier === '相关网站' ||
+							i.informations.some((j) =>
+								['官网', '微博', '爱发电'].includes(
+									j.displayName
+								)
+							)
+					)
 				"
 			>
 				<template v-slot:header>
@@ -212,12 +218,20 @@
 					</gal-card-header>
 				</template>
 				<div
-					v-for="(item, index) in (info.information &&
-						info.information[0].informations.filter((i) =>
-							['官网', '微博', '爱发电'].includes(i.displayName)
-						)) ||
-					[]"
+					v-for="(item, index) in [
+						...info.information.find(
+							(i) => i.modifier === '相关网站'
+						)?.informations,
+						...info.information
+							.find((i) => i.modifier === '基本信息')
+							?.informations?.filter((i) =>
+								['官网', '微博', '爱发电'].includes(
+									i.displayName
+								)
+							)
+					]"
 					:key="index"
+					class="single-row-dot"
 				>
 					<gal-icon
 						class="icon"
@@ -299,12 +313,31 @@
 					></gal-entries-game-roles-card>
 				</div>
 			</gal-card>
+			<gal-card class="extra-card" v-if="info.roles?.length">
+				<template v-slot:header>
+					<gal-card-header>
+						<template v-slot:start>
+							<gal-icon
+								class="icon"
+								icon="link"
+								size="1em"
+							></gal-icon
+							>&nbsp;&nbsp;外部链接
+						</template>
+					</gal-card-header>
+				</template>
+				<div>
+					<gal-alert type="warning"
+						>以下为外部链接，与本站没有任何从属关系，本站亦不对其安全性负责</gal-alert
+					>
+				</div>
+			</gal-card>
 		</div>
 	</div>
 </template>
 
 <script setup>
-import { ref, reactive } from "vue";
+import { ref, reactive, watch } from "vue";
 import { getEntryViewByID } from "../../../api/entriesAPI/index.js";
 import { getSteamInforByID } from "../../../api/steamAPI/index.js";
 import { useRoute } from "vue-router";
@@ -321,6 +354,9 @@ const infomationIcons = (name) => {
 		官网: "coffee",
 		微博: "weibo",
 		爱发电: "externalLinkSquareAlt",
+		TapTap: "externalLinkSquareAlt",
+		steam: "externalLinkSquareAlt",
+		bilibili: "externalLinkSquareAlt",
 		引擎: "anchor"
 	};
 	return icons[name];
@@ -328,7 +364,7 @@ const infomationIcons = (name) => {
 
 const info = ref({});
 const steamInfo = ref({});
-(async () => {
+const getInfo = async () => {
 	const { data } = await getEntryViewByID(id.value);
 	info.value = data;
 
@@ -337,7 +373,17 @@ const steamInfo = ref({});
 		const { data: steamData } = await getSteamInforByID(data.steamId);
 		steamInfo.value = steamData;
 	}
-})();
+};
+getInfo();
+
+// 监听 entries/index/:id  页面的变化
+watch(
+	() => route.params,
+	(newURL) => {
+		id.value = newURL.id;
+		getInfo();
+	}
+);
 </script>
 
 <style scoped>
