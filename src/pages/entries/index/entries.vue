@@ -159,7 +159,7 @@
 				class="extra-card"
 				v-if="
 					info.information &&
-					info.information[0].modifier !== '相关网站'
+					info.information.some((i) => i.modifier === '基本信息')
 				"
 			>
 				<template v-slot:header>
@@ -175,10 +175,9 @@
 					</gal-card-header>
 				</template>
 				<div
-					v-for="(item, index) in (info.information &&
-						info.information[0].informations.filter(
-							(i) => i.displayName !== '官网'
-						)) ||
+					v-for="(item, index) in info.information
+						.find((i) => i.modifier === '基本信息')
+						.informations.filter((i) => i.displayName !== '官网') ||
 					[]"
 					:key="index"
 				>
@@ -191,7 +190,21 @@
 					<span>{{ item.displayValue }}</span>
 				</div>
 			</gal-card>
-			<gal-card class="extra-card">
+			<gal-card
+				class="extra-card"
+				v-if="
+					info.information &&
+					info.information.some(
+						(i) =>
+							i.modifier === '相关网站' ||
+							i.informations.some((j) =>
+								['官网', '微博', '爱发电'].includes(
+									j.displayName
+								)
+							)
+					)
+				"
+			>
 				<template v-slot:header>
 					<gal-card-header>
 						<template v-slot:start>
@@ -205,12 +218,20 @@
 					</gal-card-header>
 				</template>
 				<div
-					v-for="(item, index) in (info.information &&
-						info.information[0].informations.filter((i) =>
-							['官网', '微博', '爱发电'].includes(i.displayName)
-						)) ||
-					[]"
+					v-for="(item, index) in [
+						...info.information.find(
+							(i) => i.modifier === '相关网站'
+						)?.informations,
+						...info.information
+							.find((i) => i.modifier === '基本信息')
+							?.informations?.filter((i) =>
+								['官网', '微博', '爱发电'].includes(
+									i.displayName
+								)
+							)
+					]"
 					:key="index"
+					class="single-row-dot"
 				>
 					<gal-icon
 						class="icon"
@@ -242,12 +263,81 @@
 					}}</gal-tag>
 				</div>
 			</gal-card>
+			<gal-card class="extra-card" v-if="info.staffs?.length">
+				<template v-slot:header>
+					<gal-card-header>
+						<template v-slot:start>
+							<gal-icon
+								class="icon"
+								icon="sitemap"
+								size="1em"
+							></gal-icon
+							>&nbsp;&nbsp;Staff
+						</template>
+					</gal-card-header>
+				</template>
+				<div>
+					<div
+						v-for="(item, index) in info.staffs[0].staffList"
+						:key="index"
+					>
+						<gal-tag>{{ item.modifier }}</gal-tag>
+						<gal-link-button
+							class="publishers-item"
+							v-for="item in item.names"
+							:key="item.id"
+							:to="item.id ? '/entries/index/' + item.id : '#'"
+							:text="item.displayName"
+							:style="{ display: 'inline-flex' }"
+						></gal-link-button>
+					</div>
+				</div>
+			</gal-card>
+			<gal-card class="extra-card" v-if="info.roles?.length">
+				<template v-slot:header>
+					<gal-card-header>
+						<template v-slot:start>
+							<gal-icon
+								class="icon"
+								icon="child"
+								size="1em"
+							></gal-icon
+							>&nbsp;&nbsp;登场角色
+						</template>
+					</gal-card-header>
+				</template>
+				<div>
+					<gal-entries-game-roles-card
+						:roles="info.roles"
+						:rowHasCellTotal="1"
+					></gal-entries-game-roles-card>
+				</div>
+			</gal-card>
+			<gal-card class="extra-card" v-if="info.roles?.length">
+				<template v-slot:header>
+					<gal-card-header>
+						<template v-slot:start>
+							<gal-icon
+								class="icon"
+								icon="link"
+								size="1em"
+							></gal-icon
+							>&nbsp;&nbsp;外部链接
+						</template>
+					</gal-card-header>
+				</template>
+				<div>
+					<gal-alert type="warning"
+						>以下为外部链接，与本站没有任何从属关系，本站亦不对其安全性负责</gal-alert
+					>
+				</div>
+			</gal-card>
 		</div>
 	</div>
 </template>
 
 <script setup>
-import { ref, reactive } from "vue";
+import { ref, reactive, watch } from "vue";
 import { getEntryViewByID } from "../../../api/entriesAPI/index.js";
 import { getSteamInforByID } from "../../../api/steamAPI/index.js";
 import { useRoute } from "vue-router";
@@ -260,16 +350,21 @@ const infomationIcons = (name) => {
 		QQ群: "qqFill",
 		别称: "idCard",
 		发行时间: "calendarPlus",
+		发行方式: "bullhorn",
 		官网: "coffee",
 		微博: "weibo",
-		爱发电: "externalLinkSquareAlt"
+		爱发电: "externalLinkSquareAlt",
+		TapTap: "externalLinkSquareAlt",
+		steam: "externalLinkSquareAlt",
+		bilibili: "externalLinkSquareAlt",
+		引擎: "anchor"
 	};
 	return icons[name];
 };
 
 const info = ref({});
 const steamInfo = ref({});
-(async () => {
+const getInfo = async () => {
 	const { data } = await getEntryViewByID(id.value);
 	info.value = data;
 
@@ -278,7 +373,17 @@ const steamInfo = ref({});
 		const { data: steamData } = await getSteamInforByID(data.steamId);
 		steamInfo.value = steamData;
 	}
-})();
+};
+getInfo();
+
+// 监听 entries/index/:id  页面的变化
+watch(
+	() => route.params,
+	(newURL) => {
+		id.value = newURL.id;
+		getInfo();
+	}
+);
 </script>
 
 <style scoped>
@@ -291,6 +396,9 @@ a,
 	padding: 16px;
 	background-color: var(--main-bg-color);
 	column-gap: 16px;
+}
+.main-header img {
+	max-width: 512px;
 }
 .production-title,
 .production-item,
@@ -321,12 +429,10 @@ a,
 	margin-block-start: 12px;
 }
 .main-extra {
-	width: calc((100% - 16px) / 3 * 1);
-	order: 2;
+	width: min(calc((100% - 16px) / 3 * 1), 400px);
 }
 .main-main {
-	width: calc((100% - 16px) / 3 * 2);
-	order: 1;
+	flex: calc((100% - 16px) / 3 * 2);
 }
 .extra-card {
 	background-color: var(--main-bg-color);

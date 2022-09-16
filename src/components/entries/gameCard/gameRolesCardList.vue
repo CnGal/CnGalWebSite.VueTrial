@@ -21,7 +21,7 @@
 					</template>
 				</gal-card-header>
 				<gal-entries-game-roles-card
-					:list="activeData.active"
+					:roles="activeData.active.roles"
 				></gal-entries-game-roles-card>
 				<gal-no-wrap-game-list
 					cardName="galGamePreview"

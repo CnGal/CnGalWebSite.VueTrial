@@ -19,6 +19,7 @@ import refreshGameCardList from "../components/common/gameCard/refreshGameCardLi
 import evaluation from "../components/common/article/evaluation.vue";
 import markdown from "../components/common/article/markdown.vue";
 import gamePreview from "../components/common/gameCard/gamePreview.vue";
+import alert from "../components/common/alert/alert.vue";
 
 import entriesGameCGsCardList from "../components/entries/gameCard/gameCGsCardList.vue";
 import entriesGameCGsCard from "../components/entries/gameCard/gameCGsCard.vue";
@@ -49,6 +50,7 @@ const importPlugin = {
 		app.component("galEvaluation", evaluation);
 		app.component("galMarkdown", markdown);
 		app.component("galGamePreview", gamePreview);
+		app.component("galAlert", alert);
 
 		app.component("galEntriesGameCGsCardList", entriesGameCGsCardList);
 		app.component("galEntriesGameCGsCard", entriesGameCGsCard);

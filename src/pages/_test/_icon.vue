@@ -51,7 +51,11 @@ const iconList = [
 	"idCard",
 	"coffee",
 	"link",
-	"externalLinkSquareAlt"
+	"externalLinkSquareAlt",
+	"anchor",
+	"sitemap",
+	"child",
+	"alertOutline"
 ];
 </script>
 
