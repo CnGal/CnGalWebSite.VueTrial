@@ -17,6 +17,7 @@ import iconNewspaper from "../../base/icons/newspaper.vue";
 import iconSend from "../../base/icons/send.vue";
 import iconSend2 from "../../base/icons/send2.vue";
 import iconPencil from "../../base/icons/pencil.vue";
+import iconPencilMdi from "../../base/icons/pencil-mdi.vue";
 import iconNote from "../../base/icons/note.vue";
 import iconStar from "../../base/icons/star.vue";
 import iconEye from "../../base/icons/eye.vue";
@@ -54,6 +55,7 @@ import iconAnchor from "../../base/icons/anchor.vue";
 import iconSitemap from "../../base/icons/sitemap.vue";
 import iconChild from "../../base/icons/child.vue";
 import iconAlertOutline from "../../base/icons/alert-outline.vue";
+import iconHeartOutline from "../../base/icons/heart-outline.vue";
 
 const props = defineProps({
 	icon: {
@@ -82,6 +84,7 @@ const iconMap = {
 	send: iconSend,
 	send2: iconSend2,
 	pencil: iconPencil,
+	pencilMdi: iconPencilMdi,
 	note: iconNote,
 	star: iconStar,
 	eye: iconEye,
@@ -118,7 +121,8 @@ const iconMap = {
 	anchor: iconAnchor,
 	sitemap: iconSitemap,
 	child: iconChild,
-	alertOutline: iconAlertOutline
+	alertOutline: iconAlertOutline,
+	heartOutline: iconHeartOutline
 };
 </script>
 

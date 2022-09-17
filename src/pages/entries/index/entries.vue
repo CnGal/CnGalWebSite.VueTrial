@@ -1,42 +1,5 @@
 <template>
-	<gal-card>
-		<div class="main-header">
-			<img :src="info.mainPicture || info.thumbnail" :alt="info.name" />
-			<div class="main-info">
-				<h1>{{ info.name }}</h1>
-				<div class="staff">
-					<div
-						class="production-group"
-						v-if="info.productionGroups?.length"
-					>
-						<gal-tag class="production-title">制作组</gal-tag>
-						<gal-link-button
-							class="production-item"
-							v-for="item in info.productionGroups"
-							:key="item.id"
-							:to="'/entries/index/' + item.id"
-							:text="item.displayName"
-						></gal-link-button>
-					</div>
-					<div
-						class="publishers-group"
-						v-if="info.publishers?.length"
-					>
-						<gal-tag class="publishers-title">发行商</gal-tag>
-						<gal-link-button
-							class="publishers-item"
-							v-for="item in info.publishers"
-							:key="item.id"
-							:to="'/entries/index/' + item.id"
-							:text="item.displayName"
-						></gal-link-button>
-					</div>
-				</div>
-				<p class="brief-introduction">{{ info.briefIntroduction }}</p>
-				<div class="icon-wrap"></div>
-			</div>
-		</div>
-	</gal-card>
+	<gal_EntriesHeader :info="info"></gal_EntriesHeader>
 	<div class="main-body">
 		<div class="main-main">
 			<gal-card class="main-card" v-if="info.pictures?.length">
@@ -83,7 +46,10 @@
 						</template>
 					</gal-card-header>
 				</template>
-				<gal-markdown :data="info.mainPage"></gal-markdown>
+				<gal-markdown
+					:style="{ padding: '16px', 'padding-top': 0 }"
+					:data="info.mainPage"
+				></gal-markdown>
 			</gal-card>
 		</div>
 		<div class="main-extra">
@@ -183,10 +149,11 @@
 				>
 					<gal-icon
 						class="icon"
-						:icon="infomationIcons(item.displayName)"
+						:icon="infomationIcons(item)"
 						size="1em"
 					></gal-icon>
-					<span>{{ item.displayName }}:</span>&nbsp;&nbsp;
+					<span>{{ showInformationKeyText(item.displayName) }}:</span
+					>&nbsp;&nbsp;
 					<span>{{ item.displayValue }}</span>
 				</div>
 			</gal-card>
@@ -197,11 +164,7 @@
 					info.information.some(
 						(i) =>
 							i.modifier === '相关网站' ||
-							i.informations.some((j) =>
-								['官网', '微博', '爱发电'].includes(
-									j.displayName
-								)
-							)
+							i.informations.some((j) => j.displayName === '官网')
 					)
 				"
 			>
@@ -224,10 +187,8 @@
 						)?.informations,
 						...info.information
 							.find((i) => i.modifier === '基本信息')
-							?.informations?.filter((i) =>
-								['官网', '微博', '爱发电'].includes(
-									i.displayName
-								)
+							?.informations?.filter(
+								(i) => i.displayName === '官网'
 							)
 					]"
 					:key="index"
@@ -235,10 +196,11 @@
 				>
 					<gal-icon
 						class="icon"
-						:icon="infomationIcons(item.displayName)"
+						:icon="infomationIcons(item)"
 						size="1em"
 					></gal-icon>
-					<span>{{ item.displayName }}:</span>&nbsp;&nbsp;
+					<span>{{ showInformationKeyText(item.displayName) }}:</span
+					>&nbsp;&nbsp;
 					<a :href="item.displayValue" target="_blank">{{
 						item.displayValue
 					}}</a>
@@ -313,7 +275,7 @@
 					></gal-entries-game-roles-card>
 				</div>
 			</gal-card>
-			<gal-card class="extra-card" v-if="info.roles?.length">
+			<gal-card class="extra-card" v-if="info.otherRelevances?.length">
 				<template v-slot:header>
 					<gal-card-header>
 						<template v-slot:start>
@@ -330,6 +292,17 @@
 					<gal-alert type="warning"
 						>以下为外部链接，与本站没有任何从属关系，本站亦不对其安全性负责</gal-alert
 					>
+					<div
+						v-for="item in info.otherRelevances"
+						:key="item.id"
+						class="otherRelevances"
+					>
+						<img
+							src="/images/otherRelevances/Bangumi.png"
+							:alt="item.displayName"
+						/>
+						<h5>{{ item.displayName }}</h5>
+					</div>
 				</div>
 			</gal-card>
 		</div>
@@ -338,13 +311,14 @@
 
 <script setup>
 import { ref, reactive, watch } from "vue";
+import gal_EntriesHeader from "./entries-header.vue";
 import { getEntryViewByID } from "../../../api/entriesAPI/index.js";
 import { getSteamInforByID } from "../../../api/steamAPI/index.js";
 import { useRoute } from "vue-router";
 const route = useRoute();
 const id = ref(route.params.id);
 
-const infomationIcons = (name) => {
+const infomationIcons = (infomation) => {
 	const icons = {
 		游戏平台: "gamepad",
 		QQ群: "qqFill",
@@ -357,9 +331,13 @@ const infomationIcons = (name) => {
 		TapTap: "externalLinkSquareAlt",
 		steam: "externalLinkSquareAlt",
 		bilibili: "externalLinkSquareAlt",
+		下载地址: "externalLinkSquareAlt",
 		引擎: "anchor"
 	};
-	return icons[name];
+	return icons[infomation.displayName];
+};
+const showInformationKeyText = (text) => {
+	return text;
 };
 
 const info = ref({});
@@ -391,37 +369,6 @@ a,
 .icon {
 	color: var(--main-color);
 }
-.main-header {
-	display: flex;
-	padding: 16px;
-	background-color: var(--main-bg-color);
-	column-gap: 16px;
-}
-.main-header img {
-	max-width: 512px;
-}
-.production-title,
-.production-item,
-.publishers-title,
-.publishers-item {
-	font-size: 12px;
-}
-.production-group,
-.publishers-group {
-	display: inline-flex;
-	align-items: center;
-	width: 50%;
-}
-.brief-introduction {
-	font-size: 14px;
-}
-
-@media screen and (max-width: 1200px) {
-	.production-group,
-	.publishers-group {
-		width: 100%;
-	}
-}
 
 .main-body {
 	display: flex;
@@ -441,6 +388,20 @@ a,
 }
 .main-card {
 	margin-block-start: 12px;
+}
+.otherRelevances {
+	display: inline-flex;
+	align-items: center;
+	column-gap: 1em;
+	padding: 12px;
+}
+.otherRelevances img {
+	height: 116px;
+	object-fit: cover;
+	aspect-ratio: 1 / 1;
+}
+.otherRelevances h5 {
+	font-size: 20px;
 }
 
 @media screen and (max-width: 1200px) {

@@ -2,6 +2,8 @@ import "../assets/common/css/init.css";
 import "../assets/common/css/style.css";
 import "../assets/common/css/common.css";
 
+import markdown from "../components/base/markdown/markdown.vue";
+
 import iconButton from "../components/common/icon/iconButton.vue";
 import icon from "../components/common/icon/icon.vue";
 import button from "../components/common/button/button.vue";
@@ -17,7 +19,6 @@ import normalGameCard from "../components/common/gameCard/normalGameCard.vue";
 import commonDiscountGameCard from "../components/common/gameCard/discountGameCard.vue";
 import refreshGameCardList from "../components/common/gameCard/refreshGameCardList.vue";
 import evaluation from "../components/common/article/evaluation.vue";
-import markdown from "../components/common/article/markdown.vue";
 import gamePreview from "../components/common/gameCard/gamePreview.vue";
 import alert from "../components/common/alert/alert.vue";
 

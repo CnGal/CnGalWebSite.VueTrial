@@ -20,6 +20,7 @@ const iconList = [
 	"send",
 	"send2",
 	"pencil",
+	"pencilMdi",
 	"note",
 	"star",
 	"eye",
@@ -55,7 +56,8 @@ const iconList = [
 	"anchor",
 	"sitemap",
 	"child",
-	"alertOutline"
+	"alertOutline",
+	"heartOutline"
 ];
 </script>
 
