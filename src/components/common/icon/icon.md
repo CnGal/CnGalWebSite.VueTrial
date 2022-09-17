@@ -14,7 +14,7 @@
     -   required: true
 
     目前支持值
-    shareAll qq QQ qqFill weibo weiboFill search login settings right left newspaper send send2 pencil pencilMdi note star eye comments gift menu bullhorn home homeFill archive cake stickerText timer refresh alignVerticalTop thumbsUp calendarCheck calendarAlt calendarPlus chartArea dollar picture users user random steam info gamepad idCard coffee link externalLinkSquareAlt anchor sitemap child alertOutline heartOutline
+    shareAll qq QQ qqFill weibo weiboFill search login settings right left newspaper send send2 pencil pencilMdi note star eye comments gift menu bullhorn home homeFill archive cake birthdayCake stickerText timer refresh alignVerticalTop thumbsUp calendarCheck calendarAlt calendarPlus chartArea dollar picture users user random steam info gamepad idCard cardOutline coffee link externalLinkSquareAlt anchor sitemap child alertOutline heartOutline files microphone venus mars genderless fire youtube twitter facebook
 
 -   size
 

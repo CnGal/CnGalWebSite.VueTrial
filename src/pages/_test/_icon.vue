@@ -32,6 +32,7 @@ const iconList = [
 	"homeFill",
 	"archive",
 	"cake",
+	"birthdayCake",
 	"stickerText",
 	"timer",
 	"refresh",
@@ -50,6 +51,7 @@ const iconList = [
 	"info",
 	"gamepad",
 	"idCard",
+	"cardOutline",
 	"coffee",
 	"link",
 	"externalLinkSquareAlt",
@@ -57,7 +59,16 @@ const iconList = [
 	"sitemap",
 	"child",
 	"alertOutline",
-	"heartOutline"
+	"heartOutline",
+	"files",
+	"microphone",
+	"venus",
+	"mars",
+	"genderless",
+	"fire",
+	"youtube",
+	"twitter",
+	"facebook",
 ];
 </script>
 

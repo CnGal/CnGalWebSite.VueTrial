@@ -3,7 +3,7 @@
 		<div
 			class="main-header"
 			:class="{
-				isUser: info.type === 3
+				isUser: info.type === 3,
 			}"
 		>
 			<img :src="info.mainPicture || info.thumbnail" :alt="info.name" />
@@ -69,8 +69,8 @@
 const props = defineProps({
 	info: {
 		type: Object,
-		required: true
-	}
+		required: true,
+	},
 });
 </script>
 
@@ -88,6 +88,9 @@ a,
 .main-header img {
 	width: 40%;
 	max-width: 512px;
+	aspect-ratio: 460 / 215;
+	object-fit: contain;
+	object-position: right top;
 }
 .main-header.isUser img {
 	width: 200px;
