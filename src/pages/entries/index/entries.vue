@@ -81,46 +81,12 @@
 					></gal-link-button>
 				</template>
 			</gal-card>
-			<gal-card class="extra-card" v-if="info.steamId">
-				<template v-slot:header>
-					<gal-card-header>
-						<template v-slot:start>
-							<gal-icon
-								class="icon"
-								icon="steam"
-								size="1em"
-							></gal-icon
-							>&nbsp;&nbsp;steam信息
-						</template>
-					</gal-card-header>
-					<div v-if="!steamInfo.entry">
-						<gal-icon
-							class="icon"
-							icon="calendarPlus"
-							size="1em"
-						></gal-icon>
-						未发售
-					</div>
-					<div class="single-row-dot">
-						<gal-icon
-							class="icon"
-							icon="homeFill"
-							size="1em"
-						></gal-icon>
-						商店页面：<a
-							:href="
-								'https://store.steampowered.com/app/' +
-								info.steamId
-							"
-							target="_blank"
-							>{{
-								"https://store.steampowered.com/app/" +
-								info.steamId
-							}}</a
-						>
-					</div>
-				</template>
-			</gal-card>
+			<gal_EntriesExtraSteam
+				class="extra-card"
+				v-if="info.steamId"
+				:steamId="info.steamId"
+			></gal_EntriesExtraSteam>
+
 			<gal-card
 				class="extra-card"
 				v-if="
@@ -312,84 +278,22 @@
 <script setup>
 import { ref, reactive, watch } from "vue";
 import gal_EntriesHeader from "./entries-header.vue";
+import gal_EntriesExtraSteam from "./entries-extra-steam.vue";
+
 import { getEntryViewByID } from "../../../api/entriesAPI/index.js";
-import { getSteamInforByID } from "../../../api/steamAPI/index.js";
+import {
+	infomationIcons,
+	showInformationKeyText,
+} from "./_js/infomationIcons.js";
+
 import { useRoute } from "vue-router";
 const route = useRoute();
 const id = ref(route.params.id);
 
-const infomationIcons = (infomation) => {
-	let key = infomation.displayName;
-	const icons = {
-		游戏平台: "gamepad",
-		QQ群: "qqFill",
-		发行时间: "calendarPlus",
-		预计发行时间: "calendarCheck",
-		发行方式: "bullhorn",
-		官网: "coffee",
-		微博: "weibo",
-		爱发电: "externalLinkSquareAlt",
-		TapTap: "externalLinkSquareAlt",
-		steam: "externalLinkSquareAlt",
-		bilibili: "externalLinkSquareAlt",
-		YouTube: "youtube",
-		Twitter: "twitter",
-		Facebook: "facebook",
-		下载地址: "externalLinkSquareAlt",
-		引擎: "anchor",
-		原作: "files",
-		声优: "microphone",
-		性别男: "mars",
-		性别女: "venus",
-		性别: "genderless",
-		身材数据: "child",
-		"身材(主观)": "child",
-		生日: "birthdayCake",
-		发色: "circle",
-		瞳色: "eye",
-		服饰: "circle",
-		性格: "circle",
-		角色身份: "circle",
-		血型: "circle",
-		身高: "circle",
-		兴趣: "circle",
-		年龄: "fire",
-		姓名: "cardOutline",
-		别称: "idCard",
-		"昵称（官方称呼）": "cardOutline",
-	};
-
-	if (key === "发行时间" && infomation.displayValue.includes("预计")) {
-		key = "预计发行时间";
-	} else if (key === "性别" && infomation.displayValue === "男") {
-		key = "性别男";
-	} else if (key === "性别" && infomation.displayValue === "女") {
-		key = "性别女";
-	}
-
-	return icons[key];
-};
-const showInformationKeyText = (text) => {
-	if (text === "声优") {
-		return "配音";
-	} else if (text === "昵称（官方称呼）") {
-		return "昵称";
-	} else {
-		return text;
-	}
-};
-
 const info = ref({});
-const steamInfo = ref({});
 const getInfo = async () => {
 	const { data } = await getEntryViewByID(id.value);
 	info.value = data;
-
-	// 如果有 steamId 就 获取steam信息
-	if (data.steamId) {
-		const { data: steamData } = await getSteamInforByID(data.steamId);
-		steamInfo.value = steamData;
-	}
 };
 getInfo();
 

@@ -41,6 +41,8 @@ const iconList = [
 	"calendarCheck",
 	"calendarAlt",
 	"calendarPlus",
+	"calendarPlusOutline",
+	"calendarTimes",
 	"chartArea",
 	"dollar",
 	"picture",
@@ -69,6 +71,8 @@ const iconList = [
 	"youtube",
 	"twitter",
 	"facebook",
+	"moneyBillAlt",
+	"checkCircle",
 ];
 </script>
 

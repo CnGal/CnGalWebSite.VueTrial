@@ -38,6 +38,8 @@ import iconThumbsUp from "../../base/icons/thumbs-up.vue";
 import iconCalendarCheck from "../../base/icons/calendar-check.vue";
 import iconCalendarAlt from "../../base/icons/calendar-alt.vue";
 import iconCalendarPlus from "../../base/icons/calendar-plus.vue";
+import iconCalendarPlusOutline from "../../base/icons/calendar-plus-outline.vue";
+import iconCalendarTimes from "../../base/icons/calendar-times.vue";
 import iconChartArea from "../../base/icons/chart-area.vue";
 import iconDollar from "../../base/icons/dollar.vue";
 import iconPicture from "../../base/icons/picture.vue";
@@ -68,6 +70,8 @@ import iconFire from "../../base/icons/fire.vue";
 import iconYoutube from "../../base/icons/youtube.vue";
 import iconTwitter from "../../base/icons/twitter.vue";
 import iconFacebook from "../../base/icons/facebook.vue";
+import iconMoneyBillAlt from "../../base/icons/money-bill-alt.vue";
+import iconCheckCircle from "../../base/icons/check-circle.vue";
 
 const props = defineProps({
 	icon: {
@@ -117,6 +121,8 @@ const iconMap = {
 	calendarCheck: iconCalendarCheck,
 	calendarAlt: iconCalendarAlt,
 	calendarPlus: iconCalendarPlus,
+	calendarPlusOutline: iconCalendarPlusOutline,
+	calendarTimes: iconCalendarTimes,
 	chartArea: iconChartArea,
 	dollar: iconDollar,
 	picture: iconPicture,
@@ -147,6 +153,8 @@ const iconMap = {
 	youtube: iconYoutube,
 	twitter: iconTwitter,
 	facebook: iconFacebook,
+	moneyBillAlt: iconMoneyBillAlt,
+	checkCircle: iconCheckCircle,
 };
 </script>
 
