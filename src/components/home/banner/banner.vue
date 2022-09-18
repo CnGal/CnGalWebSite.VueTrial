@@ -5,7 +5,7 @@
 			v-for="(item, index) in bannerList"
 			ref="bannerListEl"
 			:class="{
-				'banner-active': active === index
+				'banner-active': active === index,
 			}"
 			:key="index"
 			:aria-hidden="active === index ? false : true"
@@ -35,8 +35,9 @@
 			class="prevImg"
 			icon="left"
 			circle
-			v-gal-tooltip="'上一张'"
+			v-gal-tooltip.top="'上一张'"
 			tabindex="-1"
+			bgColor="#333"
 		></gal-icon-button>
 		<gal-icon-button
 			v-if="!isMobile"
@@ -44,9 +45,18 @@
 			class="nextImg"
 			icon="right"
 			circle
-			v-gal-tooltip="'下一张'"
+			v-gal-tooltip.top="'下一张'"
 			tabindex="-1"
+			bgColor="#333"
 		></gal-icon-button>
+		<div class="changeImgBtnGroup">
+			<span
+				v-for="(item, index) in bannerList"
+				:key="index"
+				v-gal-tooltip.top="`第${index + 1}张`"
+				@click="changeActiveImg(index)"
+			></span>
+		</div>
 	</div>
 </template>
 
@@ -81,8 +91,13 @@ const active = ref(0); // 当前展示
 const nextActive = ref(1); // 预计下一张展示
 const bannerListEl = ref();
 
-let timer, autoAnimation;
+let timer;
 let activating = false;
+
+const autoAnimation = () => {
+	activating = false;
+	nextImg(undefined, true);
+};
 
 const stopAnimation = () => {
 	clearTimeout(timer);
@@ -90,7 +105,6 @@ const stopAnimation = () => {
 const startAnimation = () => {
 	timer = setTimeout(autoAnimation, 6000);
 };
-
 const refreshTimeout = () => {
 	stopAnimation();
 	startAnimation();
@@ -98,6 +112,7 @@ const refreshTimeout = () => {
 
 const bannerAnimation = (className) => {
 	const nextEl = bannerListEl.value[nextActive.value];
+	stopAnimation();
 	nextEl.classList.add("banner-next-active");
 	nextEl.classList.add(className);
 
@@ -112,19 +127,23 @@ const bannerAnimation = (className) => {
 			refreshTimeout();
 		},
 		{
-			once: true
+			once: true,
 		}
 	);
 };
-const nextImg = () => {
+
+const nextImg = (_, isCenterToOutside) => {
 	if (!activating) {
 		activating = true;
 		nextActive.value =
 			active.value + 1 >= bannerList.value.length ? 0 : active.value + 1;
-		bannerAnimation("right-left-animation");
+		bannerAnimation(
+			isCenterToOutside
+				? "center-outside-animation"
+				: "right-left-animation"
+		);
 	}
 };
-
 const prevImg = () => {
 	if (!activating) {
 		activating = true;
@@ -133,6 +152,16 @@ const prevImg = () => {
 				? bannerList.value.length - 1
 				: active.value - 1;
 		bannerAnimation("left-right-animation");
+	}
+};
+const changeActiveImg = (nextActiveIndex) => {
+	if (nextActiveIndex === active.value) {
+		return;
+	}
+	if (!activating) {
+		activating = true;
+		nextActive.value = nextActiveIndex;
+		bannerAnimation("center-outside-animation");
 	}
 };
 
@@ -150,10 +179,6 @@ const keyboardHandler = (ev) => {
 };
 
 onMounted(() => {
-	autoAnimation = () => {
-		activating = false;
-		nextImg();
-	};
 	timer = setTimeout(autoAnimation, 5000);
 });
 
@@ -200,18 +225,41 @@ onUnmounted(() => {
 	top: calc(50% - 15px);
 	left: 90%;
 	z-index: 3;
-	color: #fff;
-	opacity: 0.6;
+	opacity: 0;
 	width: 32px;
 	font-size: 24px;
-	background-color: #333;
 }
 .prevImg {
 	left: 10%;
 }
-.nextImg:hover,
-.prevImg:hover {
-	background-color: #414141;
+
+.changeImgBtnGroup {
+	display: inline-flex;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 16px;
+	z-index: 3;
+	justify-content: center;
+	column-gap: 8px;
+	opacity: 0;
+}
+.changeImgBtnGroup span {
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	background-color: #333;
+	border-radius: 50%;
+	cursor: pointer;
+	transition: width 0.3s;
+}
+.changeImgBtnGroup span:hover {
+	width: 48px;
+	border-radius: 10px;
+}
+.container:hover :is(.nextImg, .prevImg, .changeImgBtnGroup) {
+	opacity: 0.6;
+	transition: opacity 0.5s;
 }
 
 .transition-img {
@@ -274,6 +322,20 @@ onUnmounted(() => {
 	}
 	100% {
 		transform: translateX(calc(1.1 * var(--main-width)));
+	}
+}
+
+.banner-next-active.center-outside-animation {
+	opacity: 1;
+	z-index: 3;
+	animation: center-outside-animation 1s linear;
+}
+@keyframes center-outside-animation {
+	0% {
+		clip-path: inset(0 50% 0 50%);
+	}
+	100% {
+		clip-path: inset(0 0 0 0);
 	}
 }
 </style>
