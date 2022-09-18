@@ -3,10 +3,10 @@
 		<div
 			class="main-header"
 			:class="{
-				isUser: info.type === 3,
+				isUser: info.type === 3||info.type === 1,
 			}"
 		>
-			<img :src="info.mainPicture || info.thumbnail" :alt="info.name" />
+			<img :src="(info.type === 3||info.type === 1)?info.thumbnail : info.mainPicture" :alt="info.name" />
 			<div class="main-info">
 				<h1>{{ info.name }}</h1>
 				<div class="staff" v-if="info.type === 0">
@@ -94,6 +94,7 @@ a,
 }
 .main-header.isUser img {
 	width: 200px;
+	aspect-ratio: 1;
 	border-radius: 50%;
 }
 .production-title,
