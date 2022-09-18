@@ -46,7 +46,6 @@ const hideTooltip = (ev) => {
 
 export default {
 	mounted(el, binding) {
-		console.log(binding);
 		if (!tooltip && binding.value) {
 			createTooltip(el, binding);
 		}

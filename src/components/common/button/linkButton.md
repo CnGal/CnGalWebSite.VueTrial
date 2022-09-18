@@ -1,7 +1,7 @@
 ## 使用
 
 ```
-<gal-link-button icon="iconName" text="showText" to="/"></gal-link-button>
+<gal-link-button icon="iconName" text="showText" to="/" theme="solid"></gal-link-button>
 ```
 
 ### 属性
@@ -24,3 +24,12 @@
     -   required: true
 
     设置跳转路径
+
+-   theme
+
+    -   type: String
+    -   default: "hollow"
+
+    目前支持值 hollow solid
+
+    设置 button 样式风格

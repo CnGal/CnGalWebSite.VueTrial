@@ -4,99 +4,117 @@
 			<gal-card-header>
 				<template v-slot:start>
 					<gal-icon class="icon" icon="steam" size="1em"></gal-icon
-					>&nbsp;&nbsp;steam信息
+					>steam信息
 				</template>
 			</gal-card-header>
 		</template>
-		<div v-if="steamInfo.priceNow === -1">
-			<gal-icon
-				class="icon"
-				icon="calendarPlusOutline"
-				size="1em"
-			></gal-icon>
-			未发售
-		</div>
-		<div v-else-if="steamInfo.priceNow === 0">
-			<gal-icon class="icon" icon="checkCircle" size="1em"></gal-icon>
-			当前价格：¥ 0.00 - Free
-		</div>
-		<div v-else-if="steamInfo.priceNow > 0">
-			<div>
+		<div class="content">
+			<div v-if="steamInfo.priceNow === -1">
 				<gal-icon
 					class="icon"
-					icon="moneyBillAlt"
+					icon="calendarPlusOutline"
 					size="1em"
 				></gal-icon>
-				当前价格：<span v-if="steamInfo.cutNow > 0"
-					><s>{{
-						"¥ " + (steamInfo.originalPrice / 100).toFixed(2)
-					}}</s
-					>&nbsp;<span :style="{ display: 'inline-block' }">{{
-						" ¥ " +
-						(steamInfo.priceNow / 100).toFixed(2) +
-						" - 折扣 " +
-						steamInfo.cutNow +
-						"%"
-					}}</span></span
-				><span v-else>{{
-					"¥ " + (steamInfo.priceNow / 100).toFixed(2)
-				}}</span>
+				未发售
 			</div>
-			<div v-if="steamInfo.cutLowest > 0">
-				<gal-icon class="icon" icon="chartArea" size="1em"></gal-icon>
-				历史最低：<span>{{
-					steamInfo.priceLowestString +
-					(steamInfo.cutLowest === 0
-						? ""
-						: " - 折扣 " + steamInfo.cutLowest + "%")
-				}}</span>
-			</div>
-		</div>
-		<div v-else-if="steamInfo.priceNow === -2">
-			<div v-if="steamInfo.originalPrice > 0">
-				<gal-icon
-					class="icon"
-					icon="moneyBillAlt"
-					size="1em"
-				></gal-icon>
-				价格：<span>{{
-					"¥ " + (steamInfo.originalPrice / 100).toFixed(2)
-				}}</span
-				>（数据未更新）
-			</div>
-			<div v-else-if="steamInfo.originalPrice === 0">
+			<div v-else-if="steamInfo.priceNow === 0">
 				<gal-icon class="icon" icon="checkCircle" size="1em"></gal-icon>
-				价格：¥ 0.00 - Free（数据未更新）
+				当前价格：¥ 0.00 - Free
 			</div>
-			<div v-else>
+			<div v-else-if="steamInfo.priceNow > 0">
+				<div>
+					<gal-icon
+						class="icon"
+						icon="moneyBillAlt"
+						size="1em"
+					></gal-icon>
+					当前价格：<span v-if="steamInfo.cutNow > 0"
+						><s>{{
+							"¥ " + (steamInfo.originalPrice / 100).toFixed(2)
+						}}</s
+						>&nbsp;<span :style="{ display: 'inline-block' }">{{
+							" ¥ " +
+							(steamInfo.priceNow / 100).toFixed(2) +
+							" - 折扣 " +
+							steamInfo.cutNow +
+							"%"
+						}}</span></span
+					><span v-else>{{
+						"¥ " + (steamInfo.priceNow / 100).toFixed(2)
+					}}</span>
+				</div>
+				<div v-if="steamInfo.cutLowest > 0">
+					<gal-icon
+						class="icon"
+						icon="chartArea"
+						size="1em"
+					></gal-icon>
+					历史最低：<span>{{
+						steamInfo.priceLowestString +
+						(steamInfo.cutLowest === 0
+							? ""
+							: " - 折扣 " + steamInfo.cutLowest + "%")
+					}}</span>
+				</div>
+			</div>
+			<div v-else-if="steamInfo.priceNow === -2">
+				<div v-if="steamInfo.originalPrice > 0">
+					<gal-icon
+						class="icon"
+						icon="moneyBillAlt"
+						size="1em"
+					></gal-icon>
+					价格：<span>{{
+						"¥ " + (steamInfo.originalPrice / 100).toFixed(2)
+					}}</span
+					>（数据未更新）
+				</div>
+				<div v-else-if="steamInfo.originalPrice === 0">
+					<gal-icon
+						class="icon"
+						icon="checkCircle"
+						size="1em"
+					></gal-icon>
+					价格：¥ 0.00 - Free（数据未更新）
+				</div>
+				<div v-else>
+					<gal-icon
+						class="icon"
+						icon="calendarTimes"
+						size="1em"
+					></gal-icon>
+					数据未更新
+				</div>
+			</div>
+			<div v-else-if="steamInfo.priceNow === -3">
 				<gal-icon
 					class="icon"
 					icon="calendarTimes"
 					size="1em"
 				></gal-icon>
-				数据未更新
+				已下架
 			</div>
-		</div>
-		<div v-else-if="steamInfo.priceNow === -3">
-			<gal-icon class="icon" icon="calendarTimes" size="1em"></gal-icon>
-			已下架
-		</div>
-		<div v-if="steamInfo.evaluationCount > 0">
-			<gal-icon class="icon" icon="thumbsUp"></gal-icon>
-			<span>{{ steamInfo.recommendationRate }}% 好评&nbsp; </span>
-			<wbr />
-			<span :style="{ display: 'inline-block' }"
-				>({{ steamInfo.evaluationCount }}条评测)</span
-			>
-		</div>
+			<div v-if="steamInfo.evaluationCount > 0">
+				<gal-icon class="icon" icon="thumbsUp"></gal-icon>
+				<span>{{ steamInfo.recommendationRate }}% 好评&nbsp; </span>
+				<wbr />
+				<span :style="{ display: 'inline-block' }"
+					>({{ steamInfo.evaluationCount }}条评测)</span
+				>
+			</div>
 
-		<div class="single-row-dot">
-			<gal-icon class="icon" icon="homeFill" size="1em"></gal-icon>
-			商店页面：<a
-				:href="'https://store.steampowered.com/app/' + props.steamId"
-				target="_blank"
-				>{{ "https://store.steampowered.com/app/" + props.steamId }}</a
-			>
+			<div class="single-row-dot">
+				<gal-icon class="icon" icon="homeFill" size="1em"></gal-icon>
+				商店页面：<a
+					:href="
+						'https://store.steampowered.com/app/' + props.steamId
+					"
+					target="_blank"
+					>{{
+						"https://store.steampowered.com/app/" + props.steamId
+					}}</a
+				>
+			</div>
 		</div>
 
 		<teleport :to="'head'" v-if="steamInfo.originalPrice">
@@ -144,5 +162,17 @@ watch(
 a,
 .icon {
 	color: var(--main-color);
+}
+.theme-dark a,
+.theme-dark .icon {
+	color: var(--main-font-color);
+}
+.content {
+	padding: 1em;
+	padding-block-start: 0;
+	color: var(--main-font-color);
+}
+.icon {
+	margin-inline-end: 1em;
 }
 </style>

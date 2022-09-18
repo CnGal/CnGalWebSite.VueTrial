@@ -1,5 +1,5 @@
 <template>
-	<router-link class="link-button" :to="props.to">
+	<router-link :to="props.to" :class="['link-button', props.theme]">
 		<gal-icon
 			v-if="props.icon"
 			:icon="props.icon"
@@ -18,8 +18,12 @@ const props = defineProps({
 	text: String,
 	to: {
 		type: String,
-		required: true
-	}
+		required: true,
+	},
+	theme: {
+		type: String,
+		default: "hollow",
+	},
 });
 
 const linkButtonText = ref();
@@ -37,15 +41,35 @@ onMounted(() => {
 	color: var(--main-font-color);
 	font-size: 14px;
 	padding: 0.5em 1em;
-	display: flex;
+	display: inline-flex;
 	column-gap: 0.5em;
 	justify-content: center;
 }
 html:not(.theme-dark) .link-button {
 	color: var(--main-color);
 }
+.link-button.solid {
+	background-color: var(--main-color);
+	border: thin solid var(--main-color);
+	border-radius: 0.5em;
+	padding: 1px 8px;
+}
+html:not(.theme-dark) .link-button.solid {
+	color: var(--white-color);
+}
+.theme-dark .link-button.solid {
+	color: var(--main-font-color);
+}
 .link-button:hover {
 	background-color: var(--main-hover-color);
+}
+html:not(.theme-dark) .link-button.solid:hover {
+	background-color: transparent;
+	color: var(--main-color);
+}
+.theme-dark .link-button.solid:hover {
+	background-color: var(--main-hover-color);
+	border-color: var(--main-hover-color);
 }
 
 @media screen and (max-width: 768px) {

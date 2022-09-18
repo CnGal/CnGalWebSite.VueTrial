@@ -8,8 +8,8 @@ import "github-markdown-css";
 const props = defineProps({
 	data: {
 		type: String,
-		required: true
-	}
+		required: true,
+	},
 });
 </script>
 
@@ -109,5 +109,8 @@ html:not(.theme-dark) .markdown-body {
 
 html:not(.theme-dark) .markdown-body :deep(a) {
 	color: var(--main-color);
+}
+.markdown-body :deep(a) {
+	word-break: break-all;
 }
 </style>

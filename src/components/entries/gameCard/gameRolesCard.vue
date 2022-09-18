@@ -7,7 +7,7 @@
 				<div
 					class="introduction rows-dot"
 					:style="{
-						'--row-dot-line': item.addInfors.length ? 3 : undefined
+						'--row-dot-line': item.addInfors.length ? 3 : undefined,
 					}"
 				>
 					{{ item.briefIntroduction }}
@@ -41,7 +41,7 @@ const isMobile = store.isMobile;
 const props = defineProps({
 	roles: {
 		type: [Object],
-		required: true
+		required: true,
 	},
 	rowHasCellTotal: {
 		type: [Object, Number],
@@ -49,9 +49,9 @@ const props = defineProps({
 			xLarge: 3,
 			large: 2,
 			medium: 2,
-			small: 1
-		}
-	}
+			small: 1,
+		},
+	},
 });
 
 const roles = ref();
@@ -63,8 +63,8 @@ const changeWidth = () => {
 				? {
 						xLarge: props.rowHasCellTotal,
 						large: props.rowHasCellTotal,
-						xLmediumarge: props.rowHasCellTotal,
-						small: props.rowHasCellTotal
+						medium: props.rowHasCellTotal,
+						small: props.rowHasCellTotal,
 				  }
 				: props.rowHasCellTotal;
 

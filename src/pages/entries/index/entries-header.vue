@@ -79,11 +79,16 @@ a,
 .icon {
 	color: var(--main-color);
 }
+.theme-dark a,
+.theme-dark .icon {
+	color: var(--main-font-color);
+}
 .main-header {
 	display: flex;
 	padding: 16px;
 	background-color: var(--main-bg-color);
 	column-gap: 16px;
+	color: var(--main-font-color);
 }
 .main-header img {
 	width: 40%;

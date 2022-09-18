@@ -87,110 +87,16 @@
 				:steamId="info.steamId"
 			></gal_EntriesExtraSteam>
 
-			<gal-card
+			<gal_EntriesExtraInformation
+				:info="info"
+			></gal_EntriesExtraInformation>
+
+			<gal_EntriesExtraTags
+				:info="info"
 				class="extra-card"
-				v-if="
-					info.information &&
-					info.information.some((i) => i.modifier === '基本信息')
-				"
-			>
-				<template v-slot:header>
-					<gal-card-header>
-						<template v-slot:start>
-							<gal-icon
-								class="icon"
-								icon="info"
-								size="1em"
-							></gal-icon
-							>&nbsp;&nbsp;基础信息
-						</template>
-					</gal-card-header>
-				</template>
-				<div
-					v-for="(item, index) in info.information
-						.find((i) => i.modifier === '基本信息')
-						.informations.filter((i) => i.displayName !== '官网') ||
-					[]"
-					:key="index"
-				>
-					<gal-icon
-						class="icon"
-						:icon="infomationIcons(item) || 'circle'"
-						size="1em"
-					></gal-icon>
-					<span>{{ showInformationKeyText(item.displayName) }}:</span
-					>&nbsp;&nbsp;
-					<span>{{ item.displayValue }}</span>
-				</div>
-			</gal-card>
-			<gal-card
-				class="extra-card"
-				v-if="
-					info.information &&
-					info.information.some(
-						(i) =>
-							i.modifier === '相关网站' ||
-							i.informations.some((j) => j.displayName === '官网')
-					)
-				"
-			>
-				<template v-slot:header>
-					<gal-card-header>
-						<template v-slot:start>
-							<gal-icon
-								class="icon"
-								icon="link"
-								size="1em"
-							></gal-icon
-							>&nbsp;&nbsp;相关网站
-						</template>
-					</gal-card-header>
-				</template>
-				<div
-					v-for="(item, index) in [
-						...info.information.find(
-							(i) => i.modifier === '相关网站'
-						)?.informations,
-						...info.information
-							.find((i) => i.modifier === '基本信息')
-							?.informations?.filter(
-								(i) => i.displayName === '官网'
-							),
-					]"
-					:key="index"
-					class="single-row-dot"
-				>
-					<gal-icon
-						class="icon"
-						:icon="infomationIcons(item) || 'externalLinkSquareAlt'"
-						size="1em"
-					></gal-icon>
-					<span>{{ showInformationKeyText(item.displayName) }}:</span
-					>&nbsp;&nbsp;
-					<a :href="item.displayValue" target="_blank">{{
-						item.displayValue
-					}}</a>
-				</div>
-			</gal-card>
-			<gal-card class="extra-card" v-if="info.tags?.length">
-				<template v-slot:header>
-					<gal-card-header>
-						<template v-slot:start>
-							<gal-icon
-								class="icon"
-								icon="tags"
-								size="1em"
-							></gal-icon
-							>&nbsp;&nbsp;标签
-						</template>
-					</gal-card-header>
-				</template>
-				<div>
-					<gal-tag v-for="item in info.tags" :key="item.id">{{
-						item.name
-					}}</gal-tag>
-				</div>
-			</gal-card>
+				v-if="info.tags?.length"
+			></gal_EntriesExtraTags>
+
 			<gal-card class="extra-card" v-if="info.staffs?.length">
 				<template v-slot:header>
 					<gal-card-header>
@@ -241,36 +147,12 @@
 					></gal-entries-game-roles-card>
 				</div>
 			</gal-card>
-			<gal-card class="extra-card" v-if="info.otherRelevances?.length">
-				<template v-slot:header>
-					<gal-card-header>
-						<template v-slot:start>
-							<gal-icon
-								class="icon"
-								icon="link"
-								size="1em"
-							></gal-icon
-							>&nbsp;&nbsp;外部链接
-						</template>
-					</gal-card-header>
-				</template>
-				<div>
-					<gal-alert type="warning"
-						>以下为外部链接，与本站没有任何从属关系，本站亦不对其安全性负责</gal-alert
-					>
-					<div
-						v-for="item in info.otherRelevances"
-						:key="item.id"
-						class="otherRelevances"
-					>
-						<img
-							src="/images/otherRelevances/Bangumi.png"
-							:alt="item.displayName"
-						/>
-						<h5>{{ item.displayName }}</h5>
-					</div>
-				</div>
-			</gal-card>
+
+			<gal_EntriesExtraOtherRelevances
+				:info="info"
+				class="extra-card"
+				v-if="info.otherRelevances?.length"
+			></gal_EntriesExtraOtherRelevances>
 		</div>
 	</div>
 </template>
@@ -279,12 +161,11 @@
 import { ref, reactive, watch } from "vue";
 import gal_EntriesHeader from "./entries-header.vue";
 import gal_EntriesExtraSteam from "./entries-extra-steam.vue";
+import gal_EntriesExtraInformation from "./entries-extra-information.vue";
+import gal_EntriesExtraTags from "./entries-extra-tags.vue";
+import gal_EntriesExtraOtherRelevances from "./entries-extra-otherRelevances.vue";
 
 import { getEntryViewByID } from "../../../api/entriesAPI/index.js";
-import {
-	infomationIcons,
-	showInformationKeyText,
-} from "./_js/infomationIcons.js";
 
 import { useRoute } from "vue-router";
 const route = useRoute();
@@ -312,17 +193,22 @@ a,
 .icon {
 	color: var(--main-color);
 }
+.theme-dark a,
+.theme-dark .icon {
+	color: var(--main-font-color);
+}
 
 .main-body {
 	display: flex;
 	column-gap: 24px;
 	margin-block-start: 12px;
+	color: var(--main-font-color);
 }
 .main-extra {
-	width: min(calc((100% - 16px) / 3 * 1), 400px);
+	width: clamp(320px, calc((100% - 16px) / 3 * 1), 400px);
 }
 .main-main {
-	flex: calc((100% - 16px) / 3 * 2);
+	flex: 1;
 }
 .extra-card {
 	background-color: var(--main-bg-color);
@@ -332,24 +218,13 @@ a,
 .main-card {
 	margin-block-start: 12px;
 }
-.otherRelevances {
-	display: inline-flex;
-	align-items: center;
-	column-gap: 1em;
-	padding: 12px;
-}
-.otherRelevances img {
-	height: 116px;
-	object-fit: cover;
-	aspect-ratio: 1 / 1;
-}
-.otherRelevances h5 {
-	font-size: 20px;
-}
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 992px) {
+	.main-body {
+		flex-direction: column-reverse;
+	}
 	.main-extra {
-		order: 0;
+		width: 100%;
 	}
 }
 </style>
