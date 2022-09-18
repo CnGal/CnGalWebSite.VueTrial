@@ -17,6 +17,7 @@ import iconNewspaper from "../../base/icons/newspaper.vue";
 import iconSend from "../../base/icons/send.vue";
 import iconSend2 from "../../base/icons/send2.vue";
 import iconPencil from "../../base/icons/pencil.vue";
+import iconPencilMdi from "../../base/icons/pencil-mdi.vue";
 import iconNote from "../../base/icons/note.vue";
 import iconStar from "../../base/icons/star.vue";
 import iconEye from "../../base/icons/eye.vue";
@@ -28,6 +29,7 @@ import iconHome from "../../base/icons/home.vue";
 import iconHomeFill from "../../base/icons/home-fill.vue";
 import iconArchive from "../../base/icons/archive.vue";
 import iconCake from "../../base/icons/cake.vue";
+import iconBirthdayCake from "../../base/icons/birthday-cake.vue";
 import iconStickerText from "../../base/icons/sticker-text.vue";
 import iconTimer from "../../base/icons/timer.vue";
 import iconRefresh from "../../base/icons/refresh.vue";
@@ -46,6 +48,7 @@ import iconSteam from "../../base/icons/steam.vue";
 import iconInfo from "../../base/icons/info.vue";
 import iconGamepad from "../../base/icons/gamepad.vue";
 import iconIDCard from "../../base/icons/id-card.vue";
+import iconCardOutline from "../../base/icons/card-outline.vue";
 import iconCoffee from "../../base/icons/coffee.vue";
 import iconLink from "../../base/icons/link.vue";
 import iconTags from "../../base/icons/tags.vue";
@@ -54,16 +57,27 @@ import iconAnchor from "../../base/icons/anchor.vue";
 import iconSitemap from "../../base/icons/sitemap.vue";
 import iconChild from "../../base/icons/child.vue";
 import iconAlertOutline from "../../base/icons/alert-outline.vue";
+import iconHeartOutline from "../../base/icons/heart-outline.vue";
+import iconFiles from "../../base/icons/files.vue";
+import iconMicrophone from "../../base/icons/microphone.vue";
+import iconVenus from "../../base/icons/venus.vue";
+import iconMars from "../../base/icons/mars.vue";
+import iconGenderless from "../../base/icons/genderless.vue";
+import iconCircle from "../../base/icons/circle.vue";
+import iconFire from "../../base/icons/fire.vue";
+import iconYoutube from "../../base/icons/youtube.vue";
+import iconTwitter from "../../base/icons/twitter.vue";
+import iconFacebook from "../../base/icons/facebook.vue";
 
 const props = defineProps({
 	icon: {
 		type: String,
-		required: true
+		required: true,
 	},
 	size: {
 		type: String,
-		default: "16px"
-	}
+		default: "16px",
+	},
 });
 
 const iconMap = {
@@ -82,6 +96,7 @@ const iconMap = {
 	send: iconSend,
 	send2: iconSend2,
 	pencil: iconPencil,
+	pencilMdi: iconPencilMdi,
 	note: iconNote,
 	star: iconStar,
 	eye: iconEye,
@@ -93,6 +108,7 @@ const iconMap = {
 	homeFill: iconHomeFill,
 	archive: iconArchive,
 	cake: iconCake,
+	birthdayCake: iconBirthdayCake,
 	stickerText: iconStickerText,
 	timer: iconTimer,
 	refresh: iconRefresh,
@@ -111,6 +127,7 @@ const iconMap = {
 	info: iconInfo,
 	gamepad: iconGamepad,
 	idCard: iconIDCard,
+	cardOutline: iconCardOutline,
 	coffee: iconCoffee,
 	link: iconLink,
 	tags: iconTags,
@@ -118,7 +135,18 @@ const iconMap = {
 	anchor: iconAnchor,
 	sitemap: iconSitemap,
 	child: iconChild,
-	alertOutline: iconAlertOutline
+	alertOutline: iconAlertOutline,
+	heartOutline: iconHeartOutline,
+	files: iconFiles,
+	microphone: iconMicrophone,
+	venus: iconVenus,
+	mars: iconMars,
+	genderless: iconGenderless,
+	circle: iconCircle,
+	fire: iconFire,
+	youtube: iconYoutube,
+	twitter: iconTwitter,
+	facebook: iconFacebook,
 };
 </script>
 

@@ -1,5 +1,9 @@
 <template>
-	<button ref="iconButton" class="icon-button">
+	<button
+		ref="iconButton"
+		class="icon-button"
+		:class="{ hasBg: props.bgColor }"
+	>
 		<gal-icon :icon="props.icon" :size="iconSize"></gal-icon>
 	</button>
 </template>
@@ -15,7 +19,8 @@ const props = defineProps({
 	size: {
 		type: String,
 		default: "24px"
-	}
+	},
+	bgColor: String
 });
 
 const attrs = useAttrs();
@@ -46,8 +51,13 @@ onMounted(() => {
 	border: none;
 	cursor: pointer;
 	color: var(--main-font-color);
+	font-size: inherit;
 }
-.icon-button:hover {
+.icon-button.hasBg {
+	background-color: v-bind("props.bgColor");
+	color: var(--white-color);
+}
+.icon-button:not(.hasBg):hover {
 	background-color: var(--main-hover-color);
 }
 .icon-button.circle {

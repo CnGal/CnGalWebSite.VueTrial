@@ -5,7 +5,7 @@ const changePosition = (target) => {
 	const rect = target.getBoundingClientRect();
 	return {
 		translateX: `calc(${rect.x + rect.width / 2}px - 50%)`,
-		translateY: `${rect.y + rect.height}px`
+		translateY: `${rect.y + rect.height + 4}px`
 	};
 };
 

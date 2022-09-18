@@ -12,7 +12,13 @@ const createTooltipComponent = (options) => {
 				return h(
 					"div",
 					{
-						class: "tooltip",
+						class: [
+							"tooltip",
+							{
+								tooltipShow: data.visible,
+								tooltipHide: !data.visible
+							}
+						],
 						id: "gal-tooltip",
 						style: {
 							transform: `translate(${data.translateX}, ${data.translateY})`,
