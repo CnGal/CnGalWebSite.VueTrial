@@ -73,6 +73,7 @@ const iconList = [
 	"facebook",
 	"moneyBillAlt",
 	"checkCircle",
+	"close",
 ];
 </script>
 
