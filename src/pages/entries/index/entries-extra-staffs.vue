@@ -106,8 +106,10 @@ const closeDialog = () => {
 
 const staffText = ref();
 const copyStaffText = async () => {
+	// 点击 一键复制 按钮时，直接将 staffText 内的文字写入到剪切板
+	// ps 写入剪切板不需要任何权限，读取剪切板需要用户授权
 	await navigator.clipboard?.writeText(staffText.value.innerText);
-	console.log("复制成功");
+	// todo 复制成功后的视觉反馈效果
 };
 </script>
 
