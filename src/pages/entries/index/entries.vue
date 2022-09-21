@@ -127,26 +127,12 @@
 					</div>
 				</div>
 			</gal-card>
-			<gal-card class="extra-card" v-if="info.roles?.length">
-				<template v-slot:header>
-					<gal-card-header>
-						<template v-slot:start>
-							<gal-icon
-								class="icon"
-								icon="child"
-								size="1em"
-							></gal-icon
-							>&nbsp;&nbsp;登场角色
-						</template>
-					</gal-card-header>
-				</template>
-				<div>
-					<gal-entries-game-roles-card
-						:roles="info.roles"
-						:rowHasCellTotal="1"
-					></gal-entries-game-roles-card>
-				</div>
-			</gal-card>
+
+			<gal_EntriesExtraRoles
+				:info="info"
+				class="extra-card"
+				v-if="info.roles?.length"
+			></gal_EntriesExtraRoles>
 
 			<gal_EntriesExtraOtherRelevances
 				:info="info"
@@ -164,6 +150,7 @@ import gal_EntriesExtraSteam from "./entries-extra-steam.vue";
 import gal_EntriesExtraInformation from "./entries-extra-information.vue";
 import gal_EntriesExtraTags from "./entries-extra-tags.vue";
 import gal_EntriesExtraOtherRelevances from "./entries-extra-otherRelevances.vue";
+import gal_EntriesExtraRoles from "./entries-extra-roles.vue";
 
 import { getEntryViewByID } from "../../../api/entriesAPI/index.js";
 

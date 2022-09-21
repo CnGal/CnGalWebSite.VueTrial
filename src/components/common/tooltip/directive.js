@@ -52,7 +52,9 @@ export default {
 		if (binding.modifiers.top) {
 			el.setAttribute("data-tooltip-direction", "top");
 		}
-		el.setAttribute("data-tooltip-text", binding.value);
+		if (!el.getAttribute("data-tooltip-text")) {
+			el.setAttribute("data-tooltip-text", binding.value);
+		}
 		el.setAttribute("aria-describedby", "gal-tooltip");
 		el.addEventListener("mouseenter", showTooltip);
 		el.addEventListener("mouseleave", hideTooltip);

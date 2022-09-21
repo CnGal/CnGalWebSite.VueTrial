@@ -74,6 +74,7 @@ const iconList = [
 	"moneyBillAlt",
 	"checkCircle",
 	"close",
+	"chevronCircleDown",
 ];
 </script>
 

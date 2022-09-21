@@ -73,6 +73,7 @@ import iconFacebook from "../../base/icons/facebook.vue";
 import iconMoneyBillAlt from "../../base/icons/money-bill-alt.vue";
 import iconCheckCircle from "../../base/icons/check-circle.vue";
 import iconClose from "../../base/icons/close.vue";
+import iconChevronCircleDown from "../../base/icons/chevron-circle-down.vue";
 
 const props = defineProps({
 	icon: {
@@ -157,6 +158,7 @@ const iconMap = {
 	moneyBillAlt: iconMoneyBillAlt,
 	checkCircle: iconCheckCircle,
 	close: iconClose,
+	chevronCircleDown: iconChevronCircleDown,
 };
 </script>
 

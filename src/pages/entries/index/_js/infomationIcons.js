@@ -3,8 +3,8 @@ const infomationIcons = (infomation) => {
 	const icons = {
 		游戏平台: "gamepad",
 		QQ群: "qqFill",
-		发行时间: "calendarPlus",
-		预计发行时间: "calendarCheck",
+		发行时间: "calendarCheck",
+		预计发行时间: "calendarPlus",
 		发行方式: "bullhorn",
 		官网: "coffee",
 		微博: "weibo",

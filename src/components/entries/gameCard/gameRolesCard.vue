@@ -1,5 +1,9 @@
 <template>
-	<div class="container" ref="roles" :class="{ mobile: isMobile }">
+	<div
+		class="container"
+		ref="roles"
+		:class="{ mobile: isMobile, canScroll: props.heightOverflowScroll }"
+	>
 		<div v-for="item in props.roles" :key="item.id" class="item">
 			<img :src="item.mainImage" :alt="item.name" class="img" />
 			<div>
@@ -51,6 +55,10 @@ const props = defineProps({
 			medium: 2,
 			small: 1,
 		},
+	},
+	heightOverflowScroll: {
+		type: Boolean,
+		default: true,
 	},
 });
 
@@ -114,10 +122,12 @@ onUnmounted(() => {
 	row-gap: 12px;
 	background-color: var(--main-bg-color);
 	color: var(--main-font-color);
+}
+.container.canScroll {
 	overflow: hidden;
 	max-height: 480px;
 }
-.container:hover {
+.container.canScroll:hover {
 	overflow: auto;
 }
 .item {
