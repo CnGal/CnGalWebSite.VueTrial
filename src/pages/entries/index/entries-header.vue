@@ -3,10 +3,17 @@
 		<div
 			class="main-header"
 			:class="{
-				isUser: info.type === 3||info.type === 1,
+				isUser: info.type === 3 || info.type === 1,
 			}"
 		>
-			<img :src="(info.type === 3||info.type === 1)?info.thumbnail : info.mainPicture" :alt="info.name" />
+			<img
+				:src="
+					info.type === 3 || info.type === 1
+						? info.thumbnail
+						: info.mainPicture
+				"
+				:alt="info.name"
+			/>
 			<div class="main-info">
 				<h1>{{ info.name }}</h1>
 				<div class="staff" v-if="info.type === 0">
@@ -21,6 +28,7 @@
 							:key="item.id"
 							:to="'/entries/index/' + item.id"
 							:text="item.displayName"
+							theme="outline"
 						></gal-link-button>
 					</div>
 					<div
@@ -34,6 +42,7 @@
 							:key="item.id"
 							:to="'/entries/index/' + item.id"
 							:text="item.displayName"
+							theme="outline"
 						></gal-link-button>
 					</div>
 				</div>
@@ -111,11 +120,14 @@ a,
 .production-group,
 .publishers-group {
 	display: inline-flex;
+	margin-block-start: 8px;
 	align-items: center;
+	column-gap: 8px;
 	width: 50%;
 }
 .brief-introduction {
 	font-size: 14px;
+	margin-block-start: 8px;
 }
 .main-info {
 	display: flex;

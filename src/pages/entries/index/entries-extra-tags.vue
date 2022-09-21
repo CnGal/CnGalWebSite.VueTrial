@@ -10,7 +10,6 @@
 		</template>
 		<div class="content">
 			<gal-link-button
-				class="publishers-item"
 				v-for="item in info.tags"
 				:key="item.id"
 				:to="'/tags/index/' + item.id"

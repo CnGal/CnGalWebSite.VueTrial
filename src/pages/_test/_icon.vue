@@ -75,6 +75,8 @@ const iconList = [
 	"checkCircle",
 	"close",
 	"chevronCircleDown",
+	"down",
+	"databaseExport",
 ];
 </script>
 

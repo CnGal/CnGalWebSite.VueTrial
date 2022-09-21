@@ -4,17 +4,19 @@
 			<gal-card-header>
 				<template v-slot:start>
 					<gal-icon class="icon" icon="child" size="1em"></gal-icon
-					>&nbsp;&nbsp;登场角色
+					>登场角色
 				</template>
 				<template v-slot:end>
-					<gal-icon
-						class="icon"
-						icon="chevronCircleDown"
-						size="24px"
+					<gal-icon-button
+						icon="down"
+						class="icon toogle"
+						size="36px"
+						bgColor="var(--main-color)"
+						circle
 						v-gal-tooltip="'折叠'"
 						:data-tooltip-text="toggleBtnTooltipText"
 						@click="toggleRolesCardVisibility"
-					></gal-icon>
+					></gal-icon-button>
 				</template>
 			</gal-card-header>
 		</template>
@@ -63,6 +65,10 @@ const toggleRolesCardVisibility = () => {
 }
 .icon {
 	margin-inline-end: 1em;
+}
+.toogle {
+	margin-inline-end: 0;
+	font-size: 20px;
 }
 
 .roles-card.roles-card {

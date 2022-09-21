@@ -28,6 +28,7 @@
 							:key="item.id"
 							:to="'/entries/index/' + item.id"
 							:text="item.displayName"
+							theme="outline"
 						></gal-link-button>
 					</div>
 				</div>
@@ -153,8 +154,10 @@ onUnmounted(() => {
 }
 
 .addInfors-item {
+	margin-block-start: 8px;
 	display: inline-flex;
 	align-items: center;
+	column-gap: 8px;
 }
 
 @media screen and (max-width: 768px) {

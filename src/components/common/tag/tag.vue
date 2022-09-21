@@ -11,7 +11,7 @@ import { ref } from "vue";
 <style scoped>
 .tag {
 	display: inline-block;
-	padding: 0 5px;
+	padding: 1px 8px;
 	background-color: var(--main-color);
 	color: #fff;
 	border-radius: 5px;

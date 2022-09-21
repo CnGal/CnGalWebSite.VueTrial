@@ -97,36 +97,11 @@
 				v-if="info.tags?.length"
 			></gal_EntriesExtraTags>
 
-			<gal-card class="extra-card" v-if="info.staffs?.length">
-				<template v-slot:header>
-					<gal-card-header>
-						<template v-slot:start>
-							<gal-icon
-								class="icon"
-								icon="sitemap"
-								size="1em"
-							></gal-icon
-							>&nbsp;&nbsp;Staff
-						</template>
-					</gal-card-header>
-				</template>
-				<div>
-					<div
-						v-for="(item, index) in info.staffs[0].staffList"
-						:key="index"
-					>
-						<gal-tag>{{ item.modifier }}</gal-tag>
-						<gal-link-button
-							class="publishers-item"
-							v-for="item in item.names"
-							:key="item.id"
-							:to="item.id ? '/entries/index/' + item.id : '#'"
-							:text="item.displayName"
-							:style="{ display: 'inline-flex' }"
-						></gal-link-button>
-					</div>
-				</div>
-			</gal-card>
+			<gal_EntriesExtraStaffs
+				:info="info"
+				class="extra-card"
+				v-if="info.staffs?.length"
+			></gal_EntriesExtraStaffs>
 
 			<gal_EntriesExtraRoles
 				:info="info"
@@ -144,13 +119,14 @@
 </template>
 
 <script setup>
-import { ref, reactive, watch } from "vue";
+import { ref, watch } from "vue";
 import gal_EntriesHeader from "./entries-header.vue";
 import gal_EntriesExtraSteam from "./entries-extra-steam.vue";
 import gal_EntriesExtraInformation from "./entries-extra-information.vue";
 import gal_EntriesExtraTags from "./entries-extra-tags.vue";
 import gal_EntriesExtraOtherRelevances from "./entries-extra-otherRelevances.vue";
 import gal_EntriesExtraRoles from "./entries-extra-roles.vue";
+import gal_EntriesExtraStaffs from "./entries-extra-staffs.vue";
 
 import { getEntryViewByID } from "../../../api/entriesAPI/index.js";
 

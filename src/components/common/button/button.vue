@@ -10,8 +10,8 @@ import { ref, onMounted } from "vue";
 const props = defineProps({
 	bgColor: {
 		type: String,
-		default: "var(--main-bg-color)"
-	}
+		default: "var(--main-bg-color)",
+	},
 });
 
 const button = ref();
@@ -27,5 +27,6 @@ onMounted(() => {
 .button {
 	background-color: var(--button-bg-color);
 	border: none;
+	cursor: pointer;
 }
 </style>
