@@ -82,7 +82,7 @@
 import {
 	infomationIcons,
 	showInformationKeyText,
-} from "./_js/infomationIcons.js";
+} from "../_js/infomationIcons.js";
 
 const props = defineProps({
 	info: {

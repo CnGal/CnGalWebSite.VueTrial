@@ -129,7 +129,7 @@
 
 <script setup>
 import { ref, watch } from "vue";
-import { getSteamInforByID } from "../../../api/steamAPI/index.js";
+import { getSteamInforByID } from "../../../../api/steamAPI/index.js";
 
 const props = defineProps({
 	steamId: {

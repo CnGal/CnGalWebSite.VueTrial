@@ -32,20 +32,25 @@
 			</gal-card-header>
 		</template>
 		<div v-show="contentIsShow">
-			<div
-				class="row"
-				v-for="(item, index) in info.staffs[0].staffList"
-				:key="index"
-			>
-				<gal-tag>{{ item.modifier }}</gal-tag>
-				<gal-link-button
-					class="staff-item"
-					v-for="item in item.names"
-					:key="item.id"
-					:to="item.id ? '/entries/index/' + item.id : '#'"
-					:text="item.displayName"
-					theme="outline"
-				></gal-link-button>
+			<div v-for="(staffs, index) in info.staffs" :key="index">
+				<h3 class="staff-content-head">
+					{{ staffs.modifier }}
+				</h3>
+				<div
+					class="row"
+					v-for="(staffList, index) in staffs.staffList"
+					:key="index"
+				>
+					<gal-tag>{{ staffList.modifier }}</gal-tag>
+					<gal-link-button
+						class="staff-item"
+						v-for="item in staffList.names"
+						:key="item.id"
+						:to="item.id ? '/entries/index/' + item.id : '#'"
+						:text="item.displayName"
+						theme="outline"
+					></gal-link-button>
+				</div>
 			</div>
 		</div>
 
@@ -53,16 +58,25 @@
 			<gal-card class="export-dialog">
 				<h2 class="dialog-title">导出STAFF</h2>
 				<div ref="staffText" class="dialog-content">
-					<div
-						v-for="(item, index) in info.staffs[0].staffList"
-						:key="index"
-					>
-						<span v-text="item.modifier"></span>：
-						<span
-							v-for="item in item.names"
-							:key="item.id"
-							v-text="item.displayName"
-						></span>
+					<div v-for="(staffs, index) in info.staffs" :key="index">
+						<h3 class="staff-content-head">
+							{{ staffs.modifier }}
+						</h3>
+						<div
+							v-for="(item, index) in staffs.staffList"
+							:key="index"
+							class="staff-group-row"
+						>
+							<span v-text="item.modifier"></span>：
+							<span
+								v-for="(item, index) in item.names"
+								class="staff-name"
+								:key="item.id"
+								v-text="
+									(index === 0 ? '' : '，') + item.displayName
+								"
+							></span>
+						</div>
 					</div>
 				</div>
 				<div class="dialog-footer">
@@ -105,11 +119,20 @@ const closeDialog = () => {
 };
 
 const staffText = ref();
+const copyState = ref("");
 const copyStaffText = async () => {
 	// 点击 一键复制 按钮时，直接将 staffText 内的文字写入到剪切板
-	// ps 写入剪切板不需要任何权限，读取剪切板需要用户授权
-	await navigator.clipboard?.writeText(staffText.value.innerText);
-	// todo 复制成功后的视觉反馈效果
+	// tip 写入剪切板不需要任何权限，读取剪切板需要用户授权
+	try {
+		await navigator.clipboard?.writeText(staffText.value.innerText);
+		copyState.value = "success";
+		console.log("复制成功");
+		// todo 想不出来动画效果
+	} catch (err) {
+		copyState.value = "error";
+		console.log("复制失败");
+		console.log(err);
+	}
 };
 </script>
 
@@ -131,6 +154,11 @@ const copyStaffText = async () => {
 	margin-inline-end: 0;
 }
 
+.staff-content-head {
+	color: var(--main-color);
+	margin-block-end: 8px;
+	padding-inline-start: 14px;
+}
 .row {
 	display: flex;
 	padding: 1em;
@@ -153,6 +181,12 @@ const copyStaffText = async () => {
 .dialog-content {
 	margin-top: 8px;
 	font-size: 14px;
+	line-height: 2;
+}
+.dialog-content .staff-content-head {
+	color: var(--main-color);
+	margin: 0;
+	padding: 0;
 }
 .dialog-footer {
 	display: flex;

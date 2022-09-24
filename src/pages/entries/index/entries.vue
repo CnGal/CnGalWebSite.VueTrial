@@ -51,6 +51,12 @@
 					:data="info.mainPage"
 				></gal-markdown>
 			</gal-card>
+
+			<gal_EntriesMainNews
+				class="extra-card"
+				v-if="info.newsOfEntry?.length"
+				:info="info"
+			></gal_EntriesMainNews>
 		</div>
 		<div class="main-extra">
 			<gal-card class="extra-card" v-if="info.type === 0">
@@ -121,12 +127,14 @@
 <script setup>
 import { ref, watch } from "vue";
 import gal_EntriesHeader from "./entries-header.vue";
-import gal_EntriesExtraSteam from "./entries-extra-steam.vue";
-import gal_EntriesExtraInformation from "./entries-extra-information.vue";
-import gal_EntriesExtraTags from "./entries-extra-tags.vue";
-import gal_EntriesExtraOtherRelevances from "./entries-extra-otherRelevances.vue";
-import gal_EntriesExtraRoles from "./entries-extra-roles.vue";
-import gal_EntriesExtraStaffs from "./entries-extra-staffs.vue";
+import gal_EntriesExtraSteam from "./extra/entries-extra-steam.vue";
+import gal_EntriesExtraInformation from "./extra/entries-extra-information.vue";
+import gal_EntriesExtraTags from "./extra/entries-extra-tags.vue";
+import gal_EntriesExtraOtherRelevances from "./extra/entries-extra-otherRelevances.vue";
+import gal_EntriesExtraRoles from "./extra/entries-extra-roles.vue";
+import gal_EntriesExtraStaffs from "./extra/entries-extra-staffs.vue";
+
+import gal_EntriesMainNews from "./main/entries-main-news.vue";
 
 import { getEntryViewByID } from "../../../api/entriesAPI/index.js";
 
