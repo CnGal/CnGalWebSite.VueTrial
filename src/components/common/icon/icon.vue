@@ -76,6 +76,7 @@ import iconClose from "../../base/icons/close.vue";
 import iconChevronCircleDown from "../../base/icons/chevron-circle-down.vue";
 import iconDown from "../../base/icons/down.vue";
 import iconDatabaseExport from "../../base/icons/database-export.vue";
+import iconObjectGroup from "../../base/icons/object-group.vue";
 
 const props = defineProps({
 	icon: {
@@ -163,6 +164,7 @@ const iconMap = {
 	chevronCircleDown: iconChevronCircleDown,
 	down: iconDown,
 	databaseExport: iconDatabaseExport,
+	objectGroup: iconObjectGroup,
 };
 </script>
 

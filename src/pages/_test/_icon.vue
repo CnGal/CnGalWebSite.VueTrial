@@ -1,6 +1,8 @@
 <template>
-	<div v-for="item in iconList" class="icon">
-		<gal-icon :icon="item" size="24px"></gal-icon> {{ item }}
+	<div class="icon-box">
+		<div v-for="item in iconList" class="icon">
+			<gal-icon :icon="item" size="24px"></gal-icon> {{ item }}
+		</div>
 	</div>
 </template>
 
@@ -77,12 +79,18 @@ const iconList = [
 	"chevronCircleDown",
 	"down",
 	"databaseExport",
+	"objectGroup",
 ];
 </script>
 
 <style scoped>
+.icon-box {
+	display: flex;
+	flex-wrap: wrap;
+	margin-inline-start: 10px;
+}
 .icon {
-	margin-inline-start: 50px;
 	font-size: 24px;
+	flex: 0 0 400px;
 }
 </style>

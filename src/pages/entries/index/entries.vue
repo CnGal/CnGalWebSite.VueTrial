@@ -57,6 +57,17 @@
 				v-if="info.newsOfEntry?.length"
 				:info="info"
 			></gal_EntriesMainNews>
+
+			<gal_EntriesMainProductionGroup
+				class="main-card"
+				v-if="
+					info.entryRelevances?.length &&
+					info.entryRelevances.some((i) => i.type === 2)
+				"
+				:entryRelevances="
+					info.entryRelevances.filter((i) => i.type === 2)
+				"
+			></gal_EntriesMainProductionGroup>
 		</div>
 		<div class="main-extra">
 			<gal-card class="extra-card" v-if="info.type === 0">
@@ -135,6 +146,7 @@ import gal_EntriesExtraRoles from "./extra/entries-extra-roles.vue";
 import gal_EntriesExtraStaffs from "./extra/entries-extra-staffs.vue";
 
 import gal_EntriesMainNews from "./main/entries-main-news.vue";
+import gal_EntriesMainProductionGroup from "./main/entries-main-production-group.vue";
 
 import { getEntryViewByID } from "../../../api/entriesAPI/index.js";
 

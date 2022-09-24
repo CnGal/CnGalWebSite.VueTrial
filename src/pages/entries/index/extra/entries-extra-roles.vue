@@ -66,7 +66,7 @@ const toggleRolesCardVisibility = () => {
 .icon {
 	margin-inline-end: 1em;
 }
-.toogle {
+.icon.toogle {
 	margin-inline-end: 0;
 	font-size: 20px;
 }
