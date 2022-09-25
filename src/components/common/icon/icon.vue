@@ -59,6 +59,7 @@ import iconAnchor from "../../base/icons/anchor.vue";
 import iconSitemap from "../../base/icons/sitemap.vue";
 import iconChild from "../../base/icons/child.vue";
 import iconAlertOutline from "../../base/icons/alert-outline.vue";
+import iconAlertCircleOutline from "../../base/icons/alert-circle-outline.vue";
 import iconHeartOutline from "../../base/icons/heart-outline.vue";
 import iconFiles from "../../base/icons/files.vue";
 import iconMicrophone from "../../base/icons/microphone.vue";
@@ -147,6 +148,7 @@ const iconMap = {
 	sitemap: iconSitemap,
 	child: iconChild,
 	alertOutline: iconAlertOutline,
+	alertCircleOutline: iconAlertCircleOutline,
 	heartOutline: iconHeartOutline,
 	files: iconFiles,
 	microphone: iconMicrophone,

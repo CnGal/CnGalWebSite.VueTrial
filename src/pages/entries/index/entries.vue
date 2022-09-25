@@ -1,4 +1,7 @@
 <template>
+	<gal-alert class="alert" type="error" v-if="info.type === 3"
+		>这个词条可能涉及到现实人物，请勿过分较真，也请谨慎编辑，仔细斟酌词句</gal-alert
+	>
 	<gal_EntriesHeader :info="info"></gal_EntriesHeader>
 	<div class="main-body">
 		<div class="main-main">
@@ -19,20 +22,7 @@
 					:data="info.pictures[0]"
 				></galEntriesGameCGsCard>
 			</gal-card>
-			<gal-card class="main-card" v-if="info.staffGames?.length">
-				<template v-slot:header>
-					<gal-card-header>
-						<template v-slot:start>
-							<gal-icon
-								class="icon"
-								icon="send2"
-								size="1em"
-							></gal-icon
-							>&nbsp;&nbsp;参与作品
-						</template>
-					</gal-card-header>
-				</template>
-			</gal-card>
+
 			<gal-card class="main-card" v-if="info.mainPage">
 				<template v-slot:header>
 					<gal-card-header>
@@ -57,6 +47,12 @@
 				v-if="info.newsOfEntry?.length"
 				:info="info"
 			></gal_EntriesMainNews>
+
+			<gal_EntriesMainStaffGames
+				class="main-card"
+				v-if="info.staffGames?.length"
+				:staffGames="info.staffGames"
+			></gal_EntriesMainStaffGames>
 
 			<gal_EntriesMainProductionGroup
 				class="main-card"
@@ -147,6 +143,7 @@ import gal_EntriesExtraStaffs from "./extra/entries-extra-staffs.vue";
 
 import gal_EntriesMainNews from "./main/entries-main-news.vue";
 import gal_EntriesMainProductionGroup from "./main/entries-main-production-group.vue";
+import gal_EntriesMainStaffGames from "./main/entries-main-staff-games.vue";
 
 import { getEntryViewByID } from "../../../api/entriesAPI/index.js";
 
@@ -209,5 +206,10 @@ a,
 	.main-extra {
 		width: 100%;
 	}
+}
+
+.alert {
+	background-color: var(--main-bg-color);
+	margin-block-end: 16px;
 }
 </style>

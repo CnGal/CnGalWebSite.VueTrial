@@ -1,6 +1,10 @@
 <template>
 	<div class="alert-box" :class="[props.type]">
-		<gal-icon class="icon" icon="alertOutline" size="24px"></gal-icon>
+		<gal-icon
+			class="icon"
+			:icon="iconNames[props.type] || 'alertOutline'"
+			size="24px"
+		></gal-icon>
 		<slot></slot>
 	</div>
 </template>
@@ -9,9 +13,13 @@
 const props = defineProps({
 	type: {
 		type: String,
-		default: "warning"
-	}
+		default: "warning",
+	},
 });
+const iconNames = {
+	warning: "alertOutline",
+	error: "alertCircleOutline",
+};
 </script>
 
 <style scoped>
@@ -20,7 +28,7 @@ const props = defineProps({
 	font-size: 16px;
 	display: flex;
 	align-items: flex-start;
-	padding: 0.5em;
+	padding: 16px;
 	column-gap: 8px;
 }
 .icon {
@@ -31,5 +39,12 @@ const props = defineProps({
 }
 .alert-box.warning .icon {
 	color: #fb8c00;
+}
+
+.alert-box.error {
+	border-color: #ff5252;
+}
+.alert-box.error .icon {
+	color: #ff5252;
 }
 </style>

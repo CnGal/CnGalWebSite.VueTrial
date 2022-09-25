@@ -20,9 +20,10 @@
 						></gal-link-button>
 					</template>
 				</gal-card-header>
-				<gal-entries-game-roles-card
-					:roles="activeData.active.roles"
-				></gal-entries-game-roles-card>
+				<gal-game-card-rows
+					class="roles-area"
+					:rows="activeData.active.roles"
+				></gal-game-card-rows>
 				<gal-no-wrap-game-list
 					cardName="galGamePreview"
 					v-if="!isMobile"
@@ -55,7 +56,7 @@ import { ref, provide, computed } from "vue";
 import { getGameRoles } from "../../../api/entriesAPI/index.js";
 import {
 	getNonRepeatRandomList,
-	getRandom
+	getRandom,
 } from "../../../assets/common/js/random.js";
 
 import { useStore } from "../../../store/index.js";
@@ -84,7 +85,7 @@ changeActive(gameRoles.value[0].id, true);
 const activeData = computed(() => {
 	return {
 		active: allGameRoles.value[activeIndex.value],
-		type: "id"
+		type: "id",
 	};
 });
 
@@ -113,6 +114,12 @@ provide("changeActive", changeActive);
 }
 .link-button {
 	flex: 0 0 auto;
+}
+.roles-area :deep(.item) {
+	row-gap: 0;
+}
+.roles-area :deep(.info) {
+	display: none;
 }
 .container :deep(.card-item) {
 	flex: 0 0 calc((100% - (var(--column-gap) * 5)) / 6);

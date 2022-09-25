@@ -63,6 +63,7 @@ const iconList = [
 	"sitemap",
 	"child",
 	"alertOutline",
+	"alertCircleOutline",
 	"heartOutline",
 	"files",
 	"microphone",

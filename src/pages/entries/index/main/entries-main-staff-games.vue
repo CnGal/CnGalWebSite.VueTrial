@@ -1,10 +1,10 @@
 <template>
-	<gal-card class="roles-card">
+	<gal-card class="staff-games">
 		<template v-slot:header>
 			<gal-card-header>
 				<template v-slot:start>
-					<gal-icon class="icon" icon="child" size="1em"></gal-icon
-					>登场角色
+					<gal-icon class="icon" icon="send2" size="1em"></gal-icon
+					>参与作品
 				</template>
 				<template v-slot:end>
 					<gal-icon-button
@@ -23,8 +23,8 @@
 
 		<gal-game-card-rows
 			v-show="contentIsShow"
-			class="roles-content"
-			:rows="info.roles"
+			class="content"
+			:rows="staffGames"
 			:rowHasCellTotal="1"
 			:heightOverflowScroll="false"
 		></gal-game-card-rows>
@@ -34,8 +34,8 @@
 <script setup>
 import { ref } from "vue";
 const props = defineProps({
-	info: {
-		type: Object,
+	staffGames: {
+		type: [Object],
 		required: true,
 	},
 });
@@ -55,14 +55,6 @@ const toggleRolesCardVisibility = () => {
 </script>
 
 <style scoped>
-.content {
-	display: flex;
-	padding: 1em;
-	padding-block-start: 0;
-	flex-wrap: wrap;
-	column-gap: 8px;
-	row-gap: 8px;
-}
 .icon {
 	margin-inline-end: 1em;
 }
@@ -70,20 +62,14 @@ const toggleRolesCardVisibility = () => {
 	margin-inline-end: 0;
 	font-size: 20px;
 }
-
-.roles-card.roles-card {
-	background-color: transparent;
-}
-.roles-content {
+.content {
 	padding: 0;
 	padding-block-start: 12px;
 	background-color: transparent;
 }
-
-.roles-content :deep(.item) {
-	row-gap: 0;
-}
-.roles-content :deep(.info) {
-	display: none;
+.content :deep(.img) {
+	height: 116px;
+	aspect-ratio: 250 / 117;
+	border-radius: unset;
 }
 </style>

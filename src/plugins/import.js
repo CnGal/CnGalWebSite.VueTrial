@@ -23,11 +23,11 @@ import gamePreview from "../components/common/gameCard/gamePreview.vue";
 import alert from "../components/common/alert/alert.vue";
 import timeline from "../components/common/timeline/timeline.vue";
 import timelineItem from "../components/common/timeline/timeline-item.vue";
+import gameCardRows from "../components/common/gameCard/gameCardRows.vue";
 
 import entriesGameCGsCardList from "../components/entries/gameCard/gameCGsCardList.vue";
 import entriesGameCGsCard from "../components/entries/gameCard/gameCGsCard.vue";
 import entriesGameRolesCardList from "../components/entries/gameCard/gameRolesCardList.vue";
-import entriesGameRolesCard from "../components/entries/gameCard/gameRolesCard.vue";
 
 import articlesGameEvaluationCardList from "../components/articles/gameCard/gameEvaluationCardList.vue";
 import articlesGameEvaluationCard from "../components/articles/gameCard/gameEvaluationCard.vue";
@@ -56,11 +56,11 @@ const importPlugin = {
 		app.component("galAlert", alert);
 		app.component("galTimeline", timeline);
 		app.component("galTimelineItem", timelineItem);
+		app.component("galGameCardRows", gameCardRows);
 
 		app.component("galEntriesGameCGsCardList", entriesGameCGsCardList);
 		app.component("galEntriesGameCGsCard", entriesGameCGsCard);
 		app.component("galEntriesGameRolesCardList", entriesGameRolesCardList);
-		app.component("galEntriesGameRolesCard", entriesGameRolesCard);
 
 		app.component(
 			"galArticlesGameEvaluationCardList",

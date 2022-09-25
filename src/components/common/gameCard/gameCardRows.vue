@@ -1,29 +1,32 @@
 <template>
 	<div
 		class="container"
-		ref="roles"
+		ref="rows"
 		:class="{ mobile: isMobile, canScroll: props.heightOverflowScroll }"
 	>
-		<div v-for="item in props.roles" :key="item.id" class="item">
-			<img :src="item.mainImage" :alt="item.name" class="img" />
-			<div>
-				<h5 class="name">{{ item.name }}</h5>
+		<div v-for="row in props.rows" :key="row.id" class="item">
+			<img :src="row.mainImage" :alt="row.name" class="img" />
+			<div class="content">
+				<h5 class="name">{{ row.name }}</h5>
 				<div
 					class="introduction rows-dot"
 					:style="{
-						'--row-dot-line': item.addInfors.length ? 3 : undefined,
+						'--row-dot-line': row.addInfors.length ? 3 : undefined,
 					}"
 				>
-					{{ item.briefIntroduction }}
+					{{ row.briefIntroduction }}
 				</div>
-				<div v-if="item.addInfors.length">
+				<div v-if="row.addInfors.length">
 					<div
-						v-for="(addInfor, index) in item.addInfors"
+						v-for="(addInfor, index) in row.addInfors"
 						:key="index"
 						class="addInfors-item"
 					>
-						<gal-tag>{{ addInfor.modifier }}</gal-tag>
+						<gal-tag class="tags tags-title">{{
+							addInfor.modifier
+						}}</gal-tag>
 						<gal-link-button
+							class="tags"
 							v-for="item in addInfor.contents"
 							:key="item.id"
 							:to="'/entries/index/' + item.id"
@@ -33,18 +36,36 @@
 					</div>
 				</div>
 			</div>
+			<div class="info">
+				<span>
+					<gal-icon icon="calendarAlt" size="1em"></gal-icon>&nbsp;
+					{{ formatDateWithYMD(row.publishTime) }}
+				</span>
+
+				<span class="comment">
+					<gal-icon icon="comments" size="14px"></gal-icon>&nbsp;{{
+						row.commentCount
+					}}条评论</span
+				>
+				<span class="read">
+					<gal-icon icon="eye" size="14px"></gal-icon>&nbsp;{{
+						row.readerCount
+					}}次阅读</span
+				>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
+import { formatDateWithYMD } from "../../../assets/common/js/formatDate";
 import { useStore } from "../../../store/index.js";
 const store = useStore();
 const isMobile = store.isMobile;
 
 const props = defineProps({
-	roles: {
+	rows: {
 		type: [Object],
 		required: true,
 	},
@@ -63,7 +84,7 @@ const props = defineProps({
 	},
 });
 
-const roles = ref();
+const rows = ref();
 const changeWidth = () => {
 	const getCellWidth = () => {
 		const pageWidth = window.innerWidth;
@@ -95,7 +116,7 @@ const changeWidth = () => {
 			})) / ${small})`;
 		}
 	};
-	roles.value.style.setProperty("--cell-width", getCellWidth());
+	rows.value.style.setProperty("--cell-width", getCellWidth());
 };
 
 onMounted(() => {
@@ -133,18 +154,29 @@ onUnmounted(() => {
 }
 .item {
 	width: var(--cell-width);
-	display: flex;
+	display: grid;
 	background-color: var(--main-bg-color);
 	box-shadow: var(--main-shadow);
 	box-sizing: border-box;
 	padding: 1em;
+	padding-block-end: 12px;
+	position: relative;
+	grid-template:
+		"img content" auto
+		"info info" auto
+		/ auto 1fr;
+	column-gap: 1em;
+	row-gap: 12px;
 }
 .img {
+	grid-area: img;
 	height: 116px;
 	object-fit: cover;
 	aspect-ratio: 1 / 1;
 	border-radius: 50%;
-	margin-inline-end: 1em;
+}
+.content {
+	grid-area: content;
 }
 .name {
 	font-size: 20px;
@@ -156,8 +188,25 @@ onUnmounted(() => {
 .addInfors-item {
 	margin-block-start: 8px;
 	display: inline-flex;
+	flex-wrap: wrap;
 	align-items: center;
 	column-gap: 8px;
+	row-gap: 8px;
+}
+.tags {
+	font-size: 14px;
+	display: inline-block;
+	flex: 0 0 auto;
+}
+
+.info {
+	grid-area: info;
+	color: var(--gray-color);
+	font-size: 14px;
+}
+.info > span {
+	margin-inline-end: 1em;
+	display: inline-flex;
 }
 
 @media screen and (max-width: 768px) {

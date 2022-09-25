@@ -43,8 +43,9 @@
 						v-for="addInfor in item.addInfors"
 						:key="addInfor.modifier"
 					>
-						<gal-tag>{{ addInfor.modifier }}</gal-tag>
+						<gal-tag class="tags">{{ addInfor.modifier }}</gal-tag>
 						<gal-link-button
+							class="tags"
 							v-for="content in addInfor.contents"
 							:key="content.id"
 							:to="'/entries/index/' + content.id"
@@ -105,11 +106,18 @@ const toggleRolesCardVisibility = () => {
 }
 .info-row {
 	display: flex;
+	flex-wrap: wrap;
 	column-gap: 8px;
+	row-gap: 8px;
 	margin-block-end: 8px;
 }
 
 .info-head {
 	font-size: 20px;
+}
+.tags {
+	font-size: 14px;
+	display: inline-block;
+	flex: 0 0 auto;
 }
 </style>
