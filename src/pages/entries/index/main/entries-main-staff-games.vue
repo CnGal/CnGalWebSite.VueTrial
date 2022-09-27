@@ -1,22 +1,10 @@
 <template>
 	<gal-card class="staff-games">
 		<template v-slot:header>
-			<gal-card-header>
+			<gal-card-header :toggle="true" :toggleChange="toggleChange">
 				<template v-slot:start>
 					<gal-icon class="icon" icon="send2" size="1em"></gal-icon
 					>参与作品
-				</template>
-				<template v-slot:end>
-					<gal-icon-button
-						icon="down"
-						class="icon toogle"
-						size="36px"
-						bgColor="var(--main-color)"
-						circle
-						v-gal-tooltip="'折叠'"
-						:data-tooltip-text="toggleBtnTooltipText"
-						@click="toggleRolesCardVisibility"
-					></gal-icon-button>
 				</template>
 			</gal-card-header>
 		</template>
@@ -41,26 +29,14 @@ const props = defineProps({
 });
 
 const contentIsShow = ref(true);
-const toggleBtnTooltipTextList = {
-	show: "折叠",
-	hide: "展开",
-};
-const toggleBtnTooltipText = ref("折叠");
-
-const toggleRolesCardVisibility = () => {
-	contentIsShow.value = !contentIsShow.value;
-	toggleBtnTooltipText.value =
-		toggleBtnTooltipTextList[contentIsShow.value ? "show" : "hide"];
+const toggleChange = (isShow) => {
+	contentIsShow.value = isShow;
 };
 </script>
 
 <style scoped>
 .icon {
 	margin-inline-end: 1em;
-}
-.icon.toogle {
-	margin-inline-end: 0;
-	font-size: 20px;
 }
 .content {
 	padding: 0;

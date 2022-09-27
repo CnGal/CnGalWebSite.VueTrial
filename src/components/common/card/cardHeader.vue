@@ -3,11 +3,50 @@
 		<h2>
 			<slot name="start"></slot>
 		</h2>
-		<slot name="end"></slot>
+		<div class="end">
+			<slot name="end"></slot>
+			<gal-icon-button
+				v-if="props.toggle"
+				icon="down"
+				class="icon toggle"
+				size="36px"
+				bgColor="var(--main-color)"
+				circle
+				v-gal-tooltip="'折叠'"
+				:data-tooltip-text="toggleBtnTooltipText"
+				@click="toggleRolesCardVisibility"
+			></gal-icon-button>
+		</div>
 	</header>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+const props = defineProps({
+	toggle: {
+		type: Boolean,
+		dafault: false,
+	},
+	toggleChange: {
+		type: Function,
+		default: Function.prototype,
+	},
+});
+const isShow = ref(true);
+const toggleBtnTooltipTextList = {
+	show: "折叠",
+	hide: "展开",
+};
+const toggleBtnTooltipText = ref("折叠");
+
+const toggleRolesCardVisibility = () => {
+	isShow.value = !isShow.value;
+	toggleBtnTooltipText.value =
+		toggleBtnTooltipTextList[isShow.value ? "show" : "hide"];
+
+	props.toggleChange(isShow.value);
+};
+</script>
 
 <style scoped>
 .card-header {
@@ -26,6 +65,13 @@ h2 {
 	display: flex;
 	align-items: center;
 	font-size: 1.25em;
+}
+.end {
+	display: flex;
+}
+
+.icon.toggle {
+	font-size: 20px;
 }
 
 @media screen and (max-width: 768px) {

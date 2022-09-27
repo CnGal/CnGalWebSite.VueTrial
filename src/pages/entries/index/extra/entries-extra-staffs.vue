@@ -1,33 +1,21 @@
 <template>
 	<gal-card class="extra-card">
 		<template v-slot:header>
-			<gal-card-header>
+			<gal-card-header :toggle="true" :toggleChange="toggleChange">
 				<template v-slot:start>
 					<gal-icon class="icon" icon="sitemap" size="1em"></gal-icon
 					>Staff
 				</template>
 				<template v-slot:end>
-					<div class="icon-wrap">
-						<gal-icon-button
-							icon="databaseExport"
-							class="icon"
-							size="36px"
-							bgColor="var(--main-color)"
-							circle
-							v-gal-tooltip="'导出STAFF'"
-							@click="openDialog"
-						></gal-icon-button>
-						<gal-icon-button
-							icon="down"
-							class="icon"
-							size="36px"
-							bgColor="var(--main-color)"
-							circle
-							v-gal-tooltip="'折叠'"
-							:data-tooltip-text="toggleBtnTooltipText"
-							@click="toggleRolesCardVisibility"
-						></gal-icon-button>
-					</div>
+					<gal-icon-button
+						icon="databaseExport"
+						class="icon export"
+						size="36px"
+						bgColor="var(--main-color)"
+						circle
+						v-gal-tooltip="'导出STAFF'"
+						@click="openDialog"
+					></gal-icon-button>
 				</template>
 			</gal-card-header>
 		</template>
@@ -98,16 +86,8 @@ const props = defineProps({
 });
 
 const contentIsShow = ref(true);
-const toggleBtnTooltipTextList = {
-	show: "折叠",
-	hide: "展开",
-};
-const toggleBtnTooltipText = ref("折叠");
-
-const toggleRolesCardVisibility = () => {
-	contentIsShow.value = !contentIsShow.value;
-	toggleBtnTooltipText.value =
-		toggleBtnTooltipTextList[contentIsShow.value ? "show" : "hide"];
+const toggleChange = (isShow) => {
+	contentIsShow.value = isShow;
 };
 
 const exportDialog = ref();
@@ -145,13 +125,10 @@ const copyStaffText = async () => {
 .theme-dark .icon {
 	color: var(--main-font-color);
 }
-.icon-wrap {
-	display: inline-flex;
-	column-gap: 16px;
-}
-.icon-wrap .icon {
+
+.icon.export {
 	font-size: 20px;
-	margin-inline-end: 0;
+	margin-inline-end: 16px;
 }
 
 .staff-content-head {

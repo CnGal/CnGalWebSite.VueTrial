@@ -89,5 +89,6 @@ const props = defineProps({
 	padding-block-start: 0;
 	color: var(--gray-color);
 	white-space: break-spaces;
+	word-break: break-all;
 }
 </style>
