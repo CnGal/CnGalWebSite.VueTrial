@@ -7,7 +7,7 @@
 			<div class="info">
 				<span>
 					<gal-icon icon="calendarAlt" size="1em"></gal-icon>
-					{{ formatDateWithYMD(props.data.lastEditTime) }}
+					{{ formatDate(props.data.lastEditTime, "YMD") }}
 				</span>
 				<span>
 					<gal-icon icon="user" size="1em"></gal-icon>
@@ -26,13 +26,13 @@
 </template>
 
 <script setup>
-import { formatDateWithYMD } from "../../../assets/common/js/formatDate";
+import { formatDate } from "../../../assets/common/js/formatDate";
 
 const props = defineProps({
 	data: {
 		type: Object,
-		required: true
-	}
+		required: true,
+	},
 });
 </script>
 

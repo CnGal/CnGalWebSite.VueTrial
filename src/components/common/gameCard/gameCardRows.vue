@@ -39,7 +39,7 @@
 			<div class="info">
 				<span>
 					<gal-icon icon="calendarAlt" size="1em"></gal-icon>&nbsp;
-					{{ formatDateWithYMD(row.publishTime) }}
+					{{ formatDate(row.publishTime, "YMD") }}
 				</span>
 
 				<span class="comment">
@@ -59,7 +59,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
-import { formatDateWithYMD } from "../../../assets/common/js/formatDate";
+import { formatDate } from "../../../assets/common/js/formatDate";
 import { useStore } from "../../../store/index.js";
 const store = useStore();
 const isMobile = store.isMobile;

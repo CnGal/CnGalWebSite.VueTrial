@@ -23,22 +23,37 @@ export const formatDateWithHowLong = (date) => {
 	}
 };
 
-export const formatDateWithYMD = (date, i18n) => {
+export const formatDate = (date, range, i18n) => {
 	const willFormatDate = new Date(date);
 
 	const year = willFormatDate.getFullYear();
 	const month = willFormatDate.getMonth() + 1;
 	const day = willFormatDate.getDate();
+	const hour = willFormatDate.getHours();
+	const minutes = willFormatDate.getMinutes();
+	const seconds = willFormatDate.getSeconds();
 
-	if (i18n === "zh") {
-		return `${year}年${month}月${day}日`;
+	const padMonth = month.toString().padStart(2, "0");
+	const padDay = day.toString().padStart(2, "0");
+	const padHour = hour.toString().padStart(2, "0");
+	const padMinutes = minutes.toString().padStart(2, "0");
+	const padSeconds = seconds.toString().padStart(2, "0");
+
+	if (range === "YMD") {
+		if (i18n === "zh") {
+			return `${year}年${month}月${day}日`;
+		} else {
+			return (
+				year +
+				"-" +
+				month.toString().padStart(2, "0") +
+				"-" +
+				day.toString().padStart(2, "0")
+			);
+		}
+	} else if (range === "YMDhm") {
+		return `${year}-${padMonth}-${padDay} ${padHour}:${padMinutes}`;
 	} else {
-		return (
-			year +
-			"-" +
-			month.toString().padStart(2, "0") +
-			"-" +
-			day.toString().padStart(2, "0")
-		);
+		return `${year}-${padMonth}-${padDay} ${padHour}:${padMinutes}:${padSeconds}`;
 	}
 };

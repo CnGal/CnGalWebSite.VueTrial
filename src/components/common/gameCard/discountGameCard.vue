@@ -23,7 +23,7 @@
 					<div>
 						<gal-icon class="icon" icon="calendarCheck"></gal-icon>
 						<span>{{
-							formatDateWithYMD(props.data.publishTime, "zh")
+							formatDate(props.data.publishTime, "YMD", "zh")
 						}}</span>
 					</div>
 					<div v-if="~props.data.cutLowest">
@@ -49,12 +49,12 @@
 </template>
 
 <script setup>
-import { formatDateWithYMD } from "../../../assets/common/js/formatDate.js";
+import { formatDate } from "../../../assets/common/js/formatDate.js";
 const props = defineProps({
 	data: {
 		type: Object,
-		required: true
-	}
+		required: true,
+	},
 });
 </script>
 

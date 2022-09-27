@@ -12,7 +12,11 @@
 				</template>
 			</gal-card-header>
 			<div class="content">
-				<gal-timeline contentAlign="left">
+				<gal-timeline
+					:contentAlign="
+						props.info.newsOfEntry.length < 3 ? 'left' : 'center'
+					"
+				>
 					<gal-timeline-item
 						v-for="(item, index) in [
 							...props.info.newsOfEntry,
@@ -32,6 +36,13 @@
 								<p v-text="item.briefIntroduction"></p>
 							</div>
 						</template>
+						<template v-slot:opposite>
+							<div class="timeline-opposite-content">
+								<span>{{
+									formatDate(item.happenedTime, "YMDhm")
+								}}</span>
+							</div>
+						</template>
 					</gal-timeline-item>
 				</gal-timeline>
 			</div>
@@ -40,6 +51,7 @@
 </template>
 
 <script setup>
+import { formatDate } from "../../../../assets/common/js/formatDate";
 const props = defineProps({
 	info: {
 		type: Object,
@@ -70,6 +82,7 @@ const props = defineProps({
 .timeline-body-content h3 {
 	font-size: 20px;
 	padding: 16px;
+	word-break: break-all;
 }
 .timeline-body-content p {
 	padding: 16px;
