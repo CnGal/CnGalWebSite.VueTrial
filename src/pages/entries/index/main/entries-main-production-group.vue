@@ -1,19 +1,11 @@
 <template>
-	<gal-card class="production-group">
-		<template v-slot:header>
-			<gal-card-header :toggle="true" :toggleChange="toggleChange">
-				<template v-slot:start>
-					<gal-icon
-						class="icon"
-						icon="objectGroup"
-						size="1em"
-					></gal-icon
-					>相关制作组
-				</template>
-			</gal-card-header>
+	<gal-card class="production-group" :toggle="true">
+		<template v-slot:headerStart>
+			<gal-icon class="icon" icon="objectGroup" size="1em"></gal-icon
+			>相关制作组
 		</template>
 
-		<div v-show="contentIsShow">
+		<div>
 			<router-link
 				v-for="item in props.entryRelevances"
 				:key="item.id"
@@ -55,11 +47,6 @@ const props = defineProps({
 		required: true,
 	},
 });
-
-const contentIsShow = ref(true);
-const toggleChange = (isShow) => {
-	contentIsShow.value = isShow;
-};
 </script>
 
 <style scoped>

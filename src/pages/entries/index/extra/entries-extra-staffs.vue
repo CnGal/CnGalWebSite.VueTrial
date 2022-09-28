@@ -1,25 +1,20 @@
 <template>
-	<gal-card class="extra-card">
-		<template v-slot:header>
-			<gal-card-header :toggle="true" :toggleChange="toggleChange">
-				<template v-slot:start>
-					<gal-icon class="icon" icon="sitemap" size="1em"></gal-icon
-					>Staff
-				</template>
-				<template v-slot:end>
-					<gal-icon-button
-						icon="databaseExport"
-						class="icon export"
-						size="36px"
-						bgColor="var(--main-color)"
-						circle
-						v-gal-tooltip="'导出STAFF'"
-						@click="openDialog"
-					></gal-icon-button>
-				</template>
-			</gal-card-header>
+	<gal-card class="extra-card" :toggle="true">
+		<template v-slot:headerStart>
+			<gal-icon class="icon" icon="sitemap" size="1em"></gal-icon>Staff
 		</template>
-		<div v-show="contentIsShow">
+		<template v-slot:headerEnd>
+			<gal-icon-button
+				icon="databaseExport"
+				class="icon export"
+				size="36px"
+				bgColor="var(--main-color)"
+				circle
+				v-gal-tooltip="'导出STAFF'"
+				@click="openDialog"
+			></gal-icon-button>
+		</template>
+		<div>
 			<div v-for="(staffs, index) in info.staffs" :key="index">
 				<h3 class="staff-content-head">
 					{{ staffs.modifier }}
@@ -84,11 +79,6 @@ const props = defineProps({
 		required: true,
 	},
 });
-
-const contentIsShow = ref(true);
-const toggleChange = (isShow) => {
-	contentIsShow.value = isShow;
-};
 
 const exportDialog = ref();
 const openDialog = () => {

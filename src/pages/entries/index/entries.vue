@@ -6,17 +6,9 @@
 	<div class="main-body">
 		<div class="main-main">
 			<gal-card class="main-card" v-if="info.pictures?.length">
-				<template v-slot:header>
-					<gal-card-header>
-						<template v-slot:start>
-							<gal-icon
-								class="icon"
-								icon="picture"
-								size="1em"
-							></gal-icon
-							>&nbsp;&nbsp;相册
-						</template>
-					</gal-card-header>
+				<template v-slot:headerStart>
+					<gal-icon class="icon" icon="picture" size="1em"></gal-icon
+					>&nbsp;&nbsp;相册
 				</template>
 				<galEntriesGameCGsCard
 					:data="info.pictures[0]"
@@ -24,17 +16,9 @@
 			</gal-card>
 
 			<gal-card class="main-card" v-if="info.mainPage">
-				<template v-slot:header>
-					<gal-card-header>
-						<template v-slot:start>
-							<gal-icon
-								class="icon"
-								icon="homeFill"
-								size="1em"
-							></gal-icon
-							>&nbsp;&nbsp;介绍
-						</template>
-					</gal-card-header>
+				<template v-slot:headerStart>
+					<gal-icon class="icon" icon="homeFill" size="1em"></gal-icon
+					>&nbsp;&nbsp;介绍
 				</template>
 				<gal-markdown
 					:style="{ padding: '16px', 'padding-top': 0 }"
@@ -67,32 +51,24 @@
 		</div>
 		<div class="main-extra">
 			<gal-card class="extra-card" v-if="info.type === 0">
-				<template v-slot:header>
-					<gal-card-header>
-						<template v-slot:start>
-							<gal-icon
-								class="icon"
-								icon="star"
-								size="1em"
-							></gal-icon
-							>&nbsp;&nbsp;游玩记录
-						</template>
-						<template v-slot:end>
-							<gal-link-button
-								to="/"
-								class="link-button"
-								text="查看详情"
-								icon="shareAll"
-							></gal-link-button>
-						</template>
-					</gal-card-header>
-					<div :style="{ 'text-align': 'center' }">暂无记录</div>
+				<template v-slot:headerStart>
+					<gal-icon class="icon" icon="star" size="1em"></gal-icon
+					>&nbsp;&nbsp;游玩记录
+				</template>
+				<template v-slot:headerEnd>
 					<gal-link-button
-						icon="login"
-						text="登入后添加游玩记录"
 						to="/"
+						class="link-button"
+						text="查看详情"
+						icon="shareAll"
 					></gal-link-button>
 				</template>
+				<div :style="{ 'text-align': 'center' }">暂无记录</div>
+				<gal-link-button
+					icon="login"
+					text="登入后添加游玩记录"
+					to="/"
+				></gal-link-button>
 			</gal-card>
 			<gal_EntriesExtraSteam
 				class="extra-card"

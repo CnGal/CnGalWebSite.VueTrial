@@ -1,12 +1,8 @@
 <template>
 	<gal-card class="extra-card">
-		<template v-slot:header>
-			<gal-card-header>
-				<template v-slot:start>
-					<gal-icon class="icon" icon="link" size="1em"></gal-icon
-					>&nbsp;&nbsp;外部链接
-				</template>
-			</gal-card-header>
+		<template v-slot:headerStart>
+			<gal-icon class="icon" icon="link" size="1em"></gal-icon
+			>&nbsp;&nbsp;外部链接
 		</template>
 		<div>
 			<gal-alert class="alert" type="warning"

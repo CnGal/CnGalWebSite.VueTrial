@@ -1,16 +1,10 @@
 <template>
-	<gal-card class="staff-games">
-		<template v-slot:header>
-			<gal-card-header :toggle="true" :toggleChange="toggleChange">
-				<template v-slot:start>
-					<gal-icon class="icon" icon="send2" size="1em"></gal-icon
-					>参与作品
-				</template>
-			</gal-card-header>
+	<gal-card class="staff-games" :toggle="true">
+		<template v-slot:headerStart>
+			<gal-icon class="icon" icon="send2" size="1em"></gal-icon>参与作品
 		</template>
 
 		<gal-game-card-rows
-			v-show="contentIsShow"
 			class="content"
 			:rows="staffGames"
 			:rowHasCellTotal="1"
@@ -27,11 +21,6 @@ const props = defineProps({
 		required: true,
 	},
 });
-
-const contentIsShow = ref(true);
-const toggleChange = (isShow) => {
-	contentIsShow.value = isShow;
-};
 </script>
 
 <style scoped>

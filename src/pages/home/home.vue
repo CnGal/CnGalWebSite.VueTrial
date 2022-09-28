@@ -2,120 +2,87 @@
 	<gal-banner class="banner"></gal-banner>
 	<galWelcome></galWelcome>
 	<gal-card class="card">
-		<template v-slot:header>
-			<gal-card-header>
-				<template v-slot:start>
-					<gal-icon icon="newspaper" size="1em"></gal-icon
-					>&nbsp;&nbsp;最新动态
-				</template>
-				<template v-slot:end>
-					<gal-link-button
-						to="/articles/news"
-						:text="'查看更多'"
-						:icon="'shareAll'"
-					></gal-link-button>
-				</template>
-			</gal-card-header>
+		<template v-slot:headerStart>
+			<gal-icon icon="newspaper" size="1em"></gal-icon
+			>&nbsp;&nbsp;最新动态
+		</template>
+		<template v-slot:headerEnd>
+			<gal-link-button
+				to="/articles/news"
+				:text="'查看更多'"
+				:icon="'shareAll'"
+			></gal-link-button>
 		</template>
 		<gal-news-list :list="newsList"></gal-news-list>
 	</gal-card>
 	<gal-card class="card">
-		<template v-slot:header>
-			<gal-card-header>
-				<template v-slot:start>
-					<gal-icon icon="send" size="1em"></gal-icon
-					>&nbsp;&nbsp;近期新作
-				</template>
-				<template v-slot:end>
-					<gal-link-button
-						to="/"
-						:text="'查看更多'"
-						:icon="'shareAll'"
-					></gal-link-button>
-				</template>
-			</gal-card-header>
+		<template v-slot:headerStart>
+			<gal-icon icon="send" size="1em"></gal-icon>&nbsp;&nbsp;近期新作
+		</template>
+		<template v-slot:headerEnd>
+			<gal-link-button
+				to="/"
+				:text="'查看更多'"
+				:icon="'shareAll'"
+			></gal-link-button>
 		</template>
 		<gal-game-card-list :list="recentIssuelGameList"></gal-game-card-list>
 	</gal-card>
 	<gal-card class="card">
-		<template v-slot:header>
-			<gal-card-header>
-				<template v-slot:start>
-					<gal-icon icon="send2" size="1em"></gal-icon
-					>&nbsp;&nbsp;即将发售
-				</template>
-				<template v-slot:end>
-					<gal-link-button
-						to="/"
-						:text="'查看更多'"
-						:icon="'shareAll'"
-					></gal-link-button>
-				</template>
-			</gal-card-header>
+		<template v-slot:headerStart>
+			<gal-icon icon="send2" size="1em"></gal-icon>&nbsp;&nbsp;即将发售
+		</template>
+		<template v-slot:headerEnd>
+			<gal-link-button
+				to="/"
+				:text="'查看更多'"
+				:icon="'shareAll'"
+			></gal-link-button>
 		</template>
 		<gal-game-card-list :list="newestGameView"></gal-game-card-list>
 	</gal-card>
 	<gal-card class="card">
-		<template v-slot:header>
-			<gal-card-header>
-				<template v-slot:start>
-					<gal-icon icon="newspaper" size="1em"></gal-icon
-					>&nbsp;&nbsp;文章
-				</template>
-				<template v-slot:end>
-					<gal-link-button
-						to="/"
-						:text="'查看更多'"
-						:icon="'shareAll'"
-					></gal-link-button>
-				</template>
-			</gal-card-header>
+		<template v-slot:headerStart>
+			<gal-icon icon="newspaper" size="1em"></gal-icon>&nbsp;&nbsp;文章
+		</template>
+		<template v-slot:headerEnd>
+			<gal-link-button
+				to="/"
+				:text="'查看更多'"
+				:icon="'shareAll'"
+			></gal-link-button>
 		</template>
 		<gal-game-card-list :list="articlesView"></gal-game-card-list>
 	</gal-card>
 	<gal-card class="card">
-		<template v-slot:header>
-			<gal-card-header>
-				<template v-slot:start>
-					<gal-icon icon="pencil" size="1em"></gal-icon
-					>&nbsp;&nbsp;最近编辑
-				</template>
-				<template v-slot:end>
-					<gal-link-button
-						to="/"
-						:text="'查看更多'"
-						:icon="'shareAll'"
-					></gal-link-button>
-				</template>
-			</gal-card-header>
+		<template v-slot:headerStart>
+			<gal-icon icon="pencil" size="1em"></gal-icon>&nbsp;&nbsp;最近编辑
+		</template>
+		<template v-slot:headerEnd>
+			<gal-link-button
+				to="/"
+				:text="'查看更多'"
+				:icon="'shareAll'"
+			></gal-link-button>
 		</template>
 		<gal-game-card-list :list="recentEditView"></gal-game-card-list>
 	</gal-card>
 	<gal-card class="card">
-		<template v-slot:header>
-			<gal-card-header>
-				<template v-slot:start>
-					<gal-icon icon="note" size="1em"></gal-icon>&nbsp;&nbsp;公告
-				</template>
-				<template v-slot:end>
-					<gal-link-button
-						to="/"
-						:text="'查看更多'"
-						:icon="'shareAll'"
-					></gal-link-button>
-				</template>
-			</gal-card-header>
+		<template v-slot:headerStart>
+			<gal-icon icon="note" size="1em"></gal-icon>&nbsp;&nbsp;公告
+		</template>
+		<template v-slot:headerEnd>
+			<gal-link-button
+				to="/"
+				:text="'查看更多'"
+				:icon="'shareAll'"
+			></gal-link-button>
 		</template>
 		<gal-game-card-list :list="noticesView"></gal-game-card-list>
 	</gal-card>
 	<gal-card class="card">
-		<template v-slot:header>
-			<gal-card-header>
-				<template v-slot:start>
-					<gal-icon icon="star" size="1em"></gal-icon
-					>&nbsp;&nbsp;友情链接
-				</template>
-			</gal-card-header>
+		<template v-slot:headerStart>
+			<gal-icon icon="star" size="1em"></gal-icon>&nbsp;&nbsp;友情链接
 		</template>
 		<gal-game-card-list :list="friendLinksList"></gal-game-card-list>
 	</gal-card>
@@ -138,7 +105,7 @@ import {
 	getHomeArticlesView,
 	getHomeRecentEditView,
 	getHomeNoticesView,
-	getHomeFriendLinksView
+	getHomeFriendLinksView,
 } from "../../api/homeAPI/index.js";
 
 const store = useStore();

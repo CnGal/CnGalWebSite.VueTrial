@@ -1,12 +1,7 @@
 <template>
 	<gal-card class="extra-card">
-		<template v-slot:header>
-			<gal-card-header>
-				<template v-slot:start>
-					<gal-icon class="icon" icon="tags" size="1em"></gal-icon
-					>标签
-				</template>
-			</gal-card-header>
+		<template v-slot:headerStart>
+			<gal-icon class="icon" icon="tags" size="1em"></gal-icon>标签
 		</template>
 		<div class="content">
 			<gal-link-button

@@ -1,16 +1,10 @@
 <template>
-	<gal-card class="roles-card">
-		<template v-slot:header>
-			<gal-card-header :toggle="true" :toggleChange="toggleChange">
-				<template v-slot:start>
-					<gal-icon class="icon" icon="child" size="1em"></gal-icon
-					>登场角色
-				</template>
-			</gal-card-header>
+	<gal-card class="roles-card" :toggle="true">
+		<template v-slot:headerStart>
+			<gal-icon class="icon" icon="child" size="1em"></gal-icon>登场角色
 		</template>
 
 		<gal-game-card-rows
-			v-show="contentIsShow"
 			class="roles-content"
 			:rows="info.roles"
 			:rowHasCellTotal="1"
@@ -27,11 +21,6 @@ const props = defineProps({
 		required: true,
 	},
 });
-
-const contentIsShow = ref(true);
-const toggleChange = (isShow) => {
-	contentIsShow.value = isShow;
-};
 </script>
 
 <style scoped>

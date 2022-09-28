@@ -6,13 +6,8 @@
 			info.information.some((i) => i.modifier === '基本信息')
 		"
 	>
-		<template v-slot:header>
-			<gal-card-header>
-				<template v-slot:start>
-					<gal-icon class="icon" icon="info" size="1em"></gal-icon
-					>基础信息
-				</template>
-			</gal-card-header>
+		<template v-slot:headerStart>
+			<gal-icon class="icon" icon="info" size="1em"></gal-icon>基础信息
 		</template>
 		<div class="content">
 			<div
@@ -43,13 +38,8 @@
 			)
 		"
 	>
-		<template v-slot:header>
-			<gal-card-header>
-				<template v-slot:start>
-					<gal-icon class="icon" icon="link" size="1em"></gal-icon
-					>相关网站
-				</template>
-			</gal-card-header>
+		<template v-slot:headerStart>
+			<gal-icon class="icon" icon="link" size="1em"></gal-icon>相关网站
 		</template>
 		<div class="content">
 			<div

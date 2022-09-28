@@ -5,20 +5,16 @@
 			:key="item.id"
 			class="evaluation-container"
 		>
-			<template v-slot:header>
-				<gal-card-header>
-					<template v-slot:start>
-						<gal-icon class="icon" icon="star" size="1em"></gal-icon
-						>&nbsp;&nbsp;{{ item.name }} 游戏评测
-					</template>
-					<template v-slot:end>
-						<gal-link-button
-							to="/"
-							:text="'查看详情'"
-							:icon="'shareAll'"
-						></gal-link-button>
-					</template>
-				</gal-card-header>
+			<template v-slot:headerStart>
+				<gal-icon class="icon" icon="star" size="1em"></gal-icon
+				>&nbsp;&nbsp;{{ item.name }} 游戏评测
+			</template>
+			<template v-slot:headerend>
+				<gal-link-button
+					to="/"
+					:text="'查看详情'"
+					:icon="'shareAll'"
+				></gal-link-button>
 			</template>
 			<galArticlesGameEvaluationCard
 				:data="item"
@@ -31,8 +27,8 @@
 const props = defineProps({
 	list: {
 		type: [Object],
-		required: true
-	}
+		required: true,
+	},
 });
 </script>
 

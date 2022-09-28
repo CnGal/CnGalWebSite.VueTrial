@@ -1,52 +1,39 @@
 <template>
 	<gal-card class="main-card">
-		<template v-slot:header>
-			<gal-card-header>
-				<template v-slot:start>
-					<gal-icon
-						class="icon"
-						icon="newspaper"
-						size="1em"
-					></gal-icon
-					>动态
-				</template>
-			</gal-card-header>
-			<div class="content">
-				<gal-timeline
-					:contentAlign="
-						props.info.newsOfEntry.length < 3 ? 'left' : 'center'
-					"
-				>
-					<gal-timeline-item
-						v-for="(item, index) in [
-							...props.info.newsOfEntry,
-						].reverse()"
-						:key="index"
-					>
-						<template v-slot:divider>
-							<img
-								class="img"
-								:src="item.image"
-								alt="item.title"
-							/>
-						</template>
-						<template v-slot:body>
-							<div class="timeline-body-content">
-								<h3>{{ item.title }}</h3>
-								<p v-text="item.briefIntroduction"></p>
-							</div>
-						</template>
-						<template v-slot:opposite>
-							<div class="timeline-opposite-content">
-								<span>{{
-									formatDate(item.happenedTime, "YMDhm")
-								}}</span>
-							</div>
-						</template>
-					</gal-timeline-item>
-				</gal-timeline>
-			</div>
+		<template v-slot:headerStart>
+			<gal-icon class="icon" icon="newspaper" size="1em"></gal-icon>动态
 		</template>
+		<div class="content">
+			<gal-timeline
+				:contentAlign="
+					props.info.newsOfEntry.length < 3 ? 'left' : 'center'
+				"
+			>
+				<gal-timeline-item
+					v-for="(item, index) in [
+						...props.info.newsOfEntry,
+					].reverse()"
+					:key="index"
+				>
+					<template v-slot:divider>
+						<img class="img" :src="item.image" alt="item.title" />
+					</template>
+					<template v-slot:body>
+						<div class="timeline-body-content">
+							<h3>{{ item.title }}</h3>
+							<p v-text="item.briefIntroduction"></p>
+						</div>
+					</template>
+					<template v-slot:opposite>
+						<div class="timeline-opposite-content">
+							<span>{{
+								formatDate(item.happenedTime, "YMDhm")
+							}}</span>
+						</div>
+					</template>
+				</gal-timeline-item>
+			</gal-timeline>
+		</div>
 	</gal-card>
 </template>
 

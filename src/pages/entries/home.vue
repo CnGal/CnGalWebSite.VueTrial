@@ -1,20 +1,16 @@
 <template>
 	<gal-card class="card">
-		<template v-slot:header>
-			<gal-card-header>
-				<template v-slot:start>
-					<gal-icon class="icon" icon="gift" size="1em"></gal-icon
-					>&nbsp;&nbsp;免费游戏
-				</template>
-				<template v-slot:end>
-					<gal-link-button
-						to="/"
-						class="link-button"
-						:text="'查看更多'"
-						:icon="'shareAll'"
-					></gal-link-button>
-				</template>
-			</gal-card-header>
+		<template v-slot:headerStart>
+			<gal-icon class="icon" icon="gift" size="1em"></gal-icon
+			>&nbsp;&nbsp;免费游戏
+		</template>
+		<template v-slot:headerEnd>
+			<gal-link-button
+				to="/"
+				class="link-button"
+				:text="'查看更多'"
+				:icon="'shareAll'"
+			></gal-link-button>
 		</template>
 		<gal-no-wrap-game-list
 			cardName="galNormalGameCard"
@@ -30,21 +26,17 @@
 		></gal-refresh-game-card-list>
 	</gal-card>
 	<gal-card class="card">
-		<template v-slot:header>
-			<gal-card-header>
-				<template v-slot:start>
-					<gal-icon class="icon" icon="dollar" size="1em"></gal-icon
-					>&nbsp;&nbsp;打折游戏
-				</template>
-				<template v-slot:end>
-					<gal-link-button
-						to="/"
-						class="link-button"
-						text="查看更多"
-						icon="shareAll"
-					></gal-link-button>
-				</template>
-			</gal-card-header>
+		<template v-slot:headerStart>
+			<gal-icon class="icon" icon="dollar" size="1em"></gal-icon
+			>&nbsp;&nbsp;打折游戏
+		</template>
+		<template v-slot:headerEnd>
+			<gal-link-button
+				to="/"
+				class="link-button"
+				text="查看更多"
+				icon="shareAll"
+			></gal-link-button>
 		</template>
 		<gal-no-wrap-game-list
 			cardName="galDiscountGameCard"
@@ -74,7 +66,7 @@ import { ref } from "vue";
 import {
 	getFreeGames,
 	getAllDiscountSteamGame,
-	getGameCGs
+	getGameCGs,
 } from "../../api/entriesAPI/index.js";
 import { getNonRepeatRandomList } from "../../assets/common/js/random.js";
 

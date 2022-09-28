@@ -1,12 +1,7 @@
 <template>
 	<gal-card>
-		<template v-slot:header>
-			<gal-card-header>
-				<template v-slot:start>
-					<gal-icon class="icon" icon="steam" size="1em"></gal-icon
-					>steam信息
-				</template>
-			</gal-card-header>
+		<template v-slot:headerStart>
+			<gal-icon class="icon" icon="steam" size="1em"></gal-icon>steam信息
 		</template>
 		<div class="content">
 			<div v-if="steamInfo.priceNow === -1">

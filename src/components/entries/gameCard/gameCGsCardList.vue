@@ -5,24 +5,16 @@
 			:key="item.id"
 			class="gameCG-container"
 		>
-			<template v-slot:header>
-				<gal-card-header>
-					<template v-slot:start>
-						<gal-icon
-							class="icon"
-							icon="picture"
-							size="1em"
-						></gal-icon
-						>&nbsp;&nbsp;{{ item.name }} CG预览
-					</template>
-					<template v-slot:end>
-						<gal-link-button
-							to="/"
-							:text="'查看详情'"
-							:icon="'shareAll'"
-						></gal-link-button>
-					</template>
-				</gal-card-header>
+			<template v-slot:headerStart>
+				<gal-icon class="icon" icon="picture" size="1em"></gal-icon
+				>&nbsp;&nbsp;{{ item.name }} CG预览
+			</template>
+			<template v-slot:headerEnd>
+				<gal-link-button
+					to="/"
+					:text="'查看详情'"
+					:icon="'shareAll'"
+				></gal-link-button>
 			</template>
 			<galEntriesGameCGsCard :data="item"></galEntriesGameCGsCard>
 		</gal-card>
@@ -35,8 +27,8 @@ import { ref } from "vue";
 const props = defineProps({
 	list: {
 		type: [Object],
-		required: true
-	}
+		required: true,
+	},
 });
 </script>
 

@@ -1,52 +1,37 @@
 <template>
 	<div class="container roles-card">
 		<gal-card>
-			<template v-slot:header>
-				<gal-card-header>
-					<template v-slot:start>
-						<gal-icon
-							class="icon"
-							icon="users"
-							size="1em"
-						></gal-icon
-						>&nbsp;&nbsp;{{ activeData.active.name }} 角色预览
-					</template>
-					<template v-slot:end>
-						<gal-link-button
-							to="/"
-							class="link-button"
-							:text="'查看详情'"
-							:icon="'shareAll'"
-						></gal-link-button>
-					</template>
-				</gal-card-header>
-				<gal-game-card-rows
-					class="roles-area"
-					:rows="activeData.active.roles"
-				></gal-game-card-rows>
-				<gal-no-wrap-game-list
-					cardName="galGamePreview"
-					v-if="!isMobile"
-					:list="gameRoles"
-				></gal-no-wrap-game-list>
-				<button
-					v-else
-					class="refresh-btn"
-					@click="
-						changeActive(
-							getRandom(0, allGameRoles.length - 1),
-							false
-						)
-					"
-				>
-					<gal-icon
-						icon="refresh"
-						class="icon"
-						size="12px"
-					></gal-icon>
-					换一个游戏
-				</button>
+			<template v-slot:headerStart>
+				<gal-icon class="icon" icon="users" size="1em"></gal-icon
+				>&nbsp;&nbsp;{{ activeData.active.name }} 角色预览
 			</template>
+			<template v-slot:headerEnd>
+				<gal-link-button
+					to="/"
+					class="link-button"
+					:text="'查看详情'"
+					:icon="'shareAll'"
+				></gal-link-button>
+			</template>
+			<gal-game-card-rows
+				class="roles-area"
+				:rows="activeData.active.roles"
+			></gal-game-card-rows>
+			<gal-no-wrap-game-list
+				cardName="galGamePreview"
+				v-if="!isMobile"
+				:list="gameRoles"
+			></gal-no-wrap-game-list>
+			<button
+				v-else
+				class="refresh-btn"
+				@click="
+					changeActive(getRandom(0, allGameRoles.length - 1), false)
+				"
+			>
+				<gal-icon icon="refresh" class="icon" size="12px"></gal-icon>
+				换一个游戏
+			</button>
 		</gal-card>
 	</div>
 </template>
