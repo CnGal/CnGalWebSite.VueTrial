@@ -1,6 +1,9 @@
 <template>
 	<section class="card">
-		<header class="card-header">
+		<header
+			class="card-header"
+			v-show="$slots.headerStart || $slots.headerEnd"
+		>
 			<h2>
 				<slot name="headerStart"></slot>
 			</h2>

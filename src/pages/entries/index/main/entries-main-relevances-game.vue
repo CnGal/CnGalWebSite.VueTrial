@@ -1,8 +1,7 @@
 <template>
-	<gal-card class="production-group" :toggle="true">
+	<gal-card class="roles-card" :toggle="true">
 		<template v-slot:headerStart>
-			<gal-icon class="icon" icon="objectGroup" size="1em"></gal-icon
-			>相关制作组
+			<gal-icon class="icon" icon="gamepad" size="1em"></gal-icon>相关游戏
 		</template>
 
 		<gal-game-card-rows

@@ -4,33 +4,27 @@
 			<gal-icon class="icon" icon="link" size="1em"></gal-icon
 			>&nbsp;&nbsp;外部链接
 		</template>
-		<div>
-			<gal-alert class="alert" type="warning"
-				>以下为外部链接，与本站没有任何从属关系，本站亦不对其安全性负责</gal-alert
-			>
-			<a
-				v-for="item in info.otherRelevances.map((i) =>
-					changeInfodata(i)
-				)"
-				:key="item.id"
-				class="otherRelevances"
-				:href="item.link"
-				target="_blank"
-			>
-				<img
-					v-if="item.imageStr"
-					:src="item.imageStr"
-					:alt="item.displayName"
-				/>
-				<div>
-					<h5>{{ item.displayName }}</h5>
-					<div
-						v-if="item.displayValue"
-						v-text="item.displayValue"
-					></div>
-				</div>
-			</a>
-		</div>
+
+		<gal-alert class="alert" type="warning"
+			>以下为外部链接，与本站没有任何从属关系，本站亦不对其安全性负责</gal-alert
+		>
+		<a
+			v-for="item in info.otherRelevances.map((i) => changeInfodata(i))"
+			:key="item.id"
+			class="otherRelevances"
+			:href="item.link"
+			target="_blank"
+		>
+			<img
+				v-if="item.imageStr"
+				:src="item.imageStr"
+				:alt="item.displayName"
+			/>
+			<div>
+				<h5>{{ item.displayName }}</h5>
+				<div v-if="item.displayValue" v-text="item.displayValue"></div>
+			</div>
+		</a>
 	</gal-card>
 </template>
 

@@ -5,7 +5,7 @@
 		</template>
 
 		<gal-game-card-rows
-			class="roles-content"
+			class="rows"
 			:rows="info.roles"
 			:rowHasCellTotal="1"
 			:heightOverflowScroll="false"
@@ -14,7 +14,6 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 const props = defineProps({
 	info: {
 		type: Object,
@@ -24,14 +23,6 @@ const props = defineProps({
 </script>
 
 <style scoped>
-.content {
-	display: flex;
-	padding: 1em;
-	padding-block-start: 0;
-	flex-wrap: wrap;
-	column-gap: 8px;
-	row-gap: 8px;
-}
 .icon {
 	margin-inline-end: 1em;
 }
@@ -39,16 +30,15 @@ const props = defineProps({
 .roles-card.roles-card {
 	background-color: transparent;
 }
-.roles-content {
+.rows {
 	padding: 0;
 	padding-block-start: 12px;
 	background-color: transparent;
 }
-
-.roles-content :deep(.item) {
+.rows :deep(.item) {
 	row-gap: 0;
 }
-.roles-content :deep(.info) {
+.rows :deep(.info) {
 	display: none;
 }
 </style>

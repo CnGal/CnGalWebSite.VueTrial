@@ -4,7 +4,12 @@
 		ref="rows"
 		:class="{ mobile: isMobile, canScroll: props.heightOverflowScroll }"
 	>
-		<div v-for="row in props.rows" :key="row.id" class="item">
+		<router-link
+			v-for="row in props.rows"
+			:key="row.id"
+			:to="'/entries/index/' + row.id"
+			class="item"
+		>
 			<img :src="row.mainImage" :alt="row.name" class="img" />
 			<div class="content">
 				<h5 class="name">{{ row.name }}</h5>
@@ -53,7 +58,7 @@
 					}}次阅读</span
 				>
 			</div>
-		</div>
+		</router-link>
 	</div>
 </template>
 
@@ -156,6 +161,7 @@ onUnmounted(() => {
 	width: var(--cell-width);
 	display: grid;
 	background-color: var(--main-bg-color);
+	color: var(--main-font-color);
 	box-shadow: var(--main-shadow);
 	box-sizing: border-box;
 	padding: 1em;

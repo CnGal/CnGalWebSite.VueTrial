@@ -38,6 +38,17 @@
 				:staffGames="info.staffGames"
 			></gal_EntriesMainStaffGames>
 
+			<gal_EntriesMainEelevancesGame
+				class="main-card"
+				v-if="
+					info.entryRelevances?.length &&
+					info.entryRelevances.some((i) => i.type === 0)
+				"
+				:entryRelevances="
+					info.entryRelevances.filter((i) => i.type === 0)
+				"
+			></gal_EntriesMainEelevancesGame>
+
 			<gal_EntriesMainProductionGroup
 				class="main-card"
 				v-if="
@@ -120,6 +131,7 @@ import gal_EntriesExtraStaffs from "./extra/entries-extra-staffs.vue";
 import gal_EntriesMainNews from "./main/entries-main-news.vue";
 import gal_EntriesMainProductionGroup from "./main/entries-main-production-group.vue";
 import gal_EntriesMainStaffGames from "./main/entries-main-staff-games.vue";
+import gal_EntriesMainEelevancesGame from "./main/entries-main-relevances-game.vue";
 
 import { getEntryViewByID } from "../../../api/entriesAPI/index.js";
 
