@@ -27,3 +27,9 @@
     -   default: "24px"
 
     设置 button 的宽高
+
+-   bgColor
+
+    -   type: String
+
+    设置背景色

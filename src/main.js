@@ -2,6 +2,8 @@ import { createApp } from "vue";
 import { createPinia } from "pinia";
 import App from "./App.vue";
 
+import "github-markdown-css";
+
 import importPlugin from "./plugins/import.js";
 import router from "./router/index.js";
 

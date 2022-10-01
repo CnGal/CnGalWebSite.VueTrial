@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 
 const isShow = ref(false);
 
@@ -25,7 +25,7 @@ const hide = () => {
 
 defineExpose({
 	show,
-	hide
+	hide,
 });
 </script>
 

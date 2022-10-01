@@ -2,7 +2,7 @@
 	<div class="alert-box" :class="[props.type]">
 		<gal-icon
 			class="icon"
-			:icon="iconNames[props.type] || 'alertOutline'"
+			:icon="iconNames[props.type]"
 			size="24px"
 		></gal-icon>
 		<slot></slot>
@@ -24,7 +24,11 @@ const iconNames = {
 
 <style scoped>
 .alert-box {
-	border-left: 8px solid;
+	--warning-color: #fb8c00;
+	--error-color: #ff5252;
+}
+.alert-box {
+	border-inline-start: 8px solid;
 	font-size: 16px;
 	display: flex;
 	align-items: flex-start;
@@ -35,16 +39,16 @@ const iconNames = {
 	flex: none;
 }
 .alert-box.warning {
-	border-color: #fb8c00;
+	border-color: var(--warning-color);
 }
 .alert-box.warning .icon {
-	color: #fb8c00;
+	color: var(--warning-color);
 }
 
 .alert-box.error {
-	border-color: #ff5252;
+	border-color: var(--error-color);
 }
 .alert-box.error .icon {
-	color: #ff5252;
+	color: var(--error-color);
 }
 </style>

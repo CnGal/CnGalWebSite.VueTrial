@@ -3,25 +3,26 @@ import "../assets/common/css/style.css";
 import "../assets/common/css/common.css";
 
 import markdown from "../components/base/markdown/markdown.vue";
+import alert from "../components/base/alert/alert.vue";
+import button from "../components/base/button/button.vue";
+import linkButton from "../components/base/button/linkButton.vue";
+import card from "../components/base/card/card.vue";
+import icon from "../components/base/icon/icon.vue";
+import iconButton from "../components/base/icon/iconButton.vue";
+import dialog from "../components/base/dialog/dialog.vue";
+import tag from "../components/base/tag/tag.vue";
+import timeline from "../components/base/timeline/timeline.vue";
+import timelineItem from "../components/base/timeline/timeline-item.vue";
+import tooltip from "../components/base/tooltip/import";
 
-import iconButton from "../components/common/icon/iconButton.vue";
-import icon from "../components/common/icon/icon.vue";
-import button from "../components/common/button/button.vue";
-import linkButton from "../components/common/button/linkButton.vue";
-import tag from "../components/common/tag/tag.vue";
-import dialog from "../components/common/dialog/dialog.vue";
-import card from "../components/common/card/card.vue";
 import noWrapGameList from "../components/common/gameCard/noWrapGameList.vue";
 import newsCard from "../components/common/gameCard/newsCard.vue";
 import homeGameCard from "../components/home/gameCard/gameCard.vue";
 import normalGameCard from "../components/common/gameCard/normalGameCard.vue";
 import commonDiscountGameCard from "../components/common/gameCard/discountGameCard.vue";
 import refreshGameCardList from "../components/common/gameCard/refreshGameCardList.vue";
-import evaluation from "../components/common/article/evaluation.vue";
+
 import gamePreview from "../components/common/gameCard/gamePreview.vue";
-import alert from "../components/common/alert/alert.vue";
-import timeline from "../components/common/timeline/timeline.vue";
-import timelineItem from "../components/common/timeline/timeline-item.vue";
 import gameCardRows from "../components/common/gameCard/gameCardRows.vue";
 
 import entriesGameCGsCardList from "../components/entries/gameCard/gameCGsCardList.vue";
@@ -30,8 +31,7 @@ import entriesGameRolesCardList from "../components/entries/gameCard/gameRolesCa
 
 import articlesGameEvaluationCardList from "../components/articles/gameCard/gameEvaluationCardList.vue";
 import articlesGameEvaluationCard from "../components/articles/gameCard/gameEvaluationCard.vue";
-
-import tooltip from "../components/common/tooltip/import";
+import evaluation from "../components/articles/gameCard/evaluation.vue";
 
 const importPlugin = {
 	install(app) {

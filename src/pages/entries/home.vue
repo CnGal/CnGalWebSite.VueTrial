@@ -5,12 +5,9 @@
 			>&nbsp;&nbsp;免费游戏
 		</template>
 		<template v-slot:headerEnd>
-			<gal-link-button
-				to="/"
-				class="link-button"
-				:text="'查看更多'"
-				:icon="'shareAll'"
-			></gal-link-button>
+			<gal-link-button to="/" class="link-button">
+				<gal-icon icon="shareAll"></gal-icon>查看更多
+			</gal-link-button>
 		</template>
 		<gal-no-wrap-game-list
 			cardName="galNormalGameCard"
@@ -31,12 +28,9 @@
 			>&nbsp;&nbsp;打折游戏
 		</template>
 		<template v-slot:headerEnd>
-			<gal-link-button
-				to="/"
-				class="link-button"
-				text="查看更多"
-				icon="shareAll"
-			></gal-link-button>
+			<gal-link-button to="/" class="link-button">
+				<gal-icon icon="shareAll"></gal-icon>查看更多
+			</gal-link-button>
 		</template>
 		<gal-no-wrap-game-list
 			cardName="galDiscountGameCard"

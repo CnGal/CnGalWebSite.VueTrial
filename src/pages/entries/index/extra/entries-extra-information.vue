@@ -1,37 +1,36 @@
 <template>
 	<gal-card
-		class="extra-card"
+		class="card basic"
 		v-if="
-			info.information &&
-			info.information.some((i) => i.modifier === '基本信息')
+			props.information &&
+			props.information.some((i) => i.modifier === '基本信息')
 		"
 	>
 		<template v-slot:headerStart>
-			<gal-icon class="icon" icon="info" size="1em"></gal-icon>基础信息
+			<gal-icon class="icon headericon" icon="info"></gal-icon>基础信息
 		</template>
-		<div class="content">
-			<div
-				v-for="(item, index) in info.information
+		<ul class="content">
+			<li
+				v-for="(item, index) in props.information
 					.find((i) => i.modifier === '基本信息')
 					.informations.filter((i) => i.displayName !== '官网') || []"
 				:key="index"
+				class="item"
 			>
 				<gal-icon
 					class="icon"
 					:icon="infomationIcons(item) || 'circle'"
-					size="1em"
 				></gal-icon>
-				<span>{{ showInformationKeyText(item.displayName) }}:</span
-				>&nbsp;&nbsp;
+				<span>{{ showInformationKeyText(item.displayName) }}:</span>
 				<span>{{ item.displayValue }}</span>
-			</div>
-		</div>
+			</li>
+		</ul>
 	</gal-card>
 	<gal-card
-		class="extra-card"
+		class="card related"
 		v-if="
-			info.information &&
-			info.information.some(
+			props.information &&
+			props.information.some(
 				(i) =>
 					i.modifier === '相关网站' ||
 					i.informations.some((j) => j.displayName === '官网')
@@ -39,32 +38,35 @@
 		"
 	>
 		<template v-slot:headerStart>
-			<gal-icon class="icon" icon="link" size="1em"></gal-icon>相关网站
+			<gal-icon class="icon headericon" icon="link"></gal-icon>相关网站
 		</template>
-		<div class="content">
-			<div
+		<ul class="content">
+			<li
 				v-for="(item, index) in [
-					...info.information.find((i) => i.modifier === '相关网站')
-						?.informations,
-					...info.information
+					...(props.information.find((i) => i.modifier === '相关网站')
+						?.informations || []),
+					...(props.information
 						.find((i) => i.modifier === '基本信息')
-						?.informations?.filter((i) => i.displayName === '官网'),
+						?.informations?.filter(
+							(i) => i.displayName === '官网'
+						) || []),
 				]"
 				:key="index"
-				class="single-row-dot"
+				class="item"
 			>
 				<gal-icon
 					class="icon"
 					:icon="infomationIcons(item) || 'externalLinkSquareAlt'"
-					size="1em"
 				></gal-icon>
-				<span>{{ showInformationKeyText(item.displayName) }}:</span
-				>&nbsp;&nbsp;
-				<a :href="item.displayValue" target="_blank">{{
-					item.displayValue
-				}}</a>
-			</div>
-		</div>
+				<span>{{ showInformationKeyText(item.displayName) }}:</span>
+				<a
+					class="single-row-dot"
+					:href="item.displayValue"
+					target="_blank"
+					>{{ item.displayValue }}</a
+				>
+			</li>
+		</ul>
 	</gal-card>
 </template>
 
@@ -75,8 +77,8 @@ import {
 } from "../_js/infomationIcons.js";
 
 const props = defineProps({
-	info: {
-		type: Object,
+	information: {
+		type: [Object],
 		required: true,
 	},
 });
@@ -92,7 +94,11 @@ a,
 	color: var(--main-font-color);
 }
 
-.extra-card {
+.headericon {
+	margin-inline-end: 1em;
+}
+
+.card {
 	background-color: var(--main-bg-color);
 	font-size: 14px;
 	margin-block-start: 12px;
@@ -102,7 +108,16 @@ a,
 	padding: 1em;
 	padding-block-start: 0;
 }
-.icon {
-	margin-inline-end: 1em;
+.item {
+	display: flex;
+	column-gap: 14px;
+	margin-block-end: 2px;
+}
+.item .icon,
+.item span {
+	flex: none;
+}
+.basic .item {
+	flex-wrap: wrap;
 }
 </style>

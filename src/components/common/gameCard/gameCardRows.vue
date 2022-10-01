@@ -35,9 +35,10 @@
 							v-for="item in addInfor.contents"
 							:key="item.id"
 							:to="'/entries/index/' + item.id"
-							:text="item.displayName"
 							theme="outline"
-						></gal-link-button>
+						>
+							{{ item.displayName }}
+						</gal-link-button>
 					</div>
 				</div>
 			</div>

@@ -16,7 +16,7 @@
 					size="36px"
 					bgColor="var(--main-color)"
 					circle
-					v-gal-tooltip="'折叠'"
+					v-gal-tooltip="toggleBtnTooltipTextList.show"
 					:data-tooltip-text="toggleBtnTooltipText"
 					@click="toggleRolesCardVisibility"
 				></gal-icon-button>
@@ -45,7 +45,7 @@ const toggleBtnTooltipTextList = {
 	show: "折叠",
 	hide: "展开",
 };
-const toggleBtnTooltipText = ref("折叠");
+const toggleBtnTooltipText = ref(toggleBtnTooltipTextList.show);
 
 const toggleRolesCardVisibility = () => {
 	isShow.value = !isShow.value;

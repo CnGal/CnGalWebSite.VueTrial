@@ -8,9 +8,10 @@
 				v-for="item in info.tags"
 				:key="item.id"
 				:to="'/tags/index/' + item.id"
-				:text="item.name"
 				theme="solid"
-			></gal-link-button>
+			>
+				{{ item.name }}
+			</gal-link-button>
 		</div>
 	</gal-card>
 </template>

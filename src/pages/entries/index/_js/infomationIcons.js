@@ -12,6 +12,7 @@ const infomationIcons = (infomation) => {
 		TapTap: "externalLinkSquareAlt",
 		steam: "externalLinkSquareAlt",
 		bilibili: "externalLinkSquareAlt",
+		Bilibili: "externalLinkSquareAlt",
 		YouTube: "youtube",
 		Twitter: "twitter",
 		Facebook: "facebook",
@@ -47,7 +48,7 @@ const infomationIcons = (infomation) => {
 		key = "性别女";
 	}
 
-	return icons[key];
+	return icons[key] || "externalLinkSquareAlt";
 };
 const showInformationKeyText = (text) => {
 	if (text === "声优") {

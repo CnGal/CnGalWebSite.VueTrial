@@ -27,9 +27,10 @@
 							v-for="item in info.productionGroups"
 							:key="item.id"
 							:to="'/entries/index/' + item.id"
-							:text="item.displayName"
 							theme="outline"
-						></gal-link-button>
+						>
+							{{ item.displayName }}
+						</gal-link-button>
 					</div>
 					<div
 						class="publishers-group"
@@ -41,9 +42,10 @@
 							v-for="item in info.publishers"
 							:key="item.id"
 							:to="'/entries/index/' + item.id"
-							:text="item.displayName"
 							theme="outline"
-						></gal-link-button>
+						>
+							{{ item.displayName }}
+						</gal-link-button>
 					</div>
 				</div>
 				<p
@@ -122,7 +124,9 @@ a,
 	display: inline-flex;
 	margin-block-start: 8px;
 	align-items: center;
+	flex-wrap: wrap;
 	column-gap: 8px;
+	row-gap: 8px;
 	width: 50%;
 }
 .brief-introduction {

@@ -1,21 +1,11 @@
 <template>
 	<router-link :to="props.to" :class="['link-button', props.theme]">
-		<gal-icon
-			v-if="props.icon"
-			:icon="props.icon"
-			:size="size"
-			class="link-button-icon"
-		></gal-icon>
-		<span ref="linkButtonText" v-if="props.text" v-text="props.text"></span>
+		<slot></slot>
 	</router-link>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-
 const props = defineProps({
-	icon: String,
-	text: String,
 	to: {
 		type: String,
 		required: true,
@@ -24,15 +14,6 @@ const props = defineProps({
 		type: String,
 		default: "hollow",
 	},
-});
-
-const linkButtonText = ref();
-let size = ref("");
-
-onMounted(() => {
-	size.value = window
-		.getComputedStyle(linkButtonText.value, null)
-		.getPropertyValue("font-size");
 });
 </script>
 

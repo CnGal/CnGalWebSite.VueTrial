@@ -1,20 +1,14 @@
 <template>
 	<div class="evaluation-wrap">
-		<gal-card
-			v-for="item in props.list"
-			:key="item.id"
-			class="evaluation-container"
-		>
+		<gal-card v-for="item in props.list" :key="item.id" class="container">
 			<template v-slot:headerStart>
-				<gal-icon class="icon" icon="star" size="1em"></gal-icon
-				>&nbsp;&nbsp;{{ item.name }} 游戏评测
+				<gal-icon class="icon headerIcon" icon="star"></gal-icon
+				>{{ item.name }} 游戏评测
 			</template>
-			<template v-slot:headerend>
-				<gal-link-button
-					to="/"
-					:text="'查看详情'"
-					:icon="'shareAll'"
-				></gal-link-button>
+			<template v-slot:headerEnd>
+				<gal-link-button class="link-button" to="/">
+					<gal-icon icon="shareAll"></gal-icon>查看详情
+				</gal-link-button>
 			</template>
 			<galArticlesGameEvaluationCard
 				:data="item"
@@ -37,8 +31,14 @@ const props = defineProps({
 	display: flex;
 	column-gap: 16px;
 }
-.evaluation-container {
+.container {
 	flex: 1;
+}
+.headerIcon {
+	margin-inline-end: 1em;
+}
+.link-button {
+	flex: none;
 }
 
 @media screen and (max-width: 992px) {
@@ -46,7 +46,7 @@ const props = defineProps({
 		flex-wrap: wrap;
 		row-gap: 16px;
 	}
-	.evaluation-container {
+	.container {
 		flex: 1 0 100%;
 	}
 }

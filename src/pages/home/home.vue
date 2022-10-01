@@ -7,11 +7,9 @@
 			>&nbsp;&nbsp;最新动态
 		</template>
 		<template v-slot:headerEnd>
-			<gal-link-button
-				to="/articles/news"
-				:text="'查看更多'"
-				:icon="'shareAll'"
-			></gal-link-button>
+			<gal-link-button to="/articles/news">
+				<gal-icon icon="shareAll"></gal-icon>查看更多
+			</gal-link-button>
 		</template>
 		<gal-news-list :list="newsList"></gal-news-list>
 	</gal-card>
@@ -20,11 +18,9 @@
 			<gal-icon icon="send" size="1em"></gal-icon>&nbsp;&nbsp;近期新作
 		</template>
 		<template v-slot:headerEnd>
-			<gal-link-button
-				to="/"
-				:text="'查看更多'"
-				:icon="'shareAll'"
-			></gal-link-button>
+			<gal-link-button to="/">
+				<gal-icon icon="shareAll"></gal-icon>查看更多
+			</gal-link-button>
 		</template>
 		<gal-game-card-list :list="recentIssuelGameList"></gal-game-card-list>
 	</gal-card>
@@ -33,11 +29,9 @@
 			<gal-icon icon="send2" size="1em"></gal-icon>&nbsp;&nbsp;即将发售
 		</template>
 		<template v-slot:headerEnd>
-			<gal-link-button
-				to="/"
-				:text="'查看更多'"
-				:icon="'shareAll'"
-			></gal-link-button>
+			<gal-link-button to="/">
+				<gal-icon icon="shareAll"></gal-icon>查看更多
+			</gal-link-button>
 		</template>
 		<gal-game-card-list :list="newestGameView"></gal-game-card-list>
 	</gal-card>
@@ -46,11 +40,9 @@
 			<gal-icon icon="newspaper" size="1em"></gal-icon>&nbsp;&nbsp;文章
 		</template>
 		<template v-slot:headerEnd>
-			<gal-link-button
-				to="/"
-				:text="'查看更多'"
-				:icon="'shareAll'"
-			></gal-link-button>
+			<gal-link-button to="/">
+				<gal-icon icon="shareAll"></gal-icon>查看更多
+			</gal-link-button>
 		</template>
 		<gal-game-card-list :list="articlesView"></gal-game-card-list>
 	</gal-card>
@@ -59,11 +51,9 @@
 			<gal-icon icon="pencil" size="1em"></gal-icon>&nbsp;&nbsp;最近编辑
 		</template>
 		<template v-slot:headerEnd>
-			<gal-link-button
-				to="/"
-				:text="'查看更多'"
-				:icon="'shareAll'"
-			></gal-link-button>
+			<gal-link-button to="/">
+				<gal-icon icon="shareAll"></gal-icon>查看更多
+			</gal-link-button>
 		</template>
 		<gal-game-card-list :list="recentEditView"></gal-game-card-list>
 	</gal-card>
@@ -72,11 +62,9 @@
 			<gal-icon icon="note" size="1em"></gal-icon>&nbsp;&nbsp;公告
 		</template>
 		<template v-slot:headerEnd>
-			<gal-link-button
-				to="/"
-				:text="'查看更多'"
-				:icon="'shareAll'"
-			></gal-link-button>
+			<gal-link-button to="/">
+				<gal-icon icon="shareAll"></gal-icon>查看更多
+			</gal-link-button>
 		</template>
 		<gal-game-card-list :list="noticesView"></gal-game-card-list>
 	</gal-card>

@@ -1,17 +1,10 @@
 <template>
-	<section class="markdown-body" v-html="props.data"></section>
+	<section class="markdown-body">
+		<slot></slot>
+	</section>
 </template>
 
-<script setup>
-import "github-markdown-css";
-
-const props = defineProps({
-	data: {
-		type: String,
-		required: true,
-	},
-});
-</script>
+<script setup></script>
 
 <style scoped>
 .theme-dark .markdown-body {
@@ -110,7 +103,7 @@ html:not(.theme-dark) .markdown-body {
 html:not(.theme-dark) .markdown-body :deep(a) {
 	color: var(--main-color);
 }
-.markdown-body :deep(a) {
-	word-break: break-all;
+.markdown-body {
+	word-break: break-word;
 }
 </style>

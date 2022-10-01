@@ -30,9 +30,10 @@
 						v-for="item in staffList.names"
 						:key="item.id"
 						:to="item.id ? '/entries/index/' + item.id : '#'"
-						:text="item.displayName"
 						theme="outline"
-					></gal-link-button>
+					>
+						{{ item.displayName }}
+					</gal-link-button>
 				</div>
 			</div>
 		</div>
@@ -158,5 +159,8 @@ const copyStaffText = async () => {
 .dialog-footer {
 	display: flex;
 	justify-content: end;
+}
+.dialog-footer button {
+	border: none;
 }
 </style>

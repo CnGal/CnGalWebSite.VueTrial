@@ -22,7 +22,7 @@
 				</template>
 				<gal-markdown
 					:style="{ padding: '16px', 'padding-top': 0 }"
-					:data="info.mainPage"
+					v-html="info.mainPage"
 				></gal-markdown>
 			</gal-card>
 
@@ -67,19 +67,14 @@
 					>&nbsp;&nbsp;游玩记录
 				</template>
 				<template v-slot:headerEnd>
-					<gal-link-button
-						to="/"
-						class="link-button"
-						text="查看详情"
-						icon="shareAll"
-					></gal-link-button>
+					<gal-link-button to="/" class="link-button">
+						<gal-icon icon="shareAll"></gal-icon>查看详情
+					</gal-link-button>
 				</template>
 				<div :style="{ 'text-align': 'center' }">暂无记录</div>
-				<gal-link-button
-					icon="login"
-					text="登入后添加游玩记录"
-					to="/"
-				></gal-link-button>
+				<gal-link-button to="/" :style="{ display: 'flex' }">
+					<gal-icon icon="login"></gal-icon>登入后添加游玩记录
+				</gal-link-button>
 			</gal-card>
 			<gal_EntriesExtraSteam
 				class="extra-card"
@@ -88,7 +83,7 @@
 			></gal_EntriesExtraSteam>
 
 			<gal_EntriesExtraInformation
-				:info="info"
+				:information="info.information || []"
 			></gal_EntriesExtraInformation>
 
 			<gal_EntriesExtraTags

@@ -1,7 +1,7 @@
 <template>
-	<article class="gal-article">
+	<article class="article" @click="linkToArticle" role="link">
 		<header>
-			<h3 class="heading">
+			<h3 class="head">
 				{{ props.data.displayName || props.data.name }}
 			</h3>
 			<div class="info">
@@ -20,7 +20,7 @@
 			</div>
 		</header>
 		<main>
-			<gal-markdown :data="props.data.briefIntroduction"></gal-markdown>
+			<gal-markdown v-html="props.data.briefIntroduction"></gal-markdown>
 		</main>
 	</article>
 </template>
@@ -28,26 +28,37 @@
 <script setup>
 import { formatDate } from "../../../assets/common/js/formatDate";
 
+import { useRouter } from "vue-router";
+const router = useRouter();
+
 const props = defineProps({
 	data: {
 		type: Object,
 		required: true,
 	},
 });
+
+const linkToArticle = () => {
+	router.push("/articles/index/" + props.data.id);
+};
 </script>
 
 <style scoped>
-.heading {
+.article {
+	cursor: pointer;
+}
+header {
 	text-align: center;
 }
 .info {
 	margin-block-start: 5px;
 	margin-block-end: 10px;
-	text-align: center;
 	color: var(--gray-color);
 	font-size: 14px;
 }
 .info > span {
+	display: inline-flex;
+	column-gap: 0.5em;
 	margin-inline-end: 1em;
 }
 </style>

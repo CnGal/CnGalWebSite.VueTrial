@@ -10,11 +10,9 @@
 				>&nbsp;&nbsp;{{ item.name }} CG预览
 			</template>
 			<template v-slot:headerEnd>
-				<gal-link-button
-					to="/"
-					:text="'查看详情'"
-					:icon="'shareAll'"
-				></gal-link-button>
+				<gal-link-button to="/">
+					<gal-icon icon="shareAll"></gal-icon>查看详情
+				</gal-link-button>
 			</template>
 			<galEntriesGameCGsCard :data="item"></galEntriesGameCGsCard>
 		</gal-card>

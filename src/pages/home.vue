@@ -43,6 +43,7 @@
 				<gal-button
 					v-for="(item, index) in colorList"
 					class="color"
+					:style="{ 'background-color': item }"
 					:bgColor="item"
 					@click="changeTheme(item)"
 				></gal-button>
@@ -73,17 +74,17 @@ const openSettingDialog = () => {
 const headerIconList = ref([
 	{
 		icon: "search",
-		text: "搜索"
+		text: "搜索",
 	},
 	{
 		icon: "login",
-		text: "登陆"
+		text: "登陆",
 	},
 	{
 		icon: "settings",
 		text: "设置",
-		click: openSettingDialog
-	}
+		click: openSettingDialog,
+	},
 ]);
 
 const colorList = [
@@ -105,11 +106,11 @@ const colorList = [
 	"#ff5722",
 	"#795548",
 	"#607d8b",
-	"#000000"
+	"#000000",
 ];
 const changeTheme = (theme) => {
 	store.changeTheme({
-		color: theme
+		color: theme,
 	});
 };
 </script>
@@ -159,6 +160,8 @@ html:not(.theme-dark) .headerIcon {
 	color: var(--main-font-color);
 }
 .color {
+	display: inline-flex;
+	border: none;
 	width: 28px;
 	height: 28px;
 	vertical-align: bottom;

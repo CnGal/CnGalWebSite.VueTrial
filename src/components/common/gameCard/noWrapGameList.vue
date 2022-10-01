@@ -36,12 +36,12 @@ import { ref, onMounted } from "vue";
 const props = defineProps({
 	list: {
 		type: [Object],
-		required: true
+		required: true,
 	},
 	cardName: {
 		type: String,
-		required: true
-	}
+		required: true,
+	},
 });
 
 const nowTranslate = ref(0);
@@ -115,6 +115,7 @@ onMounted(() => {
 .prev,
 .next {
 	width: 52px;
+	border: none;
 	color: var(--gray-color);
 }
 .prev:disabled,

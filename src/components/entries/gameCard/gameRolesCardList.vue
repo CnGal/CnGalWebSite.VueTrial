@@ -6,12 +6,9 @@
 				>&nbsp;&nbsp;{{ activeData.active.name }} 角色预览
 			</template>
 			<template v-slot:headerEnd>
-				<gal-link-button
-					to="/"
-					class="link-button"
-					:text="'查看详情'"
-					:icon="'shareAll'"
-				></gal-link-button>
+				<gal-link-button to="/" class="link-button">
+					<gal-icon icon="shareAll"></gal-icon>查看详情
+				</gal-link-button>
 			</template>
 			<gal-game-card-rows
 				class="roles-area"
