@@ -43,16 +43,14 @@ export const formatDate = (date, range, i18n) => {
 		if (i18n === "zh") {
 			return `${year}年${month}月${day}日`;
 		} else {
-			return (
-				year +
-				"-" +
-				month.toString().padStart(2, "0") +
-				"-" +
-				day.toString().padStart(2, "0")
-			);
+			return `${year}-${padMonth}-${padDay}日`;
 		}
 	} else if (range === "YMDhm") {
-		return `${year}-${padMonth}-${padDay} ${padHour}:${padMinutes}`;
+		if (i18n === "zh") {
+			return `${year}年${month}月${day}日 ${padHour}:${padMinutes}`;
+		} else {
+			return `${year}-${padMonth}-${padDay} ${padHour}:${padMinutes}`;
+		}
 	} else {
 		return `${year}-${padMonth}-${padDay} ${padHour}:${padMinutes}:${padSeconds}`;
 	}

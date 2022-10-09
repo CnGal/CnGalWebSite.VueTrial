@@ -1,13 +1,12 @@
 <template>
-	<gal-card class="production-group" :toggle="true">
+	<gal-card class="card" :toggle="true">
 		<template v-slot:headerStart>
-			<gal-icon class="icon" icon="objectGroup" size="1em"></gal-icon
-			>相关组织
+			<gal-icon class="icon" icon="gamepad" size="1em"></gal-icon>相关文章
 		</template>
 
 		<gal-game-card-rows
 			class="rows"
-			:rows="entryRelevances"
+			:rows="props.articleRelevances"
 			:rowHasCellTotal="1"
 			:heightOverflowScroll="false"
 		></gal-game-card-rows>
@@ -16,8 +15,8 @@
 
 <script setup>
 const props = defineProps({
-	entryRelevances: {
-		type: Object,
+	articleRelevances: {
+		type: [Object],
 		required: true,
 	},
 });

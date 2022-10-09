@@ -59,6 +59,17 @@
 					info.entryRelevances.filter((i) => i.type === 2)
 				"
 			></gal_EntriesMainProductionGroup>
+
+			<gal_EntriesMainEelevancesArticle
+				class="main-card"
+				v-if="info.articleRelevances?.length"
+				:articleRelevances="info.articleRelevances"
+			></gal_EntriesMainEelevancesArticle>
+
+			<gal_EntriesMainComments
+				class="main-card"
+				:id="id"
+			></gal_EntriesMainComments>
 		</div>
 		<div class="main-extra">
 			<gal-card class="extra-card" v-if="info.type === 0">
@@ -127,6 +138,8 @@ import gal_EntriesMainNews from "./main/entries-main-news.vue";
 import gal_EntriesMainProductionGroup from "./main/entries-main-production-group.vue";
 import gal_EntriesMainStaffGames from "./main/entries-main-staff-games.vue";
 import gal_EntriesMainEelevancesGame from "./main/entries-main-relevances-game.vue";
+import gal_EntriesMainEelevancesArticle from "./main/entries-main-relevances-article.vue";
+import gal_EntriesMainComments from "./main/entries-main-comments.vue";
 
 import { getEntryViewByID } from "../../../api/entriesAPI/index.js";
 

@@ -1,11 +1,17 @@
 <template>
-	<span ref="tag" class="tag">
+	<span ref="tag" :class="['tag', props.bgColor]">
 		<slot></slot>
 	</span>
 </template>
 
 <script setup>
 import { ref } from "vue";
+
+const props = defineProps({
+	bgColor: {
+		type: String,
+	},
+});
 </script>
 
 <style scoped>
@@ -18,5 +24,12 @@ import { ref } from "vue";
 }
 .theme-dark .tag {
 	background-color: #808080;
+}
+
+.primary {
+	background-color: #009ef7;
+}
+.success {
+	background-color: #50cd89;
 }
 </style>

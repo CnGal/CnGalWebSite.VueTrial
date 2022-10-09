@@ -25,6 +25,7 @@ const props = defineProps({
 	display: inline-flex;
 	column-gap: 0.5em;
 	justify-content: center;
+	align-items: center;
 }
 html:not(.theme-dark) .link-button {
 	color: var(--main-color);

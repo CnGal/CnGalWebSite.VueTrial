@@ -7,21 +7,31 @@
 		<router-link
 			v-for="row in props.rows"
 			:key="row.id"
-			:to="'/entries/index/' + row.id"
+			:to="
+				(row.type === 4 ? '/articles/index/' : '/entries/index/') +
+				row.id
+			"
 			class="item"
 		>
 			<img :src="row.mainImage" :alt="row.name" class="img" />
 			<div class="content">
-				<h5 class="name">{{ row.name }}</h5>
+				<div class="name">
+					<gal-tag class="tags tags-title" v-if="row.type === 4">
+						评测
+					</gal-tag>
+					<h5>{{ row.name }}</h5>
+				</div>
 				<div
 					class="introduction rows-dot"
 					:style="{
-						'--row-dot-line': row.addInfors.length ? 3 : undefined,
+						'--row-dot-line': row?.addInfors?.length
+							? 3
+							: undefined,
 					}"
 				>
 					{{ row.briefIntroduction }}
 				</div>
-				<div v-if="row.addInfors.length">
+				<div v-if="row?.addInfors?.length">
 					<div
 						v-for="(addInfor, index) in row.addInfors"
 						:key="index"
@@ -44,19 +54,29 @@
 			</div>
 			<div class="info">
 				<span>
-					<gal-icon icon="calendarAlt" size="1em"></gal-icon>&nbsp;
-					{{ formatDate(row.publishTime, "YMD") }}
+					<gal-icon icon="calendarAlt" size="14px"></gal-icon>&nbsp;
+					{{ formatDate(row.publishTime || row.lastEditTime, "YMD") }}
 				</span>
 
-				<span class="comment">
+				<span>
 					<gal-icon icon="comments" size="14px"></gal-icon>&nbsp;{{
 						row.commentCount
 					}}条评论</span
 				>
-				<span class="read">
+				<span>
 					<gal-icon icon="eye" size="14px"></gal-icon>&nbsp;{{
 						row.readerCount
 					}}次阅读</span
+				>
+				<span v-if="row.thumbsUpCount !== undefined">
+					<gal-icon icon="thumbsUp" size="14px"></gal-icon>&nbsp;{{
+						row.thumbsUpCount
+					}}人点赞</span
+				>
+				<span v-if="row.createUserName">
+					<gal-icon icon="user" size="14px"></gal-icon>&nbsp;{{
+						row.createUserName
+					}}</span
 				>
 			</div>
 		</router-link>
@@ -186,8 +206,14 @@ onUnmounted(() => {
 	grid-area: content;
 }
 .name {
+	display: flex;
+	column-gap: 1em;
+	align-items: baseline;
+}
+.name h5 {
 	font-size: 20px;
 }
+
 .introduction {
 	font-size: 14px;
 }
