@@ -32,6 +32,10 @@ async function getHomeFriendLinksView() {
 	return await axios.get("/api/home/GetHomeFriendLinksView");
 }
 
+async function getHomeSearch() {
+	return await axios.get("/api/home/Search");
+}
+
 export {
 	getHomeCarouselsView,
 	getHomeNewsView,
@@ -40,5 +44,6 @@ export {
 	getHomeArticlesView,
 	getHomeRecentEditView,
 	getHomeNoticesView,
-	getHomeFriendLinksView
+	getHomeFriendLinksView,
+	getHomeSearch,
 };

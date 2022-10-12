@@ -6,6 +6,8 @@ import EntriesIndex from "../pages/entries/index/entries.vue";
 import ArticlesHome from "../pages/article/home.vue";
 import ArticlesNews from "../pages/article/news.vue";
 
+import Search from "../pages/search/search.vue";
+
 import _test_icon from "../pages/_test/_icon.vue";
 
 const routes = [
@@ -17,30 +19,35 @@ const routes = [
 			{
 				path: "/",
 				name: "front",
-				component: HomeIndex
+				component: HomeIndex,
 			},
 			{
 				path: "/entries",
 				name: "entries",
-				component: EntriesHome
+				component: EntriesHome,
 			},
 			{
 				path: "/entries/index/:id",
 				name: "entriesIndex",
-				component: EntriesIndex
+				component: EntriesIndex,
 			},
 			{
 				path: "/article",
 				name: "article",
-				component: ArticlesHome
+				component: ArticlesHome,
 			},
 			{
 				path: "/articles/news",
 				name: "articlesNews",
-				component: ArticlesNews
-			}
-		]
-	}
+				component: ArticlesNews,
+			},
+			{
+				path: "/search",
+				name: "search",
+				component: Search,
+			},
+		],
+	},
 ];
 
 routes.push(
@@ -48,14 +55,14 @@ routes.push(
 		{
 			path: "/_test/_icon",
 			name: "_test_icon",
-			component: _test_icon
-		}
+			component: _test_icon,
+		},
 	]
 );
 
 const router = createRouter({
 	history: createWebHistory(),
-	routes
+	routes,
 });
 
 export default router;

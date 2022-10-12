@@ -13,7 +13,8 @@ import dialog from "../components/base/dialog/dialog.vue";
 import tag from "../components/base/tag/tag.vue";
 import timeline from "../components/base/timeline/timeline.vue";
 import timelineItem from "../components/base/timeline/timeline-item.vue";
-import tooltip from "../components/base/tooltip/import";
+import tooltip from "../components/base/tooltip/import.js";
+import input from "../components/base/input/input.vue";
 
 import noWrapGameList from "../components/common/gameCard/noWrapGameList.vue";
 import newsCard from "../components/common/gameCard/newsCard.vue";
@@ -44,6 +45,8 @@ const importPlugin = {
 		app.component("galTag", tag);
 		app.component("galDialog", dialog);
 		app.component("galCard", card);
+		app.component("galInput", input);
+
 		app.component("galNoWrapGameList", noWrapGameList);
 		app.component("galNewsCard", newsCard);
 		app.component("galHomeGameCard", homeGameCard);

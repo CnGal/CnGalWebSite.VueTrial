@@ -62,7 +62,10 @@ import galMain from "../components/common/main/main.vue";
 import galFooter from "../components/common/footer/footer.vue";
 import galFooterMobile from "../components/common/footer/footer-mobile.vue";
 
+import { useRouter } from "vue-router";
 import { useStore } from "../store/index.js";
+
+const router = useRouter();
 const store = useStore();
 const isMobile = store.isMobile;
 
@@ -70,11 +73,14 @@ const settingDialog = ref();
 const openSettingDialog = () => {
 	settingDialog.value.show();
 };
-
+const goToSearch = () => {
+	router.push("/search");
+};
 const headerIconList = ref([
 	{
 		icon: "search",
 		text: "搜索",
+		click: goToSearch,
 	},
 	{
 		icon: "login",

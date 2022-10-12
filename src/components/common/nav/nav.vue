@@ -2,12 +2,10 @@
 	<nav class="nav">
 		<ul class="nav-menu">
 			<li
+				ref="navItem"
 				class="nav-item"
 				v-for="(item, index) in navList"
 				:key="index"
-				:class="{
-					active: isActivePath(item.link)
-				}"
 			>
 				<router-link :to="item.link">{{ item.text }}</router-link>
 			</li>
@@ -16,38 +14,50 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 const route = useRoute();
 
 const navList = [
 	{
 		link: "/",
-		text: "首页"
+		text: "首页",
 	},
 	{
 		link: "/entries",
-		text: "词条"
+		text: "词条",
 	},
 	{
 		link: "/cv",
-		text: "CV"
+		text: "CV",
 	},
 	{
 		link: "/article",
-		text: "文章"
+		text: "文章",
 	},
 	{
 		link: "/square",
-		text: "广场"
-	}
+		text: "广场",
+	},
 ];
 
-const isActivePath = (path) => {
-	if (path === "/") {
-		return route.fullPath === "/";
+const navItem = ref();
+
+onMounted(() => {
+	const path = route.fullPath;
+
+	if (path.startsWith("/entries")) {
+		navItem.value[1].classList.add("active");
+	} else if (path.startsWith("/cv")) {
+		navItem.value[2].classList.add("active");
+	} else if (path.startsWith("/article")) {
+		navItem.value[3].classList.add("active");
+	} else if (path.startsWith("/square")) {
+		navItem.value[4].classList.add("active");
+	} else {
+		navItem.value[0].classList.add("active");
 	}
-	return route.fullPath.startsWith(path);
-};
+});
 </script>
 
 <style scoped>

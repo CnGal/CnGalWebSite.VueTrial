@@ -96,6 +96,8 @@ import {
 	getHomeFriendLinksView,
 } from "../../api/homeAPI/index.js";
 
+document.title = "CnGal 中文GalGame资料站";
+
 const store = useStore();
 const isMobile = store.isMobile;
 
