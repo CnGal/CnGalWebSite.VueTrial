@@ -3,12 +3,15 @@
 		<div
 			class="main-header"
 			:class="{
-				isUser: info.type === 3 || info.type === 1,
+				isUser:
+					info.type === store.entryType.role ||
+					info.type === store.entryType.staff
 			}"
 		>
 			<img
 				:src="
-					info.type === 3 || info.type === 1
+					info.type === store.entryType.role ||
+					info.type === store.entryType.staff
 						? info.thumbnail
 						: info.mainPicture
 				"
@@ -16,7 +19,7 @@
 			/>
 			<div class="main-info">
 				<h1>{{ info.name }}</h1>
-				<div class="staff" v-if="info.type === 0">
+				<div class="staff" v-if="info.type === store.entryType.game">
 					<div
 						class="production-group"
 						v-if="info.productionGroups?.length"
@@ -77,11 +80,14 @@
 </template>
 
 <script setup>
+import { useStore } from "../../../store";
+const store = useStore();
+
 const props = defineProps({
 	info: {
 		type: Object,
-		required: true,
-	},
+		required: true
+	}
 });
 </script>
 

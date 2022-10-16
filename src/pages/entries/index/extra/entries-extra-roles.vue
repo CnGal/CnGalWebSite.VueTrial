@@ -7,6 +7,7 @@
 		<gal-game-card-rows
 			class="rows"
 			:rows="info.roles"
+			:hideTypeTag="true"
 			:rowHasCellTotal="1"
 			:heightOverflowScroll="false"
 		></gal-game-card-rows>
@@ -17,8 +18,8 @@
 const props = defineProps({
 	info: {
 		type: Object,
-		required: true,
-	},
+		required: true
+	}
 });
 </script>
 

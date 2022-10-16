@@ -17,8 +17,8 @@
 const props = defineProps({
 	entryRelevances: {
 		type: Object,
-		required: true,
-	},
+		required: true
+	}
 });
 </script>
 
@@ -31,10 +31,5 @@ const props = defineProps({
 	padding: 0;
 	padding-block-start: 12px;
 	background-color: transparent;
-}
-.rows :deep(.img) {
-	width: 250px;
-	aspect-ratio: unset;
-	border-radius: 0;
 }
 </style>

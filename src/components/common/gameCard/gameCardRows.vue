@@ -2,36 +2,38 @@
 	<div
 		class="container"
 		ref="rows"
-		:class="{ mobile: isMobile, canScroll: props.heightOverflowScroll }"
+		:class="{
+			mobile: isMobile,
+			canScroll: props.heightOverflowScroll
+		}"
 	>
 		<router-link
 			v-for="row in props.rows"
 			:key="row.id"
 			:to="
-				(row.type === 4 ? '/articles/index/' : '/entries/index/') +
+				(type === 'article' ? '/articles/index/' : '/entries/index/') +
 				row.id
 			"
-			class="item"
+			:class="{
+				item: true,
+				'user-item':
+					props.type === 'entry' &&
+					(row.type === store.entryType.role ||
+						row.type === store.entryType.staff)
+			}"
 		>
 			<img :src="row.mainImage" :alt="row.name" class="img" />
 			<div class="content">
 				<div class="name">
-					<gal-tag class="tags tags-title" v-if="row.type === 4">
-						评测
+					<gal-tag class="tags tags-title" v-if="!props.hideTypeTag">
+						{{ tagText(row.type) }}
 					</gal-tag>
 					<h5>{{ row.name }}</h5>
 				</div>
-				<div
-					class="introduction rows-dot"
-					:style="{
-						'--row-dot-line': row?.addInfors?.length
-							? 3
-							: undefined,
-					}"
-				>
+				<div class="introduction rows-dot">
 					{{ row.briefIntroduction }}
 				</div>
-				<div v-if="row?.addInfors?.length">
+				<div v-if="row?.addInfors?.length" class="addInfors">
 					<div
 						v-for="(addInfor, index) in row.addInfors"
 						:key="index"
@@ -52,7 +54,14 @@
 					</div>
 				</div>
 			</div>
-			<div class="info">
+			<div
+				class="info"
+				v-if="
+					props.type === 'article' ||
+					(props.type === 'entry' &&
+						row.type === store.entryType.game)
+				"
+			>
 				<span>
 					<gal-icon icon="calendarAlt" size="14px"></gal-icon>&nbsp;
 					{{ formatDate(row.publishTime || row.lastEditTime, "YMD") }}
@@ -91,9 +100,17 @@ const store = useStore();
 const isMobile = store.isMobile;
 
 const props = defineProps({
+	type: {
+		type: String,
+		default: "entry"
+	},
+	hideTypeTag: {
+		type: Boolean,
+		default: false
+	},
 	rows: {
 		type: [Object],
-		required: true,
+		required: true
 	},
 	rowHasCellTotal: {
 		type: [Object, Number],
@@ -101,13 +118,13 @@ const props = defineProps({
 			xLarge: 3,
 			large: 2,
 			medium: 2,
-			small: 1,
-		},
+			small: 1
+		}
 	},
 	heightOverflowScroll: {
 		type: Boolean,
-		default: true,
-	},
+		default: true
+	}
 });
 
 const rows = ref();
@@ -120,7 +137,7 @@ const changeWidth = () => {
 						xLarge: props.rowHasCellTotal,
 						large: props.rowHasCellTotal,
 						medium: props.rowHasCellTotal,
-						small: props.rowHasCellTotal,
+						small: props.rowHasCellTotal
 				  }
 				: props.rowHasCellTotal;
 
@@ -145,6 +162,40 @@ const changeWidth = () => {
 	rows.value.style.setProperty("--cell-width", getCellWidth());
 };
 
+const tagText = (type) => {
+	if (props.type === "entry") {
+		switch (type) {
+			case store.entryType.game:
+				return "游戏";
+			case store.entryType.role:
+				return "角色";
+			case store.entryType.productionGroup:
+				return "组织";
+			case store.entryType.staff:
+				return "Staff";
+		}
+	} else if (props.type === "article") {
+		switch (type) {
+			case store.articleType.tought:
+				return "感想";
+			case store.articleType.strategy:
+				return "攻略";
+			case store.articleType.interview:
+				return "访谈";
+			case store.articleType.news:
+				return "动态";
+			case store.articleType.evaluation:
+				return "评测";
+			case store.articleType.peripheral:
+				return "周边";
+			case store.articleType.notice:
+				return "公告";
+			case store.articleType.none:
+				return "杂谈";
+		}
+	}
+};
+
 onMounted(() => {
 	changeWidth();
 	window.addEventListener("resize", changeWidth);
@@ -156,10 +207,11 @@ onUnmounted(() => {
 
 <style scoped>
 .container {
-	--row-dot-line: 4;
+	--row-dot-line: 3;
 	--column-gap: 16px;
 }
-.container.mobile {
+.container.mobile,
+.user-item {
 	--row-dot-line: 2;
 }
 .container {
@@ -197,11 +249,16 @@ onUnmounted(() => {
 }
 .img {
 	grid-area: img;
-	height: 116px;
+	width: 250px;
 	object-fit: cover;
+}
+.user-item .img {
+	width: auto;
+	height: 116px;
 	aspect-ratio: 1 / 1;
 	border-radius: 50%;
 }
+
 .content {
 	grid-area: content;
 }
@@ -215,10 +272,15 @@ onUnmounted(() => {
 }
 
 .introduction {
+	word-break: break-all;
 	font-size: 14px;
 }
 
+.addInfors {
+	display: flex;
+}
 .addInfors-item {
+	flex: 1;
 	margin-block-start: 8px;
 	display: inline-flex;
 	flex-wrap: wrap;
@@ -247,7 +309,7 @@ onUnmounted(() => {
 		background-color: transparent;
 		padding: 0;
 	}
-	.img {
+	.user-item .img {
 		height: 80px;
 	}
 }

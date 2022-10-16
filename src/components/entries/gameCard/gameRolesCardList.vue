@@ -13,6 +13,7 @@
 			<gal-game-card-rows
 				class="roles-area"
 				:rows="activeData.active.roles"
+				:hideTypeTag="true"
 			></gal-game-card-rows>
 			<gal-no-wrap-game-list
 				cardName="galGamePreview"
@@ -38,7 +39,7 @@ import { ref, provide, computed } from "vue";
 import { getGameRoles } from "../../../api/entriesAPI/index.js";
 import {
 	getNonRepeatRandomList,
-	getRandom,
+	getRandom
 } from "../../../assets/common/js/random.js";
 
 import { useStore } from "../../../store/index.js";
@@ -67,7 +68,7 @@ changeActive(gameRoles.value[0].id, true);
 const activeData = computed(() => {
 	return {
 		active: allGameRoles.value[activeIndex.value],
-		type: "id",
+		type: "id"
 	};
 });
 

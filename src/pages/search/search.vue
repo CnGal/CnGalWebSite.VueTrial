@@ -16,6 +16,7 @@
 			<gal-game-card-rows
 				class="rows"
 				:rows="[item.article || item.entry]"
+				:type="item.article ? 'article' : 'entry'"
 				:rowHasCellTotal="1"
 				:heightOverflowScroll="false"
 			></gal-game-card-rows>
@@ -33,7 +34,6 @@ const searchText = ref("");
 const searchData = ref({});
 (async () => {
 	const data = await getHomeSearch();
-	console.log(data);
 	searchData.value = data.data;
 })();
 </script>
