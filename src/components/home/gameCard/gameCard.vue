@@ -1,6 +1,6 @@
 <template>
-	<a
-		:href="props.data.url"
+	<RouterLink
+		:to="props.data.url"
 		:target="props.data.isOutlink ? '_blank' : null"
 		class="game-card"
 	>
@@ -18,16 +18,18 @@
 			class="read-comment"
 		>
 			<span v-if="~props.data.readCount" class="read">
-				<gal-icon icon="eye" size="14px"></gal-icon
-				>&nbsp;{{ props.data.readCount }}</span
+				<gal-icon icon="eye" size="14px"></gal-icon>&nbsp;{{
+					props.data.readCount
+				}}</span
 			>
 
 			<span v-if="~props.data.commentCount" class="comment">
-				<gal-icon icon="comments" size="14px"></gal-icon
-				>&nbsp;{{ props.data.commentCount }}</span
+				<gal-icon icon="comments" size="14px"></gal-icon>&nbsp;{{
+					props.data.commentCount
+				}}</span
 			>
 		</div>
-	</a>
+	</RouterLink>
 </template>
 
 <script setup>

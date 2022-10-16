@@ -1,7 +1,7 @@
 <template>
 	<gal-banner class="banner"></gal-banner>
 	<galWelcome></galWelcome>
-	<gal-card class="card">
+	<gal-card class="card" width="full">
 		<template v-slot:headerStart>
 			<gal-icon icon="newspaper" size="1em"></gal-icon
 			>&nbsp;&nbsp;最新动态
@@ -76,6 +76,10 @@
 	</gal-card>
 </template>
 
+<script>
+document.title = "CnGal 中文GalGame资料站";
+</script>
+
 <script setup>
 import { ref } from "vue";
 import galBanner from "../../components/home/banner/banner.vue";
@@ -93,10 +97,8 @@ import {
 	getHomeArticlesView,
 	getHomeRecentEditView,
 	getHomeNoticesView,
-	getHomeFriendLinksView,
+	getHomeFriendLinksView
 } from "../../api/homeAPI/index.js";
-
-document.title = "CnGal 中文GalGame资料站";
 
 const store = useStore();
 const isMobile = store.isMobile;

@@ -192,6 +192,8 @@ const tagText = (type) => {
 				return "公告";
 			case store.articleType.none:
 				return "杂谈";
+			case store.articleType.fan:
+				return "二创";
 		}
 	}
 };
@@ -215,7 +217,6 @@ onUnmounted(() => {
 	--row-dot-line: 2;
 }
 .container {
-	padding: 12px;
 	display: flex;
 	flex-wrap: wrap;
 	column-gap: var(--column-gap);

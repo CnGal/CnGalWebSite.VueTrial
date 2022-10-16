@@ -1,7 +1,7 @@
 ## 使用
 
 ```
-<gal-card :toggle="true" :toggleChange="Function">
+<gal-card :toggle="true" :toggleChange="Function" width="full">
 	<template v-slot:headerStart>
 		......
 	</template>
@@ -13,6 +13,13 @@
 ```
 
 ### 属性
+
+-   width
+
+    -   type: String,
+    -   dafault: fit
+
+    边框到内容之间是否有空白。fit 有空白, full 无空白。在屏幕尺寸小于 768px 时，fit 也无空白
 
 -   toggle
 

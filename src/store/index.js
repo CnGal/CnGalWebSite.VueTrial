@@ -16,13 +16,13 @@ export const useStore = defineStore("main", {
 				CommentUser: 4, // 用户留言
 				CommentPeriphery: 5, // 评论周边
 				CommentVote: 6, // 评论投票
-				CommentLottery: 7, // 评论抽奖
+				CommentLottery: 7 // 评论抽奖
 			},
 			entryType: {
 				game: 0, // 游戏
 				role: 1, // 角色
 				productionGroup: 2, // 组织
-				staff: 3, // Staff
+				staff: 3 // Staff
 			},
 			articleType: {
 				tought: 0, // 感想
@@ -33,7 +33,8 @@ export const useStore = defineStore("main", {
 				peripheral: 5, // 周边
 				notice: 6, // 公告
 				none: 7, // 杂谈
-			},
+				fan: 8 // 二创
+			}
 		};
 	},
 	getters: {},
@@ -43,6 +44,6 @@ export const useStore = defineStore("main", {
 			// 当颜色为 #000000 时，设置夜间模式
 			this.theme.isDark = !!(theme.color === "#000000");
 			localStorage.setItem("theme", JSON.stringify(this.theme));
-		},
-	},
+		}
+	}
 });

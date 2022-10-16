@@ -60,7 +60,7 @@ import { ref } from "vue";
 import {
 	getFreeGames,
 	getAllDiscountSteamGame,
-	getGameCGs,
+	getGameCGs
 } from "../../api/entriesAPI/index.js";
 import { getNonRepeatRandomList } from "../../assets/common/js/random.js";
 

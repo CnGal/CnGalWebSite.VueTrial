@@ -1,5 +1,5 @@
 <template>
-	<div class="news-card">
+	<div class="new-card">
 		<router-link :to="`/entries/index/${props.newsInfo.groupId}`">
 			<img
 				class="new-img"
@@ -36,7 +36,7 @@ const props = defineProps({
 </script>
 
 <style scoped>
-.news-card {
+.new-card {
 	display: flex;
 	box-sizing: border-box;
 	column-gap: 8px;
@@ -68,7 +68,7 @@ const props = defineProps({
 }
 
 @media screen and (max-width: 768px) {
-	.news-card {
+	.new-card {
 		box-shadow: var(--main-shadow);
 		border-radius: var(--main-border-radius);
 	}

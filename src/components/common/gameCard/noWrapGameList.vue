@@ -1,5 +1,5 @@
 <template>
-	<div class="card-wrap">
+	<div class="container">
 		<gal-button
 			v-if="buttonShow"
 			class="prev"
@@ -36,12 +36,12 @@ import { ref, onMounted } from "vue";
 const props = defineProps({
 	list: {
 		type: [Object],
-		required: true,
+		required: true
 	},
 	cardName: {
 		type: String,
-		required: true,
-	},
+		required: true
+	}
 });
 
 const nowTranslate = ref(0);
@@ -103,13 +103,11 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.card-wrap {
+.container {
 	--column-gap: 16px;
 }
-.card-wrap {
+.container {
 	display: flex;
-	padding: 1em;
-	padding-block-start: 0;
 	background-color: var(--main-bg-color);
 }
 .prev,

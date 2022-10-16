@@ -1,17 +1,23 @@
 <template>
-	<div class="search-area">
+	<gal-card class="search-area" width="full">
 		<galInput
 			v-model="searchText"
 			type="search"
 			simplt
 			placeholder="可以搜索哦~"
 			autofocus
+			:submitEvent="submitEvent"
 		></galInput>
-	</div>
-	<div>
+	</gal-card>
+	<gal-card
+		class="data-area"
+		width="full"
+		:style="{ '--bgColor-main': 'transparent' }"
+	>
 		<div
 			v-for="(item, index) in searchData.pagedResultDto?.data"
 			:key="index"
+			class="data-item"
 		>
 			<gal-game-card-rows
 				class="rows"
@@ -21,30 +27,53 @@
 				:heightOverflowScroll="false"
 			></gal-game-card-rows>
 		</div>
-	</div>
+	</gal-card>
 </template>
 
-<script setup>
-import { ref, onMounted, useAttrs } from "vue";
-import { getHomeSearch } from "../../api/homeAPI/index.js";
-
+<script>
 document.title = "搜索 - CnGal 中文GalGame资料站";
+</script>
+
+<script setup>
+import { ref } from "vue";
+import { getHomeSearch } from "../../api/homeAPI/index.js";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 const searchText = ref("");
 const searchData = ref({});
-(async () => {
-	const data = await getHomeSearch();
-	searchData.value = data.data;
-})();
+const getSearch = async () => {
+	const res = await getHomeSearch({
+		text: searchText.value
+	});
+	searchData.value = res.data;
+
+	const query = {};
+	if (searchText.value) {
+		query.text = searchText.value;
+	}
+	router.push({
+		path: "/search",
+		query
+	});
+};
+getSearch();
+
+const submitEvent = () => {
+	getSearch();
+};
 </script>
 
 <style scoped>
 .search-area {
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	height: 100px;
-	background-color: var(--main-bg-color);
+}
+.search-area :deep(.card-main) {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 :deep(.input-wrap) {
@@ -52,5 +81,10 @@ const searchData = ref({});
 }
 :deep(.input) {
 	width: 100%;
+}
+
+.data-area,
+.data-item {
+	margin-block-start: 12px;
 }
 </style>

@@ -7,6 +7,7 @@
 			ref="input"
 			:value="modelValue"
 			@input="$emit('update:modelValue', $event.target.value)"
+			@keyup.enter="submitEvent"
 		/>
 		<i class="bottom" aria-hidden="true"></i>
 		<gal-icon-button
@@ -16,6 +17,7 @@
 			circle
 			size="48px"
 			v-gal-tooltip="'搜索'"
+			@click="submitEvent"
 		></gal-icon-button>
 	</div>
 </template>
@@ -28,12 +30,17 @@ const attrs = useAttrs();
 const props = defineProps({
 	type: {
 		type: String,
-		default: "text",
+		default: "text"
 	},
 	modelValue: String,
+	submitEvent: Function
 });
 
 const input = ref();
+
+const submitEvent = (ev) => {
+	props.submitEvent(ev);
+};
 onMounted(() => {
 	if (attrs.autofocus) {
 		input.value.focus();
