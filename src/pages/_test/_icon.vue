@@ -81,6 +81,8 @@ const iconList = [
 	"down",
 	"databaseExport",
 	"objectGroup",
+	"sortAsc",
+	"sortDesc"
 ];
 </script>
 

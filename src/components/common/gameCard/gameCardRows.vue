@@ -11,8 +11,11 @@
 			v-for="row in props.rows"
 			:key="row.id"
 			:to="
-				(type === 'article' ? '/articles/index/' : '/entries/index/') +
-				row.id
+				(type === 'article'
+					? '/articles/index/'
+					: type === 'entry'
+					? '/entries/index/'
+					: '/tag/index/') + row.id
 			"
 			:class="{
 				item: true,
@@ -195,6 +198,8 @@ const tagText = (type) => {
 			case store.articleType.fan:
 				return "二创";
 		}
+	} else if (props.type === "tag") {
+		return "标签";
 	}
 };
 

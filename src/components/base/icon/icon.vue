@@ -81,16 +81,18 @@ import iconChevronCircleDown from "../icons/chevron-circle-down.vue";
 import iconDown from "../icons/down.vue";
 import iconDatabaseExport from "../icons/database-export.vue";
 import iconObjectGroup from "../icons/object-group.vue";
+import iconSortAsc from "../icons/sort-asc.vue";
+import iconSortDesc from "../icons/sort-desc.vue";
 
 const props = defineProps({
 	icon: {
 		type: String,
-		required: true,
+		required: true
 	},
 	size: {
 		type: String,
-		default: "1em",
-	},
+		default: "1em"
+	}
 });
 
 const iconMap = {
@@ -170,6 +172,8 @@ const iconMap = {
 	down: iconDown,
 	databaseExport: iconDatabaseExport,
 	objectGroup: iconObjectGroup,
+	sortAsc: iconSortAsc,
+	sortDesc: iconSortDesc
 };
 </script>
 

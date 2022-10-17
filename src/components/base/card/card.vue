@@ -1,8 +1,11 @@
 <template>
-	<section class="card">
+	<section
+		class="card"
+		:class="{ noheader: !($slots.headerStart || $slots.headerEnd) }"
+	>
 		<header
 			class="card-header"
-			v-show="$slots.headerStart || $slots.headerEnd"
+			v-if="$slots.headerStart || $slots.headerEnd"
 		>
 			<h2>
 				<slot name="headerStart"></slot>
@@ -101,6 +104,9 @@ h2 {
 }
 .card-main.fit {
 	padding: 0 16px 16px;
+}
+.card.noheader .card-main.fit {
+	padding: 16px;
 }
 .card-main.full {
 	padding: 0;

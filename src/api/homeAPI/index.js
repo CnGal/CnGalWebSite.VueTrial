@@ -1,4 +1,5 @@
 import axios from "../axios";
+import qs from "qs";
 
 async function getHomeCarouselsView() {
 	return await axios.get("/api/home/GetHomeCarouselsView");
@@ -33,7 +34,11 @@ async function getHomeFriendLinksView() {
 }
 
 async function getHomeSearch(params) {
-	return await axios.get("/api/home/Search", { params });
+	return await axios.get("/api/home/Search", {
+		params,
+		paramsSerializer: (params) =>
+			qs.stringify(params, { arrayFormat: "repeat" })
+	});
 }
 
 export {
