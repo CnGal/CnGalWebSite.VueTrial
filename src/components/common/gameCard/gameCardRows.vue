@@ -200,6 +200,8 @@ const tagText = (type) => {
 		}
 	} else if (props.type === "tag") {
 		return "标签";
+	} else if (props.type === "periphery") {
+		return "周边";
 	}
 };
 
