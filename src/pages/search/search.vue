@@ -223,11 +223,16 @@ const getSearch = async () => {
 	if (currentPage.value !== 1) {
 		query.page = currentPage.value;
 	}
+	if (searchTimes.length) {
+		query.times = searchTimes.map((timeName) => {
+			const time = timeList.find((time) => time.name === timeName);
+			return time.value;
+		});
+	}
 
 	const res = await getHomeSearch(query);
 	searchData.value = res.data;
 
-	// 展示无法使用
 	if (searchTimes.length) {
 		query.times = searchTimes;
 	}
@@ -261,6 +266,7 @@ if (route.query.page) {
 getSearch();
 
 const submitEvent = () => {
+	currentPage.value = 1;
 	getSearch();
 };
 const changeSort = (value, sort) => {
@@ -276,14 +282,18 @@ const changeTypes = (value) => {
 	} else {
 		searchTypes.push(value);
 	}
+	currentPage.value = 1;
 	getSearch();
 };
 const changeTime = (value) => {
-	if (searchTimes.includes(value)) {
-		searchTimes.splice(searchTimes.indexOf(value), 1);
-	} else {
-		searchTimes.push(value);
-	}
+	// 多选分支 暂不支持
+	// if (searchTimes.includes(value)) {
+	// 	searchTimes.splice(searchTimes.indexOf(value), 1);
+	// } else {
+	// 	searchTimes.push(value);
+	// }
+	searchTimes.splice(0, searchTimes.length, value);
+	currentPage.value = 1;
 	getSearch();
 };
 const changePage = () => {

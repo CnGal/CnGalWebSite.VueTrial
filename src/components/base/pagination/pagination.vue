@@ -52,6 +52,7 @@ let list = ref([]);
 const isSinglePage = ref(false);
 const pageCount = ref(0);
 
+//  通过 v-modal:currentPage 修改 currentPage 数据，并在修改时暴露出 currentChange 事件
 const currentPageChange = (pageValue) => {
 	emit("update:currentPage", pageValue);
 	emit("currentChange", pageValue);
@@ -60,6 +61,8 @@ const currentPageChange = (pageValue) => {
 const initItem = () => {
 	list.value = [];
 	pageCount.value = Math.ceil(props.total / props.pageSize);
+
+	// 当页数小于等于1时，隐藏组件
 	if (pageCount.value <= 1) {
 		isSinglePage.value = true;
 		return;
@@ -68,16 +71,17 @@ const initItem = () => {
 	}
 
 	nextTick(() => {
+		// 通过组件宽度计算出最多显示多少个页码
 		const paginationWidth = pagination.value.getBoundingClientRect().width;
 		const maxItemCount = Math.floor(paginationWidth / (liWidth + gap)) - 2;
 		const hasMore = pageCount.value > maxItemCount;
 
 		if (!hasMore) {
+			// 总数小于最大显示数时，显示所有页码
 			for (let i = 1; i <= pageCount.value; i++) {
 				list.value.push({
 					id: i,
 					value: i,
-					class: "",
 					current: i === props.currentPage,
 					click: () => {
 						currentPageChange(i);
@@ -86,6 +90,7 @@ const initItem = () => {
 			}
 			pagination.value.classList.add("no-more");
 		} else {
+			// 总数超过最大显示数时的处理
 			pagination.value.classList.add("has-more");
 			let currentArea;
 			if (props.currentPage < Math.floor(maxItemCount / 2) - 1) {
@@ -177,6 +182,7 @@ const initItem = () => {
 	});
 };
 
+// 页面总数或当前页码变化时，重新计算页码
 watch(
 	() => props.currentPage,
 	() => {
