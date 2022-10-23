@@ -116,10 +116,7 @@ onMounted(() => {
 	border: none;
 	color: var(--gray-color);
 }
-.prev:disabled,
-.next:disabled {
-	cursor: auto;
-}
+
 .card-list-wrap {
 	flex: 1;
 	overflow: hidden;

@@ -27,6 +27,10 @@ onMounted(() => {
 	color: var(--main-font-color);
 	cursor: pointer;
 }
+.button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
 .circle {
 	border-radius: 50%;
 }

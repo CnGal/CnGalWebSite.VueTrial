@@ -124,6 +124,13 @@
 			></gal-game-card-rows>
 		</div>
 	</gal-card>
+	<galPagination
+		class="pagination"
+		v-if="searchData.pagedResultDto"
+		:total="searchData.pagedResultDto.totalCount"
+		v-model:currentPage="currentPage"
+		@currentChange="changePage"
+	></galPagination>
 </template>
 
 <script>
@@ -200,6 +207,7 @@ const searchSort = reactive({
 const searchTypes = reactive([]);
 const searchTimes = reactive([]);
 const searchData = ref({});
+const currentPage = ref(1);
 const getSearch = async () => {
 	const query = {};
 	if (searchText.value) {
@@ -211,6 +219,9 @@ const getSearch = async () => {
 	}
 	if (searchTypes.length) {
 		query.types = searchTypes;
+	}
+	if (currentPage.value !== 1) {
+		query.page = currentPage.value;
 	}
 
 	const res = await getHomeSearch(query);
@@ -244,6 +255,9 @@ if (route.query.times) {
 		: [route.query.times];
 	searchTimes.push(...times);
 }
+if (route.query.page) {
+	currentPage.value = route.query.page;
+}
 getSearch();
 
 const submitEvent = () => {
@@ -270,6 +284,14 @@ const changeTime = (value) => {
 	} else {
 		searchTimes.push(value);
 	}
+	getSearch();
+};
+const changePage = () => {
+	window.scrollTo({
+		top: 0,
+		left: 0,
+		behavior: "smooth"
+	});
 	getSearch();
 };
 </script>
@@ -327,16 +349,20 @@ const changeTime = (value) => {
 	grid-area: type1;
 }
 .types-area:nth-of-type(4) {
-	grid-area: type2;
+	grid-area: type3;
 }
 .types-area:nth-of-type(5) {
-	grid-area: type3;
+	grid-area: type2;
 }
 .types-area:nth-of-type(6) {
 	grid-area: type4;
 }
 .tag {
 	cursor: pointer;
+}
+
+.pagination {
+	margin-top: 16px;
 }
 
 @media screen and (max-width: 992px) {
