@@ -43,7 +43,7 @@ export const formatDate = (date, range, i18n) => {
 		if (i18n === "zh") {
 			return `${year}年${month}月${day}日`;
 		} else {
-			return `${year}-${padMonth}-${padDay}日`;
+			return `${year}-${padMonth}-${padDay}`;
 		}
 	} else if (range === "YMDhm") {
 		if (i18n === "zh") {

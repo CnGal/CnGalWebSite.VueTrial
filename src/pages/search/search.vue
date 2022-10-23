@@ -48,6 +48,25 @@
 					class="tag"
 					@click="changeTime(tag.name)"
 				></galTag>
+				<galTag
+					class="tag"
+					circle
+					@click="showPicker"
+					v-if="!pickerIsShow"
+				>
+					{{ pickerTagTime ? pickerTagTime : "+ 自定义时间段" }}
+				</galTag>
+				<galDatepicker
+					v-else
+					v-model="datePickerTimes"
+					type="daterange"
+					unlink-panels
+					range-separator="~"
+					start-placeholder="Start"
+					end-placeholder="End"
+					size="small"
+					@change="changeTimeByPicker"
+				></galDatepicker>
 			</div>
 			<div class="types-area">
 				<galTag
@@ -140,6 +159,7 @@ document.title = "搜索 - CnGal 中文GalGame资料站";
 <script setup>
 import { ref, reactive } from "vue";
 import { getHomeSearch } from "../../api/homeAPI/index.js";
+import { formatDate } from "../../assets/common/js/formatDate.js";
 import { useRoute, useRouter } from "vue-router";
 const router = useRouter();
 const route = useRoute();
@@ -206,6 +226,7 @@ const searchSort = reactive({
 });
 const searchTypes = reactive([]);
 const searchTimes = reactive([]);
+const datePickerTimes = ref("");
 const searchData = ref({});
 const currentPage = ref(1);
 const getSearch = async () => {
@@ -225,6 +246,13 @@ const getSearch = async () => {
 	}
 	if (searchTimes.length) {
 		query.times = searchTimes.map((timeName) => {
+			if (timeName.includes("-")) {
+				return timeName
+					.split("-")
+					.map((time) => new Date(time).getTime())
+					.join("-");
+			}
+
 			const time = timeList.find((time) => time.name === timeName);
 			return time.value;
 		});
@@ -243,6 +271,18 @@ const getSearch = async () => {
 	});
 };
 
+const pickerIsShow = ref(false);
+const pickerTagTime = ref("");
+const showPicker = () => {
+	if (pickerTagTime.value) {
+		pickerTagTime.value = "";
+		searchTimes.length = 0;
+		changeTime();
+		return;
+	}
+	pickerIsShow.value = true;
+};
+
 if (route.query.text) {
 	searchText.value = route.query.text;
 }
@@ -259,6 +299,11 @@ if (route.query.times) {
 		? route.query.times
 		: [route.query.times];
 	searchTimes.push(...times);
+	times.forEach((time) => {
+		if (time.includes("-")) {
+			pickerTagTime.value = time.replace("-", " ~ ").replaceAll("/", "-");
+		}
+	});
 }
 if (route.query.page) {
 	currentPage.value = route.query.page;
@@ -286,14 +331,28 @@ const changeTypes = (value) => {
 	getSearch();
 };
 const changeTime = (value) => {
-	// 多选分支 暂不支持
-	// if (searchTimes.includes(value)) {
-	// 	searchTimes.splice(searchTimes.indexOf(value), 1);
-	// } else {
-	// 	searchTimes.push(value);
-	// }
-	searchTimes.splice(0, searchTimes.length, value);
+	if (value) {
+		if (searchTimes.includes(value)) {
+			searchTimes.splice(searchTimes.indexOf(value), 1);
+		} else {
+			// 多选分支 暂不支持
+			// searchTimes.push(value);
+			searchTimes.splice(0, searchTimes.length, value);
+			pickerTagTime.value = "";
+		}
+	}
+
 	currentPage.value = 1;
+	getSearch();
+};
+const changeTimeByPicker = (value) => {
+	const start = new Intl.DateTimeFormat("zh-CN").format(value[0]);
+	const end = new Intl.DateTimeFormat("zh-CN").format(value[1]);
+	searchTimes.splice(0, searchTimes.length, start + "-" + end);
+	currentPage.value = 1;
+	pickerIsShow.value = false;
+	pickerTagTime.value =
+		formatDate(value[0], "YMD") + " ~ " + formatDate(value[1], "YMD");
 	getSearch();
 };
 const changePage = () => {
@@ -373,6 +432,13 @@ const changePage = () => {
 
 .pagination {
 	margin-top: 16px;
+}
+
+.time-area :deep(.el-date-editor) {
+	flex: 0 0 170px;
+}
+.time-area :deep(.el-range__close-icon) {
+	display: none;
 }
 
 @media screen and (max-width: 992px) {

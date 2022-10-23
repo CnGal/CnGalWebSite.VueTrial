@@ -16,6 +16,7 @@ import timelineItem from "../components/base/timeline/timeline-item.vue";
 import tooltip from "../components/base/tooltip/import.js";
 import input from "../components/base/input/input.vue";
 import pagination from "../components/base/pagination/pagination.vue";
+import datepicker from "../components/base/datepicker/datepicker.vue";
 
 import noWrapGameList from "../components/common/gameCard/noWrapGameList.vue";
 import newsCard from "../components/common/gameCard/newsCard.vue";
@@ -48,6 +49,7 @@ const importPlugin = {
 		app.component("galCard", card);
 		app.component("galInput", input);
 		app.component("galPagination", pagination);
+		app.component("galDatepicker", datepicker);
 
 		app.component("galNoWrapGameList", noWrapGameList);
 		app.component("galNewsCard", newsCard);
