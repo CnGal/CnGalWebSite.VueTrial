@@ -1,5 +1,5 @@
 <template>
-	<gal-card class="production-group" :toggle="true">
+	<gal-card class="production-group" :toggle="true" width="full">
 		<template v-slot:headerStart>
 			<gal-icon class="icon" icon="objectGroup" size="1em"></gal-icon
 			>相关组织
@@ -30,8 +30,7 @@ const props = defineProps({
 }
 
 .rows {
-	padding: 0;
-	padding-block-start: 12px;
+	margin-block-start: 12px;
 	background-color: transparent;
 }
 </style>

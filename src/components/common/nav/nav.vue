@@ -14,37 +14,41 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
 const route = useRoute();
 
 const navList = [
 	{
 		link: "/",
-		text: "首页",
+		text: "首页"
 	},
 	{
 		link: "/entries",
-		text: "词条",
+		text: "词条"
 	},
 	{
 		link: "/cv",
-		text: "CV",
+		text: "CV"
 	},
 	{
 		link: "/article",
-		text: "文章",
+		text: "文章"
 	},
 	{
 		link: "/square",
-		text: "广场",
-	},
+		text: "广场"
+	}
 ];
 
 const navItem = ref();
 
-onMounted(() => {
+const changeActivePath = () => {
 	const path = route.fullPath;
+
+	navItem.value.forEach((item) => {
+		item.classList.remove("active");
+	});
 
 	if (path.startsWith("/entries")) {
 		navItem.value[1].classList.add("active");
@@ -57,7 +61,19 @@ onMounted(() => {
 	} else {
 		navItem.value[0].classList.add("active");
 	}
+};
+
+onMounted(() => {
+	changeActivePath();
 });
+
+// 监听页面的变化
+watch(
+	() => route.params,
+	() => {
+		changeActivePath();
+	}
+);
 </script>
 
 <style scoped>

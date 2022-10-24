@@ -1,5 +1,11 @@
 <template>
-	<a :href="`/entries/index/${props.data.id}`" class="game-card">
+	<router-link
+		:to="
+			(type === 'article' ? '/articles/index/' : '/entries/index/') +
+			props.data.id
+		"
+		class="game-card"
+	>
 		<img
 			loading="lazy"
 			class="game-card-img"
@@ -15,11 +21,15 @@
 			</div>
 		</div>
 		<slot name="sub"></slot>
-	</a>
+	</router-link>
 </template>
 
 <script setup>
 const props = defineProps({
+	type: {
+		type: String,
+		default: "entry"
+	},
 	data: {
 		type: Object,
 		required: true

@@ -1,5 +1,5 @@
 <template>
-	<gal-card class="card" v-if="comments">
+	<gal-card class="card" v-if="comments" width="full">
 		<template v-slot:headerStart>
 			<gal-icon
 				class="icon header-icon"
@@ -29,8 +29,8 @@ const store = useStore();
 const props = defineProps({
 	id: {
 		type: String,
-		required: true,
-	},
+		required: true
+	}
 });
 
 const comments = ref(null);
@@ -53,14 +53,19 @@ watch(
 	margin-inline-end: 1em;
 }
 
+.card :deep(.card-main) {
+	background-color: transparent;
+}
+
 .login-wrap {
-	padding: 1em;
+	padding: 0.5em;
 	text-align: center;
 	background-color: var(--main-bg-color);
-	margin-block-start: 16px;
+	margin-block-start: 12px;
 }
 .login {
-	padding: 0.5em;
+	overflow: hidden;
+	margin: 0.5em auto;
 }
 .login.login.login.login.login:hover {
 	background-color: var(--main-color);

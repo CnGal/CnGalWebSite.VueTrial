@@ -15,13 +15,13 @@ import { ref } from "vue";
 const props = defineProps({
 	comments: {
 		type: [Object],
-		required: true,
-	},
+		required: true
+	}
 });
 </script>
 
 <style scoped>
 .comment-item {
-	margin-block-start: 16px;
+	margin-block-start: 12px;
 }
 </style>

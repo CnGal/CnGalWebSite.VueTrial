@@ -1,5 +1,5 @@
 <template>
-	<gal-card>
+	<gal-card class="entries-header-card">
 		<div
 			class="main-header"
 			:class="{
@@ -102,7 +102,6 @@ a,
 }
 .main-header {
 	display: flex;
-	padding: 16px;
 	background-color: var(--main-bg-color);
 	column-gap: 16px;
 	color: var(--main-font-color);
@@ -159,9 +158,11 @@ a,
 	}
 }
 @media screen and (max-width: 992px) {
+	.entries-header-card :deep(.card-main.card-main.card-main) {
+		padding: 0;
+	}
 	.main-header {
 		flex-direction: column;
-		padding: 0;
 	}
 	.main-header img {
 		width: 100%;

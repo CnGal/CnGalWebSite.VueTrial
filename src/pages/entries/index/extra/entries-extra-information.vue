@@ -21,7 +21,7 @@
 					class="icon"
 					:icon="infomationIcons(item) || 'circle'"
 				></gal-icon>
-				<span>{{ showInformationKeyText(item.displayName) }}:</span>
+				<span>{{ showInformationKeyText(item) }}:</span>
 				<span>{{ item.displayValue }}</span>
 			</li>
 		</ul>
@@ -49,7 +49,7 @@
 						.find((i) => i.modifier === '基本信息')
 						?.informations?.filter(
 							(i) => i.displayName === '官网'
-						) || []),
+						) || [])
 				]"
 				:key="index"
 				class="item"
@@ -58,7 +58,7 @@
 					class="icon"
 					:icon="infomationIcons(item) || 'externalLinkSquareAlt'"
 				></gal-icon>
-				<span>{{ showInformationKeyText(item.displayName) }}:</span>
+				<span>{{ showInformationKeyText(item) }}:</span>
 				<a
 					class="single-row-dot"
 					:href="item.displayValue"
@@ -73,14 +73,14 @@
 <script setup>
 import {
 	infomationIcons,
-	showInformationKeyText,
+	showInformationKeyText
 } from "../_js/infomationIcons.js";
 
 const props = defineProps({
 	information: {
 		type: [Object],
-		required: true,
-	},
+		required: true
+	}
 });
 </script>
 

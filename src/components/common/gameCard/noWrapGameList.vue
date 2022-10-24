@@ -16,7 +16,11 @@
 					class="card-item"
 					ref="cardItem"
 				>
-					<component :is="props.cardName" :data="item"></component>
+					<component
+						:is="props.cardName"
+						:data="item"
+						:type="props.type"
+					></component>
 				</li>
 			</ul>
 		</div>
@@ -34,6 +38,10 @@
 <script setup>
 import { ref, onMounted } from "vue";
 const props = defineProps({
+	type: {
+		type: String,
+		default: "entry"
+	},
 	list: {
 		type: [Object],
 		required: true

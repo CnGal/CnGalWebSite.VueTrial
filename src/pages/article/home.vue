@@ -9,6 +9,7 @@
 			</gal-link-button>
 		</template>
 		<gal-no-wrap-game-list
+			type="article"
 			cardName="galNormalGameCard"
 			:list="randomArticles"
 			v-if="!isMobile"
@@ -33,6 +34,7 @@
 			</gal-link-button>
 		</template>
 		<gal-no-wrap-game-list
+			type="article"
 			cardName="galNormalGameCard"
 			:list="weeklyNewsOverview"
 			v-if="!isMobile"
@@ -55,7 +57,7 @@ import { ref } from "vue";
 import {
 	getRandomArticles,
 	getWeeklyNewsOverview,
-	getGameEvaluations,
+	getGameEvaluations
 } from "../../api/articlesAPI/index.js";
 import { getNonRepeatRandomList } from "../../assets/common/js/random.js";
 

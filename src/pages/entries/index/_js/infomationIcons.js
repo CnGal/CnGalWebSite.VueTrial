@@ -37,7 +37,7 @@ const infomationIcons = (infomation) => {
 		年龄: "fire",
 		姓名: "cardOutline",
 		别称: "idCard",
-		"昵称（官方称呼）": "cardOutline",
+		"昵称（官方称呼）": "cardOutline"
 	};
 
 	if (key === "发行时间" && infomation.displayValue.includes("预计")) {
@@ -50,13 +50,19 @@ const infomationIcons = (infomation) => {
 
 	return icons[key] || "externalLinkSquareAlt";
 };
-const showInformationKeyText = (text) => {
-	if (text === "声优") {
+const showInformationKeyText = (infomation) => {
+	let names = infomation.displayName;
+	let value = infomation.displayValue;
+	if (names === "声优") {
 		return "配音";
-	} else if (text === "昵称（官方称呼）") {
+	} else if (names === "昵称（官方称呼）") {
 		return "昵称";
+	} else if (value.includes("bilibili.com")) {
+		return "B站";
+	} else if (value.includes("weibo.com")) {
+		return "微博";
 	} else {
-		return text;
+		return names;
 	}
 };
 
