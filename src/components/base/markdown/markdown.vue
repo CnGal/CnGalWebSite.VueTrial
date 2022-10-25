@@ -106,4 +106,7 @@ html:not(.theme-dark) .markdown-body :deep(a) {
 .markdown-body {
 	word-break: break-word;
 }
+.markdown-body :deep(li) {
+	list-style: unset;
+}
 </style>

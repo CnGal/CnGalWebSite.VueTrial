@@ -4,6 +4,7 @@ import HomeIndex from "../pages/home/home.vue";
 import EntriesHome from "../pages/entries/home.vue";
 import EntriesIndex from "../pages/entries/index/entries.vue";
 import ArticlesHome from "../pages/article/home.vue";
+import ArticlesIndex from "../pages/article/index/articles.vue";
 import ArticlesNews from "../pages/article/news.vue";
 
 import Search from "../pages/search/search.vue";
@@ -19,35 +20,40 @@ const routes = [
 			{
 				path: "/",
 				name: "front",
-				component: HomeIndex,
+				component: HomeIndex
 			},
 			{
 				path: "/entries",
 				name: "entries",
-				component: EntriesHome,
+				component: EntriesHome
 			},
 			{
 				path: "/entries/index/:id",
 				name: "entriesIndex",
-				component: EntriesIndex,
+				component: EntriesIndex
 			},
 			{
-				path: "/article",
-				name: "article",
-				component: ArticlesHome,
+				path: "/articles",
+				name: "articles",
+				component: ArticlesHome
+			},
+			{
+				path: "/articles/index/:id",
+				name: "articlesIndex",
+				component: ArticlesIndex
 			},
 			{
 				path: "/articles/news",
 				name: "articlesNews",
-				component: ArticlesNews,
+				component: ArticlesNews
 			},
 			{
 				path: "/search",
 				name: "search",
-				component: Search,
-			},
-		],
-	},
+				component: Search
+			}
+		]
+	}
 ];
 
 routes.push(
@@ -55,14 +61,14 @@ routes.push(
 		{
 			path: "/_test/_icon",
 			name: "_test_icon",
-			component: _test_icon,
-		},
+			component: _test_icon
+		}
 	]
 );
 
 const router = createRouter({
 	history: createWebHistory(),
-	routes,
+	routes
 });
 
 export default router;

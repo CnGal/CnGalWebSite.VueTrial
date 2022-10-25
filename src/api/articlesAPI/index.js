@@ -12,4 +12,13 @@ async function getGameEvaluations() {
 	return await axios.get("/api/articles/GetGameEvaluations");
 }
 
-export { getRandomArticles, getWeeklyNewsOverview, getGameEvaluations };
+async function getArticleView(id) {
+	return await axios.get("/api/articles/GetArticleView/" + id);
+}
+
+export {
+	getRandomArticles,
+	getWeeklyNewsOverview,
+	getGameEvaluations,
+	getArticleView
+};

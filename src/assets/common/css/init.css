@@ -35,6 +35,13 @@ address {
 	font-style: normal;
 }
 
+hr {
+	height: 1px;
+	opacity: 0.1;
+	margin: 1em 0;
+	background-color: currentColor;
+}
+
 ::-webkit-scrollbar {
 	width: 5px;
 	height: 5px;

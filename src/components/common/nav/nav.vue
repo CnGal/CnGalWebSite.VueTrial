@@ -32,7 +32,7 @@ const navList = [
 		text: "CV"
 	},
 	{
-		link: "/article",
+		link: "/articles",
 		text: "文章"
 	},
 	{
@@ -54,7 +54,7 @@ const changeActivePath = () => {
 		navItem.value[1].classList.add("active");
 	} else if (path.startsWith("/cv")) {
 		navItem.value[2].classList.add("active");
-	} else if (path.startsWith("/article")) {
+	} else if (path.startsWith("/articles")) {
 		navItem.value[3].classList.add("active");
 	} else if (path.startsWith("/square")) {
 		navItem.value[4].classList.add("active");
