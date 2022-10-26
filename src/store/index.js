@@ -11,12 +11,12 @@ export const useStore = defineStore("main", {
 			commentType: {
 				none: 0, // 无
 				commentArticle: 1, // 评论文章
-				ReplyComment: 2, // 回复评论
-				CommentEntries: 3, // 评论词条
-				CommentUser: 4, // 用户留言
-				CommentPeriphery: 5, // 评论周边
-				CommentVote: 6, // 评论投票
-				CommentLottery: 7 // 评论抽奖
+				replyComment: 2, // 回复评论
+				commentEntries: 3, // 评论词条
+				commentUser: 4, // 用户留言
+				commentPeriphery: 5, // 评论周边
+				commentVote: 6, // 评论投票
+				commentLottery: 7 // 评论抽奖
 			},
 			entryType: {
 				game: 0, // 游戏

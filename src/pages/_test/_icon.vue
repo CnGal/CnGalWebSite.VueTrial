@@ -82,7 +82,8 @@ const iconList = [
 	"databaseExport",
 	"objectGroup",
 	"sortAsc",
-	"sortDesc"
+	"sortDesc",
+	"tags"
 ];
 </script>
 

@@ -48,6 +48,17 @@
 						{{ info.userInfor?.name }}
 					</div>
 				</div>
+				<div v-if="info.userInfor?.ranks.some((tag) => tag.type === 1)">
+					<img
+						class="tag-image"
+						:src="item.image"
+						:alt="item.text"
+						v-for="(item, index) in info.userInfor?.ranks.filter(
+							(tag) => tag.type === 1
+						)"
+						:key="index"
+					/>
+				</div>
 			</RouterLink>
 		</header>
 		<hr />
@@ -71,28 +82,76 @@
 					v-gal-tooltip="'点赞'"
 				></gal-icon-button>
 			</div>
+			<div class="relevances-group" v-if="info.relevances?.length">
+				<div
+					v-for="informations in info.relevances"
+					:key="informations.modifier"
+				>
+					<gal-icon icon="tags" size="1em"></gal-icon>
+					<gal-link-button
+						class="relevances-item"
+						v-for="item in informations.informations"
+						:key="item.id"
+						:to="
+							(informations.modifier === '词条'
+								? '/entries/index/'
+								: '/articles/index/') + item.id
+						"
+						theme="solid"
+					>
+						{{ item.displayName }}
+					</gal-link-button>
+				</div>
+			</div>
 			<div class="article-last-edit-time">
 				<gal-icon icon="pencilMdi" size="1em"></gal-icon>
 				最后编辑：{{ formatDate(info.lastEditTime, "YMD") }}
 			</div>
 		</main>
 	</article>
+
+	<gal-card class="comments-card" v-if="comments" width="full">
+		<template v-slot:headerStart>
+			<gal-icon class="icon header-icon" icon="note" size="1em"></gal-icon
+			>留言板
+		</template>
+		<galConmmentsList :comments="comments?.items"></galConmmentsList>
+
+		<div class="login-wrap">
+			<galLinkButton to="/login" theme="solid" class="login">
+				<galIcon icon="login"></galIcon>
+				登入后发表评论
+			</galLinkButton>
+		</div>
+	</gal-card>
 </template>
 
 <script setup>
 import { ref, watch } from "vue";
 import { getArticleView } from "@/api/articlesAPI/index.js";
+import { getComments } from "@/api/commentsAPI/index.js";
 import { formatDate } from "@/assets/common/js/formatDate.js";
+import { useStore } from "@/store/index.js";
 import { useRoute } from "vue-router";
 const route = useRoute();
+const store = useStore();
 const id = ref(route.params.id);
 
 const info = ref({});
 const getInfo = async () => {
 	const { data } = await getArticleView(id.value);
 	info.value = data;
+
+	document.title = data.name + " - CnGal 中文GalGame资料站";
 };
 getInfo();
+
+const comments = ref(null);
+const getComment = async (newId) => {
+	const { data } = await getComments(store.commentType.commentArticle, newId);
+	comments.value = data;
+};
+getComment(id.value);
 
 // 监听 articles/index/:id  页面的变化
 watch(
@@ -105,6 +164,9 @@ watch(
 </script>
 
 <style scoped>
+.icon.header-icon {
+	margin-inline-end: 1em;
+}
 .header-img {
 	width: 100%;
 }
@@ -137,6 +199,7 @@ watch(
 .author-photo {
 	width: 50px;
 	height: 50px;
+	aspect-ratio: 1 / 1;
 	border-radius: 50%;
 }
 .author-info {
@@ -148,6 +211,11 @@ watch(
 	display: flex;
 	flex-wrap: wrap;
 	column-gap: 8px;
+}
+.tag-image {
+	width: 50px;
+	height: 50px;
+	aspect-ratio: 1 / 1;
 }
 .author-name {
 	font-size: 18px;
@@ -167,12 +235,47 @@ watch(
 	margin: 16px 0;
 }
 
+.relevances-group {
+	color: var(--main-color);
+	margin-block-end: 12px;
+}
+.relevances-group > div {
+	display: flex;
+	justify-content: end;
+	column-gap: 8px;
+}
+.relevances-item {
+	font-size: 12px;
+}
+
 .article-last-edit-time {
 	display: flex;
 	align-items: flex-end;
 	justify-content: end;
 	column-gap: 4px;
+	font-size: 14px;
 	color: var(--main-color);
 	margin-block-end: 16px;
+}
+
+.comments-card {
+	margin-block-start: 16px;
+}
+.comments-card :deep(.card-main) {
+	background-color: transparent;
+}
+.login-wrap {
+	padding: 0.5em;
+	text-align: center;
+	background-color: var(--main-bg-color);
+	margin-block-start: 12px;
+}
+.login {
+	overflow: hidden;
+	margin: 0.5em auto;
+}
+.login.login.login.login.login:hover {
+	background-color: var(--main-color);
+	color: var(--white-color);
 }
 </style>

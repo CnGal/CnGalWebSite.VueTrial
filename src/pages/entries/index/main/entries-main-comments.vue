@@ -35,7 +35,7 @@ const props = defineProps({
 
 const comments = ref(null);
 const getComment = async (newId) => {
-	const { data } = await getComments(store.commentType.CommentEntries, newId);
+	const { data } = await getComments(store.commentType.commentEntries, newId);
 	comments.value = data;
 };
 getComment(props.id);

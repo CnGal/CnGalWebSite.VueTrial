@@ -22,4 +22,4 @@
 
     设置 button 样式风格
 
-    目前支持值: hollow solid
+    目前支持值: hollow solid outline
