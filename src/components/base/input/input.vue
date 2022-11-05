@@ -8,23 +8,48 @@
 			:value="modelValue"
 			@input="$emit('update:modelValue', $event.target.value)"
 			@keyup.enter="submitEvent"
+			@focus="focusEvent"
+			@blur="blurEvent"
 		/>
 		<i class="bottom" aria-hidden="true"></i>
+		<label
+			ref="label"
+			:class="['label', labelIsTop ? 'top' : 'center']"
+			v-if="props.label"
+			v-text="props.label"
+		></label>
+
 		<gal-icon-button
 			v-if="type === 'search'"
 			class="icon search-icon"
 			icon="search"
-			circle
 			size="48px"
 			v-gal-tooltip="'搜索'"
 			@click="submitEvent"
+		></gal-icon-button>
+
+		<gal-icon-button
+			v-if="type === 'password' && !showPasswordContent"
+			class="icon password-icon"
+			icon="eyeOff"
+			size="48px"
+			@click="changePasswordContentVisible(true)"
+		></gal-icon-button>
+		<gal-icon-button
+			v-if="type === 'password' && showPasswordContent"
+			class="icon password-icon"
+			icon="eye"
+			size="48px"
+			@click="changePasswordContentVisible(false)"
 		></gal-icon-button>
 	</div>
 </template>
 
 <script setup>
-import { ref, onMounted, useAttrs } from "vue";
+import { ref, onMounted, useAttrs, watch } from "vue";
+import { useStore } from "@/store/index.js";
 
+const store = useStore();
 const attrs = useAttrs();
 
 const props = defineProps({
@@ -32,18 +57,54 @@ const props = defineProps({
 		type: String,
 		default: "text"
 	},
+	label: {
+		type: String,
+		default: ""
+	},
 	modelValue: String,
 	submitEvent: Function
 });
 
 const input = ref();
+const label = ref();
+
+const labelIsTop = ref(false);
 
 const submitEvent = (ev) => {
 	props.submitEvent(ev);
 };
+const focusEvent = () => {
+	labelIsTop.value = true;
+};
+const blurEvent = () => {
+	if (props.modelValue === "") {
+		labelIsTop.value = false;
+	}
+};
+
+const showPasswordContent = ref(false);
+
+const changePasswordContentVisible = (visible) => {
+	showPasswordContent.value = visible;
+	input.value.type = visible ? "text" : "password";
+};
+
+watch(
+	() => props.modelValue,
+	(val) => {
+		if (val) {
+			labelIsTop.value = true;
+		}
+	}
+);
 onMounted(() => {
 	if (attrs.autofocus) {
 		input.value.focus();
+	}
+
+	if (props.label) {
+		const id = store.setElID(input.value).getAttribute("id");
+		label.value.setAttribute("for", id);
 	}
 });
 </script>
@@ -54,6 +115,7 @@ input[type="search" i]::-webkit-search-cancel-button {
 }
 
 .input-wrap {
+	box-sizing: border-box;
 	position: relative;
 	display: flex;
 	justify-content: center;
@@ -66,7 +128,6 @@ input[type="search" i]::-webkit-search-cancel-button {
 	caret-color: var(--main-color);
 	font-size: 16px;
 	outline: none;
-	padding: 0 0.5em;
 }
 .input:focus {
 	border: var(--main-color);
@@ -111,5 +172,29 @@ input[type="search" i]::-webkit-search-cancel-button {
 .search-icon {
 	color: var(--main-color);
 	font-size: 24px;
+}
+
+.label {
+	position: absolute;
+	left: 0;
+	top: 0;
+	font-size: 16px;
+	color: var(--gray-color);
+	transition: all 0.3s;
+}
+.label.top {
+	top: -1em;
+	font-size: 12px;
+}
+.input:focus ~ .label {
+	color: var(--main-color);
+}
+
+.password-icon {
+	color: var(--gray-color);
+	font-size: 24px;
+}
+.input:focus ~ .password-icon {
+	color: var(--main-color);
 }
 </style>

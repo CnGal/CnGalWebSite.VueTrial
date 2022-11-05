@@ -26,6 +26,7 @@ const iconList = [
 	"note",
 	"star",
 	"eye",
+	"eyeOff",
 	"comments",
 	"gift",
 	"menu",
