@@ -87,6 +87,7 @@ const showPasswordContent = ref(false);
 const changePasswordContentVisible = (visible) => {
 	showPasswordContent.value = visible;
 	input.value.type = visible ? "text" : "password";
+	input.value.focus();
 };
 
 watch(
@@ -112,6 +113,9 @@ onMounted(() => {
 <style scoped>
 input[type="search" i]::-webkit-search-cancel-button {
 	display: none;
+}
+.icon:hover {
+	--main-hover-color: transparent;
 }
 
 .input-wrap {

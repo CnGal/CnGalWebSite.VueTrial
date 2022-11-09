@@ -18,6 +18,35 @@
 			simplt
 			label="密码"
 		></galInput>
+
+		<div
+			:style="{
+				display: 'flex',
+				justifyContent: 'space-between',
+				alignItems: 'center'
+			}"
+		>
+			<galCheckbox v-model="rememberMe" label="记住我"></galCheckbox>
+			<RouterLink class="forget" to="/account/forgetpassword"
+				>忘记密码？</RouterLink
+			>
+		</div>
+
+		<galButton
+			class="login-button"
+			circle
+			@click="loginEvent"
+			width="full"
+			bgColor="var(--main-color)"
+		>
+			登入</galButton
+		>
+
+		<div>
+			还没有账号？<RouterLink class="register" to="/account/register"
+				>立即注册</RouterLink
+			>
+		</div>
 	</form>
 </template>
 
@@ -27,6 +56,16 @@ import { login, getGeetestCode } from "@/api/accountAPI/login.js";
 
 const username = ref("");
 const password = ref("");
+const rememberMe = ref(true);
+
+const loginEvent = (ev) => {
+	ev.preventDefault();
+	console.log({
+		username: username.value,
+		password: password.value,
+		rememberMe: rememberMe.value
+	});
+};
 
 (async () => {
 	// todo
@@ -64,5 +103,13 @@ const password = ref("");
 }
 .input {
 	margin: 24px 0;
+}
+.forget {
+	color: var(--main-color);
+	font-size: 14px;
+}
+
+.login-button {
+	margin-block-start: 32px;
 }
 </style>
