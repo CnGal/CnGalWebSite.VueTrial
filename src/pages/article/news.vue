@@ -5,11 +5,35 @@
 		v-model="activeTab"
 		width="full"
 	></gal-Tabs>
+
+	<gal-collapse
+		class="collapse"
+		v-for="news in newsData"
+		:key="news.groupId"
+		v-model="activeNames[news.groupId]"
+		@change="collapseChange"
+		accordion
+	>
+		<galCollapseItem name="1">
+			<template #title>
+				<img class="img" :src="news.groupImage" :alt="news.groupName" />
+				<div class="title">{{ news.groupName }}</div>
+			</template>
+			<gal-link-button :to="news.outlink" target="_blank">
+				<gal-icon icon="shareAll"></gal-icon>前往微博主页
+			</gal-link-button>
+			<gal-link-button :to="'/entries/index/' + news.groupId">
+				<gal-icon icon="shareAll"></gal-icon>查看词条
+			</gal-link-button>
+		</galCollapseItem>
+	</gal-collapse>
 </template>
 
 <script setup>
 import { ref, onMounted, watch } from "vue";
 import { getNewSummary } from "@/api/articlesApi/index.js";
+
+import { ElCollapseItem } from "element-plus";
 
 const tabs = [
 	{
@@ -31,15 +55,38 @@ const tabs = [
 ];
 
 const activeTab = ref(0);
+const newsData = ref([]);
+const activeNames = ref({});
 
 (async () => {
-	const res = await getNewSummary(tabs[activeTab.value].text);
-	console.log(res);
+	const { data } = await getNewSummary(tabs[activeTab.value].text);
+	newsData.value = data;
+	data.forEach((item) => {
+		activeNames.value[item.groupId] = "0";
+	});
 })();
+
+const collapseChange = (val) => {
+	console.log(val);
+};
 </script>
 
 <style scoped>
 .tabs {
 	height: 72px;
+}
+
+.collapse {
+	margin-block-start: 16px;
+}
+.img {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
+.title {
+	font-size: 24px;
+	font-weight: bold;
+	margin-inline-start: 12px;
 }
 </style>
