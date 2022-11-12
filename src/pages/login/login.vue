@@ -67,7 +67,6 @@ const doCaptch = (captcha) => {
 	captchaObj.value = captcha;
 	captcha.onSuccess(() => {
 		const result = captcha.getValidate();
-		console.log(result);
 		loginIn(result);
 		// objRef.invokeMethodAsync('OnChecked', result.geetest_challenge, result.geetest_validate, result.geetest_seccode);
 	});

@@ -16,9 +16,14 @@ async function getArticleView(id) {
 	return await axios.get("/api/articles/GetArticleView/" + id);
 }
 
+async function getNewSummary(time) {
+	return await axios.get("/api/articles/GetNewSummary/" + time);
+}
+
 export {
 	getRandomArticles,
 	getWeeklyNewsOverview,
 	getGameEvaluations,
-	getArticleView
+	getArticleView,
+	getNewSummary
 };

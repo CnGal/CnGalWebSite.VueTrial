@@ -44,6 +44,7 @@ import iconCalendarAlt from "../icons/calendar-alt.vue";
 import iconCalendarPlus from "../icons/calendar-plus.vue";
 import iconCalendarPlusOutline from "../icons/calendar-plus-outline.vue";
 import iconCalendarTimes from "../icons/calendar-times.vue";
+import iconCalendarText from "../icons/calendar-text.vue";
 import iconChartArea from "../icons/chart-area.vue";
 import iconDollar from "../icons/dollar.vue";
 import iconPicture from "../icons/picture.vue";
@@ -84,6 +85,8 @@ import iconDatabaseExport from "../icons/database-export.vue";
 import iconObjectGroup from "../icons/object-group.vue";
 import iconSortAsc from "../icons/sort-asc.vue";
 import iconSortDesc from "../icons/sort-desc.vue";
+import iconClockTimeFour from "../icons/clock-time-four.vue";
+import iconAllInclusive from "../icons/all-inclusive.vue";
 
 const props = defineProps({
 	icon: {
@@ -136,6 +139,7 @@ const iconMap = {
 	calendarPlus: iconCalendarPlus,
 	calendarPlusOutline: iconCalendarPlusOutline,
 	calendarTimes: iconCalendarTimes,
+	calendarText: iconCalendarText,
 	chartArea: iconChartArea,
 	dollar: iconDollar,
 	picture: iconPicture,
@@ -175,7 +179,9 @@ const iconMap = {
 	databaseExport: iconDatabaseExport,
 	objectGroup: iconObjectGroup,
 	sortAsc: iconSortAsc,
-	sortDesc: iconSortDesc
+	sortDesc: iconSortDesc,
+	clockTimeFour: iconClockTimeFour,
+	allInclusive: iconAllInclusive
 };
 </script>
 
