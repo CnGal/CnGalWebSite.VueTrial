@@ -8,4 +8,8 @@ async function getGeetestCode() {
 	return await axios.get("/api/account/GetGeetestCode");
 }
 
-export { login, getGeetestCode };
+async function getIp() {
+	return await axios.get("/api/account/GetIp");
+}
+
+export { login, getGeetestCode, getIp };

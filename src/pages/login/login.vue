@@ -54,11 +54,12 @@
 <script setup>
 import "@/assets/external/gt/gt.js";
 import { ref } from "vue";
-import { login, getGeetestCode } from "@/api/accountAPI/login.js";
+import { login, getGeetestCode, getIp } from "@/api/accountAPI/login.js";
 
 const username = ref("");
 const password = ref("");
 const rememberMe = ref(true);
+const ip = ref("");
 
 const geetest = ref(null);
 const captchaObj = ref(null);
@@ -67,6 +68,7 @@ const doCaptch = (captcha) => {
 	captcha.onSuccess(() => {
 		const result = captcha.getValidate();
 		console.log(result);
+		loginIn(result);
 		// objRef.invokeMethodAsync('OnChecked', result.geetest_challenge, result.geetest_validate, result.geetest_seccode);
 	});
 	// captchaObj.onError(function () {
@@ -92,30 +94,48 @@ const initGeetestBindCAPTCHA = (geetestCode) => {
 	};
 };
 
+const loginIn = async ({
+	geetest_challenge: challenge,
+	geetest_validate: validate,
+	geetest_seccode: seccode
+}) => {
+	const res = await login({
+		username: username.value,
+		password: password.value,
+		rememberMe: rememberMe.value,
+		isNeedVerification: true,
+		verification: {
+			success: true,
+			validate: validate,
+			challenge: challenge,
+			seccode: seccode
+		},
+		identification: {
+			ip: ip.value
+		}
+	});
+	console.log(res);
+};
+
 (async () => {
 	// todo
 	const { data: geetestCode } = await getGeetestCode();
 	initGeetestBindCAPTCHA(geetestCode)(doCaptch);
-	// const res = await login({
-	// 	username: "",
-	// 	password: "",
-	// 	rememberMe: true,
-	// 	isNeedVerification: false,
-	// 	verification: {
-	// 		validate: "6a8ee4ddb77db9195d16570a598c6217"
-	// 	}
-	// });
-	// console.log(res);
+
+	const { data: ipInfo } = await getIp();
+	ip.value = ipInfo;
 })();
 
 const loginEvent = (ev) => {
+	if (username.value === "") {
+		console.log("请输入用户名");
+		return;
+	} else if (password.value === "") {
+		console.log("请输入密码");
+		return;
+	}
 	ev.preventDefault();
 	captchaObj.value.verify();
-	console.log({
-		username: username.value,
-		password: password.value,
-		rememberMe: rememberMe.value
-	});
 };
 </script>
 
