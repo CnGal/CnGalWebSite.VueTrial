@@ -1,5 +1,8 @@
 <template>
-	<button class="button" ref="button">
+	<button
+		:class="['button', props.width, { hasBg: props.bgColor }]"
+		ref="button"
+	>
 		<slot></slot>
 	</button>
 </template>
@@ -9,6 +12,14 @@ import { ref, onMounted, useAttrs } from "vue";
 
 const attrs = useAttrs();
 const button = ref();
+
+const props = defineProps({
+	width: {
+		type: String,
+		default: "normal"
+	},
+	bgColor: String
+});
 
 onMounted(() => {
 	if (attrs.hasOwnProperty("circle")) {
@@ -33,5 +44,21 @@ onMounted(() => {
 }
 .circle {
 	border-radius: 50%;
+}
+.button.full {
+	padding: 0.5em 0;
+	width: 100%;
+}
+.button.full.circle {
+	border-radius: 1em;
+}
+
+.button.hasBg {
+	background-color: v-bind("props.bgColor");
+	border: none;
+	color: var(--white-color);
+}
+.button:not(.hasBg):hover {
+	background-color: var(--main-hover-color);
 }
 </style>

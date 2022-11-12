@@ -17,6 +17,7 @@ import tooltip from "../components/base/tooltip/import.js";
 import input from "../components/base/input/input.vue";
 import pagination from "../components/base/pagination/pagination.vue";
 import datepicker from "../components/base/datepicker/datepicker.vue";
+import checkbox from "../components/base/input/checkbox.vue";
 
 import noWrapGameList from "../components/common/gameCard/noWrapGameList.vue";
 import newsCard from "../components/common/gameCard/newsCard.vue";
@@ -50,6 +51,7 @@ const importPlugin = {
 		app.component("galInput", input);
 		app.component("galPagination", pagination);
 		app.component("galDatepicker", datepicker);
+		app.component("galCheckbox", checkbox);
 
 		app.component("galNoWrapGameList", noWrapGameList);
 		app.component("galNewsCard", newsCard);

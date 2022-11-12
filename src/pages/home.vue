@@ -76,21 +76,25 @@ const openSettingDialog = () => {
 const goToSearch = () => {
 	router.push("/search");
 };
+const goToLogin = () => {
+	router.push("/account/login");
+};
 const headerIconList = ref([
 	{
 		icon: "search",
 		text: "搜索",
-		click: goToSearch,
+		click: goToSearch
 	},
 	{
 		icon: "login",
 		text: "登陆",
+		click: goToLogin
 	},
 	{
 		icon: "settings",
 		text: "设置",
-		click: openSettingDialog,
-	},
+		click: openSettingDialog
+	}
 ]);
 
 const colorList = [
@@ -112,11 +116,11 @@ const colorList = [
 	"#ff5722",
 	"#795548",
 	"#607d8b",
-	"#000000",
+	"#000000"
 ];
 const changeTheme = (theme) => {
 	store.changeTheme({
-		color: theme,
+		color: theme
 	});
 };
 </script>

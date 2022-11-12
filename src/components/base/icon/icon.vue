@@ -24,6 +24,7 @@ import iconPencilMdi from "../icons/pencil-mdi.vue";
 import iconNote from "../icons/note.vue";
 import iconStar from "../icons/star.vue";
 import iconEye from "../icons/eye.vue";
+import iconEyeOff from "../icons/eyeOff.vue";
 import iconComments from "../icons/comments.vue";
 import iconGift from "../icons/gift.vue";
 import iconMenu from "../icons/menu.vue";
@@ -115,6 +116,7 @@ const iconMap = {
 	note: iconNote,
 	star: iconStar,
 	eye: iconEye,
+	eyeOff: iconEyeOff,
 	comments: iconComments,
 	gift: iconGift,
 	menu: iconMenu,
