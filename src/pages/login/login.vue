@@ -48,9 +48,11 @@
 			>
 		</div>
 	</form>
+	<div ref="geetest"></div>
 </template>
 
 <script setup>
+import "@/assets/external/gt/gt.js";
 import { ref } from "vue";
 import { login, getGeetestCode } from "@/api/accountAPI/login.js";
 
@@ -58,20 +60,42 @@ const username = ref("");
 const password = ref("");
 const rememberMe = ref(true);
 
-const loginEvent = (ev) => {
-	ev.preventDefault();
-	console.log({
-		username: username.value,
-		password: password.value,
-		rememberMe: rememberMe.value
+const geetest = ref(null);
+const captchaObj = ref(null);
+const doCaptch = (captcha) => {
+	captchaObj.value = captcha;
+	captcha.onSuccess(() => {
+		const result = captcha.getValidate();
+		console.log(result);
+		// objRef.invokeMethodAsync('OnChecked', result.geetest_challenge, result.geetest_validate, result.geetest_seccode);
 	});
+	// captchaObj.onError(function () {
+	//     // objRef.invokeMethodAsync('OnCancel');
+	// });
+	// captchaObj.onClose(function () {
+	//     // objRef.invokeMethodAsync('OnCancel');
+	// });
+};
+const initGeetestBindCAPTCHA = (geetestCode) => {
+	return (doCaptch) => {
+		initGeetest(
+			{
+				// 以下配置参数来自服务端 SDK
+				gt: geetestCode.gt,
+				challenge: geetestCode.challenge,
+				offline: !geetestCode.success,
+				new_captcha: true,
+				product: "bind"
+			},
+			doCaptch
+		);
+	};
 };
 
 (async () => {
 	// todo
-	// 不会，不知道具体步骤
-	// const res = await getGeetestCode();
-	// console.log(res);
+	const { data: geetestCode } = await getGeetestCode();
+	initGeetestBindCAPTCHA(geetestCode)(doCaptch);
 	// const res = await login({
 	// 	username: "",
 	// 	password: "",
@@ -83,6 +107,16 @@ const loginEvent = (ev) => {
 	// });
 	// console.log(res);
 })();
+
+const loginEvent = (ev) => {
+	ev.preventDefault();
+	captchaObj.value.verify();
+	console.log({
+		username: username.value,
+		password: password.value,
+		rememberMe: rememberMe.value
+	});
+};
 </script>
 
 <style scoped>
