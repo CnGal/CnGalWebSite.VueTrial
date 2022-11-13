@@ -46,6 +46,7 @@ const iconList = [
 	"calendarPlus",
 	"calendarPlusOutline",
 	"calendarTimes",
+	"calendarText",
 	"chartArea",
 	"dollar",
 	"picture",
@@ -84,7 +85,9 @@ const iconList = [
 	"objectGroup",
 	"sortAsc",
 	"sortDesc",
-	"tags"
+	"tags",
+	"clockTimeFour",
+	"allInclusive"
 ];
 </script>
 

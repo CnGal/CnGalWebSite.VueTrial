@@ -1,19 +1,15 @@
 <template>
-	<router-link :to="props.to" :class="['link-button', props.theme]">
+	<gal-link :class="['link-button', props.theme]">
 		<slot></slot>
-	</router-link>
+	</gal-link>
 </template>
 
 <script setup>
 const props = defineProps({
-	to: {
-		type: String,
-		required: true,
-	},
 	theme: {
 		type: String,
-		default: "hollow",
-	},
+		default: "hollow"
+	}
 });
 </script>
 
