@@ -41,7 +41,7 @@ const props = defineProps({
 	},
 	modelValue: Number
 });
-const emit = defineEmits(["update:modelValue, changeActiveTab"]);
+const emit = defineEmits(["update:modelValue", "changeActiveTab"]);
 
 const changeActiveTab = (index) => {
 	emit("update:modelValue", index);
