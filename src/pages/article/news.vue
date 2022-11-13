@@ -14,26 +14,24 @@
 		@change="collapseChange"
 		accordion
 	>
-		<galCollapseItem name="1">
+		<gal-collapse-item name="1">
 			<template #title>
 				<img class="img" :src="news.groupImage" :alt="news.groupName" />
 				<div class="title">{{ news.groupName }}</div>
 			</template>
-			<gal-link-button :to="news.outlink" target="_blank">
+			<gal-link-button :href="news.outlink" target="_blank">
 				<gal-icon icon="shareAll"></gal-icon>前往微博主页
 			</gal-link-button>
 			<gal-link-button :to="'/entries/index/' + news.groupId">
 				<gal-icon icon="shareAll"></gal-icon>查看词条
 			</gal-link-button>
-		</galCollapseItem>
+		</gal-collapse-item>
 	</gal-collapse>
 </template>
 
 <script setup>
 import { ref, onMounted, watch } from "vue";
 import { getNewSummary } from "@/api/articlesApi/index.js";
-
-import { ElCollapseItem } from "element-plus";
 
 const tabs = [
 	{
