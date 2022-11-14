@@ -4,6 +4,7 @@ export const useStore = defineStore("main", {
 	state() {
 		return {
 			elID: 1,
+			authToken: "",
 			isMobile: !!navigator.userAgent.match(/(Android|iPhone|Mobile)/i),
 			theme: JSON.parse(
 				localStorage.getItem("theme") ||
