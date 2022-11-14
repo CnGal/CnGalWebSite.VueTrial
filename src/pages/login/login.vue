@@ -17,6 +17,7 @@
 			type="password"
 			simplt
 			label="密码"
+			@keypress.enter="loginEvent"
 		></galInput>
 
 		<div
@@ -52,14 +53,20 @@
 </template>
 
 <script setup>
-import "@/assets/external/gt/gt.js";
 import { ref } from "vue";
-import { login, getGeetestCode, getIp } from "@/api/accountAPI/login.js";
+import { login, getGeetestCode } from "@/api/accountAPI/login.js";
+import {
+	initGeetestBindCAPTCHA,
+	getIdentification
+} from "@/assets/common/js/account.js";
+import { useRouter } from "vue-router";
+import { useStore } from "@/store/index.js";
+const store = useStore();
+const router = useRouter();
 
 const username = ref("");
 const password = ref("");
 const rememberMe = ref(true);
-const ip = ref("");
 
 const geetest = ref(null);
 const captchaObj = ref(null);
@@ -77,28 +84,16 @@ const doCaptch = (captcha) => {
 	//     // objRef.invokeMethodAsync('OnCancel');
 	// });
 };
-const initGeetestBindCAPTCHA = (geetestCode) => {
-	return (doCaptch) => {
-		initGeetest(
-			{
-				// 以下配置参数来自服务端 SDK
-				gt: geetestCode.gt,
-				challenge: geetestCode.challenge,
-				offline: !geetestCode.success,
-				new_captcha: true,
-				product: "bind"
-			},
-			doCaptch
-		);
-	};
-};
 
 const loginIn = async ({
 	geetest_challenge: challenge,
 	geetest_validate: validate,
 	geetest_seccode: seccode
 }) => {
-	const res = await login({
+	const identification = await getIdentification();
+	const {
+		data: { token: token }
+	} = await login({
 		username: username.value,
 		password: password.value,
 		rememberMe: rememberMe.value,
@@ -110,19 +105,21 @@ const loginIn = async ({
 			seccode: seccode
 		},
 		identification: {
-			ip: ip.value
+			...identification
 		}
 	});
-	console.log(res);
+
+	localStorage.setItem("authToken", token);
+	store.authToken = token;
+
+	const backRouter = localStorage.getItem("loginRedirect");
+	router.push(backRouter || "/");
+	localStorage.removeItem("loginRedirect");
 };
 
 (async () => {
-	// todo
 	const { data: geetestCode } = await getGeetestCode();
 	initGeetestBindCAPTCHA(geetestCode)(doCaptch);
-
-	const { data: ipInfo } = await getIp();
-	ip.value = ipInfo;
 })();
 
 const loginEvent = (ev) => {

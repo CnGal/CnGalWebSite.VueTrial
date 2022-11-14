@@ -1,3 +1,7 @@
+const getRandomUUID = () => {
+	return crypto.randomUUID();
+};
+
 const getRandom = (min, max) => {
 	return Math.floor(Math.random() * (max - min + 1) + min);
 };
@@ -27,4 +31,9 @@ const getNonRepeatRandomList = (data, wantLength) => {
 	}
 };
 
-export { nonRepeatRandomList, getRandom, getNonRepeatRandomList };
+export {
+	nonRepeatRandomList,
+	getRandom,
+	getNonRepeatRandomList,
+	getRandomUUID
+};

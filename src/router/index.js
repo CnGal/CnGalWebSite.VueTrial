@@ -78,4 +78,11 @@ const router = createRouter({
 	routes
 });
 
+router.beforeEach((to, from, next) => {
+	if (to.path === "/account/login") {
+		localStorage.setItem("loginRedirect", from.path);
+	}
+	next();
+});
+
 export default router;
