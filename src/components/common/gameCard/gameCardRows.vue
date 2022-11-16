@@ -21,8 +21,8 @@
 				item: true,
 				'user-item':
 					props.type === 'entry' &&
-					(row.type === store.entryType.role ||
-						row.type === store.entryType.staff)
+					(row.type === stateStore.entryType.role ||
+						row.type === stateStore.entryType.staff)
 			}"
 		>
 			<img :src="row.mainImage" :alt="row.name" class="img" />
@@ -62,7 +62,7 @@
 				v-if="
 					props.type === 'article' ||
 					(props.type === 'entry' &&
-						row.type === store.entryType.game)
+						row.type === stateStore.entryType.game)
 				"
 			>
 				<span>
@@ -97,9 +97,11 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
-import { formatDate } from "../../../assets/common/js/formatDate";
-import { useStore } from "../../../store/index.js";
+import { formatDate } from "@/assets/common/js/formatDate";
+import { useStore } from "@/store/index.js";
+import { useStateTypeStore } from "@/store/statetype.js";
 const store = useStore();
+const stateStore = useStateTypeStore();
 const isMobile = store.isMobile;
 
 const props = defineProps({
@@ -168,34 +170,34 @@ const changeWidth = () => {
 const tagText = (type) => {
 	if (props.type === "entry") {
 		switch (type) {
-			case store.entryType.game:
+			case stateStore.entryType.game:
 				return "游戏";
-			case store.entryType.role:
+			case stateStore.entryType.role:
 				return "角色";
-			case store.entryType.productionGroup:
+			case stateStore.entryType.productionGroup:
 				return "组织";
-			case store.entryType.staff:
+			case stateStore.entryType.staff:
 				return "Staff";
 		}
 	} else if (props.type === "article") {
 		switch (type) {
-			case store.articleType.tought:
+			case stateStore.articleType.tought:
 				return "感想";
-			case store.articleType.strategy:
+			case stateStore.articleType.strategy:
 				return "攻略";
-			case store.articleType.interview:
+			case stateStore.articleType.interview:
 				return "访谈";
-			case store.articleType.news:
+			case stateStore.articleType.news:
 				return "动态";
-			case store.articleType.evaluation:
+			case stateStore.articleType.evaluation:
 				return "评测";
-			case store.articleType.peripheral:
+			case stateStore.articleType.peripheral:
 				return "周边";
-			case store.articleType.notice:
+			case stateStore.articleType.notice:
 				return "公告";
-			case store.articleType.none:
+			case stateStore.articleType.none:
 				return "杂谈";
-			case store.articleType.fan:
+			case stateStore.articleType.fan:
 				return "二创";
 		}
 	} else if (props.type === "tag") {

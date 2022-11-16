@@ -21,8 +21,10 @@
 					class="icon"
 					:icon="infomationIcons(item) || 'circle'"
 				></gal-icon>
-				<span>{{ showInformationKeyText(item) }}:</span>
-				<span>{{ item.displayValue }}</span>
+				<div>
+					<span>{{ showInformationKeyText(item) }}:</span>
+					<span>{{ item.displayValue }}</span>
+				</div>
 			</li>
 		</ul>
 	</gal-card>
@@ -58,13 +60,12 @@
 					class="icon"
 					:icon="infomationIcons(item) || 'externalLinkSquareAlt'"
 				></gal-icon>
-				<span>{{ showInformationKeyText(item) }}:</span>
-				<a
-					class="single-row-dot"
-					:href="item.displayValue"
-					target="_blank"
-					>{{ item.displayValue }}</a
-				>
+				<div class="single-row-dot">
+					<span>{{ showInformationKeyText(item) }}:</span>
+					<gal-link :href="item.displayValue" target="_blank">{{
+						item.displayValue
+					}}</gal-link>
+				</div>
 			</li>
 		</ul>
 	</gal-card>
@@ -85,11 +86,9 @@ const props = defineProps({
 </script>
 
 <style scoped>
-a,
 .icon {
 	color: var(--main-color);
 }
-.theme-dark a,
 .theme-dark .icon {
 	color: var(--main-font-color);
 }
@@ -112,12 +111,14 @@ a,
 	display: flex;
 	column-gap: 14px;
 	margin-block-end: 2px;
+	flex-wrap: nowrap;
+	align-items: baseline;
 }
-.item .icon,
-.item span {
+.item .icon {
 	flex: none;
+	transform: translateY(2px);
 }
-.basic .item {
-	flex-wrap: wrap;
+.item > div > span:first-child {
+	margin-inline-end: 14px;
 }
 </style>
