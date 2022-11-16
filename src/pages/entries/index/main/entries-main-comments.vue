@@ -23,8 +23,8 @@
 import { ref, watch } from "vue";
 import { getComments } from "../../../../api/commentsAPI/index.js";
 
-import { useStore } from "../../../../store/index.js";
-const store = useStore();
+import { useStateTypeStore } from "@/store/statetype.js";
+const stateStore = useStateTypeStore();
 
 const props = defineProps({
 	id: {
@@ -35,7 +35,10 @@ const props = defineProps({
 
 const comments = ref(null);
 const getComment = async (newId) => {
-	const { data } = await getComments(store.commentType.commentEntries, newId);
+	const { data } = await getComments(
+		stateStore.commentType.commentEntries,
+		newId
+	);
 	comments.value = data;
 };
 getComment(props.id);

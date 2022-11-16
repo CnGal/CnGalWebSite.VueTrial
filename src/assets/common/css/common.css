@@ -9,3 +9,17 @@
 	-webkit-line-clamp: var(--row-dot-line, 2);
 	-webkit-box-orient: vertical;
 }
+
+.aspect-ratio {
+	position: relative;
+	width: 100%;
+	height: 0;
+	padding-bottom: 56%;
+}
+.aspect-ratio iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}

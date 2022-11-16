@@ -15,16 +15,11 @@ const props = defineProps({
 
 <style scoped>
 .link-button {
-	color: var(--main-font-color);
-	font-size: 14px;
 	padding: 0.5em 1em;
 	display: inline-flex;
 	column-gap: 0.5em;
 	justify-content: center;
 	align-items: center;
-}
-html:not(.theme-dark) .link-button {
-	color: var(--main-color);
 }
 .link-button:hover {
 	background-color: var(--main-hover-color);
@@ -66,11 +61,5 @@ html:not(.theme-dark) .link-button.outline:hover {
 }
 .theme-dark .link-button.outline:hover {
 	background-color: #808080;
-}
-
-@media screen and (max-width: 768px) {
-	.link-button {
-		font-size: 12px;
-	}
 }
 </style>

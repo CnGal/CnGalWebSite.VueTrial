@@ -36,4 +36,18 @@ if (props.href) {
 }
 </script>
 
-<style></style>
+<style>
+.link {
+	color: var(--main-color);
+	font-size: 14px;
+}
+.theme-dark .link {
+	color: var(--main-font-color);
+}
+
+@media screen and (max-width: 768px) {
+	.link {
+		font-size: 12px;
+	}
+}
+</style>

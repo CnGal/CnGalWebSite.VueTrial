@@ -4,14 +4,14 @@
 			class="main-header"
 			:class="{
 				isUser:
-					info.type === store.entryType.role ||
-					info.type === store.entryType.staff
+					info.type === stateStore.entryType.role ||
+					info.type === stateStore.entryType.staff
 			}"
 		>
 			<img
 				:src="
-					info.type === store.entryType.role ||
-					info.type === store.entryType.staff
+					info.type === stateStore.entryType.role ||
+					info.type === stateStore.entryType.staff
 						? info.thumbnail
 						: info.mainPicture
 				"
@@ -19,7 +19,10 @@
 			/>
 			<div class="main-info">
 				<h1>{{ info.name }}</h1>
-				<div class="staff" v-if="info.type === store.entryType.game">
+				<div
+					class="staff"
+					v-if="info.type === stateStore.entryType.game"
+				>
 					<div
 						class="production-group"
 						v-if="info.productionGroups?.length"
@@ -80,8 +83,8 @@
 </template>
 
 <script setup>
-import { useStore } from "../../../store";
-const store = useStore();
+import { useStateTypeStore } from "@/store/statetype.js";
+const stateStore = useStateTypeStore();
 
 const props = defineProps({
 	info: {

@@ -131,10 +131,10 @@ import { ref, watch } from "vue";
 import { getArticleView } from "@/api/articlesAPI/index.js";
 import { getComments } from "@/api/commentsAPI/index.js";
 import { formatDate } from "@/assets/common/js/formatDate.js";
-import { useStore } from "@/store/index.js";
+import { useStateTypeStore } from "@/store/statetype.js";
 import { useRoute } from "vue-router";
 const route = useRoute();
-const store = useStore();
+const stateStore = useStateTypeStore();
 const id = ref(route.params.id);
 
 const info = ref({});
@@ -148,7 +148,10 @@ getInfo();
 
 const comments = ref(null);
 const getComment = async (newId) => {
-	const { data } = await getComments(store.commentType.commentArticle, newId);
+	const { data } = await getComments(
+		stateStore.commentType.commentArticle,
+		newId
+	);
 	comments.value = data;
 };
 getComment(id.value);

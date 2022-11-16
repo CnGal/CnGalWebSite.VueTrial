@@ -109,7 +109,11 @@ const loginIn = async ({
 		}
 	});
 
-	localStorage.setItem("authToken", token);
+	if (rememberMe.value) {
+		localStorage.setItem("authToken", token);
+	} else {
+		sessionStorage.setItem("authToken", token);
+	}
 	store.authToken = token;
 
 	const backRouter = localStorage.getItem("loginRedirect");
