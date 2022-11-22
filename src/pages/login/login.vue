@@ -38,7 +38,7 @@
 			circle
 			@click="loginEvent"
 			width="full"
-			bgColor="var(--main-color)"
+			type="primary"
 		>
 			登入</galButton
 		>

@@ -17,19 +17,9 @@
 
     具体参见 [gal-icon](../icon/icon.md)
 
--   circle
+-   type
 
-    设置是否为圆形
+    同 [gal-button](../button/button.md)
+    在值为 default 情况下添加 --button-bg-color: transparent; css 属性值
 
--   size
-
-    -   type: String
-    -   default: "24px"
-
-    设置 button 的宽高
-
--   bgColor
-
-    -   type: String
-
-    设置背景色
+-   其他 [gal-button](../button/button.md) 属性

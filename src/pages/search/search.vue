@@ -117,7 +117,7 @@
 	<gal-card
 		class="data-area"
 		width="full"
-		:style="{ '--bgColor-main': 'transparent' }"
+		:style="{ '--card-body-bg-color': 'transparent' }"
 	>
 		<div
 			v-for="(item, index) in searchData.pagedResultDto?.data"

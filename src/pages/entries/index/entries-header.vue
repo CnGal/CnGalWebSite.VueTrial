@@ -63,16 +63,16 @@
 					<gal-icon-button
 						icon="heartOutline"
 						class="icon"
-						size="40px"
-						bgColor="var(--main-color)"
+						:style="{ '--icon-button-size': '40px' }"
+						type="primary"
 						circle
 						v-gal-tooltip="'收藏'"
 					></gal-icon-button>
 					<gal-icon-button
 						icon="pencilMdi"
 						class="icon"
-						size="40px"
-						bgColor="var(--main-color)"
+						:style="{ '--icon-button-size': '40px' }"
+						type="primary"
 						circle
 						v-gal-tooltip="'编辑'"
 					></gal-icon-button>

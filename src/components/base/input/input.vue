@@ -23,7 +23,7 @@
 			v-if="type === 'search'"
 			class="icon search-icon"
 			icon="search"
-			size="48px"
+			circle
 			v-gal-tooltip="'搜索'"
 			@click="submitEvent"
 		></gal-icon-button>
@@ -32,14 +32,12 @@
 			v-if="type === 'password' && !showPasswordContent"
 			class="icon password-icon"
 			icon="eyeOff"
-			size="48px"
 			@click="changePasswordContentVisible(true)"
 		></gal-icon-button>
 		<gal-icon-button
 			v-if="type === 'password' && showPasswordContent"
 			class="icon password-icon"
 			icon="eye"
-			size="48px"
 			@click="changePasswordContentVisible(false)"
 		></gal-icon-button>
 	</div>
@@ -114,9 +112,6 @@ onMounted(() => {
 input[type="search" i]::-webkit-search-cancel-button {
 	display: none;
 }
-.icon:hover {
-	--main-hover-color: transparent;
-}
 
 .input-wrap {
 	box-sizing: border-box;
@@ -173,6 +168,12 @@ input[type="search" i]::-webkit-search-cancel-button {
 	transform: scaleX(1);
 }
 
+.icon {
+	--icon-button-size: 48px;
+}
+.password-icon {
+	--button-hover-bg-color: transparent;
+}
 .search-icon {
 	color: var(--main-color);
 	font-size: 24px;

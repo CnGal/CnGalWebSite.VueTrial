@@ -4,6 +4,7 @@
 	--gray-color: #7e8299;
 	--white-color: #fff;
 	--pink-color: #f06292;
+	--light-pink-color: #fbf1f4;
 }
 
 :root {
@@ -20,8 +21,9 @@
 
 :root {
 	--main-bg-color: var(--white-color);
+	--main-hover-bg-color: var(--light-pink-color);
 	--main-font-color: var(--block-color);
-	--main-hover-color: #fbf1f4;
+	--main-hover-color: var(--light-pink-color);
 	--body-color: #f5f6f7;
 }
 .theme-dark:root {

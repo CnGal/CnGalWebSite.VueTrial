@@ -68,16 +68,16 @@
 				<gal-icon-button
 					icon="heartOutline"
 					class="icon"
-					size="40px"
-					bgColor="var(--main-color)"
+					:style="{ '--icon-button-size': '40px' }"
+					type="primary"
 					circle
 					v-gal-tooltip="'收藏'"
 				></gal-icon-button>
 				<gal-icon-button
 					icon="thumbsUp"
 					class="icon"
-					size="40px"
-					bgColor="var(--main-color)"
+					:style="{ '--icon-button-size': '40px' }"
+					type="primary"
 					circle
 					v-gal-tooltip="'点赞'"
 				></gal-icon-button>

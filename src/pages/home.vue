@@ -8,7 +8,6 @@
 			class="headerIcon"
 			:icon="item.icon"
 			circle
-			size="48px"
 			v-gal-tooltip="item.text"
 			@click="item.click"
 		></gal-icon-button>
@@ -17,13 +16,11 @@
 		<gal-icon-button
 			class="mobile-header-icon"
 			icon="menu"
-			size="48px"
 		></gal-icon-button>
 		<h1 class="title">CnGal 中文GalGame资料站</h1>
 		<gal-icon-button
 			class="mobile-header-icon"
 			icon="search"
-			size="48px"
 		></gal-icon-button>
 	</gal-header-mobile>
 	<gal-main class="main" :class="{ 'main-mobile': isMobile }">
@@ -41,10 +38,11 @@
 			</p>
 			<div>
 				<gal-button
-					v-for="(item, index) in colorList"
+					v-for="item in colorList"
+					:key="item"
 					class="color"
-					:style="{ 'background-color': item }"
-					:bgColor="item"
+					:style="{ '--button-primary-bg-color': item }"
+					type="primary"
 					@click="changeTheme(item)"
 				></gal-button>
 			</div>
@@ -134,10 +132,12 @@ const changeTheme = (theme) => {
 	flex: 1;
 }
 .headerIcon {
+	--icon-button-size: 48px;
 	margin-inline-end: 24px;
 	font-size: 24px;
 }
 .mobile-header-icon {
+	--icon-button-size: 48px;
 	font-size: 24px;
 }
 html:not(.theme-dark) .headerIcon {

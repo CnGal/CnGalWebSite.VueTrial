@@ -5,12 +5,12 @@
 			v-for="(item, index) in bannerList"
 			ref="bannerListEl"
 			:class="{
-				'banner-active': active === index,
+				'banner-active': active === index
 			}"
 			:key="index"
 			:aria-hidden="active === index ? false : true"
 		>
-			<a
+			<gal-link
 				:href="item.link"
 				target="_blank"
 				:tabindex="active === index ? 0 : -1"
@@ -24,7 +24,7 @@
 					:src="item.image"
 					:alt="item.note"
 				/>
-			</a>
+			</gal-link>
 		</div>
 		<div class="transition-img" aria-hidden="true">
 			<img src="/images/logo.png" alt="转场图片" />
@@ -34,27 +34,27 @@
 			@click="prevImg"
 			class="prevImg"
 			icon="left"
+			type="primary"
 			circle
 			v-gal-tooltip.top="'上一张'"
 			tabindex="-1"
-			bgColor="#333"
 		></gal-icon-button>
 		<gal-icon-button
 			v-if="!isMobile"
 			@click="nextImg"
 			class="nextImg"
 			icon="right"
+			type="primary"
 			circle
 			v-gal-tooltip.top="'下一张'"
 			tabindex="-1"
-			bgColor="#333"
 		></gal-icon-button>
 		<div class="changeImgBtnGroup">
 			<span
-				v-for="(item, index) in bannerList"
-				:key="index"
-				v-gal-tooltip.top="`第${index + 1}张`"
-				@click="changeActiveImg(index)"
+				v-for="item in Array.from({ length: showBannerImgNumber })"
+				:key="item"
+				v-gal-tooltip.top="`第${item + 1}张`"
+				@click="changeActiveImg(item)"
 			></span>
 		</div>
 	</div>
@@ -69,16 +69,22 @@ import { useStore } from "../../../store/index.js";
 const store = useStore();
 const isMobile = store.isMobile;
 
+const showBannerImgNumber = 6; // 总计展示的图片数量
 // 获取 banner 列表
 let bannerList = ref([]);
 const getBannerList = async () => {
 	const { data } = await getHomeCarouselsView();
 	let list = [];
-	if (data.length <= 6) {
+	if (data.length <= showBannerImgNumber) {
 		list = data;
 	} else {
 		// 选取列表中前三项，以及在其它项中随机选取三项
-		const set = nonRepeatRandomList(3, data.length - 1, 6, [0, 1, 2]);
+		const set = nonRepeatRandomList(
+			3,
+			data.length - 1,
+			showBannerImgNumber,
+			[0, 1, 2]
+		);
 		set.forEach((value) => {
 			list.push(data[value]);
 		});
@@ -127,7 +133,7 @@ const bannerAnimation = (className) => {
 			refreshTimeout();
 		},
 		{
-			once: true,
+			once: true
 		}
 	);
 };
@@ -190,22 +196,29 @@ onUnmounted(() => {
 
 <style scoped>
 .container {
+	--banner-width: var(--main-width);
+	--banner-img-aspect-ratio: 1024 / 200;
+	--banner-prev-next-btn-size: 30px;
+	--banner-btn-bg-color: #333;
+}
+.container {
 	display: flex;
 	overflow: hidden;
 	position: relative;
-}
-/* 这里是占位框 为了更方便的将所有的 item 叠放在一起 */
-.container::before {
-	content: "";
-	flex: 1 0 var(--main-width);
 }
 .container:focus-within {
 	outline: thin dotted #c9d1d9;
 	outline-offset: 1px;
 }
+
+/* 这里是占位框 为了更方便的将所有的 item 叠放在一起 */
+.container::before {
+	content: "";
+	flex: 1 0 var(--banner-width);
+}
 .banner-item {
-	flex: 1 0 var(--main-width);
-	margin-inline-start: calc(-1 * var(--main-width));
+	flex: 1 0 var(--banner-width);
+	margin-inline-start: calc(-1 * var(--banner-width));
 	z-index: -1;
 	opacity: 0;
 }
@@ -216,17 +229,19 @@ onUnmounted(() => {
 
 .banner-img {
 	width: 100%;
-	aspect-ratio: 1024 / 200;
+	aspect-ratio: var(--banner-img-aspect-ratio);
 	object-fit: cover;
 }
 .nextImg,
 .prevImg {
+	--icon-button-size: var(--banner-prev-next-btn-size);
+	--button-primary-bg-color: var(--banner-btn-bg-color);
+	--button-primary-hover-bg-color: var(--banner-btn-bg-color);
 	position: absolute;
-	top: calc(50% - 15px);
+	top: calc(50% - var(--banner-prev-next-btn-size) / 2);
 	left: 90%;
 	z-index: 3;
 	opacity: 0;
-	width: 32px;
 	font-size: 24px;
 }
 .prevImg {
@@ -248,7 +263,7 @@ onUnmounted(() => {
 	display: inline-block;
 	width: 24px;
 	height: 24px;
-	background-color: #333;
+	background-color: var(--banner-btn-bg-color);
 	border-radius: 50%;
 	cursor: pointer;
 	transition: width 0.3s;

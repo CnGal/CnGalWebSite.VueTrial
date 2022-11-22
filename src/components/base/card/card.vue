@@ -16,8 +16,7 @@
 					v-if="props.toggle"
 					icon="down"
 					class="icon toggle"
-					size="36px"
-					bgColor="var(--main-color)"
+					type="primary"
 					circle
 					v-gal-tooltip="toggleBtnTooltipTextList.show"
 					:data-tooltip-text="toggleBtnTooltipText"
@@ -65,8 +64,8 @@ const toggleRolesCardVisibility = () => {
 
 <style scoped>
 .card {
-	--bgColor-header: var(--main-bg-color);
-	--bgColor-main: var(--main-bg-color);
+	--card-header-bg-color: var(--main-bg-color);
+	--card-body-bg-color: var(--main-bg-color);
 }
 .card {
 	box-shadow: var(--main-shadow);
@@ -78,7 +77,7 @@ const toggleRolesCardVisibility = () => {
 	justify-content: space-between;
 	align-items: center;
 	color: var(--main-font-color);
-	background-color: var(--bgColor-header);
+	background-color: var(--card-header-bg-color);
 	min-height: 35px;
 	padding: 1em 1em 12px;
 }
@@ -95,12 +94,13 @@ h2 {
 }
 
 .icon.toggle {
+	--icon-button-size: 36px;
 	font-size: 20px;
 }
 
 .card-main {
 	color: var(--main-font-color);
-	background-color: var(--bgColor-main);
+	background-color: var(--card-body-bg-color);
 }
 .card-main.fit {
 	padding: 0 16px 16px;
@@ -114,7 +114,7 @@ h2 {
 
 @media screen and (max-width: 768px) {
 	.card {
-		--bgColor-main: transparent;
+		--card-body-bg-color: transparent;
 	}
 	.card {
 		box-shadow: none;
