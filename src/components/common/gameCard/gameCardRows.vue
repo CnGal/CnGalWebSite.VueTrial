@@ -204,6 +204,10 @@ const tagText = (type) => {
 		return "标签";
 	} else if (props.type === "periphery") {
 		return "周边";
+	} else if (props.type === "video") {
+		return "单机游戏";
+	} else {
+		return type || "未知";
 	}
 };
 

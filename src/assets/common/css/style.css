@@ -8,8 +8,6 @@
 }
 
 :root {
-	--header-height: 64px;
-	--header-mobile-height: 48px;
 	--main-width: min(80vw, 1400px);
 	--main-mobile-width: 100vw;
 }

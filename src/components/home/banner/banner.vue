@@ -51,10 +51,12 @@
 		></gal-icon-button>
 		<div class="changeImgBtnGroup">
 			<span
-				v-for="item in Array.from({ length: showBannerImgNumber })"
-				:key="item"
-				v-gal-tooltip.top="`第${item + 1}张`"
-				@click="changeActiveImg(item)"
+				v-for="(item, index) in Array.from({
+					length: showBannerImgNumber
+				})"
+				:key="index"
+				v-gal-tooltip.top="`第${index + 1}张`"
+				@click="changeActiveImg(index)"
 			></span>
 		</div>
 	</div>
