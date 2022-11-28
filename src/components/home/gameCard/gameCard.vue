@@ -1,5 +1,5 @@
 <template>
-	<RouterLink
+	<gal-link
 		:to="props.data.url"
 		:target="props.data.isOutlink ? '_blank' : null"
 		class="game-card"
@@ -29,7 +29,7 @@
 				}}</span
 			>
 		</div>
-	</RouterLink>
+	</gal-link>
 </template>
 
 <script setup>
