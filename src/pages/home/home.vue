@@ -18,7 +18,7 @@
 			<gal-icon icon="send" size="1em"></gal-icon>&nbsp;&nbsp;近期新作
 		</template>
 		<template v-slot:headerEnd>
-			<gal-link-button to="/">
+			<gal-link-button to="/times">
 				<gal-icon icon="shareAll"></gal-icon>查看更多
 			</gal-link-button>
 		</template>
