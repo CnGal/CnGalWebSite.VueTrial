@@ -117,7 +117,7 @@
 	<gal-card
 		class="data-area"
 		width="full"
-		:style="{ '--bgColor-main': 'transparent' }"
+		:style="{ '--card-body-bg-color': 'transparent' }"
 	>
 		<div
 			v-for="(item, index) in searchData.pagedResultDto?.data"
@@ -127,7 +127,11 @@
 			<gal-game-card-rows
 				class="rows"
 				:rows="[
-					item.article || item.entry || item.tag || item.periphery
+					item.article ||
+						item.entry ||
+						item.tag ||
+						item.periphery ||
+						item.video
 				]"
 				:type="
 					item.article
@@ -136,7 +140,13 @@
 						? 'entry'
 						: item.tag
 						? 'tag'
-						: 'periphery'
+						: item.periphery
+						? 'periphery'
+						: item.video
+						? 'video'
+						: item.user
+						? 'user'
+						: ''
 				"
 				:rowHasCellTotal="1"
 				:heightOverflowScroll="false"

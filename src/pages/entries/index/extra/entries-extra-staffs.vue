@@ -7,8 +7,8 @@
 			<gal-icon-button
 				icon="databaseExport"
 				class="icon export"
-				size="36px"
-				bgColor="var(--main-color)"
+				:style="{ '--icon-button-size': '36px' }"
+				type="primary"
 				circle
 				v-gal-tooltip="'导出STAFF'"
 				@click="openDialog"
@@ -77,8 +77,8 @@ import { ref } from "vue";
 const props = defineProps({
 	info: {
 		type: Object,
-		required: true,
-	},
+		required: true
+	}
 });
 
 const exportDialog = ref();

@@ -4,11 +4,10 @@
 	--gray-color: #7e8299;
 	--white-color: #fff;
 	--pink-color: #f06292;
+	--light-pink-color: #fbf1f4;
 }
 
 :root {
-	--header-height: 64px;
-	--header-mobile-height: 48px;
 	--main-width: min(80vw, 1400px);
 	--main-mobile-width: 100vw;
 }
@@ -20,8 +19,9 @@
 
 :root {
 	--main-bg-color: var(--white-color);
+	--main-hover-bg-color: var(--light-pink-color);
 	--main-font-color: var(--block-color);
-	--main-hover-color: #fbf1f4;
+	--main-hover-color: var(--light-pink-color);
 	--body-color: #f5f6f7;
 }
 .theme-dark:root {

@@ -44,12 +44,19 @@ const props = defineProps({
 const emit = defineEmits(["update:modelValue", "changeActiveTab"]);
 
 const changeActiveTab = (index) => {
+	const oldIndex = props.modelValue;
 	emit("update:modelValue", index);
-	emit("changeActiveTab", index);
+	emit("changeActiveTab", index, oldIndex);
 };
 </script>
 
 <style scoped>
+.tabs {
+	--tabs-font-size: 14px;
+	--tabs-font-color: var(--gray-color);
+	--tabs-font-color-active: var(--main-color);
+}
+
 .tabs,
 .tab {
 	height: 100%;
@@ -75,13 +82,13 @@ const changeActiveTab = (index) => {
 	align-items: center;
 	row-gap: 6px;
 	border: none;
-	color: var(--gray-color);
-	font-size: 14px;
+	color: var(--tabs-font-color);
+	font-size: var(--tabs-font-size);
 	height: 100%;
 	width: 100%;
 }
 .tab.active .content {
-	color: var(--pink-color);
+	color: var(--tabs-font-color-active);
 }
 .tab .content:hover {
 	background-color: #f7f7f7;
