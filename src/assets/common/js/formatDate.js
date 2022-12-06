@@ -93,6 +93,15 @@ export const dateFormat = (date) => {
 					return `${year}-${m}-${d}`;
 				}
 			},
+			YM() {
+				const m = fill ? padMonth : month;
+
+				if (i18n === "zh") {
+					return `${year}年${m}月`;
+				} else {
+					return `${year}-${m}`;
+				}
+			},
 			Y() {
 				return `${year}`;
 			},
@@ -104,4 +113,45 @@ export const dateFormat = (date) => {
 
 		return formatList[format]();
 	};
+};
+
+export const getLastMonth = (year, month) => {
+	let isString = false;
+	if (month === undefined && year.includes("-")) {
+		[year, month] = year.split("-");
+		isString = true;
+	}
+	const lastMonth = month - 1;
+
+	if (lastMonth === 0) {
+		return isString
+			? `${year - 1}-12`
+			: {
+					year: year - 1,
+					month: 12
+			  };
+	} else {
+		return isString
+			? `${year}-${lastMonth}`
+			: {
+					year,
+					month: lastMonth
+			  };
+	}
+};
+
+export const getNextMonth = (year, month) => {
+	let isString = false;
+	if (month === undefined && year.includes("-")) {
+		[year, month] = year.split("-");
+		isString = true;
+	}
+	year = Number(year);
+	month = Number(month);
+	const nextMonth = month + 1;
+	if (nextMonth === 13) {
+		return isString ? `${year + 1}-01` : { year: year + 1, month: 1 };
+	} else {
+		return isString ? `${year}-${nextMonth}` : { year, month: nextMonth };
+	}
 };

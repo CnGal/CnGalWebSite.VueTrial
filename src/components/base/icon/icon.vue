@@ -87,6 +87,8 @@ import iconSortAsc from "../icons/sort-asc.vue";
 import iconSortDesc from "../icons/sort-desc.vue";
 import iconClockTimeFour from "../icons/clock-time-four.vue";
 import iconAllInclusive from "../icons/all-inclusive.vue";
+import iconArrowLeftThick from "../icons/arrow-left-thick.vue";
+import iconArrowRightThick from "../icons/arrow-right-thick.vue";
 
 const props = defineProps({
 	icon: {
@@ -181,7 +183,9 @@ const iconMap = {
 	sortAsc: iconSortAsc,
 	sortDesc: iconSortDesc,
 	clockTimeFour: iconClockTimeFour,
-	allInclusive: iconAllInclusive
+	allInclusive: iconAllInclusive,
+	arrowLeftThick: iconArrowLeftThick,
+	arrowRightThick: iconArrowRightThick
 };
 </script>
 
