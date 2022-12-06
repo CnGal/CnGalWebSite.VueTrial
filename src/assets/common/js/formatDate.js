@@ -24,6 +24,7 @@ export const formatDateWithHowLong = (date) => {
 };
 
 export const formatDate = (date, range, i18n) => {
+	// todo: 优化
 	const willFormatDate = new Date(date);
 
 	const year = willFormatDate.getFullYear();
@@ -54,4 +55,53 @@ export const formatDate = (date, range, i18n) => {
 	} else {
 		return `${year}-${padMonth}-${padDay} ${padHour}:${padMinutes}:${padSeconds}`;
 	}
+};
+
+export const dateFormat = (date) => {
+	const willFormatDate = new Date(date);
+
+	const year = willFormatDate.getFullYear();
+	const month = willFormatDate.getMonth() + 1;
+	const day = willFormatDate.getDate();
+	const hour = willFormatDate.getHours();
+	const minutes = willFormatDate.getMinutes();
+	const seconds = willFormatDate.getSeconds();
+
+	const padMonth = month.toString().padStart(2, "0");
+	const padDay = day.toString().padStart(2, "0");
+	const padHour = hour.toString().padStart(2, "0");
+	const padMinutes = minutes.toString().padStart(2, "0");
+	const padSeconds = seconds.toString().padStart(2, "0");
+
+	return (options) => {
+		if (typeof options === "string") {
+			options = { format: options };
+		} else if (typeof options === "undefined") {
+			options = { format: "YMD" };
+		}
+
+		const { format, i18n, fill } = options;
+
+		const formatList = {
+			YMD() {
+				const m = fill ? padMonth : month;
+				const d = fill ? padDay : day;
+
+				if (i18n === "zh") {
+					return `${year}年${m}月${d}日`;
+				} else {
+					return `${year}-${m}-${d}`;
+				}
+			},
+			Y() {
+				return `${year}`;
+			},
+			M() {
+				const m = fill ? padMonth : month;
+				return `${m}`;
+			}
+		};
+
+		return formatList[format]();
+	};
 };
