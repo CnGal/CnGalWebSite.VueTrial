@@ -20,10 +20,17 @@ async function getEntryViewByID(id) {
 	return await axios.get("/api/entries/GetEntryView/" + id);
 }
 
+async function getPublishGamesByTime(params) {
+	return await axios.get("/api/entries/GetPublishGamesByTime", {
+		params
+	});
+}
+
 export {
 	getFreeGames,
 	getAllDiscountSteamGame,
 	getGameCGs,
 	getGameRoles,
-	getEntryViewByID
+	getEntryViewByID,
+	getPublishGamesByTime
 };

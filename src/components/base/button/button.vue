@@ -27,13 +27,14 @@ const props = defineProps({
 	--button-hover-bg-color: var(--main-hover-bg-color);
 	--button-primary-bg-color: var(--main-color);
 	--button-primary-hover-bg-color: var(--main-color);
+	--button-font-color: var(--main-font-color);
 }
 .button {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	background-color: var(--button-bg-color);
-	color: var(--main-font-color);
+	color: var(--button-font-color);
 	cursor: pointer;
 }
 .button:hover {

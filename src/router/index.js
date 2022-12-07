@@ -9,6 +9,8 @@ import ArticlesNews from "../pages/article/news.vue";
 
 import Search from "../pages/search/search.vue";
 
+import Times from "../pages/times/times.vue";
+
 import Login from "../pages/login/login.vue";
 
 import _test_icon from "../pages/_test/_icon.vue";
@@ -58,6 +60,11 @@ const routes = [
 				path: "/account/login",
 				name: "login",
 				component: Login
+			},
+			{
+				path: "/times",
+				name: "times",
+				component: Times
 			}
 		]
 	}
