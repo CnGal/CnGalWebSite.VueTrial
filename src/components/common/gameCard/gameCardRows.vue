@@ -7,7 +7,7 @@
 			canScroll: props.heightOverflowScroll
 		}"
 	>
-		<router-link
+		<gal-link
 			v-for="row in props.rows"
 			:key="row.id"
 			:to="
@@ -91,7 +91,7 @@
 					}}</span
 				>
 			</div>
-		</router-link>
+		</gal-link>
 	</div>
 </template>
 
@@ -224,6 +224,8 @@ onUnmounted(() => {
 .container {
 	--row-dot-line: 3;
 	--column-gap: 16px;
+	--rows-bg-color: var(--main-bg-color);
+	--row-item-bg-color: var(--main-bg-color);
 }
 .container.mobile,
 .user-item {
@@ -234,7 +236,7 @@ onUnmounted(() => {
 	flex-wrap: wrap;
 	column-gap: var(--column-gap);
 	row-gap: 12px;
-	background-color: var(--main-bg-color);
+	background-color: var(--rows-bg-color);
 	color: var(--main-font-color);
 }
 .container.canScroll {
@@ -247,7 +249,7 @@ onUnmounted(() => {
 .item {
 	width: var(--cell-width);
 	display: grid;
-	background-color: var(--main-bg-color);
+	background-color: var(--row-item-bg-color);
 	color: var(--main-font-color);
 	box-shadow: var(--main-shadow);
 	box-sizing: border-box;

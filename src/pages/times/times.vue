@@ -12,6 +12,7 @@
 			<galDatepicker
 				v-model="datePickerTimes"
 				type="month"
+				:clearable="false"
 				simplt
 				@change="datePickerTimesChange"
 			></galDatepicker>
@@ -116,5 +117,13 @@ onMounted(() => {
 .time-btn {
 	--button-font-color: var(--main-color);
 	border: none;
+}
+
+.data-area {
+	--card-body-bg-color: transparent;
+	margin-block-start: 1em;
+}
+.rows {
+	--rows-bg-color: transparent;
 }
 </style>
