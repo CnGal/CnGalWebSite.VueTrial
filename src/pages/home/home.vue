@@ -29,7 +29,7 @@
 			<gal-icon icon="send2" size="1em"></gal-icon>&nbsp;&nbsp;即将发售
 		</template>
 		<template v-slot:headerEnd>
-			<gal-link-button to="/">
+			<gal-link-button to="/times">
 				<gal-icon icon="shareAll"></gal-icon>查看更多
 			</gal-link-button>
 		</template>
@@ -40,7 +40,7 @@
 			<gal-icon icon="newspaper" size="1em"></gal-icon>&nbsp;&nbsp;文章
 		</template>
 		<template v-slot:headerEnd>
-			<gal-link-button to="/">
+			<gal-link-button to="/articles">
 				<gal-icon icon="shareAll"></gal-icon>查看更多
 			</gal-link-button>
 		</template>
