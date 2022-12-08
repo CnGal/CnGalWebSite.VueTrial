@@ -89,6 +89,7 @@ import iconClockTimeFour from "../icons/clock-time-four.vue";
 import iconAllInclusive from "../icons/all-inclusive.vue";
 import iconArrowLeftThick from "../icons/arrow-left-thick.vue";
 import iconArrowRightThick from "../icons/arrow-right-thick.vue";
+import iconVideo from "../icons/video.vue";
 
 const props = defineProps({
 	icon: {
@@ -185,7 +186,8 @@ const iconMap = {
 	clockTimeFour: iconClockTimeFour,
 	allInclusive: iconAllInclusive,
 	arrowLeftThick: iconArrowLeftThick,
-	arrowRightThick: iconArrowRightThick
+	arrowRightThick: iconArrowRightThick,
+	video: iconVideo
 };
 </script>
 
