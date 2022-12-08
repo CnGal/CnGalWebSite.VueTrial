@@ -167,7 +167,7 @@ document.title = "搜索 - CnGal 中文GalGame资料站";
 </script>
 
 <script setup>
-import { ref, reactive } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import { getHomeSearch } from "../../api/homeAPI/index.js";
 import { formatDate } from "../../assets/common/js/formatDate.js";
 import { useRoute, useRouter } from "vue-router";
@@ -274,7 +274,7 @@ const getSearch = async () => {
 	if (searchTimes.length) {
 		query.times = searchTimes;
 	}
-
+	console.log(query);
 	router.push({
 		path: "/search",
 		query
@@ -302,7 +302,11 @@ if (route.query.sort) {
 	searchSort.sort = sort[1];
 }
 if (route.query.types) {
-	searchTypes.push(...route.query.types);
+	searchTypes.push(
+		...(Array.isArray(route.query.types)
+			? route.query.types
+			: [route.query.types])
+	);
 }
 if (route.query.times) {
 	const times = Array.isArray(route.query.times)
@@ -373,6 +377,10 @@ const changePage = () => {
 	});
 	getSearch();
 };
+
+onMounted(() => {
+	changePage();
+});
 </script>
 
 <style scoped>

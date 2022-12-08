@@ -87,7 +87,10 @@ const iconList = [
 	"sortDesc",
 	"tags",
 	"clockTimeFour",
-	"allInclusive"
+	"allInclusive",
+	"arrowLeftThick",
+	"arrowRightThick",
+	"video"
 ];
 </script>
 
