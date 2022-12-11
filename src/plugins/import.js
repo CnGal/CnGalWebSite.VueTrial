@@ -35,6 +35,8 @@ import conmmentItem from "../components/common/comment/commentItem.vue";
 import gamePreview from "../components/common/gameCard/gamePreview.vue";
 import gameCardRows from "../components/common/gameCard/gameCardRows.vue";
 
+import userScoresCard from "../components/common/gameCard/userScoresCard.vue";
+
 import entriesGameCGsCardList from "../components/entries/gameCard/gameCGsCardList.vue";
 import entriesGameCGsCard from "../components/entries/gameCard/gameCGsCard.vue";
 import entriesGameRolesCardList from "../components/entries/gameCard/gameRolesCardList.vue";
@@ -76,6 +78,7 @@ const importPlugin = {
 		app.component("galGameCardRows", gameCardRows);
 		app.component("galConmmentsList", conmmentsList);
 		app.component("galConmmentItem", conmmentItem);
+		app.component("galUserScoresCard", userScoresCard);
 
 		app.component("galEntriesGameCGsCardList", entriesGameCGsCardList);
 		app.component("galEntriesGameCGsCard", entriesGameCGsCard);

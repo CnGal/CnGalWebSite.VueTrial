@@ -13,6 +13,8 @@ import Times from "../pages/times/times.vue";
 
 import Login from "../pages/login/login.vue";
 
+import Square from "../pages/square/square.vue";
+
 import _test_icon from "../pages/_test/_icon.vue";
 
 const routes = [
@@ -65,6 +67,11 @@ const routes = [
 				path: "/times",
 				name: "times",
 				component: Times
+			},
+			{
+				path: "/square",
+				name: "square",
+				component: Square
 			}
 		]
 	}
