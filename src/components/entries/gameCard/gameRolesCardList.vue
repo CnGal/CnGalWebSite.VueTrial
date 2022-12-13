@@ -19,6 +19,13 @@
 				cardName="galGamePreview"
 				v-if="!isMobile"
 				:list="gameRoles"
+				:rowHasCellTotal="{
+					xxLarge: 6,
+					xLarge: 4,
+					large: 3,
+					medium: 3,
+					small: 3
+				}"
 			></gal-no-wrap-game-list>
 			<button
 				v-else
@@ -100,21 +107,5 @@ provide("changeActive", changeActive);
 }
 .roles-area :deep(.item) {
 	row-gap: 0;
-}
-.roles-area :deep(.info) {
-	display: none;
-}
-.container :deep(.card-item) {
-	flex: 0 0 calc((100% - (var(--column-gap) * 5)) / 6);
-}
-@media screen and (max-width: 1400px) {
-	.container :deep(.card-item) {
-		flex: 0 0 calc((100% - (var(--column-gap) * 3)) / 4);
-	}
-}
-@media screen and (max-width: 1200px) {
-	.container :deep(.card-item) {
-		flex: 0 0 calc((100% - (var(--column-gap) * 2)) / 3);
-	}
 }
 </style>

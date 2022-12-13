@@ -36,7 +36,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onUnmounted, nextTick, watch } from "vue";
 const props = defineProps({
 	type: {
 		type: String,
@@ -49,6 +49,16 @@ const props = defineProps({
 	cardName: {
 		type: String,
 		required: true
+	},
+	rowHasCellTotal: {
+		type: [Object, Number],
+		default: {
+			xxLarge: 4,
+			xLarge: 4,
+			large: 3,
+			medium: 2,
+			small: 1
+		}
 	}
 });
 
@@ -56,8 +66,8 @@ const nowTranslate = ref(0);
 const cannotPrevList = ref(true);
 const cannotNextList = ref(false);
 
-const cardList = ref();
-const cardItem = ref();
+const cardList = ref(null);
+const cardItem = ref(null);
 const nextList = () => {
 	const cardListWidth = cardList.value.getBoundingClientRect().width;
 	const cardItemWidth = cardItem.value[0].getBoundingClientRect().width;
@@ -88,31 +98,76 @@ const prevList = () => {
 };
 
 const buttonShow = ref(true);
-const canScroll = () => {
-	if (!cardItem.value) {
-		return;
-	}
-	if (cardItem.value.length > 4) {
-		buttonShow.value = true;
-		return;
-	}
-	let widthCount = 0;
-	cardItem.value.forEach((item) => {
-		widthCount += item.getBoundingClientRect().width;
+const changeWidth = () => {
+	nextTick(() => {
+		let cellWidth;
+		const itemCount = cardItem.value?.length || 4;
+		const pageWidth = window.innerWidth;
+		const { xxLarge, xLarge, large, medium, small } =
+			typeof props.rowHasCellTotal === "number"
+				? {
+						xxLarge: props.rowHasCellTotal,
+						xLarge: props.rowHasCellTotal,
+						large: props.rowHasCellTotal,
+						medium: props.rowHasCellTotal,
+						small: props.rowHasCellTotal
+				  }
+				: props.rowHasCellTotal;
+
+		if (pageWidth > 1400) {
+			buttonShow.value = itemCount >= xxLarge;
+			cellWidth = `calc((100% - (var(--column-gap) * ${
+				xxLarge - 1
+			})) / ${xxLarge})`;
+		} else if (pageWidth > 1200) {
+			buttonShow.value = itemCount >= xLarge;
+			cellWidth = `calc((100% - (var(--column-gap) * ${
+				xLarge - 1
+			})) / ${xLarge})`;
+		} else if (pageWidth > 992) {
+			buttonShow.value = itemCount >= large;
+			cellWidth = `calc((100% - (var(--column-gap) * ${
+				large - 1
+			})) / ${large})`;
+		} else if (pageWidth > 768) {
+			buttonShow.value = itemCount >= medium;
+			cellWidth = `calc((100% - (var(--column-gap) * ${
+				medium - 1
+			})) / ${medium})`;
+		} else {
+			buttonShow.value = itemCount >= small;
+			cellWidth = `calc((100% - (var(--column-gap) * ${
+				small - 1
+			})) / ${small})`;
+		}
+		cardList.value.style.setProperty("--cell-width", cellWidth);
 	});
-	if (widthCount <= cardList.value.getBoundingClientRect().width) {
-		buttonShow.value = false;
-	}
 };
 
 onMounted(() => {
-	canScroll();
+	changeWidth();
+	window.addEventListener("resize", changeWidth);
 });
+
+onUnmounted(() => {
+	window.removeEventListener("resize", changeWidth);
+});
+
+watch(
+	() => props.list,
+	() => {
+		nowTranslate.value = 0;
+		cannotPrevList.value = true;
+		cannotNextList.value = false;
+		cardList.value.style.transform = `translateX(0)`;
+	}
+);
 </script>
 
 <style scoped>
 .container {
 	--column-gap: 16px;
+	--cell-width: 30%;
 }
 .container {
 	display: flex;
@@ -134,23 +189,7 @@ onMounted(() => {
 	column-gap: var(--column-gap);
 }
 .card-item {
-	flex: 0 0 calc((100% - (var(--column-gap) * 3)) / 4);
-}
-
-@media screen and (max-width: 1200px) {
-	.card-item {
-		flex: 0 0 calc((100% - (var(--column-gap) * 2)) / 3);
-	}
-}
-
-@media screen and (max-width: 992px) {
-	.card-item {
-		flex: 0 0 calc((100% - (var(--column-gap) * 1)) / 2);
-	}
-}
-@media screen and (max-width: 768px) {
-	.card-item {
-		flex: 0 0 calc((100% - (var(--column-gap) * 0)) / 1);
-	}
+	flex: none;
+	width: var(--cell-width);
 }
 </style>

@@ -11,6 +11,7 @@
 				return item;
 			})
 		"
+		:rowHasCellTotal="4"
 	></gal-no-wrap-game-list>
 </template>
 

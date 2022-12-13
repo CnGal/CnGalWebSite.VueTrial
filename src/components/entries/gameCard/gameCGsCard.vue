@@ -23,6 +23,7 @@
 				})) ||
 			[]
 		"
+		:rowHasCellTotal="4"
 	></gal-no-wrap-game-list>
 
 	<div class="cg-dialog" ref="cgDialog" tabindex="0" v-show="cgDialogShow">
@@ -73,8 +74,8 @@ import { ref, provide, computed, nextTick } from "vue";
 const props = defineProps({
 	data: {
 		type: Object,
-		required: true,
-	},
+		required: true
+	}
 });
 
 const active = ref(0);
@@ -117,7 +118,7 @@ const scrollToTop = () => {
 	cgDialog.value.scrollTo({
 		top: 0,
 		left: 0,
-		behavior: "smooth",
+		behavior: "smooth"
 	});
 };
 
@@ -135,7 +136,7 @@ const prevImg = () => {
 const activeData = computed(() => {
 	return {
 		active: active.value,
-		type: "index",
+		type: "index"
 	};
 });
 provide("active", activeData);

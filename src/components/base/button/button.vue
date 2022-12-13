@@ -36,6 +36,8 @@ const props = defineProps({
 	background-color: var(--button-bg-color);
 	color: var(--button-font-color);
 	cursor: pointer;
+	padding: 0.5em 1em;
+	column-gap: 0.5em;
 }
 .button:hover {
 	background-color: var(--button-hover-bg-color);

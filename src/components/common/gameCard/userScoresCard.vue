@@ -18,7 +18,7 @@
 						{{ item.text }}
 					</galTag>
 				</div>
-				<span>{{ props.data.user.name }}</span>
+				<span class="rows-dot">{{ props.data.user.name }}</span>
 			</div>
 		</div>
 		<div class="socre">
@@ -120,7 +120,8 @@ const props = defineProps({
 	aspect-ratio: 1 / 1;
 	border-radius: 50%;
 }
-.tag-wrap {
+.tag-wrap,
+.tag-wrap + .rows-dot {
 	--row-dot-line: 1;
 }
 .tag {
@@ -151,7 +152,15 @@ const props = defineProps({
 }
 
 .main {
-	font-size: 14px;
 	--row-dot-line: 4;
+	font-size: 14px;
+	margin-block-start: 8px;
+	line-height: 1.5;
+}
+.name,
+.time {
+	font-size: 14px;
+	color: var(--gray-color);
+	margin-block-start: 16px;
 }
 </style>
