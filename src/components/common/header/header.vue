@@ -25,7 +25,7 @@
 		></gal-icon-button>
 	</header>
 
-	<gal-dialog ref="settingDialog">
+	<gal-dialog ref="settingDialog" :isModal="true">
 		<gal-card class="setting-dialog">
 			<h2 class="dialog-title">主题设置</h2>
 			<h3>主题颜色</h3>

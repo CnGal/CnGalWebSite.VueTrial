@@ -158,6 +158,9 @@ getInfo();
 watch(
 	() => route.params,
 	(newURL) => {
+		if (!newURL.id) {
+			return;
+		}
 		id.value = newURL.id;
 		getInfo();
 	}

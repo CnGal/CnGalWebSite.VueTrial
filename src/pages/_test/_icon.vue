@@ -90,7 +90,9 @@ const iconList = [
 	"sortDesc",
 	"tags",
 	"clockTimeFour",
-	"allInclusive"
+	"allInclusive",
+	"menuDown",
+	"menuUp"
 ];
 </script>
 

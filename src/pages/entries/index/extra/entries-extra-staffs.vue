@@ -38,7 +38,7 @@
 			</div>
 		</div>
 
-		<gal-dialog ref="exportDialog">
+		<gal-dialog ref="exportDialog" :isModal="true">
 			<gal-card class="export-dialog">
 				<h2 class="dialog-title">导出STAFF</h2>
 				<div ref="staffText" class="dialog-content">

@@ -2,6 +2,7 @@
 	<component
 		:class="['icon', props.icon]"
 		:is="iconMap[props.icon]"
+		ref="icon"
 	></component>
 </template>
 
@@ -92,17 +93,20 @@ import iconClockTimeFour from "../icons/clock-time-four.vue";
 import iconAllInclusive from "../icons/all-inclusive.vue";
 import iconArrowLeftThick from "../icons/arrow-left-thick.vue";
 import iconArrowRightThick from "../icons/arrow-right-thick.vue";
-
+import iconMenuDown from "../icons/menu-down.vue";
+import iconMenuUp from "../icons/menu-up.vue";
+import { ref, onMounted } from "vue";
 const props = defineProps({
 	icon: {
 		type: String,
 		required: true
 	},
 	size: {
-		type: String,
-		default: "1em"
+		type: String
 	}
 });
+
+const icon = ref(null);
 
 const iconMap = {
 	shareAll: iconShareAll,
@@ -191,13 +195,22 @@ const iconMap = {
 	clockTimeFour: iconClockTimeFour,
 	allInclusive: iconAllInclusive,
 	arrowLeftThick: iconArrowLeftThick,
-	arrowRightThick: iconArrowRightThick
+	arrowRightThick: iconArrowRightThick,
+	menuDown: iconMenuDown,
+	menuUp: iconMenuUp
 };
+
+onMounted(() => {
+	icon.value.$el.style.setProperty(
+		"--icon-size",
+		props.size || window.getComputedStyle(icon.value.$el).fontSize
+	);
+});
 </script>
 
 <style scoped>
 .icon {
-	width: v-bind("props.size");
+	width: var(--icon-size);
 	aspect-ratio: 1 / 1;
 }
 </style>

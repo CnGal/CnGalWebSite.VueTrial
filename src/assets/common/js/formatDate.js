@@ -168,3 +168,20 @@ export const getNextMonth = (year, month) => {
 		return isString ? `${year}-${nextMonth}` : { year, month: nextMonth };
 	}
 };
+
+export const getLastTime = (time, range) => {
+	let willFormatDate = new Date(time).getTime();
+
+	if (range.day) {
+		willFormatDate = willFormatDate - 1000 * 60 * 60 * 24 * range.day;
+	}
+	if (range.month) {
+		willFormatDate =
+			willFormatDate - 1000 * 60 * 60 * 24 * 30 * range.month;
+	}
+	if (range.year) {
+		willFormatDate =
+			willFormatDate - 1000 * 60 * 60 * 24 * 365 * range.year;
+	}
+	return willFormatDate;
+};

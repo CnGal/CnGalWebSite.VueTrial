@@ -30,5 +30,6 @@ const props = defineProps({
 	aspect-ratio: var(--icon-button-aspect-ratio);
 	border: none;
 	font-size: inherit;
+	padding: 0;
 }
 </style>
