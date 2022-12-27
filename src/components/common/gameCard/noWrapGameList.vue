@@ -97,11 +97,11 @@ const prevList = () => {
 	} - ${16 * nowTranslate.value}px))`;
 };
 
-const buttonShow = ref(true);
+const buttonShow = ref(false);
 const changeWidth = () => {
 	nextTick(() => {
 		let cellWidth;
-		const itemCount = cardItem.value?.length || 4;
+		const itemCount = props.list?.length || 4;
 		const pageWidth = window.innerWidth;
 		const { xxLarge, xLarge, large, medium, small } =
 			typeof props.rowHasCellTotal === "number"

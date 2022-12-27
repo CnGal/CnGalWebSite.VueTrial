@@ -102,7 +102,7 @@
 		</gal-card>
 	</div>
 
-	<gal-card class="card">
+	<gal-card class="card lotteryCard">
 		<template v-slot:headerStart>
 			<gal-icon class="icon" icon="random"></gal-icon>&nbsp;&nbsp;抽奖
 		</template>
@@ -118,7 +118,7 @@
 		></gal-no-wrap-game-list>
 	</gal-card>
 
-	<gal-card class="card">
+	<gal-card class="card voteCard">
 		<template v-slot:headerStart>
 			<gal-icon class="icon" icon="random"></gal-icon>&nbsp;&nbsp;投票
 		</template>
@@ -128,6 +128,7 @@
 			</gal-link-button>
 		</template>
 		<gal-no-wrap-game-list
+			v-if="voteCardsList.length"
 			cardName="galNormalGameCard"
 			type="vote"
 			:list="voteCardsList"
@@ -211,7 +212,9 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.editOverviewChartCard {
+.editOverviewChartCard,
+.lotteryCard,
+.voteCard {
 	margin-block-start: 24px;
 }
 .refresh-button {
