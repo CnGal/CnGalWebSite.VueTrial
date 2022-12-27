@@ -41,6 +41,10 @@ async function getHomeSearch(params) {
 	});
 }
 
+async function getHomeVideosView() {
+	return await axios.get("/api/home/GetHomeVideosView");
+}
+
 export {
 	getHomeCarouselsView,
 	getHomeNewsView,
@@ -50,5 +54,6 @@ export {
 	getHomeRecentEditView,
 	getHomeNoticesView,
 	getHomeFriendLinksView,
-	getHomeSearch
+	getHomeSearch,
+	getHomeVideosView
 };

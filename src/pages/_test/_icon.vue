@@ -91,6 +91,9 @@ const iconList = [
 	"tags",
 	"clockTimeFour",
 	"allInclusive",
+	"arrowLeftThick",
+	"arrowRightThick",
+	"video",
 	"menuDown",
 	"menuUp"
 ];

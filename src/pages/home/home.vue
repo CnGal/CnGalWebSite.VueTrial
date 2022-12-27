@@ -3,8 +3,7 @@
 	<galWelcome></galWelcome>
 	<gal-card class="card" width="full">
 		<template v-slot:headerStart>
-			<gal-icon icon="newspaper" size="1em"></gal-icon
-			>&nbsp;&nbsp;最新动态
+			<gal-icon icon="newspaper"></gal-icon>&nbsp;&nbsp;最新动态
 		</template>
 		<template v-slot:headerEnd>
 			<gal-link-button to="/articles/news">
@@ -15,7 +14,7 @@
 	</gal-card>
 	<gal-card class="card">
 		<template v-slot:headerStart>
-			<gal-icon icon="send" size="1em"></gal-icon>&nbsp;&nbsp;近期新作
+			<gal-icon icon="send"></gal-icon>&nbsp;&nbsp;近期新作
 		</template>
 		<template v-slot:headerEnd>
 			<gal-link-button to="/times">
@@ -26,10 +25,10 @@
 	</gal-card>
 	<gal-card class="card">
 		<template v-slot:headerStart>
-			<gal-icon icon="send2" size="1em"></gal-icon>&nbsp;&nbsp;即将发售
+			<gal-icon icon="send2"></gal-icon>&nbsp;&nbsp;即将发售
 		</template>
 		<template v-slot:headerEnd>
-			<gal-link-button to="/">
+			<gal-link-button to="/times">
 				<gal-icon icon="shareAll"></gal-icon>查看更多
 			</gal-link-button>
 		</template>
@@ -37,10 +36,10 @@
 	</gal-card>
 	<gal-card class="card">
 		<template v-slot:headerStart>
-			<gal-icon icon="newspaper" size="1em"></gal-icon>&nbsp;&nbsp;文章
+			<gal-icon icon="newspaper"></gal-icon>&nbsp;&nbsp;文章
 		</template>
 		<template v-slot:headerEnd>
-			<gal-link-button to="/">
+			<gal-link-button to="/articles">
 				<gal-icon icon="shareAll"></gal-icon>查看更多
 			</gal-link-button>
 		</template>
@@ -48,10 +47,21 @@
 	</gal-card>
 	<gal-card class="card">
 		<template v-slot:headerStart>
-			<gal-icon icon="pencil" size="1em"></gal-icon>&nbsp;&nbsp;最近编辑
+			<gal-icon icon="video"></gal-icon>&nbsp;&nbsp;视频
 		</template>
 		<template v-slot:headerEnd>
-			<gal-link-button to="/">
+			<gal-link-button to="/search?types=video">
+				<gal-icon icon="shareAll"></gal-icon>查看更多
+			</gal-link-button>
+		</template>
+		<gal-game-card-list :list="videosView"></gal-game-card-list>
+	</gal-card>
+	<gal-card class="card">
+		<template v-slot:headerStart>
+			<gal-icon icon="pencil"></gal-icon>&nbsp;&nbsp;最近编辑
+		</template>
+		<template v-slot:headerEnd>
+			<gal-link-button to="/search?sort=lastEditTime+desc&types=game">
 				<gal-icon icon="shareAll"></gal-icon>查看更多
 			</gal-link-button>
 		</template>
@@ -59,7 +69,7 @@
 	</gal-card>
 	<gal-card class="card">
 		<template v-slot:headerStart>
-			<gal-icon icon="note" size="1em"></gal-icon>&nbsp;&nbsp;公告
+			<gal-icon icon="note"></gal-icon>&nbsp;&nbsp;公告
 		</template>
 		<template v-slot:headerEnd>
 			<gal-link-button to="/">
@@ -70,7 +80,7 @@
 	</gal-card>
 	<gal-card class="card">
 		<template v-slot:headerStart>
-			<gal-icon icon="star" size="1em"></gal-icon>&nbsp;&nbsp;友情链接
+			<gal-icon icon="star"></gal-icon>&nbsp;&nbsp;友情链接
 		</template>
 		<gal-game-card-list :list="friendLinksList"></gal-game-card-list>
 	</gal-card>
@@ -97,7 +107,8 @@ import {
 	getHomeArticlesView,
 	getHomeRecentEditView,
 	getHomeNoticesView,
-	getHomeFriendLinksView
+	getHomeFriendLinksView,
+	getHomeVideosView
 } from "../../api/homeAPI/index.js";
 
 const store = useStore();
@@ -110,6 +121,7 @@ let articlesView = ref([]);
 let recentEditView = ref([]);
 let noticesView = ref([]);
 let friendLinksList = ref([]);
+let videosView = ref([]);
 (async () => {
 	const data = await getHomeNewsView();
 	newsList.value = data.data.splice(0, isMobile ? 3 : 6);
@@ -137,6 +149,10 @@ let friendLinksList = ref([]);
 (async () => {
 	const data = await getHomeFriendLinksView();
 	friendLinksList.value = data.data;
+})();
+(async () => {
+	const data = await getHomeVideosView();
+	videosView.value = data.data;
 })();
 </script>
 <style scoped>

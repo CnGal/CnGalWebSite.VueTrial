@@ -112,15 +112,27 @@
 					@click="changeTypes(tag.value)"
 				></galTag>
 			</div>
+			<div class="types-area">
+				<galTag
+					v-for="tag in typesList.filter((item) => item.class === 5)"
+					:key="tag.value"
+					circle
+					:simple="!searchTypes.includes(tag.value)"
+					class="tag"
+					v-text="tag.name"
+					@click="changeTypes(tag.value)"
+				></galTag>
+			</div>
 		</div>
 	</gal-card>
 	<gal-card
 		class="data-area"
 		width="full"
 		:style="{ '--card-body-bg-color': 'transparent' }"
+		v-if="searchData.pagedResultDto?.data.length"
 	>
 		<div
-			v-for="(item, index) in searchData.pagedResultDto?.data"
+			v-for="(item, index) in searchData.pagedResultDto.data"
 			:key="index"
 			class="data-item"
 		>
@@ -153,6 +165,16 @@
 			></gal-game-card-rows>
 		</div>
 	</gal-card>
+	<gal-card class="data-area" v-else>
+		<div class="no-data">
+			<img
+				class="no-data-img"
+				src="images/default/UserMessagesNotFound.png"
+				alt="摸摸鱼"
+			/>
+			<h3>搜索不到呢......不过你可以在这里 创建词条 或者 发布文章</h3>
+		</div>
+	</gal-card>
 	<galPagination
 		class="pagination"
 		v-if="searchData.pagedResultDto"
@@ -167,7 +189,7 @@ document.title = "搜索 - CnGal 中文GalGame资料站";
 </script>
 
 <script setup>
-import { ref, reactive } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import { getHomeSearch } from "../../api/homeAPI/index.js";
 import { formatDate } from "../../assets/common/js/formatDate.js";
 import { useRoute, useRouter } from "vue-router";
@@ -196,6 +218,13 @@ const typesList = [
 	{ name: "设定集或画册等", value: "setorAlbumEtc", class: 2 },
 	{ name: "原声集", value: "ost", class: 2 },
 	{ name: "套装", value: "set", class: 2 },
+	{ name: "激活码", value: "activationCode", class: 2 },
+	{ name: "色纸", value: "coloredPaper", class: 2 },
+	{ name: "徽章", value: "badge", class: 2 },
+	{ name: "明信片", value: "postcard", class: 2 },
+	{ name: "挂画", value: "hangPainting", class: 2 },
+	{ name: "挂件", value: "keychain", class: 2 },
+	{ name: "书签", value: "bookmark", class: 2 },
 	{ name: "其它周边", value: "otherPeriphery", class: 2 },
 	{ name: "标签", value: "tag", class: 3 },
 	{ name: "文章", value: "article", class: 4 },
@@ -207,7 +236,8 @@ const typesList = [
 	{ name: "周边文章", value: "peripheralArticle", class: 4 },
 	{ name: "公告", value: "notice", class: 4 },
 	{ name: "杂谈", value: "otherArticle", class: 4 },
-	{ name: "二创", value: "fan", class: 4 }
+	{ name: "二创", value: "fan", class: 4 },
+	{ name: "视频", value: "video", class: 5 }
 ];
 const timeList = [
 	{
@@ -274,7 +304,7 @@ const getSearch = async () => {
 	if (searchTimes.length) {
 		query.times = searchTimes;
 	}
-
+	console.log(query);
 	router.push({
 		path: "/search",
 		query
@@ -302,7 +332,11 @@ if (route.query.sort) {
 	searchSort.sort = sort[1];
 }
 if (route.query.types) {
-	searchTypes.push(...route.query.types);
+	searchTypes.push(
+		...(Array.isArray(route.query.types)
+			? route.query.types
+			: [route.query.types])
+	);
 }
 if (route.query.times) {
 	const times = Array.isArray(route.query.times)
@@ -373,6 +407,10 @@ const changePage = () => {
 	});
 	getSearch();
 };
+
+onMounted(() => {
+	changePage();
+});
 </script>
 
 <style scoped>
@@ -405,6 +443,7 @@ const changePage = () => {
 		"sort time" auto
 		"type1 type2" auto
 		"type3 type4" auto
+		"type3 type5" auto
 		/ 1fr 1fr;
 	gap: 12px;
 }
@@ -436,6 +475,9 @@ const changePage = () => {
 .types-area:nth-of-type(6) {
 	grid-area: type4;
 }
+.types-area:nth-of-type(7) {
+	grid-area: type5;
+}
 .tag {
 	cursor: pointer;
 }
@@ -449,6 +491,16 @@ const changePage = () => {
 }
 .time-area :deep(.el-range__close-icon) {
 	display: none;
+}
+
+.no-data {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+}
+.no-data-img {
+	width: 50%;
 }
 
 @media screen and (max-width: 992px) {

@@ -93,6 +93,7 @@ import iconClockTimeFour from "../icons/clock-time-four.vue";
 import iconAllInclusive from "../icons/all-inclusive.vue";
 import iconArrowLeftThick from "../icons/arrow-left-thick.vue";
 import iconArrowRightThick from "../icons/arrow-right-thick.vue";
+import iconVideo from "../icons/video.vue";
 import iconMenuDown from "../icons/menu-down.vue";
 import iconMenuUp from "../icons/menu-up.vue";
 import { ref, onMounted } from "vue";
@@ -196,6 +197,7 @@ const iconMap = {
 	allInclusive: iconAllInclusive,
 	arrowLeftThick: iconArrowLeftThick,
 	arrowRightThick: iconArrowRightThick,
+	video: iconVideo,
 	menuDown: iconMenuDown,
 	menuUp: iconMenuUp
 };
