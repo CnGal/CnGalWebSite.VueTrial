@@ -1,19 +1,46 @@
 <template>
 	<router-link
 		:to="
-			(type === 'article' ? '/articles/index/' : '/entries/index/') +
-			props.data.id
+			(type === 'article'
+				? '/articles/index/'
+				: type === 'entry'
+				? '/entries/index/'
+				: type === 'lottery'
+				? '/lottery/index/'
+				: type === 'vote'
+				? '/vote/index/'
+				: '#') + props.data.id
 		"
 		class="game-card"
 	>
 		<img
 			loading="lazy"
 			class="game-card-img"
-			:src="props.data.mainImage"
+			:src="props.data.mainImage || props.data.mainPicture"
 			:alt="props.data.name"
 		/>
 		<div class="info">
 			<h5 class="name rows-dot">
+				<gal-tag
+					v-if="props.type === 'lottery' || props.type === 'vote'"
+					class="tag"
+					v-text="
+						new Date(props.data.startTime).getTime() < Date.now()
+							? '未开始'
+							: new Date(props.data.endTime).getTime() >=
+							  Date.now()
+							? '正在进行'
+							: '已结束'
+					"
+					:bgColor="
+						new Date(props.data.startTime).getTime() < Date.now()
+							? 'primary'
+							: new Date(props.data.endTime).getTime() >=
+							  Date.now()
+							? 'success'
+							: 'danger'
+					"
+				></gal-tag>
 				{{ props.data.name }}
 			</h5>
 			<div class="brief-introduction rows-dot">
@@ -65,6 +92,11 @@ const props = defineProps({
 }
 .brief-introduction {
 	font-size: 14px;
+}
+
+.tag {
+	font-size: 14px;
+	font-weight: normal;
 }
 
 @media screen and (max-width: 768px) {

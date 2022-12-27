@@ -25,6 +25,9 @@ const iconList = [
 	"pencilMdi",
 	"note",
 	"star",
+	"starOutline",
+	"starHalf",
+	"starFill",
 	"eye",
 	"eyeOff",
 	"comments",
@@ -90,7 +93,9 @@ const iconList = [
 	"allInclusive",
 	"arrowLeftThick",
 	"arrowRightThick",
-	"video"
+	"video",
+	"menuDown",
+	"menuUp"
 ];
 </script>
 

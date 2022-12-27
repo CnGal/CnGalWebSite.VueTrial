@@ -1,5 +1,5 @@
 <template>
-	<gal-link :class="['link-button', props.theme]">
+	<gal-link :class="['link-button', props.theme, props.width]">
 		<slot></slot>
 	</gal-link>
 </template>
@@ -9,6 +9,10 @@ const props = defineProps({
 	theme: {
 		type: String,
 		default: "hollow"
+	},
+	width: {
+		type: String,
+		default: "normal"
 	}
 });
 </script>
@@ -20,6 +24,10 @@ const props = defineProps({
 	column-gap: 0.5em;
 	justify-content: center;
 	align-items: center;
+}
+.link-button.full {
+	box-sizing: border-box;
+	width: 100%;
 }
 .link-button:hover {
 	background-color: var(--main-hover-color);

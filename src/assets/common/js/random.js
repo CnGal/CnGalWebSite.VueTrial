@@ -6,6 +6,16 @@ const getRandom = (min, max) => {
 	return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
+const shuffle = (list) => {
+	for (let i = list.length - 1; i >= 0; i--) {
+		const r = getRandom(0, i);
+		const temp = list[r];
+		list[r] = list[i];
+		list[i] = temp;
+	}
+	return list;
+};
+
 const nonRepeatRandomList = (min, max, size, initList) => {
 	let set = new Set(initList);
 	if (max - min < size) {
@@ -19,7 +29,7 @@ const nonRepeatRandomList = (min, max, size, initList) => {
 
 const getNonRepeatRandomList = (data, wantLength) => {
 	if (data.length <= wantLength) {
-		return data;
+		return shuffle(data);
 	} else {
 		let list = [];
 		// 在列表中随机选取 wantLength 项

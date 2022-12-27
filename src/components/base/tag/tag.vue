@@ -45,4 +45,10 @@ const props = defineProps({
 .success {
 	background-color: #50cd89;
 }
+.warning {
+	background-color: #ffc700;
+}
+.danger {
+	background-color: #f1416c;
+}
 </style>

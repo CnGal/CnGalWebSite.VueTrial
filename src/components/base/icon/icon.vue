@@ -2,6 +2,7 @@
 	<component
 		:class="['icon', props.icon]"
 		:is="iconMap[props.icon]"
+		ref="icon"
 	></component>
 </template>
 
@@ -23,6 +24,9 @@ import iconPencil from "../icons/pencil.vue";
 import iconPencilMdi from "../icons/pencil-mdi.vue";
 import iconNote from "../icons/note.vue";
 import iconStar from "../icons/star.vue";
+import iconStarOutline from "../icons/star-outline.vue";
+import iconStarHalf from "../icons/star-half.vue";
+import iconStarFill from "../icons/star-fill.vue";
 import iconEye from "../icons/eye.vue";
 import iconEyeOff from "../icons/eyeOff.vue";
 import iconComments from "../icons/comments.vue";
@@ -90,17 +94,20 @@ import iconAllInclusive from "../icons/all-inclusive.vue";
 import iconArrowLeftThick from "../icons/arrow-left-thick.vue";
 import iconArrowRightThick from "../icons/arrow-right-thick.vue";
 import iconVideo from "../icons/video.vue";
-
+import iconMenuDown from "../icons/menu-down.vue";
+import iconMenuUp from "../icons/menu-up.vue";
+import { ref, onMounted } from "vue";
 const props = defineProps({
 	icon: {
 		type: String,
 		required: true
 	},
 	size: {
-		type: String,
-		default: "1em"
+		type: String
 	}
 });
+
+const icon = ref(null);
 
 const iconMap = {
 	shareAll: iconShareAll,
@@ -121,6 +128,9 @@ const iconMap = {
 	pencilMdi: iconPencilMdi,
 	note: iconNote,
 	star: iconStar,
+	starOutline: iconStarOutline,
+	starHalf: iconStarHalf,
+	starFill: iconStarFill,
 	eye: iconEye,
 	eyeOff: iconEyeOff,
 	comments: iconComments,
@@ -187,13 +197,22 @@ const iconMap = {
 	allInclusive: iconAllInclusive,
 	arrowLeftThick: iconArrowLeftThick,
 	arrowRightThick: iconArrowRightThick,
-	video: iconVideo
+	video: iconVideo,
+	menuDown: iconMenuDown,
+	menuUp: iconMenuUp
 };
+
+onMounted(() => {
+	icon.value.$el.style.setProperty(
+		"--icon-size",
+		props.size || window.getComputedStyle(icon.value.$el).fontSize
+	);
+});
 </script>
 
 <style scoped>
 .icon {
-	width: v-bind("props.size");
+	width: var(--icon-size);
 	aspect-ratio: 1 / 1;
 }
 </style>

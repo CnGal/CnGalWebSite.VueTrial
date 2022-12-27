@@ -83,6 +83,19 @@ export const dateFormat = (date) => {
 		const { format, i18n, fill } = options;
 
 		const formatList = {
+			YMDhms() {
+				const m = fill ? padMonth : month;
+				const d = fill ? padDay : day;
+				const h = fill ? padHour : hour;
+				const min = fill ? padMinutes : minutes;
+				const s = fill ? padSeconds : seconds;
+
+				if (i18n === "zh") {
+					return `${year}年${m}月${d}日 ${h}:${min}:${s}`;
+				} else {
+					return `${year}-${m}-${d} ${h}:${min}:${s}`;
+				}
+			},
 			YMD() {
 				const m = fill ? padMonth : month;
 				const d = fill ? padDay : day;
@@ -154,4 +167,21 @@ export const getNextMonth = (year, month) => {
 	} else {
 		return isString ? `${year}-${nextMonth}` : { year, month: nextMonth };
 	}
+};
+
+export const getLastTime = (time, range) => {
+	let willFormatDate = new Date(time).getTime();
+
+	if (range.day) {
+		willFormatDate = willFormatDate - 1000 * 60 * 60 * 24 * range.day;
+	}
+	if (range.month) {
+		willFormatDate =
+			willFormatDate - 1000 * 60 * 60 * 24 * 30 * range.month;
+	}
+	if (range.year) {
+		willFormatDate =
+			willFormatDate - 1000 * 60 * 60 * 24 * 365 * range.year;
+	}
+	return willFormatDate;
 };
