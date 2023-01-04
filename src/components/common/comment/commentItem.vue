@@ -20,7 +20,12 @@
 					</galTag>
 					<span>{{ props.comment.userName }}</span>
 				</div>
-				{{ formatDate(props.comment.commentTime, "YMDhm", "zh") }}
+				{{
+					dateFormat(props.comment.commentTime)({
+						format: "YMDhm",
+						i18n: "zh"
+					})
+				}}
 			</div>
 			<div
 				v-if="props.comment.ranks.some((tag) => tag.type === 1)"
@@ -48,13 +53,13 @@
 
 <script setup>
 import { ref } from "vue";
-import { formatDate } from "../../../assets/common/js/formatDate";
+import { dateFormat } from "../../../assets/common/js/formatDate.js";
 
 const props = defineProps({
 	comment: {
 		type: Object,
-		required: true,
-	},
+		required: true
+	}
 });
 </script>
 

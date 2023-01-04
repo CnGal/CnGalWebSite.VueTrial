@@ -11,7 +11,7 @@
 			>
 				<gal-timeline-item
 					v-for="(item, index) in [
-						...props.info.newsOfEntry,
+						...props.info.newsOfEntry
 					].reverse()"
 					:key="index"
 				>
@@ -27,7 +27,10 @@
 					<template v-slot:opposite>
 						<div class="timeline-opposite-content">
 							<span>{{
-								formatDate(item.happenedTime, "YMDhm")
+								dateFormat(item.happenedTime)({
+									format: "YMDhm",
+									fill: true
+								})
 							}}</span>
 						</div>
 					</template>
@@ -38,12 +41,12 @@
 </template>
 
 <script setup>
-import { formatDate } from "../../../../assets/common/js/formatDate";
+import { dateFormat } from "../../../../assets/common/js/formatDate.js";
 const props = defineProps({
 	info: {
 		type: Object,
-		required: true,
-	},
+		required: true
+	}
 });
 </script>
 
