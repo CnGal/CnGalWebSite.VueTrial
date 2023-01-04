@@ -126,7 +126,7 @@
 
 <script setup>
 import { ref, watch } from "vue";
-import gal_EntriesHeader from "./entries-header.vue";
+import gal_EntriesHeader from "../../../components/common/header/viewHeader.vue";
 import gal_EntriesExtraSteam from "./extra/entries-extra-steam.vue";
 import gal_EntriesExtraInformation from "./extra/entries-extra-information.vue";
 import gal_EntriesExtraTags from "./extra/entries-extra-tags.vue";
