@@ -67,7 +67,12 @@
 			>
 				<span>
 					<gal-icon icon="calendarAlt" size="14px"></gal-icon>&nbsp;
-					{{ formatDate(row.publishTime || row.lastEditTime, "YMD") }}
+					{{
+						dateFormat(row.publishTime || row.lastEditTime)({
+							format: "YMD",
+							fill: true
+						})
+					}}
 				</span>
 
 				<span>
@@ -97,7 +102,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
-import { formatDate } from "@/assets/common/js/formatDate";
+import { dateFormat } from "@/assets/common/js/formatDate.js";
 import { useStore } from "@/store/index.js";
 import { useStateTypeStore } from "@/store/statetype.js";
 const store = useStore();

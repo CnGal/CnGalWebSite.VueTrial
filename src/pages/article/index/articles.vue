@@ -9,7 +9,12 @@
 			<div class="info">
 				<span>
 					<gal-icon icon="calendarAlt" size="1em"></gal-icon>
-					{{ formatDate(info.createTime, "YMD") }}
+					{{
+						dateFormat(info.createTime)({
+							format: "YMD",
+							fill: true
+						})
+					}}
 				</span>
 				<span>
 					<gal-icon icon="eye" size="1em"></gal-icon>
@@ -105,7 +110,12 @@
 			</div>
 			<div class="article-last-edit-time">
 				<gal-icon icon="pencilMdi" size="1em"></gal-icon>
-				最后编辑：{{ formatDate(info.lastEditTime, "YMD") }}
+				最后编辑：{{
+					dateFormat(info.lastEditTime)({
+						format: "YMD",
+						fill: true
+					})
+				}}
 			</div>
 		</main>
 	</article>
@@ -130,7 +140,7 @@
 import { ref, watch } from "vue";
 import { getArticleView } from "@/api/articlesAPI/index.js";
 import { getComments } from "@/api/commentsAPI/index.js";
-import { formatDate } from "@/assets/common/js/formatDate.js";
+import { dateFormat } from "@/assets/common/js/formatDate.js";
 import { useStateTypeStore } from "@/store/statetype.js";
 import { useRoute } from "vue-router";
 const route = useRoute();

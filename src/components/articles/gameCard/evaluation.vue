@@ -7,7 +7,12 @@
 			<div class="info">
 				<span>
 					<gal-icon icon="calendarAlt" size="1em"></gal-icon>
-					{{ formatDate(props.data.lastEditTime, "YMD") }}
+					{{
+						dateFormat(props.data.lastEditTime)({
+							format: "YMD",
+							fill: true
+						})
+					}}
 				</span>
 				<span>
 					<gal-icon icon="user" size="1em"></gal-icon>
@@ -26,7 +31,7 @@
 </template>
 
 <script setup>
-import { formatDate } from "../../../assets/common/js/formatDate";
+import { dateFormat } from "../../../assets/common/js/formatDate.js";
 
 import { useRouter } from "vue-router";
 const router = useRouter();
@@ -34,8 +39,8 @@ const router = useRouter();
 const props = defineProps({
 	data: {
 		type: Object,
-		required: true,
-	},
+		required: true
+	}
 });
 
 const linkToArticle = () => {

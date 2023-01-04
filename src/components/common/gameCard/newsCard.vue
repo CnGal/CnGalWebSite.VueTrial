@@ -24,7 +24,6 @@
 </template>
 
 <script setup>
-// 引入 formatDate 格式化日期
 import { formatDateWithHowLong } from "../../../assets/common/js/formatDate.js";
 
 const props = defineProps({

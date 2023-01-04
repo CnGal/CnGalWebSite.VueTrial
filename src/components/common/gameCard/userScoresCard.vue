@@ -97,7 +97,6 @@
 </template>
 
 <script setup>
-// 引入 formatDate 格式化日期
 import { dateFormat } from "@/assets/common/js/formatDate.js";
 const props = defineProps({
 	data: {

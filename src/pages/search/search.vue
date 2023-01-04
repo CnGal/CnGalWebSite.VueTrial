@@ -191,7 +191,7 @@ document.title = "搜索 - CnGal 中文GalGame资料站";
 <script setup>
 import { ref, reactive, onMounted } from "vue";
 import { getHomeSearch } from "../../api/homeAPI/index.js";
-import { formatDate } from "../../assets/common/js/formatDate.js";
+import { dateFormat } from "../../assets/common/js/formatDate.js";
 import { useRoute, useRouter } from "vue-router";
 const router = useRouter();
 const route = useRoute();
@@ -396,7 +396,15 @@ const changeTimeByPicker = (value) => {
 	currentPage.value = 1;
 	pickerIsShow.value = false;
 	pickerTagTime.value =
-		formatDate(value[0], "YMD") + " ~ " + formatDate(value[1], "YMD");
+		dateFormat(value[0])({
+			format: "YMD",
+			fill: true
+		}) +
+		" ~ " +
+		dateFormat(value[1])({
+			format: "YMD",
+			fill: true
+		});
 	getSearch();
 };
 const changePage = () => {

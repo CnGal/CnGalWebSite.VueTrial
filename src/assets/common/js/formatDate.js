@@ -23,40 +23,6 @@ export const formatDateWithHowLong = (date) => {
 	}
 };
 
-export const formatDate = (date, range, i18n) => {
-	// todo: 优化
-	const willFormatDate = new Date(date);
-
-	const year = willFormatDate.getFullYear();
-	const month = willFormatDate.getMonth() + 1;
-	const day = willFormatDate.getDate();
-	const hour = willFormatDate.getHours();
-	const minutes = willFormatDate.getMinutes();
-	const seconds = willFormatDate.getSeconds();
-
-	const padMonth = month.toString().padStart(2, "0");
-	const padDay = day.toString().padStart(2, "0");
-	const padHour = hour.toString().padStart(2, "0");
-	const padMinutes = minutes.toString().padStart(2, "0");
-	const padSeconds = seconds.toString().padStart(2, "0");
-
-	if (range === "YMD") {
-		if (i18n === "zh") {
-			return `${year}年${month}月${day}日`;
-		} else {
-			return `${year}-${padMonth}-${padDay}`;
-		}
-	} else if (range === "YMDhm") {
-		if (i18n === "zh") {
-			return `${year}年${month}月${day}日 ${padHour}:${padMinutes}`;
-		} else {
-			return `${year}-${padMonth}-${padDay} ${padHour}:${padMinutes}`;
-		}
-	} else {
-		return `${year}-${padMonth}-${padDay} ${padHour}:${padMinutes}:${padSeconds}`;
-	}
-};
-
 export const dateFormat = (date) => {
 	const willFormatDate = new Date(date);
 
@@ -82,14 +48,14 @@ export const dateFormat = (date) => {
 
 		const { format, i18n, fill } = options;
 
+		const m = fill ? padMonth : month;
+		const d = fill ? padDay : day;
+		const h = fill ? padHour : hour;
+		const min = fill ? padMinutes : minutes;
+		const s = fill ? padSeconds : seconds;
+
 		const formatList = {
 			YMDhms() {
-				const m = fill ? padMonth : month;
-				const d = fill ? padDay : day;
-				const h = fill ? padHour : hour;
-				const min = fill ? padMinutes : minutes;
-				const s = fill ? padSeconds : seconds;
-
 				if (i18n === "zh") {
 					return `${year}年${m}月${d}日 ${h}:${min}:${s}`;
 				} else {
@@ -97,9 +63,6 @@ export const dateFormat = (date) => {
 				}
 			},
 			YMD() {
-				const m = fill ? padMonth : month;
-				const d = fill ? padDay : day;
-
 				if (i18n === "zh") {
 					return `${year}年${m}月${d}日`;
 				} else {
@@ -107,8 +70,6 @@ export const dateFormat = (date) => {
 				}
 			},
 			YM() {
-				const m = fill ? padMonth : month;
-
 				if (i18n === "zh") {
 					return `${year}年${m}月`;
 				} else {
@@ -119,8 +80,14 @@ export const dateFormat = (date) => {
 				return `${year}`;
 			},
 			M() {
-				const m = fill ? padMonth : month;
 				return `${m}`;
+			},
+			YMDhm() {
+				if (i18n === "zh") {
+					return `${year}年${m}月${d}日 ${h}:${min}`;
+				} else {
+					return `${year}-${m}-${d} ${h}:${min}`;
+				}
 			}
 		};
 
