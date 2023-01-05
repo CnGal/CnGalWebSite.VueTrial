@@ -24,6 +24,7 @@ import collapseItem from "../components/base/collapse/collapse-item.vue";
 import link from "../components/base/link/link.vue";
 import dropdown from "../components/base/dropdown/dropdown.vue";
 import dropdownOption from "../components/base/dropdown/dropdownOption.vue";
+import breadcrumb from "../components/base/link/breadcrumb.vue";
 
 import noWrapGameList from "../components/common/gameCard/noWrapGameList.vue";
 import newsCard from "../components/common/gameCard/newsCard.vue";
@@ -66,6 +67,7 @@ const importPlugin = {
 		app.component("galLink", link);
 		app.component("galDropdown", dropdown);
 		app.component("galOption", dropdownOption);
+		app.component("galBreadcrumb", breadcrumb);
 
 		app.component("galNoWrapGameList", noWrapGameList);
 		app.component("galNewsCard", newsCard);
