@@ -64,11 +64,20 @@ const toggleRolesCardVisibility = () => {
 
 <style scoped>
 .card {
+	--card-box-shadow: var(--main-shadow);
+	--card-header-box-shadow: unset;
 	--card-header-bg-color: var(--main-bg-color);
 	--card-body-bg-color: var(--main-bg-color);
 }
+@media screen and (max-width: 768px) {
+	.card {
+		--card-body-bg-color: transparent;
+		--card-box-shadow: unset;
+		--card-header-box-shadow: var(--main-shadow);
+	}
+}
 .card {
-	box-shadow: var(--main-shadow);
+	box-shadow: var(--card-box-shadow);
 	border-radius: var(--main-border-radius);
 }
 
@@ -80,6 +89,7 @@ const toggleRolesCardVisibility = () => {
 	background-color: var(--card-header-bg-color);
 	min-height: 35px;
 	padding: 1em 1em 12px;
+	box-shadow: var(--card-header-box-shadow);
 }
 html:not(.theme-dark) .card-header {
 	color: var(--main-color);
@@ -113,13 +123,6 @@ h2 {
 }
 
 @media screen and (max-width: 768px) {
-	.card {
-		--card-body-bg-color: transparent;
-	}
-	.card {
-		box-shadow: none;
-	}
-
 	h2 {
 		font-size: 14px;
 		font-weight: normal;
@@ -128,7 +131,6 @@ h2 {
 		margin-block-end: 12px;
 		padding-block-start: 0;
 		padding-block-end: 0;
-		box-shadow: var(--main-shadow);
 		border-radius: var(--main-border-radius);
 	}
 

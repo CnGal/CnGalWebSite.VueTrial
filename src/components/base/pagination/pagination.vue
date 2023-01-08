@@ -3,7 +3,7 @@
 		<ul class="pagination">
 			<li class="item">
 				<galButton
-					class="button"
+					class="button arrow-button"
 					@click="currentPageChange(currentPage - 1)"
 					:disabled="currentPage === 1"
 					><gal-icon icon="left" size="24px"></gal-icon
@@ -18,7 +18,7 @@
 			</li>
 			<li class="item">
 				<galButton
-					class="button"
+					class="button arrow-button"
 					@click="currentPageChange(currentPage + 1)"
 					:disabled="currentPage === pageCount"
 					><gal-icon icon="right" size="24px"></gal-icon
@@ -237,5 +237,12 @@ onUnmounted(() => {
 .current {
 	background-color: var(--main-color);
 	color: #fff;
+}
+.current:hover {
+	background-color: var(--main-color);
+	color: #fff;
+}
+.arrow-button {
+	padding: unset;
 }
 </style>

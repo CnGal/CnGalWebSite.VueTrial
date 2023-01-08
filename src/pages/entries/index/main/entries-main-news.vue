@@ -1,7 +1,7 @@
 <template>
 	<gal-card class="main-card">
 		<template v-slot:headerStart>
-			<gal-icon class="icon" icon="newspaper" size="1em"></gal-icon>动态
+			<gal-icon class="icon" icon="newspaper"></gal-icon>动态
 		</template>
 		<div class="content">
 			<gal-timeline

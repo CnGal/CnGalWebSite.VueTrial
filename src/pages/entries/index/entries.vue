@@ -7,7 +7,7 @@
 		<div class="main-main">
 			<gal-card class="main-card" v-if="info.pictures?.length">
 				<template v-slot:headerStart>
-					<gal-icon class="icon" icon="picture" size="1em"></gal-icon
+					<gal-icon class="icon" icon="picture"></gal-icon
 					>&nbsp;&nbsp;相册
 				</template>
 				<galEntriesGameCGsCard
@@ -17,7 +17,7 @@
 
 			<gal-card class="main-card" v-if="info.mainPage">
 				<template v-slot:headerStart>
-					<gal-icon class="icon" icon="homeFill" size="1em"></gal-icon
+					<gal-icon class="icon" icon="homeFill"></gal-icon
 					>&nbsp;&nbsp;介绍
 				</template>
 				<gal-markdown
@@ -74,7 +74,7 @@
 		<div class="main-extra">
 			<gal-card class="extra-card" v-if="info.type === 0">
 				<template v-slot:headerStart>
-					<gal-icon class="icon" icon="star" size="1em"></gal-icon
+					<gal-icon class="icon" icon="star"></gal-icon
 					>&nbsp;&nbsp;游玩记录
 				</template>
 				<template v-slot:headerEnd>

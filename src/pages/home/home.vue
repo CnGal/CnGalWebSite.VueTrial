@@ -21,7 +21,10 @@
 				<gal-icon icon="shareAll"></gal-icon>查看更多
 			</gal-link-button>
 		</template>
-		<gal-game-card-list :list="recentIssuelGameList"></gal-game-card-list>
+		<gal-game-card-list
+			:list="recentIssuelGameList"
+			cardName="galHomeGameCard"
+		></gal-game-card-list>
 	</gal-card>
 	<gal-card class="card">
 		<template v-slot:headerStart>
@@ -32,7 +35,10 @@
 				<gal-icon icon="shareAll"></gal-icon>查看更多
 			</gal-link-button>
 		</template>
-		<gal-game-card-list :list="newestGameView"></gal-game-card-list>
+		<gal-game-card-list
+			:list="newestGameView"
+			cardName="galHomeGameCard"
+		></gal-game-card-list>
 	</gal-card>
 	<gal-card class="card">
 		<template v-slot:headerStart>
@@ -43,7 +49,10 @@
 				<gal-icon icon="shareAll"></gal-icon>查看更多
 			</gal-link-button>
 		</template>
-		<gal-game-card-list :list="articlesView"></gal-game-card-list>
+		<gal-game-card-list
+			:list="articlesView"
+			cardName="galHomeGameCard"
+		></gal-game-card-list>
 	</gal-card>
 	<gal-card class="card">
 		<template v-slot:headerStart>
@@ -54,7 +63,10 @@
 				<gal-icon icon="shareAll"></gal-icon>查看更多
 			</gal-link-button>
 		</template>
-		<gal-game-card-list :list="videosView"></gal-game-card-list>
+		<gal-game-card-list
+			:list="videosView"
+			cardName="galHomeGameCard"
+		></gal-game-card-list>
 	</gal-card>
 	<gal-card class="card">
 		<template v-slot:headerStart>
@@ -65,7 +77,10 @@
 				<gal-icon icon="shareAll"></gal-icon>查看更多
 			</gal-link-button>
 		</template>
-		<gal-game-card-list :list="recentEditView"></gal-game-card-list>
+		<gal-game-card-list
+			:list="recentEditView"
+			cardName="galHomeGameCard"
+		></gal-game-card-list>
 	</gal-card>
 	<gal-card class="card">
 		<template v-slot:headerStart>
@@ -76,13 +91,19 @@
 				<gal-icon icon="shareAll"></gal-icon>查看更多
 			</gal-link-button>
 		</template>
-		<gal-game-card-list :list="noticesView"></gal-game-card-list>
+		<gal-game-card-list
+			:list="noticesView"
+			cardName="galHomeGameCard"
+		></gal-game-card-list>
 	</gal-card>
 	<gal-card class="card">
 		<template v-slot:headerStart>
 			<gal-icon icon="star"></gal-icon>&nbsp;&nbsp;友情链接
 		</template>
-		<gal-game-card-list :list="friendLinksList"></gal-game-card-list>
+		<gal-game-card-list
+			:list="friendLinksList"
+			cardName="galHomeGameCard"
+		></gal-game-card-list>
 	</gal-card>
 </template>
 

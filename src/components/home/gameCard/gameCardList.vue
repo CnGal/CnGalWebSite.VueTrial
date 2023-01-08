@@ -1,7 +1,11 @@
 <template>
 	<ul class="card-list" ref="list">
 		<li class="card-item" v-for="item in props.list" :key="item.id">
-			<gal-home-game-card :data="item"></gal-home-game-card>
+			<component
+				:is="props.cardName"
+				:data="item"
+				:type="props.type"
+			></component>
 		</li>
 	</ul>
 </template>
@@ -10,6 +14,13 @@
 import { ref, onMounted, onUnmounted } from "vue";
 
 const props = defineProps({
+	type: {
+		type: String
+	},
+	cardName: {
+		type: String,
+		required: true
+	},
 	list: {
 		type: [Object],
 		required: true
@@ -80,15 +91,8 @@ onUnmounted(() => {
 	flex-wrap: wrap;
 	column-gap: var(--column-gap);
 	row-gap: var(--row-gap);
-	background-color: var(--main-bg-color);
 }
 .card-item {
 	width: var(--cell-width);
-}
-
-@media screen and (max-width: 768px) {
-	.card-list {
-		background-color: transparent;
-	}
 }
 </style>

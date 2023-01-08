@@ -67,6 +67,7 @@ const props = defineProps({
 <style scoped>
 .game-card {
 	--row-dot-line: 4;
+	--game-card-bg-color: var(--main-bg-color);
 }
 .name {
 	--row-dot-line: 2;
@@ -77,6 +78,7 @@ const props = defineProps({
 	height: 100%;
 	overflow: hidden;
 	box-shadow: var(--main-shadow);
+	background-color: var(--game-card-bg-color);
 }
 .game-card-img {
 	width: 100%;
@@ -97,11 +99,5 @@ const props = defineProps({
 .tag {
 	font-size: 14px;
 	font-weight: normal;
-}
-
-@media screen and (max-width: 768px) {
-	.game-card {
-		background-color: var(--main-bg-color);
-	}
 }
 </style>

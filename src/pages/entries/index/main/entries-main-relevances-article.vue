@@ -1,7 +1,7 @@
 <template>
 	<gal-card class="card" :toggle="true">
 		<template v-slot:headerStart>
-			<gal-icon class="icon" icon="gamepad" size="1em"></gal-icon>相关文章
+			<gal-icon class="icon" icon="gamepad"></gal-icon>相关文章
 		</template>
 
 		<gal-game-card-rows
