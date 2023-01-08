@@ -17,6 +17,8 @@ import Square from "../pages/square/square.vue";
 
 import TagsIndex from "../pages/tags/index/tag.vue";
 
+import NotSupported from "../pages/notSupported.vue";
+
 import _test_icon from "../pages/_test/_icon.vue";
 
 const routes = [
@@ -81,6 +83,11 @@ const routes = [
 				component: TagsIndex
 			}
 		]
+	},
+	{
+		path: "/notSupported",
+		name: "notSupported",
+		component: NotSupported
 	}
 ];
 
@@ -102,6 +109,17 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
 	if (to.path === "/account/login") {
 		localStorage.setItem("loginRedirect", from.path);
+	}
+	if (!crypto.randomUUID) {
+		// 以是否支持 crypto.randomUUID 作为判断是否为现代浏览器的依据
+		// 如果不支持，则跳转到不支持页面
+		// 该页面会提示用户使用现代浏览器
+		// crypto.randomUUID 支持度：https://caniuse.com/?search=randomUUID
+		// 或者访问 https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID 查看API支持度
+		// Tip: crypto.randomUUID 仅限于 HTTPS 环境下使用，开发请使用 localhost 打开页面
+		// todo: 未来可以考虑使用其他方式判断是否为现代浏览器, crypto.randomUUID 为临时方案
+		next("/notSupported");
+		return;
 	}
 	next();
 });
