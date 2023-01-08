@@ -1,8 +1,7 @@
 <template>
 	<gal-card class="production-group" :toggle="true" width="full">
 		<template v-slot:headerStart>
-			<gal-icon class="icon" icon="objectGroup" size="1em"></gal-icon
-			>相关组织
+			<gal-icon class="icon" icon="objectGroup"></gal-icon>相关组织
 		</template>
 
 		<gal-game-card-rows

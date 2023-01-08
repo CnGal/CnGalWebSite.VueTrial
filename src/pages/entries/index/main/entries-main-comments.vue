@@ -1,12 +1,7 @@
 <template>
 	<gal-card class="card" v-if="comments" width="full">
 		<template v-slot:headerStart>
-			<gal-icon
-				class="icon header-icon"
-				icon="gamepad"
-				size="1em"
-			></gal-icon
-			>留言板
+			<gal-icon class="icon header-icon" icon="gamepad"></gal-icon>留言板
 		</template>
 		<galConmmentsList :comments="comments?.items"></galConmmentsList>
 
