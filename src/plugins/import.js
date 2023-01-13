@@ -48,6 +48,8 @@ import articlesGameEvaluationCardList from "../components/articles/gameCard/game
 import articlesGameEvaluationCard from "../components/articles/gameCard/gameEvaluationCard.vue";
 import evaluation from "../components/articles/gameCard/evaluation.vue";
 
+import indexPageHeader from "../components/indexpage/header/viewHeader.vue";
+
 const importPlugin = {
 	install(app) {
 		app.component("galButton", button);
@@ -98,6 +100,8 @@ const importPlugin = {
 			"galArticlesGameEvaluationCard",
 			articlesGameEvaluationCard
 		);
+
+		app.component("galIndexPageViewHeader", indexPageHeader);
 
 		app.use(tooltip);
 	}

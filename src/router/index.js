@@ -17,6 +17,8 @@ import Square from "../pages/square/square.vue";
 
 import TagsIndex from "../pages/tags/index/tag.vue";
 
+import VideoIndex from "../pages/videos/index/video.vue";
+
 import _test_icon from "../pages/_test/_icon.vue";
 
 const routes = [
@@ -79,6 +81,11 @@ const routes = [
 				path: "/tags/index/:id",
 				name: "tagsIndex",
 				component: TagsIndex
+			},
+			{
+				path: "/videos/index/:id",
+				name: "videoIndex",
+				component: VideoIndex
 			}
 		]
 	}

@@ -2,7 +2,7 @@
 	<gal-alert class="alert" type="error" v-if="info.type === 3"
 		>这个词条可能涉及到现实人物，请勿过分较真，也请谨慎编辑，仔细斟酌词句</gal-alert
 	>
-	<gal_EntriesHeader :info="info"></gal_EntriesHeader>
+	<galIndexPageViewHeader :info="info" type="entry"></galIndexPageViewHeader>
 	<div class="main-body">
 		<div class="main-main">
 			<gal-card class="main-card" v-if="info.pictures?.length">
@@ -126,7 +126,6 @@
 
 <script setup>
 import { ref, watch } from "vue";
-import gal_EntriesHeader from "../../../components/common/header/viewHeader.vue";
 import gal_EntriesExtraSteam from "./extra/entries-extra-steam.vue";
 import gal_EntriesExtraInformation from "./extra/entries-extra-information.vue";
 import gal_EntriesExtraTags from "./extra/entries-extra-tags.vue";
