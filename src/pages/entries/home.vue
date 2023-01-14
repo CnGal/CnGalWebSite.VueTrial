@@ -45,11 +45,11 @@
 			refreshText="换一组打折游戏"
 		></gal-refresh-game-card-list>
 	</gal-card>
-	<galEntriesGameCGsCardList
+	<galEntriesCGsCardList
 		class="card"
 		:list="gameCGs"
 		v-if="!isMobile"
-	></galEntriesGameCGsCardList>
+	></galEntriesCGsCardList>
 	<Suspense>
 		<galEntriesGameRolesCardList class="card"></galEntriesGameRolesCardList>
 	</Suspense>

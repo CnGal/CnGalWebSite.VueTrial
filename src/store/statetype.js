@@ -11,7 +11,8 @@ export const useStateTypeStore = defineStore("stateType", {
 				commentUser: 4, // 用户留言
 				commentPeriphery: 5, // 评论周边
 				commentVote: 6, // 评论投票
-				commentLottery: 7 // 评论抽奖
+				commentLottery: 7, // 评论抽奖
+				CommentVideo: 8 // 评论视频
 			},
 			entryType: {
 				game: 0, // 游戏

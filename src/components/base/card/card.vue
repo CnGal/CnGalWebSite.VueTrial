@@ -1,7 +1,10 @@
 <template>
 	<section
 		class="card"
-		:class="{ noheader: !($slots.headerStart || $slots.headerEnd) }"
+		:class="{
+			noheader: !($slots.headerStart || $slots.headerEnd),
+			[props.width]: true
+		}"
 	>
 		<header
 			class="card-header"
@@ -24,7 +27,7 @@
 				></gal-icon-button>
 			</div>
 		</header>
-		<main :class="['card-main', props.width]" v-show="isShow">
+		<main class="card-main" v-show="isShow">
 			<slot></slot>
 		</main>
 	</section>
@@ -72,6 +75,11 @@ const toggleRolesCardVisibility = () => {
 	--card-body-fit-size-padding: 16px;
 	--card-body-full-size-padding: 0;
 }
+.full {
+	--card-box-shadow: unset;
+	--card-header-box-shadow: var(--main-shadow);
+	--card-body-bg-color: transparent;
+}
 @media screen and (max-width: 768px) {
 	.card {
 		--card-body-bg-color: transparent;
@@ -118,15 +126,15 @@ h2 {
 	color: var(--main-font-color);
 	background-color: var(--card-body-bg-color);
 }
-.card-main.fit {
+.fit .card-main {
 	padding: var(--card-body-fit-size-padding);
 	/* 当有 header 的时候，不需要加上方的 padding */
 	padding-block-start: unset;
 }
-.card.noheader .card-main.fit {
+.card.noheader.fit .card-main {
 	padding: var(--card-body-fit-size-padding);
 }
-.card-main.full {
+.full .card-main {
 	padding: var(--card-body-full-size-padding);
 }
 

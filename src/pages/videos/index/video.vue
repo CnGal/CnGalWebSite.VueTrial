@@ -1,12 +1,59 @@
 <template>
 	<galIndexPageViewHeader :info="info" type="video"></galIndexPageViewHeader>
+
+	<galIndexPageViewBody>
+		<template v-slot:main>
+			<gal-card class="main-card" v-if="info.pictures?.length">
+				<template v-slot:headerStart>
+					<gal-icon class="icon" icon="picture"></gal-icon
+					>&nbsp;&nbsp;预览图
+				</template>
+				<gal-cg-card :data="info.pictures[0]"></gal-cg-card>
+			</gal-card>
+
+			<gal-card class="main-card" v-if="info.mainPage">
+				<template v-slot:headerStart>
+					<gal-icon class="icon" icon="homeFill"></gal-icon
+					>&nbsp;&nbsp;介绍
+				</template>
+				<gal-markdown v-html="info.mainPage"></gal-markdown>
+			</gal-card>
+
+			<gal-card
+				class="main-card"
+				:toggle="true"
+				width="full"
+				v-if="info.relatedEntries?.length"
+			>
+				<template v-slot:headerStart>
+					<gal-icon class="icon" icon="gamepad"></gal-icon>相关词条
+				</template>
+
+				<gal-game-card-rows
+					class="rows"
+					:rows="info.relatedEntries"
+					:rowHasCellTotal="1"
+					:heightOverflowScroll="false"
+				></gal-game-card-rows>
+			</gal-card>
+
+			<galConmmentsList
+				class="main-card"
+				:id="id"
+				:type="stateStore.commentType.CommentVideo"
+			></galConmmentsList>
+		</template>
+		<template v-slot:extra>2</template>
+	</galIndexPageViewBody>
 </template>
 
 <script setup>
 import { ref, onMounted, watch } from "vue";
 import { getVideoByID } from "@/api/videoAPI/index.js";
+import { useStateTypeStore } from "@/store/statetype.js";
 import { useRoute } from "vue-router";
 const route = useRoute();
+const stateStore = useStateTypeStore();
 const id = ref(route.params.id);
 
 const info = ref({});
@@ -33,4 +80,9 @@ const changePageTiele = () => {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.main-card,
+.rows {
+	margin-block-start: 12px;
+}
+</style>

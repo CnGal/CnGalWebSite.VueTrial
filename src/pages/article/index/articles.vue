@@ -120,26 +120,16 @@
 		</main>
 	</article>
 
-	<gal-card class="comments-card" v-if="comments" width="full">
-		<template v-slot:headerStart>
-			<gal-icon class="icon header-icon" icon="note" size="1em"></gal-icon
-			>留言板
-		</template>
-		<galConmmentsList :comments="comments?.items"></galConmmentsList>
-
-		<div class="login-wrap">
-			<galLinkButton to="/login" theme="solid" class="login">
-				<galIcon icon="login"></galIcon>
-				登入后发表评论
-			</galLinkButton>
-		</div>
-	</gal-card>
+	<galConmmentsList
+		class="comments-card"
+		:id="id"
+		:type="stateStore.commentType.commentArticle"
+	></galConmmentsList>
 </template>
 
 <script setup>
 import { ref, watch } from "vue";
 import { getArticleView } from "@/api/articlesAPI/index.js";
-import { getComments } from "@/api/commentsAPI/index.js";
 import { dateFormat } from "@/assets/common/js/formatDate.js";
 import { useStateTypeStore } from "@/store/statetype.js";
 import { useRoute } from "vue-router";
@@ -155,16 +145,6 @@ const getInfo = async () => {
 	document.title = data.name + " - CnGal 中文GalGame资料站";
 };
 getInfo();
-
-const comments = ref(null);
-const getComment = async (newId) => {
-	const { data } = await getComments(
-		stateStore.commentType.commentArticle,
-		newId
-	);
-	comments.value = data;
-};
-getComment(id.value);
 
 // 监听 articles/index/:id  页面的变化
 watch(
@@ -273,22 +253,5 @@ watch(
 
 .comments-card {
 	margin-block-start: 16px;
-}
-.comments-card :deep(.card-main) {
-	background-color: transparent;
-}
-.login-wrap {
-	padding: 0.5em;
-	text-align: center;
-	background-color: var(--main-bg-color);
-	margin-block-start: 12px;
-}
-.login {
-	overflow: hidden;
-	margin: 0.5em auto;
-}
-.login.login.login.login.login:hover {
-	background-color: var(--main-color);
-	color: var(--white-color);
 }
 </style>

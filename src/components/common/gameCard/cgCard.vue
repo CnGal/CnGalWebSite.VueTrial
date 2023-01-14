@@ -147,7 +147,6 @@ provide("changeActive", changeActive);
 .cg-show {
 	width: 100%;
 	box-sizing: border-box;
-	padding: 0 12px;
 	aspect-ratio: 1920 / 1080;
 	object-fit: cover;
 	cursor: pointer;

@@ -37,11 +37,11 @@ import conmmentItem from "../components/common/comment/commentItem.vue";
 
 import gamePreview from "../components/common/gameCard/gamePreview.vue";
 import gameCardRows from "../components/common/gameCard/gameCardRows.vue";
+import cgCard from "../components/common/gameCard/cgCard.vue";
 
 import userScoresCard from "../components/common/gameCard/userScoresCard.vue";
 
-import entriesGameCGsCardList from "../components/entries/gameCard/gameCGsCardList.vue";
-import entriesGameCGsCard from "../components/entries/gameCard/gameCGsCard.vue";
+import entriesCGsCardList from "../components/entries/gameCard/cgCardList.vue";
 import entriesGameRolesCardList from "../components/entries/gameCard/gameRolesCardList.vue";
 
 import articlesGameEvaluationCardList from "../components/articles/gameCard/gameEvaluationCardList.vue";
@@ -49,6 +49,7 @@ import articlesGameEvaluationCard from "../components/articles/gameCard/gameEval
 import evaluation from "../components/articles/gameCard/evaluation.vue";
 
 import indexPageHeader from "../components/indexpage/header/viewHeader.vue";
+import indexPageBody from "../components/indexpage/body/viewBody.vue";
 
 const importPlugin = {
 	install(app) {
@@ -87,9 +88,9 @@ const importPlugin = {
 		app.component("galConmmentsList", conmmentsList);
 		app.component("galConmmentItem", conmmentItem);
 		app.component("galUserScoresCard", userScoresCard);
+		app.component("galCgCard", cgCard);
 
-		app.component("galEntriesGameCGsCardList", entriesGameCGsCardList);
-		app.component("galEntriesGameCGsCard", entriesGameCGsCard);
+		app.component("galEntriesCGsCardList", entriesCGsCardList);
 		app.component("galEntriesGameRolesCardList", entriesGameRolesCardList);
 
 		app.component(
@@ -102,6 +103,7 @@ const importPlugin = {
 		);
 
 		app.component("galIndexPageViewHeader", indexPageHeader);
+		app.component("galIndexPageViewBody", indexPageBody);
 
 		app.use(tooltip);
 	}
