@@ -43,13 +43,63 @@
 				:type="stateStore.commentType.CommentVideo"
 			></galConmmentsList>
 		</template>
-		<template v-slot:extra>2</template>
+		<template v-slot:extra>
+			<gal_VideoExtraUser
+				class="extra-card"
+				v-if="info.userInfor"
+				:information="info.userInfor"
+			></gal_VideoExtraUser>
+
+			<galIndexPageExtraInformation
+				:information="[
+					{
+						informations: [
+							{
+								displayName: info.type
+							},
+							{
+								displayName: info.isCreatedByCurrentUser
+									? '原创'
+									: '转载'
+							},
+							{
+								displayName: '浏览数',
+								displayValue: info.readerCount
+							},
+							{
+								displayName: '时长',
+								displayValue: info.duration
+							},
+							{
+								displayName: '原作者',
+								displayValue: info.originalAuthor
+							},
+							{
+								displayName: '发布时间',
+								displayValue: dateFormat(info.pubishTime)(
+									'YMDhms'
+								)
+							}
+						],
+						modifier: '基本信息'
+					}
+				]"
+			></galIndexPageExtraInformation>
+
+			<galIndexPageExtraOtherRelevances
+				class="extra-card"
+				v-if="info.relatedOutlinks?.length"
+				:otherRelevances="info.relatedOutlinks"
+			></galIndexPageExtraOtherRelevances>
+		</template>
 	</galIndexPageViewBody>
 </template>
 
 <script setup>
 import { ref, onMounted, watch } from "vue";
 import { getVideoByID } from "@/api/videoAPI/index.js";
+import gal_VideoExtraUser from "./extra/video-extra-user.vue";
+import { dateFormat } from "@/assets/common/js/formatDate.js";
 import { useStateTypeStore } from "@/store/statetype.js";
 import { useRoute } from "vue-router";
 const route = useRoute();
@@ -82,6 +132,7 @@ const changePageTiele = () => {
 
 <style scoped>
 .main-card,
+.extra-card,
 .rows {
 	margin-block-start: 12px;
 }

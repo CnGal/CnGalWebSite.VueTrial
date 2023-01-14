@@ -90,9 +90,10 @@
 				:steamId="info.steamId"
 			></gal_EntriesExtraSteam>
 
-			<gal_EntriesExtraInformation
-				:information="info.information || []"
-			></gal_EntriesExtraInformation>
+			<galIndexPageExtraInformation
+				v-if="info.information?.length"
+				:information="info.information"
+			></galIndexPageExtraInformation>
 
 			<gal_EntriesExtraTags
 				:info="info"
@@ -112,11 +113,11 @@
 				v-if="info.roles?.length"
 			></gal_EntriesExtraRoles>
 
-			<gal_EntriesExtraOtherRelevances
-				:info="info"
+			<galIndexPageExtraOtherRelevances
 				class="extra-card"
 				v-if="info.otherRelevances?.length"
-			></gal_EntriesExtraOtherRelevances>
+				:otherRelevances="info.otherRelevances"
+			></galIndexPageExtraOtherRelevances>
 		</template>
 	</galIndexPageViewBody>
 </template>
@@ -124,9 +125,7 @@
 <script setup>
 import { ref, watch } from "vue";
 import gal_EntriesExtraSteam from "./extra/entries-extra-steam.vue";
-import gal_EntriesExtraInformation from "./extra/entries-extra-information.vue";
 import gal_EntriesExtraTags from "./extra/entries-extra-tags.vue";
-import gal_EntriesExtraOtherRelevances from "./extra/entries-extra-otherRelevances.vue";
 import gal_EntriesExtraRoles from "./extra/entries-extra-roles.vue";
 import gal_EntriesExtraStaffs from "./extra/entries-extra-staffs.vue";
 

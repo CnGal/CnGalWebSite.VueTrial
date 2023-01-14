@@ -13,12 +13,12 @@
 const props = defineProps({
 	type: {
 		type: String,
-		default: "warning",
-	},
+		default: "warning"
+	}
 });
 const iconNames = {
 	warning: "alertOutline",
-	error: "alertCircleOutline",
+	error: "alertCircleOutline"
 };
 </script>
 
@@ -26,6 +26,8 @@ const iconNames = {
 .alert-box {
 	--warning-color: #fb8c00;
 	--error-color: #ff5252;
+	--alert-bg-color: var(--main-bg-color);
+	--alert-box-shadow: var(--main-shadow);
 }
 .alert-box {
 	border-inline-start: 8px solid;
@@ -34,6 +36,8 @@ const iconNames = {
 	align-items: flex-start;
 	padding: 16px;
 	column-gap: 8px;
+	background-color: var(--alert-bg-color);
+	box-shadow: var(--alert-box-shadow);
 }
 .icon {
 	flex: none;

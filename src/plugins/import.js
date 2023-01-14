@@ -50,6 +50,8 @@ import evaluation from "../components/articles/gameCard/evaluation.vue";
 
 import indexPageHeader from "../components/indexpage/header/viewHeader.vue";
 import indexPageBody from "../components/indexpage/body/viewBody.vue";
+import indexPageExtraInformation from "../components/indexpage/extra/information.vue";
+import indexPageExtraOtherRelevances from "../components/indexpage/extra/otherRelevances.vue";
 
 const importPlugin = {
 	install(app) {
@@ -104,6 +106,14 @@ const importPlugin = {
 
 		app.component("galIndexPageViewHeader", indexPageHeader);
 		app.component("galIndexPageViewBody", indexPageBody);
+		app.component(
+			"galIndexPageExtraInformation",
+			indexPageExtraInformation
+		);
+		app.component(
+			"galIndexPageExtraOtherRelevances",
+			indexPageExtraOtherRelevances
+		);
 
 		app.use(tooltip);
 	}
