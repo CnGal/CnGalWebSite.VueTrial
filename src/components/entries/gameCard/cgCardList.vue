@@ -14,7 +14,7 @@
 					<gal-icon icon="shareAll"></gal-icon>查看详情
 				</gal-link-button>
 			</template>
-			<galEntriesGameCGsCard :data="item"></galEntriesGameCGsCard>
+			<gal-cg-card :data="item"></gal-cg-card>
 		</gal-card>
 	</div>
 </template>
@@ -25,8 +25,8 @@ import { ref } from "vue";
 const props = defineProps({
 	list: {
 		type: [Object],
-		required: true,
-	},
+		required: true
+	}
 });
 </script>
 

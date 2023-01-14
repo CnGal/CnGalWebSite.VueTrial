@@ -2,17 +2,16 @@
 	<gal-alert class="alert" type="error" v-if="info.type === 3"
 		>这个词条可能涉及到现实人物，请勿过分较真，也请谨慎编辑，仔细斟酌词句</gal-alert
 	>
-	<gal_EntriesHeader :info="info"></gal_EntriesHeader>
-	<div class="main-body">
-		<div class="main-main">
+	<galIndexPageViewHeader :info="info" type="entry"></galIndexPageViewHeader>
+
+	<galIndexPageViewBody>
+		<template v-slot:main>
 			<gal-card class="main-card" v-if="info.pictures?.length">
 				<template v-slot:headerStart>
 					<gal-icon class="icon" icon="picture"></gal-icon
 					>&nbsp;&nbsp;相册
 				</template>
-				<galEntriesGameCGsCard
-					:data="info.pictures[0]"
-				></galEntriesGameCGsCard>
+				<gal-cg-card :data="info.pictures[0]"></gal-cg-card>
 			</gal-card>
 
 			<gal-card class="main-card" v-if="info.mainPage">
@@ -20,10 +19,7 @@
 					<gal-icon class="icon" icon="homeFill"></gal-icon
 					>&nbsp;&nbsp;介绍
 				</template>
-				<gal-markdown
-					:style="{ padding: '16px', 'padding-top': 0 }"
-					v-html="info.mainPage"
-				></gal-markdown>
+				<gal-markdown v-html="info.mainPage"></gal-markdown>
 			</gal-card>
 
 			<gal_EntriesMainNews
@@ -66,12 +62,13 @@
 				:articleRelevances="info.articleRelevances"
 			></gal_EntriesMainEelevancesArticle>
 
-			<gal_EntriesMainComments
+			<galConmmentsList
 				class="main-card"
 				:id="id"
-			></gal_EntriesMainComments>
-		</div>
-		<div class="main-extra">
+				:type="stateStore.commentType.commentEntries"
+			></galConmmentsList>
+		</template>
+		<template v-slot:extra>
 			<gal-card class="extra-card" v-if="info.type === 0">
 				<template v-slot:headerStart>
 					<gal-icon class="icon" icon="star"></gal-icon
@@ -93,9 +90,10 @@
 				:steamId="info.steamId"
 			></gal_EntriesExtraSteam>
 
-			<gal_EntriesExtraInformation
-				:information="info.information || []"
-			></gal_EntriesExtraInformation>
+			<galIndexPageExtraInformation
+				v-if="info.information?.length"
+				:information="info.information"
+			></galIndexPageExtraInformation>
 
 			<gal_EntriesExtraTags
 				:info="info"
@@ -115,22 +113,19 @@
 				v-if="info.roles?.length"
 			></gal_EntriesExtraRoles>
 
-			<gal_EntriesExtraOtherRelevances
-				:info="info"
+			<galIndexPageExtraOtherRelevances
 				class="extra-card"
 				v-if="info.otherRelevances?.length"
-			></gal_EntriesExtraOtherRelevances>
-		</div>
-	</div>
+				:otherRelevances="info.otherRelevances"
+			></galIndexPageExtraOtherRelevances>
+		</template>
+	</galIndexPageViewBody>
 </template>
 
 <script setup>
 import { ref, watch } from "vue";
-import gal_EntriesHeader from "../../../components/common/header/viewHeader.vue";
 import gal_EntriesExtraSteam from "./extra/entries-extra-steam.vue";
-import gal_EntriesExtraInformation from "./extra/entries-extra-information.vue";
 import gal_EntriesExtraTags from "./extra/entries-extra-tags.vue";
-import gal_EntriesExtraOtherRelevances from "./extra/entries-extra-otherRelevances.vue";
 import gal_EntriesExtraRoles from "./extra/entries-extra-roles.vue";
 import gal_EntriesExtraStaffs from "./extra/entries-extra-staffs.vue";
 
@@ -139,13 +134,13 @@ import gal_EntriesMainProductionGroup from "./main/entries-main-production-group
 import gal_EntriesMainStaffGames from "./main/entries-main-staff-games.vue";
 import gal_EntriesMainEelevancesGame from "./main/entries-main-relevances-game.vue";
 import gal_EntriesMainEelevancesArticle from "./main/entries-main-relevances-article.vue";
-import gal_EntriesMainComments from "./main/entries-main-comments.vue";
 
 import { getEntryViewByID } from "../../../api/entriesAPI/index.js";
-
+import { useStateTypeStore } from "@/store/statetype.js";
 import { useRoute } from "vue-router";
 const route = useRoute();
 const id = ref(route.params.id);
+const stateStore = useStateTypeStore();
 
 const info = ref({});
 const getInfo = async () => {
@@ -177,34 +172,12 @@ a,
 	color: var(--main-font-color);
 }
 
-.main-body {
-	display: flex;
-	column-gap: 24px;
-	margin-block-start: 12px;
-	color: var(--main-font-color);
-}
-.main-extra {
-	width: clamp(320px, calc((100% - 16px) / 3 * 1), 400px);
-}
-.main-main {
-	flex: 1;
-}
 .extra-card {
-	background-color: var(--main-bg-color);
 	font-size: 14px;
 	margin-block-start: 12px;
 }
 .main-card {
 	margin-block-start: 12px;
-}
-
-@media screen and (max-width: 992px) {
-	.main-body {
-		flex-direction: column-reverse;
-	}
-	.main-extra {
-		width: 100%;
-	}
 }
 
 .alert {

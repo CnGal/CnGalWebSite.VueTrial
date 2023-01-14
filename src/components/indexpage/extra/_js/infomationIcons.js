@@ -52,14 +52,14 @@ const infomationIcons = (infomation) => {
 };
 const showInformationKeyText = (infomation) => {
 	let names = infomation.displayName;
-	let value = infomation.displayValue;
+	let value = infomation.displayValue?.toString();
 	if (names === "声优") {
 		return "配音";
 	} else if (names === "昵称（官方称呼）") {
 		return "昵称";
-	} else if (value.includes("bilibili.com")) {
+	} else if (value?.includes("bilibili.com")) {
 		return "B站";
-	} else if (value.includes("weibo.com")) {
+	} else if (value?.includes("weibo.com")) {
 		return "微博";
 	} else {
 		return names;

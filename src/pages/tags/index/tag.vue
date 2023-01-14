@@ -17,7 +17,11 @@
 		></gal-breadcrumb>
 	</gal-card>
 
-	<gal_TagsHeader class="header-card" :info="info"></gal_TagsHeader>
+	<galIndexPageViewHeader
+		class="header-card"
+		:info="info"
+		type="tag"
+	></galIndexPageViewHeader>
 
 	<gal-card class="sub-tags" :toggle="true" v-if="info.childrenTags?.length">
 		<template v-slot:headerStart>
@@ -66,7 +70,6 @@
 
 <script setup>
 import { ref, onMounted, watch } from "vue";
-import gal_TagsHeader from "../../../components/common/header/viewHeader.vue";
 import galGameCardList from "../../../components/home/gameCard/gameCardList.vue";
 import { useRoute } from "vue-router";
 import { getTag } from "../../../api/tagsAPI/index.js";

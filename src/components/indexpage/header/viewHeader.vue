@@ -1,5 +1,5 @@
 <template>
-	<gal-card class="entries-header-card">
+	<gal-card class="index-page-header">
 		<div
 			class="main-header"
 			:class="{
@@ -69,6 +69,7 @@
 						v-gal-tooltip="'收藏'"
 					></gal-icon-button>
 					<gal-icon-button
+						v-if="props.type !== 'video'"
 						icon="pencilMdi"
 						class="icon"
 						:style="{ '--icon-button-size': '40px' }"
@@ -90,11 +91,21 @@ const props = defineProps({
 	info: {
 		type: Object,
 		required: true
+	},
+	type: {
+		type: String,
+		required: true
 	}
 });
 </script>
 
 <style scoped>
+@media screen and (max-width: 992px) {
+	.index-page-header {
+		--card-body-fit-size-padding: 0;
+	}
+}
+
 a,
 .icon {
 	color: var(--main-color);
@@ -161,9 +172,6 @@ a,
 	}
 }
 @media screen and (max-width: 992px) {
-	.entries-header-card :deep(.card-main.card-main.card-main) {
-		padding: 0;
-	}
 	.main-header {
 		flex-direction: column;
 	}

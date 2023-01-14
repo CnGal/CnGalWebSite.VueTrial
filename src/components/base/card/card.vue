@@ -1,7 +1,10 @@
 <template>
 	<section
 		class="card"
-		:class="{ noheader: !($slots.headerStart || $slots.headerEnd) }"
+		:class="{
+			noheader: !($slots.headerStart || $slots.headerEnd),
+			[props.width]: true
+		}"
 	>
 		<header
 			class="card-header"
@@ -24,7 +27,7 @@
 				></gal-icon-button>
 			</div>
 		</header>
-		<main :class="['card-main', props.width]" v-show="isShow">
+		<main class="card-main" v-show="isShow">
 			<slot></slot>
 		</main>
 	</section>
@@ -68,14 +71,25 @@ const toggleRolesCardVisibility = () => {
 	--card-header-box-shadow: unset;
 	--card-header-bg-color: var(--main-bg-color);
 	--card-body-bg-color: var(--main-bg-color);
+	--card-header-padding: 1em 1em 12px;
+	--card-body-fit-size-padding: 16px;
+	--card-body-full-size-padding: 0;
+}
+.full {
+	--card-box-shadow: unset;
+	--card-header-box-shadow: var(--main-shadow);
+	--card-body-bg-color: transparent;
 }
 @media screen and (max-width: 768px) {
 	.card {
 		--card-body-bg-color: transparent;
 		--card-box-shadow: unset;
 		--card-header-box-shadow: var(--main-shadow);
+		--card-header-padding: 0 1em;
+		--card-body-fit-size-padding: 0;
 	}
 }
+
 .card {
 	box-shadow: var(--card-box-shadow);
 	border-radius: var(--main-border-radius);
@@ -88,7 +102,7 @@ const toggleRolesCardVisibility = () => {
 	color: var(--main-font-color);
 	background-color: var(--card-header-bg-color);
 	min-height: 35px;
-	padding: 1em 1em 12px;
+	padding: var(--card-header-padding);
 	box-shadow: var(--card-header-box-shadow);
 }
 html:not(.theme-dark) .card-header {
@@ -112,14 +126,16 @@ h2 {
 	color: var(--main-font-color);
 	background-color: var(--card-body-bg-color);
 }
-.card-main.fit {
-	padding: 0 16px 16px;
+.fit .card-main {
+	padding: var(--card-body-fit-size-padding);
+	/* 当有 header 的时候，不需要加上方的 padding */
+	padding-block-start: unset;
 }
-.card.noheader .card-main.fit {
-	padding: 16px;
+.card.noheader.fit .card-main {
+	padding: var(--card-body-fit-size-padding);
 }
-.card-main.full {
-	padding: 0;
+.full .card-main {
+	padding: var(--card-body-full-size-padding);
 }
 
 @media screen and (max-width: 768px) {
@@ -129,13 +145,7 @@ h2 {
 	}
 	.card-header {
 		margin-block-end: 12px;
-		padding-block-start: 0;
-		padding-block-end: 0;
 		border-radius: var(--main-border-radius);
-	}
-
-	.card-main.fit {
-		padding: 0;
 	}
 }
 </style>

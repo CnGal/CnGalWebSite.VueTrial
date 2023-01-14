@@ -1,5 +1,5 @@
 <template>
-	<gal-card class="extra-card">
+	<gal-card class="extra-card" width="full">
 		<template v-slot:headerStart>
 			<gal-icon class="icon" icon="link" size="1em"></gal-icon
 			>&nbsp;&nbsp;外部链接
@@ -9,7 +9,7 @@
 			>以下为外部链接，与本站没有任何从属关系，本站亦不对其安全性负责</gal-alert
 		>
 		<a
-			v-for="item in info.otherRelevances.map((i) => changeInfodata(i))"
+			v-for="item in props.otherRelevances.map((i) => changeInfodata(i))"
 			:key="item.id"
 			class="otherRelevances"
 			:href="item.link"
@@ -30,10 +30,10 @@
 
 <script setup>
 const props = defineProps({
-	info: {
-		type: Object,
-		required: true,
-	},
+	otherRelevances: {
+		type: [Object],
+		required: true
+	}
 });
 
 const changeInfodata = (item) => {
@@ -50,6 +50,7 @@ const changeInfodata = (item) => {
 		YM: "/images/otherRelevances/YMGal.png",
 		TapTap: "/images/otherRelevances/TapTap.png",
 		Wikidata: "/images/otherRelevances/Wikidata.png",
+		bilibili: "/images/otherRelevances/bilibili.png"
 	};
 	let key = item.displayName;
 
@@ -59,12 +60,17 @@ const changeInfodata = (item) => {
 		key = "YM";
 	} else if (key === "WikiData" || key === "维基数据") {
 		key = "Wikidata";
+	} else if (key.includes("bilibili")) {
+		key = "bilibili";
 	}
 	item.imageStr = imgStr[key];
 
 	if (key === "VNDB") {
 		item.displayValue =
 			"VNDB.org力争成为一个关于视觉小说的全面的信息数据库";
+	}
+	if (key.includes("bilibili")) {
+		item.displayName = "前往 bilibili 观看";
 	}
 
 	return item;
@@ -77,7 +83,10 @@ const changeInfodata = (item) => {
 	align-items: center;
 	column-gap: 1em;
 	padding: 12px;
+	margin-block-start: 12px;
 	color: var(--main-font-color);
+	background-color: var(--main-bg-color);
+	box-shadow: var(--main-shadow);
 }
 .otherRelevances img {
 	width: 50px;

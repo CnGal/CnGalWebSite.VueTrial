@@ -22,8 +22,13 @@
 					:icon="infomationIcons(item) || 'circle'"
 				></gal-icon>
 				<div>
-					<span>{{ showInformationKeyText(item) }}:</span>
-					<span>{{ item.displayValue }}</span>
+					<span>{{
+						showInformationKeyText(item) +
+						(item.displayValue ? ":" : "")
+					}}</span>
+					<span v-if="item.displayValue">{{
+						item.displayValue
+					}}</span>
 				</div>
 			</li>
 		</ul>
@@ -75,7 +80,7 @@
 import {
 	infomationIcons,
 	showInformationKeyText
-} from "../_js/infomationIcons.js";
+} from "./_js/infomationIcons.js";
 
 const props = defineProps({
 	information: {
