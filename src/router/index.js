@@ -19,6 +19,8 @@ import TagsIndex from "../pages/tags/index/tag.vue";
 
 import VideoIndex from "../pages/videos/index/video.vue";
 
+import NotFount from "../pages/404.vue";
+
 import _test_icon from "../pages/_test/_icon.vue";
 
 const routes = [
@@ -86,6 +88,12 @@ const routes = [
 				path: "/videos/index/:id",
 				name: "videoIndex",
 				component: VideoIndex
+			},
+			// 404页面，必须放在最后
+			{
+				path: "/:pathMatch(.*)*",
+				name: "notFount",
+				component: NotFount
 			}
 		]
 	}
@@ -107,8 +115,8 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-	if (to.path === "/account/login") {
-		localStorage.setItem("loginRedirect", from.path);
+	if (to.path === "/account/login" || to.name === "notFount") {
+		localStorage.setItem("pageRedirect", from.path);
 	}
 	next();
 });
