@@ -116,9 +116,9 @@ const loginIn = async ({
 	}
 	store.authToken = token;
 
-	const backRouter = localStorage.getItem("loginRedirect");
+	const backRouter = localStorage.getItem("pageRedirect");
 	router.push(backRouter || "/");
-	localStorage.removeItem("loginRedirect");
+	localStorage.removeItem("pageRedirect");
 };
 
 (async () => {
