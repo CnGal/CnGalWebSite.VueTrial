@@ -6,13 +6,8 @@
 </gal-alert>
 ```
 
-### 属性
+### props
 
--   type
-
-    -   type: String
-    -   default: "warning"
-
-    确定 alert 的基础样式和 icon 的种类，
-
-    当前支持值：warning error
+| 属性名 | 说明     | 类型   | 必须  | 默认值  | 可选值        | 补充 |
+| ------ | -------- | ------ | ----- | ------- | ------------- | ---- |
+| type   | 基础样式 | string | false | warning | warning error |      |

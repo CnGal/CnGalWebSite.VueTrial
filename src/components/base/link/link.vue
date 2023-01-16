@@ -33,21 +33,28 @@ if (props.href) {
 		isExternal.value = false;
 	}
 	link.value = props.to;
+} else {
+	isExternal.value = true;
+	link.value = "#";
 }
 </script>
 
 <style>
 .link {
-	color: var(--main-color);
-	font-size: 14px;
+	--link-color: var(--main-color);
+	--link-font-size: 14px;
 }
 .theme-dark .link {
-	color: var(--main-font-color);
+	--link-color: var(--main-font-color);
 }
-
 @media screen and (max-width: 768px) {
 	.link {
-		font-size: 12px;
+		--link-font-size: 12px;
 	}
+}
+
+.link {
+	color: var(--link-color);
+	font-size: var(--link-font-size);
 }
 </style>
