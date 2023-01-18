@@ -28,11 +28,8 @@
 </gal-timeline>
 ```
 
-### 属性
+### props
 
--   contentAlign
-
-    -   type: String
-    -   default: "left"
-
-    设置 timeline 和 timeline-item 的显示效果，当前支持值 left center right
+| 属性名       | 说明             | 类型   | 必须  | 默认值 | 可选值            | 补充 |
+| ------------ | ---------------- | ------ | ----- | ------ | ----------------- | ---- |
+| contentAlign | 内容显示样式风格 | string | false | left   | left center right |      |

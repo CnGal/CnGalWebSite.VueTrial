@@ -5,4 +5,4 @@
 </galDatepicker>
 ```
 
-同 https://element-plus.org/zh-CN/component/date-picker.html
+详见： https://element-plus.org/zh-CN/component/date-picker.html
