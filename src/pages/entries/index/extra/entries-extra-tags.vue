@@ -1,7 +1,7 @@
 <template>
 	<gal-card class="extra-card">
 		<template v-slot:headerStart>
-			<gal-icon class="icon" icon="tags" size="1em"></gal-icon>标签
+			<gal-icon class="icon" icon="tags"></gal-icon>标签
 		</template>
 		<div class="content">
 			<gal-link-button
@@ -20,8 +20,8 @@
 const props = defineProps({
 	info: {
 		type: Object,
-		required: true,
-	},
+		required: true
+	}
 });
 </script>
 

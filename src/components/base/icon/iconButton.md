@@ -8,18 +8,11 @@
 ></gal-icon-button>
 ```
 
-### 属性
+### props
 
--   icon
-
-    -   type: String
-    -   required: true
-
-    具体参见 [gal-icon](../icon/icon.md)
-
--   type
-
-    同 [gal-button](../button/button.md)
-    在值为 default 情况下添加 --button-bg-color: transparent; css 属性值
+| 属性名 | 说明     | 类型   | 必须  | 默认值  | 可选值          | 补充                                                                  |
+| ------ | -------- | ------ | ----- | ------- | --------------- | --------------------------------------------------------------------- |
+| icon   | 图标类型 | String | true  |         | 见表格下方      | 同 [icon](./icon.md)                                                  |
+| type   | 样式风格 | string | false | default | default primary | 在值为 default 设置透明背景，其它同 [gal-button](../button/button.md) |
 
 -   其他 [gal-button](../button/button.md) 属性

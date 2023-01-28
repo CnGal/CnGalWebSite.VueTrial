@@ -59,9 +59,10 @@ const props = defineProps({
 		type: String,
 		default: ""
 	},
-	modelValue: String,
-	submitEvent: Function
+	modelValue: String
 });
+
+const emit = defineEmits(["submitEvent"]);
 
 const input = ref();
 const label = ref();
@@ -69,7 +70,7 @@ const label = ref();
 const labelIsTop = ref(false);
 
 const submitEvent = (ev) => {
-	props.submitEvent(ev);
+	emit("submitEvent", ev);
 };
 const focusEvent = () => {
 	labelIsTop.value = true;

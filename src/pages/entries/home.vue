@@ -1,8 +1,7 @@
 <template>
 	<gal-card class="card">
 		<template v-slot:headerStart>
-			<gal-icon class="icon" icon="gift" size="1em"></gal-icon
-			>&nbsp;&nbsp;免费游戏
+			<gal-icon class="icon" icon="gift"></gal-icon>&nbsp;&nbsp;免费游戏
 		</template>
 		<template v-slot:headerEnd>
 			<gal-link-button to="/" class="link-button">
@@ -24,8 +23,7 @@
 	</gal-card>
 	<gal-card class="card">
 		<template v-slot:headerStart>
-			<gal-icon class="icon" icon="dollar" size="1em"></gal-icon
-			>&nbsp;&nbsp;打折游戏
+			<gal-icon class="icon" icon="dollar"></gal-icon>&nbsp;&nbsp;打折游戏
 		</template>
 		<template v-slot:headerEnd>
 			<gal-link-button to="/" class="link-button">

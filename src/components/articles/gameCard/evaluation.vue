@@ -6,7 +6,7 @@
 			</h3>
 			<div class="info">
 				<span>
-					<gal-icon icon="calendarAlt" size="1em"></gal-icon>
+					<gal-icon icon="calendarAlt"></gal-icon>
 					{{
 						dateFormat(props.data.lastEditTime)({
 							format: "YMD",
@@ -15,11 +15,11 @@
 					}}
 				</span>
 				<span>
-					<gal-icon icon="user" size="1em"></gal-icon>
+					<gal-icon icon="user"></gal-icon>
 					{{ props.data.createUserName }}
 				</span>
 				<span>
-					<gal-icon icon="eye" size="1em"></gal-icon>
+					<gal-icon icon="eye"></gal-icon>
 					{{ props.data.readerCount }}次阅读
 				</span>
 			</div>

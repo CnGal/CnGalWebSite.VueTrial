@@ -1,28 +1,20 @@
 <template>
 	<gal-card>
 		<template v-slot:headerStart>
-			<gal-icon class="icon" icon="steam" size="1em"></gal-icon>steam信息
+			<gal-icon class="icon" icon="steam"></gal-icon>steam信息
 		</template>
 		<div class="content">
 			<div v-if="steamInfo.priceNow === -1">
-				<gal-icon
-					class="icon"
-					icon="calendarPlusOutline"
-					size="1em"
-				></gal-icon>
+				<gal-icon class="icon" icon="calendarPlusOutline"></gal-icon>
 				未发售
 			</div>
 			<div v-else-if="steamInfo.priceNow === 0">
-				<gal-icon class="icon" icon="checkCircle" size="1em"></gal-icon>
+				<gal-icon class="icon" icon="checkCircle"></gal-icon>
 				当前价格：¥ 0.00 - Free
 			</div>
 			<div v-else-if="steamInfo.priceNow > 0">
 				<div>
-					<gal-icon
-						class="icon"
-						icon="moneyBillAlt"
-						size="1em"
-					></gal-icon>
+					<gal-icon class="icon" icon="moneyBillAlt"></gal-icon>
 					当前价格：<span v-if="steamInfo.cutNow > 0"
 						><s>{{
 							"¥ " + (steamInfo.originalPrice / 100).toFixed(2)
@@ -39,11 +31,7 @@
 					}}</span>
 				</div>
 				<div v-if="steamInfo.cutLowest > 0">
-					<gal-icon
-						class="icon"
-						icon="chartArea"
-						size="1em"
-					></gal-icon>
+					<gal-icon class="icon" icon="chartArea"></gal-icon>
 					历史最低：<span>{{
 						steamInfo.priceLowestString +
 						(steamInfo.cutLowest === 0
@@ -54,39 +42,23 @@
 			</div>
 			<div v-else-if="steamInfo.priceNow === -2">
 				<div v-if="steamInfo.originalPrice > 0">
-					<gal-icon
-						class="icon"
-						icon="moneyBillAlt"
-						size="1em"
-					></gal-icon>
+					<gal-icon class="icon" icon="moneyBillAlt"></gal-icon>
 					价格：<span>{{
 						"¥ " + (steamInfo.originalPrice / 100).toFixed(2)
 					}}</span
 					>（数据未更新）
 				</div>
 				<div v-else-if="steamInfo.originalPrice === 0">
-					<gal-icon
-						class="icon"
-						icon="checkCircle"
-						size="1em"
-					></gal-icon>
+					<gal-icon class="icon" icon="checkCircle"></gal-icon>
 					价格：¥ 0.00 - Free（数据未更新）
 				</div>
 				<div v-else>
-					<gal-icon
-						class="icon"
-						icon="calendarTimes"
-						size="1em"
-					></gal-icon>
+					<gal-icon class="icon" icon="calendarTimes"></gal-icon>
 					数据未更新
 				</div>
 			</div>
 			<div v-else-if="steamInfo.priceNow === -3">
-				<gal-icon
-					class="icon"
-					icon="calendarTimes"
-					size="1em"
-				></gal-icon>
+				<gal-icon class="icon" icon="calendarTimes"></gal-icon>
 				已下架
 			</div>
 			<div v-if="steamInfo.evaluationCount > 0">
@@ -99,7 +71,7 @@
 			</div>
 
 			<div class="single-row-dot">
-				<gal-icon class="icon" icon="homeFill" size="1em"></gal-icon>
+				<gal-icon class="icon" icon="homeFill"></gal-icon>
 				商店页面：<a
 					:href="
 						'https://store.steampowered.com/app/' + props.steamId
@@ -129,8 +101,8 @@ import { getSteamInforByID } from "../../../../api/steamAPI/index.js";
 const props = defineProps({
 	steamId: {
 		type: Number,
-		required: true,
-	},
+		required: true
+	}
 });
 const id = ref(props.steamId);
 const steamInfo = ref({});
