@@ -1,7 +1,7 @@
 <template>
 	<gal-card class="extra-card" :toggle="true">
 		<template v-slot:headerStart>
-			<gal-icon class="icon" icon="sitemap" size="1em"></gal-icon>Staff
+			<gal-icon class="icon" icon="sitemap"></gal-icon>Staff
 		</template>
 		<template v-slot:headerEnd>
 			<gal-icon-button

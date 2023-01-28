@@ -43,12 +43,10 @@ const props = defineProps({
 	toggle: {
 		type: Boolean,
 		dafault: false
-	},
-	toggleChange: {
-		type: Function,
-		default: Function.prototype
 	}
 });
+const emit = defineEmits(["toggleChange"]);
+
 const isShow = ref(true);
 const toggleBtnTooltipTextList = {
 	show: "折叠",
@@ -61,7 +59,7 @@ const toggleRolesCardVisibility = () => {
 	toggleBtnTooltipText.value =
 		toggleBtnTooltipTextList[isShow.value ? "show" : "hide"];
 
-	props.toggleChange(isShow.value);
+	emit("toggleChange", isShow.value);
 };
 </script>
 

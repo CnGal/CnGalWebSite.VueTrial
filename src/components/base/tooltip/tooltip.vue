@@ -1,3 +1,4 @@
+<!-- 此文件没有使用，tooltip组件使用的是 tooltip.js -->
 <template>
 	<teleport :to="'body'">
 		<div ref="tooltip" v-show="isShow" class="tooltip">

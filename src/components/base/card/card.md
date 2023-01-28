@@ -1,7 +1,7 @@
 ## 使用
 
 ```
-<gal-card :toggle="true" :toggleChange="Function" width="full">
+<gal-card :toggle="true" @toggleChange="Function" width="full">
 	<template v-slot:headerStart>
 		......
 	</template>
@@ -12,25 +12,15 @@
 </gal-card>
 ```
 
-### 属性
+### props
 
--   width
+| 属性名 | 说明                     | 类型    | 必须  | 默认值 | 可选值   | 补充                                                           |
+| ------ | ------------------------ | ------- | ----- | ------ | -------- | -------------------------------------------------------------- |
+| width  | 边框到内容之间是否有空白 | string  | false | fit    | fit full | fit 有空白, full 无空白。在屏幕尺寸小于 768px 时，fit 也无空白 |
+| toggle | 是否显示展开或折叠按钮。 | Boolean | false | false  | -        |                                                                |
 
-    -   type: String,
-    -   dafault: fit
+### emits
 
-    边框到内容之间是否有空白。fit 有空白, full 无空白。在屏幕尺寸小于 768px 时，fit 也无空白
-
--   toggle
-
-    -   type: Boolean,
-    -   dafault: false
-
-    是否显示展开或折叠按钮。可以控制非 header 区域的显示与隐藏
-
--   toggleChange
-
-    -   type: Function,
-    -   default: Function.prototype,
-
-    展开或折叠事件的回调函数。在展开或折叠事件完成后会触发该回调，回调接收一个布尔值参数，表示当前是否显示状态
+| 方法名       | 说明                 | 参数            | 参数说明                   |
+| ------------ | -------------------- | --------------- | -------------------------- |
+| toggleChange | 展开或折叠 main 区域 | isShow：Boolean | 事件完成后展开或折叠的状态 |

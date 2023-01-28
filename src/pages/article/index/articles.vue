@@ -8,7 +8,7 @@
 			</h1>
 			<div class="info">
 				<span>
-					<gal-icon icon="calendarAlt" size="1em"></gal-icon>
+					<gal-icon icon="calendarAlt"></gal-icon>
 					{{
 						dateFormat(info.createTime)({
 							format: "YMD",
@@ -17,11 +17,11 @@
 					}}
 				</span>
 				<span>
-					<gal-icon icon="eye" size="1em"></gal-icon>
+					<gal-icon icon="eye"></gal-icon>
 					{{ info.readerCount }}次阅读
 				</span>
 				<span>
-					<gal-icon icon="thumbsUp" size="1em"></gal-icon>
+					<gal-icon icon="thumbsUp"></gal-icon>
 					{{ info.thumbsUpCount }}人点赞
 				</span>
 			</div>
@@ -92,7 +92,7 @@
 					v-for="informations in info.relevances"
 					:key="informations.modifier"
 				>
-					<gal-icon icon="tags" size="1em"></gal-icon>
+					<gal-icon icon="tags"></gal-icon>
 					<gal-link-button
 						class="relevances-item"
 						v-for="item in informations.informations"
@@ -109,7 +109,7 @@
 				</div>
 			</div>
 			<div class="article-last-edit-time">
-				<gal-icon icon="pencilMdi" size="1em"></gal-icon>
+				<gal-icon icon="pencilMdi"></gal-icon>
 				最后编辑：{{
 					dateFormat(info.lastEditTime)({
 						format: "YMD",

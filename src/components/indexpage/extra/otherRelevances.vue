@@ -1,8 +1,7 @@
 <template>
 	<gal-card class="extra-card" width="full">
 		<template v-slot:headerStart>
-			<gal-icon class="icon" icon="link" size="1em"></gal-icon
-			>&nbsp;&nbsp;外部链接
+			<gal-icon class="icon" icon="link"></gal-icon>&nbsp;&nbsp;外部链接
 		</template>
 
 		<gal-alert class="alert" type="warning"

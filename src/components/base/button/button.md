@@ -6,22 +6,15 @@
 </gal-button>
 ```
 
-### 属性
+### attrs
 
--   circle
+| 属性名 | 说明         | 补充 |
+| ------ | ------------ | ---- |
+| circle | 是否显示圆角 |      |
 
-    设置是否为圆形
+### props
 
--   width
-
-    -   type: String
-    -   default: "normal"
-
-    设置 button 的显示宽度。normal 追随文字大小， full 100% 最大宽度
-
--   type
-
-    -   type: String
-    -   default: "default"
-
-    设置 button 显示样式，当前支持值 default primary
+| 属性名 | 说明     | 类型   | 必须  | 默认值  | 可选值          | 补充 |
+| ------ | -------- | ------ | ----- | ------- | --------------- | ---- |
+| type   | 样式风格 | string | false | default | default primary |      |
+| width  | 显示宽度 | string | false | normal  | normal full     |      |

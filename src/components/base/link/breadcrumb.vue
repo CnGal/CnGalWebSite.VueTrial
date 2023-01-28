@@ -22,7 +22,8 @@ import { ref } from "vue";
 
 const props = defineProps({
 	item: {
-		type: [Object]
+		type: [Object],
+		required: true
 	},
 	separator: {
 		type: String,

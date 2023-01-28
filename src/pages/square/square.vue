@@ -14,7 +14,7 @@
 		></gal-no-wrap-game-list>
 	</gal-card>
 
-	<gal-card class="card editOverviewChartCard" width="full">
+	<gal-card class="card editOverviewChartCard">
 		<template v-slot:headerStart>
 			<gal-icon class="icon" icon="random"></gal-icon>&nbsp;&nbsp;编辑概览
 		</template>

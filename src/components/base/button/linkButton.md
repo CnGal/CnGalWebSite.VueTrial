@@ -6,20 +6,10 @@
 </gal-link-button>
 ```
 
-### 属性
+### props
 
--   to
-
-    -   type: String
-    -   required: true
-
-    设置跳转路径
-
--   theme
-
-    -   type: String
-    -   default: "hollow"
-
-    设置 button 样式风格
-
-    目前支持值: hollow solid outline
+| 属性名                               | 说明     | 类型   | 必须  | 默认值 | 可选值               | 补充 |
+| ------------------------------------ | -------- | ------ | ----- | ------ | -------------------- | ---- |
+| theme                                | 样式风格 | string | false | hollow | hollow solid outline |      |
+| width                                | 显示宽度 | string | false | normal | normal full          |      |
+| [gal-link](../link/link.md) 所有属性 |

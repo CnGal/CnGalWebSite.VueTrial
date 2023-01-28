@@ -6,7 +6,7 @@
 			simplt
 			placeholder="可以搜索哦~"
 			autofocus
-			:submitEvent="submitEvent"
+			@submitEvent="submitEvent"
 		></galInput>
 	</gal-card>
 	<gal-card class="tags-wrap">
@@ -304,7 +304,7 @@ const getSearch = async () => {
 	if (searchTimes.length) {
 		query.times = searchTimes;
 	}
-	console.log(query);
+
 	router.push({
 		path: "/search",
 		query
@@ -424,6 +424,7 @@ onMounted(() => {
 <style scoped>
 .search-area {
 	height: 100px;
+	--card-body-bg-color: var(--main-bg-color);
 }
 .search-area :deep(.card-main) {
 	height: 100%;

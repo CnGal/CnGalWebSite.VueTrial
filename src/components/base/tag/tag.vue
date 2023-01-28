@@ -5,11 +5,10 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-
 const props = defineProps({
 	bgColor: {
-		type: String
+		type: String,
+		default: "normal"
 	}
 });
 </script>
@@ -21,12 +20,8 @@ const props = defineProps({
 	align-items: center;
 	justify-content: center;
 	column-gap: 5px;
-	background-color: var(--main-color);
 	color: #fff;
 	border-radius: 5px;
-}
-.theme-dark .tag {
-	background-color: #808080;
 }
 
 .tag[circle] {
@@ -39,6 +34,12 @@ const props = defineProps({
 	color: var(--main-color);
 }
 
+.normal {
+	background-color: var(--main-color);
+}
+.theme-dark .normal {
+	background-color: #808080;
+}
 .primary {
 	background-color: #009ef7;
 }

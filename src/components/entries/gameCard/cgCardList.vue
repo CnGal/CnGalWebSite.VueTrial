@@ -6,8 +6,10 @@
 			class="gameCG-container"
 		>
 			<template v-slot:headerStart>
-				<gal-icon class="icon" icon="picture" size="1em"></gal-icon
-				>&nbsp;&nbsp;{{ item.name }} CG预览
+				<gal-icon class="icon" icon="picture"></gal-icon>&nbsp;&nbsp;{{
+					item.name
+				}}
+				CG预览
 			</template>
 			<template v-slot:headerEnd>
 				<gal-link-button to="/">

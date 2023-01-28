@@ -6,10 +6,15 @@
 </gal-tag>
 ```
 
-### 属性
+### attrs
 
--   bgColor
+| 属性名        | 说明           | 补充 |
+| ------------- | -------------- | ---- |
+| circle        | 是否显示圆角   |      |
+| simple="true" | 显示为简约样式 |      |
 
-    -   type: String
+### props
 
-    设置 tag 的背景颜色，当前支持值 primary success
+| 属性名  | 说明     | 类型   | 必须  | 默认值 | 可选值                                | 补充 |
+| ------- | -------- | ------ | ----- | ------ | ------------------------------------- | ---- |
+| bgColor | 背景颜色 | string | false | normal | normal primary success warning danger |      |
