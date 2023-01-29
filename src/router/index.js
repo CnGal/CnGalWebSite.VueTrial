@@ -19,6 +19,8 @@ import TagsIndex from "../pages/tags/index/tag.vue";
 
 import VideoIndex from "../pages/videos/index/video.vue";
 
+import About from "../pages/about/about.vue";
+
 import NotFount from "../pages/404.vue";
 
 import _test_icon from "../pages/_test/_icon.vue";
@@ -88,6 +90,11 @@ const routes = [
 				path: "/videos/index/:id",
 				name: "videoIndex",
 				component: VideoIndex
+			},
+			{
+				path: "/about",
+				name: "about",
+				component: About
 			},
 			// 404页面，必须放在最后
 			{
