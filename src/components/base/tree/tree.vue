@@ -10,6 +10,12 @@
 				'tree-item': true
 			}"
 			@click.stop="itemClick($event, item, index)"
+			:data-key="
+				props.indentKey
+					? props.indentKey + '-' + (index + 1)
+					: index + 1
+			"
+			:data-active-key="activeItemKey"
 		>
 			<div class="tree-item-trigger">
 				<gal-icon
@@ -25,6 +31,14 @@
 				v-if="item.children?.length"
 				:data="item.children"
 				class="tree-children"
+				:indentKey="
+					props.indentKey
+						? props.indentKey + '-' + (index + 1)
+						: index + 1 + ''
+				"
+				:defaultSelectedKey="props.defaultSelectedKey"
+				@nodeClick="childNodeClick"
+				@nodeSelected="childNodeSelected"
 			></gal-tree>
 		</div>
 	</div>
@@ -38,16 +52,35 @@ const props = defineProps({
 		type: Array,
 		required: true
 	},
-	topItemOpenWhenLoad: {
-		type: Boolean,
-		default: true
+	defaultSelectedKey: {
+		type: [Array, String]
+	},
+	indentKey: {
+		// tree 组件内部使用，不要传入
+		type: [String, Number]
 	}
 });
 
-const treeItem = ref(null);
+const emits = defineEmits(["nodeClick", "nodeSelected"]);
 
+const treeItem = ref(null);
+const activeItemKey = ref(null);
+let prevActiveItemTarget;
+
+const changeActiveItem = (target) => {
+	if (props.indentKey === undefined) {
+		if (prevActiveItemTarget) {
+			prevActiveItemTarget.classList.remove("active");
+		}
+		activeItemKey.value = target.dataset.key;
+		prevActiveItemTarget = target;
+	}
+};
 const itemClick = (ev, item, index) => {
 	const target = treeItem.value[index];
+	if (target.classList.contains("active")) {
+		return;
+	}
 	if (target.classList.contains("tree-item")) {
 		if (target.classList.contains("has-children")) {
 			if (target.classList.contains("children-close")) {
@@ -58,35 +91,69 @@ const itemClick = (ev, item, index) => {
 				target.classList.add("children-close");
 			}
 		} else {
-			treeItem.value.forEach((item) => {
-				item.classList.remove("active");
-			});
 			target.classList.add("active");
+			changeActiveItem(target);
+			emits("nodeSelected", target);
 		}
 	}
+	emits("nodeClick", target, item);
+};
+
+const childNodeClick = (target) => {
+	emits("nodeClick", target);
+};
+const childNodeSelected = (target) => {
+	changeActiveItem(target);
+	emits("nodeSelected", target);
 };
 
 onMounted(() => {
-	if (props.topItemOpenWhenLoad) {
-		const firstElement = treeItem.value[0];
-		if (firstElement.classList.contains("has-children")) {
-			firstElement.classList.remove("children-close");
-			firstElement.classList.add("children-open");
-		} else {
-			nextTick(() => {
-				if (
-					(firstElement.parentElement.classList.contains("tree") &&
-						!firstElement.parentElement.classList.contains(
-							"tree-children"
-						)) ||
-					firstElement.parentElement.parentElement.classList.contains(
-						"children-open"
-					)
-				) {
-					firstElement.classList.add("active");
-				}
-			});
+	// 更新默认选中项
+	let activeElement;
+	if (props.defaultSelectedKey === undefined) {
+		activeElement = treeItem.value[0];
+	} else {
+		let defaultSelectedKey;
+		let defaultSelectedKeyArr;
+		if (typeof props.defaultSelectedKey === "string") {
+			defaultSelectedKey = props.defaultSelectedKey;
+			defaultSelectedKeyArr = defaultSelectedKey.split("-");
+		} else if (Array.isArray(props.defaultSelectedKey)) {
+			defaultSelectedKeyArr = props.defaultSelectedKey;
+			defaultSelectedKey = defaultSelectedKeyArr.join("-");
 		}
+
+		let indentKeyArr;
+		if (props.indentKey === undefined) {
+			activeElement = treeItem.value[defaultSelectedKeyArr[0] - 1];
+		} else {
+			if (!defaultSelectedKey.startsWith(props.indentKey)) {
+				return;
+			}
+			indentKeyArr = props.indentKey.split("-");
+			activeElement =
+				treeItem.value[defaultSelectedKeyArr[indentKeyArr.length] - 1];
+		}
+	}
+
+	if (activeElement.classList.contains("has-children")) {
+		activeElement.classList.remove("children-close");
+		activeElement.classList.add("children-open");
+	} else {
+		nextTick(() => {
+			if (
+				(activeElement.parentElement.classList.contains("tree") &&
+					!activeElement.parentElement.classList.contains(
+						"tree-children"
+					)) ||
+				activeElement.parentElement.parentElement.classList.contains(
+					"children-open"
+				)
+			) {
+				activeElement.classList.add("active");
+				emits("nodeSelected", activeElement);
+			}
+		});
 	}
 });
 </script>
