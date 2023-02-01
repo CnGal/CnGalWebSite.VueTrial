@@ -96,6 +96,7 @@ import iconArrowRightThick from "../icons/arrow-right-thick.vue";
 import iconVideo from "../icons/video.vue";
 import iconMenuDown from "../icons/menu-down.vue";
 import iconMenuUp from "../icons/menu-up.vue";
+import iconMenuRight from "../icons/menu-right.vue";
 import { ref, onMounted } from "vue";
 const props = defineProps({
 	icon: {
@@ -199,7 +200,8 @@ const iconMap = {
 	arrowRightThick: iconArrowRightThick,
 	video: iconVideo,
 	menuDown: iconMenuDown,
-	menuUp: iconMenuUp
+	menuUp: iconMenuUp,
+	menuRight: iconMenuRight
 };
 
 onMounted(() => {

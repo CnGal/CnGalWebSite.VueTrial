@@ -19,8 +19,15 @@
 		>
 			<div class="tree-item-trigger">
 				<gal-icon
+					class="tree-item-open-icon"
 					v-if="item.children?.length"
 					icon="menuDown"
+					size="24px"
+				></gal-icon>
+				<gal-icon
+					class="tree-item-close-icon"
+					v-if="item.children?.length"
+					icon="menuRight"
 					size="24px"
 				></gal-icon>
 				<div class="tree-item__title single-row-dot">
@@ -93,25 +100,27 @@ const itemClick = (ev, item, index) => {
 		} else {
 			target.classList.add("active");
 			changeActiveItem(target);
-			emits("nodeSelected", target);
+			emits("nodeSelected", target, item);
 		}
 	}
 	emits("nodeClick", target, item);
 };
 
-const childNodeClick = (target) => {
-	emits("nodeClick", target);
+const childNodeClick = (target, item) => {
+	emits("nodeClick", target, item);
 };
-const childNodeSelected = (target) => {
+const childNodeSelected = (target, item) => {
 	changeActiveItem(target);
-	emits("nodeSelected", target);
+	emits("nodeSelected", target, item);
 };
 
 onMounted(() => {
 	// 更新默认选中项
 	let activeElement;
-	if (props.defaultSelectedKey === undefined) {
+	let activeItem;
+	if (!props.defaultSelectedKey) {
 		activeElement = treeItem.value[0];
+		activeItem = props.data[0];
 	} else {
 		let defaultSelectedKey;
 		let defaultSelectedKeyArr;
@@ -126,6 +135,7 @@ onMounted(() => {
 		let indentKeyArr;
 		if (props.indentKey === undefined) {
 			activeElement = treeItem.value[defaultSelectedKeyArr[0] - 1];
+			activeItem = props.data[defaultSelectedKeyArr[0] - 1];
 		} else {
 			if (!defaultSelectedKey.startsWith(props.indentKey)) {
 				return;
@@ -133,6 +143,8 @@ onMounted(() => {
 			indentKeyArr = props.indentKey.split("-");
 			activeElement =
 				treeItem.value[defaultSelectedKeyArr[indentKeyArr.length] - 1];
+			activeItem =
+				props.data[defaultSelectedKeyArr[indentKeyArr.length] - 1];
 		}
 	}
 
@@ -151,7 +163,7 @@ onMounted(() => {
 				)
 			) {
 				activeElement.classList.add("active");
-				emits("nodeSelected", activeElement);
+				emits("nodeSelected", activeElement, activeItem);
 			}
 		});
 	}
@@ -162,10 +174,19 @@ onMounted(() => {
 .tree {
 	--tree-item-font-size: 14px;
 	--tree-indent: 16px;
+	--tree-item-hover-bg-color: #f5f5f5;
+	--tree-item-active-bg-color: var(--light-pink-color);
 }
 .tree {
 	width: 100%;
 }
+.tree:not(.tree-children) {
+	box-shadow: var(--main-shadow);
+}
+.tree-item {
+	cursor: pointer;
+}
+
 .tree-item-trigger {
 	display: flex;
 	align-items: center;
@@ -173,15 +194,25 @@ onMounted(() => {
 	font-size: var(--tree-item-font-size);
 	padding-inline: var(--tree-indent);
 }
+.tree-item-trigger:hover {
+	background-color: var(--tree-item-hover-bg-color);
+}
 .tree .tree-children .tree-item-trigger {
 	padding-inline-start: calc(var(--tree-indent) * 2);
 }
 .tree-item.active .tree-item-trigger {
-	background-color: var(--light-pink-color);
+	background-color: var(--tree-item-active-bg-color);
 	color: var(--main-color);
 }
 
 .children-close .tree-children {
+	display: none;
+}
+
+.children-open .tree-item-close-icon {
+	display: none;
+}
+.children-close .tree-item-open-icon {
 	display: none;
 }
 </style>
