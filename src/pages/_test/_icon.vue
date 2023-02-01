@@ -95,7 +95,8 @@ const iconList = [
 	"arrowRightThick",
 	"video",
 	"menuDown",
-	"menuUp"
+	"menuUp",
+	"menuRight"
 ];
 </script>
 

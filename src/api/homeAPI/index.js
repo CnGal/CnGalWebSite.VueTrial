@@ -45,6 +45,10 @@ async function getHomeVideosView() {
 	return await axios.get("/api/home/GetHomeVideosView");
 }
 
+async function getDocuments() {
+	return await axios.get("/api/home/GetDocuments");
+}
+
 export {
 	getHomeCarouselsView,
 	getHomeNewsView,
@@ -55,5 +59,6 @@ export {
 	getHomeNoticesView,
 	getHomeFriendLinksView,
 	getHomeSearch,
-	getHomeVideosView
+	getHomeVideosView,
+	getDocuments
 };
