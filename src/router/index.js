@@ -96,6 +96,14 @@ const routes = [
 				name: "about",
 				component: About
 			},
+			{
+				path: "/structure",
+				redirect: "/about#1-2"
+			},
+			{
+				path: "/privacy",
+				redirect: "/about#1-3"
+			},
 			// 404页面，必须放在最后
 			{
 				path: "/:pathMatch(.*)*",

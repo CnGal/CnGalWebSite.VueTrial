@@ -36,18 +36,22 @@
 			</address>
 		</div>
 		<div class="about">
-			<a href="/about">关于我们</a>
-			<a href="/structure">组织架构</a>
-			<a href="/privacy">隐私协议</a>
-			<a href="/data">数据汇总</a>
+			<gal-link class="link" to="/about">关于我们</gal-link>
+			<gal-link class="link" to="/structure">组织架构</gal-link>
+			<gal-link class="link" to="/privacy">隐私协议</gal-link>
+			<gal-link class="link" to="/data">数据汇总</gal-link>
 		</div>
 		<div class="licenses">
-			<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+			<a
+				class="link"
+				href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+			>
 				<img src="/images/CC4.png" alt="cc4协议图片" />
 			</a>
 
 			本站内容采用
 			<a
+				class="link"
 				href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
 				target="_blank"
 				>知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a
@@ -55,10 +59,18 @@
 			进行许可
 		</div>
 		<div class="copyright">
-			Copyright © 2022 - CnGal资料站 -
-			<a target="_blank" href="http://beian.miit.gov.cn">
+			© 2023 - CnGal资料站
+			<a class="link" target="_blank" href="http://beian.miit.gov.cn">
 				粤ICP备15055899号
 			</a>
+			<a
+				class="link"
+				target="_blank"
+				href="https://icp.gov.moe/?keyword=20225899"
+			>
+				萌ICP备20225899号
+			</a>
+			不良信息举报邮箱：help@cngal.org
 		</div>
 	</footer>
 </template>
@@ -66,27 +78,31 @@
 <script setup></script>
 
 <style scoped>
-a {
-	color: var(--main-font-color);
-}
-.icon-wrap a,
-a:hover {
-	color: var(--main-color);
-}
-.theme-dark .icon-wrap a {
-	color: var(--main-font-color);
-}
-.theme-dark a:hover {
-	color: #616161;
-}
 .footer {
-	padding: 8px 0.75em;
-	font-size: 14px;
-	background-color: var(--main-bg-color);
-	color: var(--main-font-color);
+	--footer-text-color: var(--main-font-color);
+	--footer-link-color: var(--gray-color);
+	--footer-link-color-hover: var(--main-color);
 }
 .theme-dark .footer {
-	color: var(--white-color);
+	--footer-text-color: var(--white-color);
+	--footer-link-color: var(--gray-color);
+	--footer-link-color-hover: #616161;
+}
+.link {
+	color: var(--footer-link-color);
+}
+.link:hover {
+	color: var(--footer-link-color-hover);
+}
+.icon-wrap a {
+	color: var(--main-color);
+}
+
+.footer {
+	padding: 1em;
+	font-size: 14px;
+	background-color: var(--main-bg-color);
+	color: var(--footer-text-color);
 }
 .contact {
 	margin: auto;
@@ -108,6 +124,10 @@ a:hover {
 .copyright {
 	text-align: center;
 	margin-block-start: 8px;
+}
+.copyright .link {
+	margin-inline-start: 8px;
+	margin-inline-end: 8px;
 }
 
 .icon-wrap {
