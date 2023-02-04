@@ -1,5 +1,5 @@
 <template>
-	<ul :class="['tabs', 'width-' + props.width]">
+	<ul :class="['tabs', 'width-' + props.width]" ref="tabs">
 		<li
 			ref="tab"
 			:class="['tab', { active: modelValue === index }]"
@@ -20,11 +20,12 @@
 				<div class="content-text">{{ item.text }}</div>
 			</component>
 		</li>
+		<div ref="slider" class="slider" aria-hidden="true" role="none"></div>
 	</ul>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted, nextTick } from "vue";
 
 const props = defineProps({
 	tabs: {
@@ -47,7 +48,27 @@ const changeActiveTab = (index) => {
 	const oldIndex = props.modelValue;
 	emit("update:modelValue", index);
 	emit("changeActiveTab", index, oldIndex);
+	nextTick(() => {
+		moveSlider();
+	});
 };
+
+const tabs = ref(null);
+const slider = ref(null);
+const tab = ref(null);
+const moveSlider = () => {
+	const activeTab = tab.value[props.modelValue];
+	const sliderWidth = activeTab.offsetWidth;
+	const sliderLeft =
+		activeTab.getBoundingClientRect().left -
+		tabs.value.getBoundingClientRect().left;
+	slider.value.style.width = sliderWidth + "px";
+	slider.value.style.transform = `translateX(${sliderLeft}px)`;
+};
+
+onMounted(() => {
+	moveSlider();
+});
 </script>
 
 <style scoped>
@@ -62,6 +83,7 @@ const changeActiveTab = (index) => {
 	height: 100%;
 }
 .tabs {
+	position: relative;
 	display: flex;
 	align-items: center;
 }
@@ -98,5 +120,15 @@ const changeActiveTab = (index) => {
 }
 .tab.active .content:hover {
 	background-color: var(--main-hover-color);
+}
+
+.slider {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 2px;
+	background-color: var(--main-color);
+	transform: translateX(0);
+	transition: transform 0.3s;
 }
 </style>
