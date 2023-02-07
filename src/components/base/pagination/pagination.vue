@@ -182,6 +182,14 @@ const initItem = () => {
 	});
 };
 
+const refresh = () => {
+	initItem();
+};
+// 暴露出 refresh 方法，用于外部调用
+defineExpose({
+	refresh
+});
+
 // 页面总数或当前页码变化时，重新计算页码
 watch(
 	() => props.currentPage,

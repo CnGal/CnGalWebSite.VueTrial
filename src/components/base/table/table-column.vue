@@ -1,7 +1,9 @@
 <template>
-	<ElTableColumn>
-		<slot></slot>
-	</ElTableColumn>
+	<el-table-column>
+		<template #default="scope" v-if="$slots.default">
+			<slot :row="scope.row"></slot>
+		</template>
+	</el-table-column>
 </template>
 
 <script setup>

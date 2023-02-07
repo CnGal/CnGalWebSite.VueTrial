@@ -1,7 +1,7 @@
 <template>
-	<ElTable>
+	<el-table>
 		<slot></slot>
-	</ElTable>
+	</el-table>
 </template>
 
 <script setup>
