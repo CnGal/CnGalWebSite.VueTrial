@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, nextTick } from "vue";
 
 const props = defineProps({
 	position: {
@@ -29,22 +29,24 @@ const props = defineProps({
 const dialog = ref(null);
 const isShow = ref(false);
 const show = (element) => {
-	if (props.position.type === "element" && element) {
-		dialog.value.style.position = "absolute";
-		dialog.value.style.left = element.offsetLeft + "px";
-		dialog.value.style.top =
-			element.offsetTop + element.offsetHeight + "px";
-		dialog.value.style.width = element.offsetWidth + "px";
-		dialog.value.style.height = "auto";
-		dialog.value.style.zIndex = 10;
-		dialog.value.style.color = "var(--main-font-color)";
-		dialog.value.style.backgroundColor = "var(--main-bg-color)";
-		dialog.value.style.boxShadow = "0 0 10px 0 #00000077";
-		dialog.value.style.borderRadius = "4px";
-	} else {
-		document.body.style.overflow = "hidden";
-	}
 	isShow.value = true;
+	nextTick(() => {
+		if (props.position.type === "element" && element) {
+			const popRect = dialog.value.getBoundingClientRect();
+			const rect = element.getBoundingClientRect();
+			dialog.value.style.left = element.offsetLeft + "px";
+			if (rect.top + popRect.height > window.innerHeight) {
+				dialog.value.style.top =
+					element.offsetTop - popRect.height - 4 + "px";
+			} else {
+				dialog.value.style.top =
+					element.offsetTop + element.offsetHeight + "px";
+			}
+			dialog.value.style.minWidth = rect.width + "px";
+		} else {
+			document.body.style.overflow = "hidden";
+		}
+	});
 };
 const hide = () => {
 	isShow.value = false;
@@ -56,6 +58,8 @@ onMounted(() => {
 		dialog.value.classList.add(props.position, "direction");
 	} else if (props.position.type === "direction") {
 		dialog.value.classList.add(props.position.value, "direction");
+	} else if (props.position.type === "element") {
+		dialog.value.classList.add("element");
 	}
 });
 
@@ -69,11 +73,19 @@ defineExpose({
 .dialog {
 	color: var(--main-font-color);
 }
+.dialog {
+	z-index: 10;
+}
 .dialog.direction {
 	position: fixed;
 	inset: 0;
-	z-index: 10;
 	display: flex;
+}
+.dialog.element {
+	position: absolute;
+	background-color: var(--main-bg-color);
+	box-shadow: 0 0 10px 0 #00000077;
+	border-radius: 4px;
 }
 .dialog.center {
 	justify-content: center;

@@ -6,18 +6,14 @@
 		<gal-table-column
 			prop="positionOfficial"
 			label="官方职位"
-			min-width="200"
+			width="120"
 		/>
 		<gal-table-column
 			prop="nicknameOfficial"
 			label="官方称呼"
 			min-width="200"
 		/>
-		<gal-table-column
-			prop="positionGeneral"
-			label="通用职位"
-			min-width="200"
-		>
+		<gal-table-column prop="positionGeneral" label="通用职位" width="120">
 			<template #default="scope">
 				{{
 					stateStore.positionGeneralType[
