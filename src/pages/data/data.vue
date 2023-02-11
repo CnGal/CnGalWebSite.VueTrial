@@ -30,6 +30,12 @@
 		></gal-tabs>
 	</gal-card>
 	<gal-card class="table-section">
+		<div class="table-header">
+			<gal_importData
+				v-if="tableData?.length"
+				:data="tableData"
+			></gal_importData>
+		</div>
 		<component
 			v-if="tableShowData?.length"
 			:data="tableShowData"
@@ -106,6 +112,7 @@ import gal_makerTable from "./table/makerTable.vue";
 import gal_roleTable from "./table/roleTable.vue";
 import gal_steamTable from "./table/steamTable.vue";
 import gal_gameScoreTable from "./table/scoreTable.vue";
+import gal_importData from "./table/import.vue";
 
 const tableViewCountInfo = ref(null);
 const getTableViewData = async () => {

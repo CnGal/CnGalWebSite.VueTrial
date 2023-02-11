@@ -3,8 +3,8 @@
 		<gal-table-column prop="realId" label="ID" width="80" fixed="left" />
 		<gal-table-column prop="name" label="名称" min-width="120" />
 		<gal-table-column prop="gameName" label="登场游戏" min-width="200" />
-		<gal-table-column prop="bilibili" label="声优" min-width="200" />
-		<gal-table-column prop="cv" label="别称" min-width="200" />
+		<gal-table-column prop="cv" label="声优" min-width="200" />
+		<gal-table-column prop="anotherNameRole" label="别称" min-width="200" />
 		<gal-table-column label="性别" width="80">
 			<template #default="scope">
 				{{ ["保密", "男", "女"][scope.row.gender] }}
