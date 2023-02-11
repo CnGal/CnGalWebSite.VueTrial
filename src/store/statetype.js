@@ -30,7 +30,47 @@ export const useStateTypeStore = defineStore("stateType", {
 				notice: 6, // 公告
 				none: 7, // 杂谈
 				fan: 8 // 二创
-			}
+			},
+			positionGeneralType: {
+				other: "其他",
+				video: "视频",
+				design: "设计",
+				music: "音乐",
+				composingWords: "作词",
+				singing: "演唱",
+				script: "剧本",
+				cv: "配音",
+				show: "演出",
+				fineArts: "美术",
+				program: "程序",
+				operate: "运营",
+				issue: "发行",
+				make: "制作",
+				pv: "PV",
+				laterStage: "后期",
+				mainUrge: "主催",
+				plan: "策划"
+			},
+			positionGeneralTypeMap: [
+				"other",
+				"video",
+				"design",
+				"music",
+				"composingWords",
+				"singing",
+				"script",
+				"cv",
+				"show",
+				"fineArts",
+				"program",
+				"operate",
+				"issue",
+				"make",
+				"pv",
+				"laterStage",
+				"mainUrge",
+				"plan"
+			]
 		};
 	}
 });

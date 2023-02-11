@@ -7,7 +7,11 @@
 	>
 		<span class="dropdown-trigger-text">{{ triggerText }}</span>
 		<gal-icon icon="menuDown" class="dropdown-trigger-icon"></gal-icon>
-		<i class="bottom" aria-hidden="true"></i>
+		<i
+			v-if="$attrs.simplt !== undefined"
+			class="bottom"
+			aria-hidden="true"
+		></i>
 	</gal-button>
 	<gal-dialog
 		class="dropdown-popover"
@@ -22,7 +26,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, useAttrs, watch, useSlots, onUnmounted } from "vue";
+import { ref, onMounted, useSlots, onUnmounted } from "vue";
 
 const props = defineProps({
 	width: {
@@ -94,12 +98,18 @@ onUnmounted(() => {
 
 <style scoped>
 .dropdown-trigger {
+	--dropdown-border-color: #ced4da;
+	--dropdown-trigger-width: 100px;
+}
+.dropdown-trigger {
 	--button-hover-bg-color: var(--main-bg-color);
-	border: none;
 	position: relative;
 	width: var(--dropdown-trigger-width);
-	display: flex;
-	padding-inline: 0;
+	padding: 4px 0;
+	border-color: var(--dropdown-border-color);
+}
+.dropdown-trigger[simplt] {
+	border: none;
 }
 .dropdown-trigger-text {
 	flex: 1;

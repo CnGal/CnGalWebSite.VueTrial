@@ -28,9 +28,10 @@ const props = defineProps({
 	--button-primary-bg-color: var(--main-color);
 	--button-primary-hover-bg-color: var(--main-color);
 	--button-font-color: var(--main-font-color);
+	--button-border-color: var(--gray-color);
 }
 .button {
-	display: flex;
+	display: inline-flex;
 	justify-content: center;
 	align-items: center;
 	background-color: var(--button-bg-color);
@@ -38,6 +39,7 @@ const props = defineProps({
 	cursor: pointer;
 	padding: 0.5em 1em;
 	column-gap: 0.5em;
+	border: thin solid var(--button-border-color);
 }
 .button:hover {
 	background-color: var(--button-hover-bg-color);

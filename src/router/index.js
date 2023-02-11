@@ -21,6 +21,8 @@ import VideoIndex from "../pages/videos/index/video.vue";
 
 import About from "../pages/about/about.vue";
 
+import Data from "../pages/data/data.vue";
+
 import NotFount from "../pages/404.vue";
 
 import _test_icon from "../pages/_test/_icon.vue";
@@ -103,6 +105,11 @@ const routes = [
 			{
 				path: "/privacy",
 				redirect: "/about#1-3"
+			},
+			{
+				path: "/data",
+				name: "data",
+				component: Data
 			},
 			// 404页面，必须放在最后
 			{

@@ -25,10 +25,7 @@
 		</template>
 		<gal-dropdown
 			width="100px"
-			:style="{
-				'margin-inline-start': 'auto',
-				'margin-inline-end': '24px'
-			}"
+			simplt
 			@itemSelect="dropdownItemSelectEvent"
 		>
 			<gal-option :time="getLastTime(nowTime, { day: 15 })"
@@ -50,9 +47,7 @@
 			>
 			<gal-option :time="0">所有</gal-option>
 		</gal-dropdown>
-		<Suspense>
-			<editOverviewChart ref="editChart"></editOverviewChart>
-		</Suspense>
+		<editOverviewChart ref="editChart"></editOverviewChart>
 	</gal-card>
 
 	<div class="info-wrapper">
@@ -141,7 +136,7 @@ document.title = "广场 - CnGal 中文GalGame资料站";
 </script>
 
 <script setup>
-import { ref, reactive, onMounted } from "vue";
+import { ref, onMounted } from "vue";
 import { getRandomUserScores } from "@/api/playedGamesAPI/index.js";
 import { getLotteryCards } from "@/api/lotteryAPI/index.js";
 import { getVoteCards } from "@/api/voteAPI/index.js";
@@ -220,6 +215,10 @@ onMounted(() => {
 .refresh-button {
 	--button-font-color: var(--main-color);
 	border: none;
+}
+
+.editOverviewChartCard {
+	text-align: right;
 }
 
 .info-wrapper {
