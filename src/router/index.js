@@ -29,6 +29,10 @@ import _test_icon from "../pages/_test/_icon.vue";
 
 const routes = [
 	{
+		path: "/index.html",
+		redirect: "/"
+	},
+	{
 		path: "/",
 		name: "home",
 		component: Home,

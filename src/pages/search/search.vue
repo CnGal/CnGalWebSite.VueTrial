@@ -169,7 +169,7 @@
 		<div class="no-data">
 			<img
 				class="no-data-img"
-				src="images/default/UserMessagesNotFound.png"
+				src="/images/default/UserMessagesNotFound.png"
 				alt="摸摸鱼"
 			/>
 			<h3>搜索不到呢......不过你可以在这里 创建词条 或者 发布文章</h3>
