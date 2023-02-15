@@ -165,10 +165,28 @@ const refreshUserScoresList = () => {
 const lotteryCardsList = ref([]);
 (async () => {
 	const { data } = await getLotteryCards();
-	lotteryCardsList.value = getNonRepeatRandomList(
-		data,
-		isSmallPage.value ? 6 : 12
+	const isNow = data.filter(
+		(item) => new Date(item.endTime).getTime() > Date.now()
 	);
+
+	if (isNow.length > (isSmallPage.value ? 6 : 12)) {
+		lotteryCardsList.value = getNonRepeatRandomList(
+			isNow,
+			isSmallPage.value ? 6 : 12
+		);
+		return;
+	} else {
+		const isEnd = data.filter(
+			(item) => new Date(item.endTime).getTime() <= Date.now()
+		);
+		lotteryCardsList.value = isNow.concat(
+			getNonRepeatRandomList(
+				isEnd,
+				(isSmallPage.value ? 6 : 12) - isNow.length
+			)
+		);
+		return;
+	}
 })();
 
 const voteCardsList = ref([]);
