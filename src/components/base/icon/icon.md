@@ -1,5 +1,7 @@
 ## 使用
 
+> 访问 http://localhost:8081/\_test/\_icon 查看图标样式
+
 ```
 <gal-icon icon="iconName" size="iconSize"></gal-icon>
 ```
