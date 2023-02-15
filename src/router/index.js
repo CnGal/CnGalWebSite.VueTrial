@@ -25,7 +25,9 @@ import Data from "../pages/data/data.vue";
 
 import NotFount from "../pages/404.vue";
 
+import _test_home from "../pages/_test/_home.vue";
 import _test_icon from "../pages/_test/_icon.vue";
+import _test_button from "../pages/_test/_button.vue";
 
 const routes = [
 	{
@@ -128,9 +130,21 @@ const routes = [
 routes.push(
 	...[
 		{
-			path: "/_test/_icon",
-			name: "_test_icon",
-			component: _test_icon
+			path: "/_test",
+			name: "_test",
+			component: _test_home,
+			children: [
+				{
+					path: "/_test/_icon",
+					name: "_test_icon",
+					component: _test_icon
+				},
+				{
+					path: "/_test/_button",
+					name: "_test_button",
+					component: _test_button
+				}
+			]
 		}
 	]
 );
