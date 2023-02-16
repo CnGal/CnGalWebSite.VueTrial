@@ -26,19 +26,9 @@
 				</div>
 				<div class="footer">
 					<span
-						>{{
-							dateFormat(item.beginTime)({
-								format: "YMDhm",
-								fill: true
-							})
-						}}
+						>{{ dateFormat(item.beginTime, "YMDhm") }}
 						-
-						{{
-							dateFormat(item.endTime)({
-								format: "YMDhm",
-								fill: true
-							})
-						}}</span
+						{{ dateFormat(item.endTime, "YMDhm") }}</span
 					>
 					<span>{{ item.count }}人参与</span>
 				</div>

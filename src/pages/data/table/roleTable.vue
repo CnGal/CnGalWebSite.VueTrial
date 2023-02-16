@@ -12,9 +12,7 @@
 		</gal-table-column>
 		<gal-table-column prop="birthday" label="生日" width="100">
 			<template #default="scope">
-				{{
-					dateFormat(scope.row.birthday)({ format: "YM", fill: true })
-				}}
+				{{ dateFormat(scope.row.birthday, "YM") }}
 			</template>
 		</gal-table-column>
 		<gal-table-column prop="haircolor" label="发色" width="100" />
@@ -52,7 +50,6 @@
 
 <script setup>
 import { dateFormat } from "@/assets/common/js/formatDate.js";
-import { fill } from "lodash";
 
 const props = defineProps({
 	data: {

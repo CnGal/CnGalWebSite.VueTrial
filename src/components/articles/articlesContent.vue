@@ -7,12 +7,7 @@
 			<div class="info">
 				<span>
 					<gal-icon icon="calendarAlt"></gal-icon>
-					{{
-						dateFormat(info.createTime)({
-							format: "YMD",
-							fill: true
-						})
-					}}
+					{{ dateFormat(info.createTime, "YMD") }}
 				</span>
 				<span>
 					<gal-icon icon="eye"></gal-icon>
@@ -108,12 +103,7 @@
 			</div>
 			<div class="article-last-edit-time">
 				<gal-icon icon="pencilMdi"></gal-icon>
-				最后编辑：{{
-					dateFormat(info.lastEditTime)({
-						format: "YMD",
-						fill: true
-					})
-				}}
+				最后编辑：{{ dateFormat(info.lastEditTime, "YMD") }}
 			</div>
 		</main>
 	</article>

@@ -23,7 +23,7 @@ export const formatDateWithHowLong = (date) => {
 	}
 };
 
-export const dateFormat = (date) => {
+export const dateFormat = (date, options) => {
 	const willFormatDate = new Date(date);
 
 	const year = willFormatDate.getFullYear();
@@ -39,20 +39,26 @@ export const dateFormat = (date) => {
 	const padMinutes = minutes.toString().padStart(2, "0");
 	const padSeconds = seconds.toString().padStart(2, "0");
 
-	return (options) => {
+	const format = (options) => {
 		if (typeof options === "string") {
 			options = { format: options };
 		} else if (typeof options === "undefined") {
 			options = { format: "YMD" };
 		}
 
-		const { format, i18n, fill } = options;
+		let { format, i18n, fill } = options;
+
+		if (i18n === undefined && fill === undefined) {
+			fill = true;
+		} else if (i18n === "zh" && fill === undefined) {
+			fill = false;
+		}
 
 		const m = fill ? padMonth : month;
 		const d = fill ? padDay : day;
-		const h = fill ? padHour : hour;
-		const min = fill ? padMinutes : minutes;
-		const s = fill ? padSeconds : seconds;
+		const h = padHour;
+		const min = padMinutes;
+		const s = padSeconds;
 
 		const formatList = {
 			YMDhms() {
@@ -93,6 +99,12 @@ export const dateFormat = (date) => {
 
 		return formatList[format]();
 	};
+
+	if (options) {
+		return format(options);
+	}
+
+	return format;
 };
 
 export const getLastMonth = (year, month) => {

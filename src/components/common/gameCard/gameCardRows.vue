@@ -67,12 +67,7 @@
 			>
 				<span>
 					<gal-icon icon="calendarAlt" size="14px"></gal-icon>&nbsp;
-					{{
-						dateFormat(row.publishTime || row.lastEditTime)({
-							format: "YMD",
-							fill: true
-						})
-					}}
+					{{ dateFormat(row.publishTime || row.lastEditTime, "YMD") }}
 				</span>
 
 				<span>

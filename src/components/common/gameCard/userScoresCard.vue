@@ -91,7 +91,7 @@
 		<div class="main rows-dot">评语：{{ props.data.playImpressions }}</div>
 		<div class="name">《{{ props.data.gameName }}》</div>
 		<div class="time">
-			{{ dateFormat(props.data.lastEditTime)("YMDhms") }}
+			{{ dateFormat(props.data.lastEditTime, "YMDhms") }}
 		</div>
 	</div>
 </template>

@@ -27,10 +27,7 @@
 					<template v-slot:opposite>
 						<div class="timeline-opposite-content">
 							<span>{{
-								dateFormat(item.happenedTime)({
-									format: "YMDhm",
-									fill: true
-								})
+								dateFormat(item.happenedTime, "YMDhm")
 							}}</span>
 						</div>
 					</template>
