@@ -19,6 +19,8 @@ import TagsIndex from "../pages/tags/index/tag.vue";
 
 import VideoIndex from "../pages/videos/index/video.vue";
 
+import LotteryHome from "../pages/lottery/home.vue";
+
 import About from "../pages/about/about.vue";
 
 import Data from "../pages/data/data.vue";
@@ -116,6 +118,11 @@ const routes = [
 				path: "/data",
 				name: "data",
 				component: Data
+			},
+			{
+				path: "/lotteries",
+				name: "lottery",
+				component: LotteryHome
 			},
 			// 404页面，必须放在最后
 			{
