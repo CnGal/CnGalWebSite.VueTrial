@@ -3,12 +3,7 @@
 		<gal-table-column prop="realId" label="ID" width="80" fixed="left" />
 		<gal-table-column prop="issueTime" label="发行时间" width="110">
 			<template #default="scope">
-				{{
-					dateFormat(scope.row.issueTime)({
-						format: "YMD",
-						fill: true
-					})
-				}}
+				{{ dateFormat(scope.row.issueTime, "YMD") }}
 			</template>
 		</gal-table-column>
 		<gal-table-column prop="name" label="名称" min-width="200" />

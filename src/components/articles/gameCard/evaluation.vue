@@ -7,12 +7,7 @@
 			<div class="info">
 				<span>
 					<gal-icon icon="calendarAlt"></gal-icon>
-					{{
-						dateFormat(props.data.lastEditTime)({
-							format: "YMD",
-							fill: true
-						})
-					}}
+					{{ dateFormat(props.data.lastEditTime, "YMD") }}
 				</span>
 				<span>
 					<gal-icon icon="user"></gal-icon>
@@ -31,7 +26,7 @@
 </template>
 
 <script setup>
-import { dateFormat } from "../../../assets/common/js/formatDate.js";
+import { dateFormat } from "@/assets/common/js/formatDate.js";
 
 import { useRouter } from "vue-router";
 const router = useRouter();

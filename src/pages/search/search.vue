@@ -396,15 +396,7 @@ const changeTimeByPicker = (value) => {
 	currentPage.value = 1;
 	pickerIsShow.value = false;
 	pickerTagTime.value =
-		dateFormat(value[0])({
-			format: "YMD",
-			fill: true
-		}) +
-		" ~ " +
-		dateFormat(value[1])({
-			format: "YMD",
-			fill: true
-		});
+		dateFormat(value[0], "YMD") + " ~ " + dateFormat(value[1], "YMD");
 	getSearch();
 };
 const changePage = () => {

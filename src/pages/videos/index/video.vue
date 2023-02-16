@@ -76,7 +76,8 @@
 							},
 							{
 								displayName: '发布时间',
-								displayValue: dateFormat(info.pubishTime)(
+								displayValue: dateFormat(
+									info.pubishTime,
 									'YMDhms'
 								)
 							}

@@ -13,10 +13,7 @@
 			<span
 				><gal-icon icon="timer"></gal-icon
 				>{{
-					dateFormat(tableViewCountInfo?.lastEditTime)({
-						format: "YMDhm",
-						fill: true
-					})
+					dateFormat(tableViewCountInfo?.lastEditTime, "YMDhm")
 				}}</span
 			>
 		</div>

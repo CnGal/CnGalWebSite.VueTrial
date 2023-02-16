@@ -53,7 +53,7 @@
 
 <script setup>
 import { ref } from "vue";
-import { dateFormat } from "../../../assets/common/js/formatDate.js";
+import { dateFormat } from "@/assets/common/js/formatDate.js";
 
 const props = defineProps({
 	comment: {
