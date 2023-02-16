@@ -102,7 +102,7 @@
 			<gal-icon class="icon" icon="random"></gal-icon>&nbsp;&nbsp;抽奖
 		</template>
 		<template v-slot:headerEnd>
-			<gal-link-button to="lotteries/home" class="link-button">
+			<gal-link-button to="/lotteries" class="link-button">
 				<gal-icon icon="shareAll"></gal-icon>查看更多
 			</gal-link-button>
 		</template>
