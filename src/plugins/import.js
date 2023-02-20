@@ -28,6 +28,8 @@ import breadcrumb from "../components/base/link/breadcrumb.vue";
 import tree from "../components/base/tree/tree.vue";
 import table from "../components/base/table/table.vue";
 import tableColumn from "../components/base/table/table-column.vue";
+import list from "../components/base/list/list.vue";
+import listItem from "../components/base/list/list-item.vue";
 
 import noWrapGameList from "../components/common/gameCard/noWrapGameList.vue";
 import newsCard from "../components/common/gameCard/newsCard.vue";
@@ -79,6 +81,8 @@ const importPlugin = {
 		app.component("galTree", tree);
 		app.component("galTable", table);
 		app.component("galTableColumn", tableColumn);
+		app.component("galList", list);
+		app.component("galListItem", listItem);
 
 		app.component("galNoWrapGameList", noWrapGameList);
 		app.component("galNewsCard", newsCard);

@@ -3,6 +3,7 @@
 		<div class="nav-box">
 			<gal-link to="/_test/_button">button</gal-link>
 			<gal-link to="/_test/_icon">icon</gal-link>
+			<gal-link to="/_test/_list">list</gal-link>
 		</div>
 		<router-view></router-view>
 	</div>
