@@ -54,11 +54,11 @@
 				</gal-list>
 			</gal-card>
 
-			<galConmmentsList
+			<galConmmentsContent
 				class="comments-card"
 				:id="id"
 				:type="stateStore.commentType.commentLottery"
-			></galConmmentsList>
+			></galConmmentsContent>
 		</template>
 		<template v-slot:extra> extra </template>
 	</galIndexPageViewBody>

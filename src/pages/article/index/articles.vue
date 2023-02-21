@@ -3,11 +3,11 @@
 
 	<gal_ArticlesContent :info="info"></gal_ArticlesContent>
 
-	<galConmmentsList
+	<galConmmentsContent
 		class="comments-card"
 		:id="id"
 		:type="stateStore.commentType.commentArticle"
-	></galConmmentsList>
+	></galConmmentsContent>
 </template>
 
 <script setup>
