@@ -60,7 +60,78 @@
 				:type="stateStore.commentType.commentLottery"
 			></galConmmentsContent>
 		</template>
-		<template v-slot:extra> extra </template>
+		<template v-slot:extra>
+			<gal-card class="info">
+				<template v-slot:headerStart>
+					<gal-icon class="icon" icon="objectGroup"></gal-icon
+					>抽奖信息
+				</template>
+				<div>
+					{{
+						new Date(info.beginTime).getTime() > Date.now()
+							? "未开始"
+							: new Date(info.endTime).getTime() >= Date.now()
+							? "正在进行"
+							: "已结束"
+					}}
+				</div>
+				<div>参与人数:{{ info.count }}</div>
+				<div>开始时间:{{ dateFormat(info.beginTime, "YMDhm") }}</div>
+				<div>结束时间:{{ dateFormat(info.endTime, "YMDhm") }}</div>
+			</gal-card>
+
+			<gal-card class="button">
+				<gal-button class="button-content">未参与</gal-button>
+			</gal-card>
+
+			<gal-card class="awards" width="full">
+				<template v-slot:headerStart>
+					<gal-icon class="icon" icon="objectGroup"></gal-icon
+					>中奖用户
+				</template>
+
+				<gal-card
+					class="award"
+					width="full"
+					v-for="item in info.awards"
+					:key="item.id"
+				>
+					<template v-slot:headerStart>
+						<gal-icon class="icon" icon="objectGroup"></gal-icon
+						>{{ item.name }}
+					</template>
+					<div
+						class="user"
+						v-for="user in item.users"
+						:key="user.userId"
+					>
+						<img
+							class="user-image"
+							:src="user.image"
+							:alt="user.userName"
+						/>
+						<div>
+							<div>
+								<galTag
+									v-for="(rank, index) in user.ranks.filter(
+										(item) => item.type === 0
+									)"
+									:key="index"
+									class="tag"
+									:bgColor="
+										rank.css.replace('bg-', '') || 'info'
+									"
+								>
+									{{ rank.text }}
+								</galTag>
+								<span>{{ user.userName }}</span>
+							</div>
+							{{ user.personalSignature }}
+						</div>
+					</div>
+				</gal-card>
+			</gal-card>
+		</template>
 	</galIndexPageViewBody>
 </template>
 
@@ -69,6 +140,7 @@ import { ref, watch } from "vue";
 import { getLotteryViewByID } from "@/api/lotteryAPI/index.js";
 import { useRoute } from "vue-router";
 import { useStateTypeStore } from "@/store/statetype.js";
+import { dateFormat } from "@/assets/common/js/formatDate";
 const route = useRoute();
 const stateStore = useStateTypeStore();
 
@@ -121,5 +193,38 @@ watch(
 }
 .awards-item > .name {
 	font-size: 14px;
+}
+
+.button-content {
+	width: 100%;
+	border: none;
+	background-color: var(--main-color);
+	opacity: 0.7;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	margin-block: 12px;
+	color: var(--white-color);
+	font-size: 24px;
+}
+
+.award {
+	--card-header-font-size: 14px;
+}
+
+.user {
+	display: flex;
+	column-gap: 8px;
+	font-size: 14px;
+	margin-block-end: 8px;
+}
+.user-image {
+	width: 50px;
+	height: 50px;
+	aspect-ratio: 1 / 1;
+	border-radius: 50%;
+}
+.tag {
+	margin-inline-end: 8px;
+	margin-block-end: 8px;
 }
 </style>

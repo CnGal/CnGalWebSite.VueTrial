@@ -52,4 +52,7 @@ const props = defineProps({
 .danger {
 	background-color: #f1416c;
 }
+.info {
+	background-color: #777777;
+}
 </style>

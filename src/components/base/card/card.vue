@@ -72,6 +72,7 @@ const toggleRolesCardVisibility = () => {
 	--card-header-padding: 1em 1em 12px;
 	--card-body-fit-size-padding: 16px;
 	--card-body-full-size-padding: 0;
+	--card-header-font-size: 1.2em;
 }
 .full {
 	--card-box-shadow: unset;
@@ -109,7 +110,7 @@ html:not(.theme-dark) .card-header {
 h2 {
 	display: flex;
 	align-items: center;
-	font-size: 1.25em;
+	font-size: var(--card-header-font-size);
 }
 .end {
 	display: flex;
