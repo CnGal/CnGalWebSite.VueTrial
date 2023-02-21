@@ -13,13 +13,16 @@
 
 <style scoped>
 .index-page-body {
+	--index-page-extra-width: clamp(320px, calc((100% - 16px) / 3), 400px);
+}
+.index-page-body {
 	display: flex;
 	column-gap: 24px;
 	margin-block-start: 12px;
 	color: var(--main-font-color);
 }
 .index-page-extra {
-	width: clamp(320px, calc((100% - 16px) / 3 * 1), 400px);
+	width: var(--index-page-extra-width);
 }
 .index-page-main {
 	flex: 1;

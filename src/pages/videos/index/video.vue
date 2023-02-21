@@ -37,11 +37,11 @@
 				></gal-game-card-rows>
 			</gal-card>
 
-			<galConmmentsList
+			<galConmmentsContent
 				class="main-card"
 				:id="id"
 				:type="stateStore.commentType.CommentVideo"
-			></galConmmentsList>
+			></galConmmentsContent>
 		</template>
 		<template v-slot:extra>
 			<gal_VideoExtraUser

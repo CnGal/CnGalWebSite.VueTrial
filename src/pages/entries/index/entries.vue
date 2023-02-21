@@ -62,11 +62,11 @@
 				:articleRelevances="info.articleRelevances"
 			></gal_EntriesMainEelevancesArticle>
 
-			<galConmmentsList
+			<galConmmentsContent
 				class="main-card"
 				:id="id"
 				:type="stateStore.commentType.commentEntries"
-			></galConmmentsList>
+			></galConmmentsContent>
 		</template>
 		<template v-slot:extra>
 			<gal-card class="extra-card" v-if="info.type === 0">

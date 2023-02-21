@@ -28,6 +28,8 @@ import breadcrumb from "../components/base/link/breadcrumb.vue";
 import tree from "../components/base/tree/tree.vue";
 import table from "../components/base/table/table.vue";
 import tableColumn from "../components/base/table/table-column.vue";
+import list from "../components/base/list/list.vue";
+import listItem from "../components/base/list/list-item.vue";
 
 import noWrapGameList from "../components/common/gameCard/noWrapGameList.vue";
 import newsCard from "../components/common/gameCard/newsCard.vue";
@@ -35,7 +37,8 @@ import homeGameCard from "../components/home/gameCard/gameCard.vue";
 import normalGameCard from "../components/common/gameCard/normalGameCard.vue";
 import commonDiscountGameCard from "../components/common/gameCard/discountGameCard.vue";
 import refreshGameCardList from "../components/common/gameCard/refreshGameCardList.vue";
-import conmmentsList from "../components/common/comment/commentsList.vue";
+import conmmentsContent from "../components/common/comment/commentsContent.vue";
+import commentsList from "../components/common/comment/commentsList.vue";
 import conmmentItem from "../components/common/comment/commentItem.vue";
 
 import gamePreview from "../components/common/gameCard/gamePreview.vue";
@@ -79,6 +82,8 @@ const importPlugin = {
 		app.component("galTree", tree);
 		app.component("galTable", table);
 		app.component("galTableColumn", tableColumn);
+		app.component("galList", list);
+		app.component("galListItem", listItem);
 
 		app.component("galNoWrapGameList", noWrapGameList);
 		app.component("galNewsCard", newsCard);
@@ -93,7 +98,8 @@ const importPlugin = {
 		app.component("galTimeline", timeline);
 		app.component("galTimelineItem", timelineItem);
 		app.component("galGameCardRows", gameCardRows);
-		app.component("galConmmentsList", conmmentsList);
+		app.component("galConmmentsContent", conmmentsContent);
+		app.component("galCommentsList", commentsList);
 		app.component("galConmmentItem", conmmentItem);
 		app.component("galUserScoresCard", userScoresCard);
 		app.component("galCgCard", cgCard);

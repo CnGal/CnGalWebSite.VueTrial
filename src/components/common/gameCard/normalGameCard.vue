@@ -6,7 +6,7 @@
 				: type === 'entry'
 				? '/entries/index/'
 				: type === 'lottery'
-				? '/lottery/index/'
+				? '/lotteries/index/'
 				: type === 'vote'
 				? '/vote/index/'
 				: '#') + props.data.id

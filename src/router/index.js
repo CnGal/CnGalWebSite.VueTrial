@@ -20,6 +20,7 @@ import TagsIndex from "../pages/tags/index/tag.vue";
 import VideoIndex from "../pages/videos/index/video.vue";
 
 import LotteryHome from "../pages/lottery/home.vue";
+import LotteryIndex from "../pages/lottery/index/index.vue";
 
 import About from "../pages/about/about.vue";
 
@@ -30,6 +31,7 @@ import NotFount from "../pages/404.vue";
 import _test_home from "../pages/_test/_home.vue";
 import _test_icon from "../pages/_test/_icon.vue";
 import _test_button from "../pages/_test/_button.vue";
+import _test_list from "../pages/_test/_list.vue";
 
 const routes = [
 	{
@@ -124,6 +126,11 @@ const routes = [
 				name: "lottery",
 				component: LotteryHome
 			},
+			{
+				path: "/lotteries/index/:id",
+				name: "lotteryIndex",
+				component: LotteryIndex
+			},
 			// 404页面，必须放在最后
 			{
 				path: "/:pathMatch(.*)*",
@@ -150,6 +157,11 @@ routes.push(
 					path: "/_test/_button",
 					name: "_test_button",
 					component: _test_button
+				},
+				{
+					path: "/_test/_list",
+					name: "_test_list",
+					component: _test_list
 				}
 			]
 		}

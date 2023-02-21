@@ -44,10 +44,10 @@
 		</a>
 		<galMarkdown v-html="props.comment.text"></galMarkdown>
 
-		<galConmmentsList
+		<galCommentsList
 			v-if="props.comment.inverseParentCodeNavigation.length"
 			:comments="props.comment.inverseParentCodeNavigation"
-		></galConmmentsList>
+		></galCommentsList>
 	</li>
 </template>
 

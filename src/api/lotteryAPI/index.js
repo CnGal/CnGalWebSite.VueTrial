@@ -4,4 +4,8 @@ async function getLotteryCards() {
 	return await axios.get("/api/lotteries/GetLotteryCards");
 }
 
-export { getLotteryCards };
+async function getLotteryViewByID(id) {
+	return await axios.get(`/api/lotteries/GetLotteryView/${id}`);
+}
+
+export { getLotteryCards, getLotteryViewByID };
