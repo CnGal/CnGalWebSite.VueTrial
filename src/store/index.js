@@ -12,7 +12,8 @@ export const useStore = defineStore("main", {
 			theme: JSON.parse(
 				localStorage.getItem("theme") ||
 					'{"color": "#f44336","isDark": false}'
-			)
+			),
+			webBG: null
 		};
 	},
 	getters: {},
