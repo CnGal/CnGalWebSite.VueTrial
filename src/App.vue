@@ -4,6 +4,7 @@
 
 <script setup>
 import { onMounted } from "vue";
+import { refreshJWToken } from "@/api/accountAPI/login.js";
 import { useStore } from "./store/index.js";
 const store = useStore();
 
@@ -21,6 +22,18 @@ onMounted(() => {
 		document.documentElement.classList.add("theme-dark");
 	}
 });
+
+(async () => {
+	// 打开网站时刷新token
+	if (!localStorage.getItem("authToken")) {
+		return;
+	}
+	const {
+		data: { token: token }
+	} = await refreshJWToken();
+	localStorage.setItem("authToken", token);
+	store.authToken = token;
+})();
 </script>
 
 <style>

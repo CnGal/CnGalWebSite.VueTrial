@@ -12,4 +12,8 @@ async function getIp() {
 	return await axios.get("/api/account/GetIp");
 }
 
-export { login, getGeetestCode, getIp };
+async function refreshJWToken() {
+	return await axios.get("/api/account/RefreshJWToken");
+}
+
+export { login, getGeetestCode, getIp, refreshJWToken };
