@@ -2,9 +2,13 @@
 	--main-color: var(--pink-color);
 	--block-color: #181c32;
 	--gray-color: #7e8299;
+	--light-gray-color: #c9d1d9;
 	--white-color: #fff;
 	--pink-color: #f06292;
 	--light-pink-color: #fbf1f4;
+}
+.theme-dark:root {
+	--gray-color: #ababab;
 }
 
 :root {
@@ -26,9 +30,17 @@
 }
 .theme-dark:root {
 	--main-bg-color: #242424;
-	--main-font-color: #c9d1d9;
+	--main-font-color: var(--light-gray-color);
 	--main-hover-color: #414141;
 	--body-color: #242424;
+}
+
+.theme-transparent:root {
+	--main-bg-color: #ffffff99;
+}
+
+.theme-dark.theme-transparent:root {
+	--main-bg-color: #24242499;
 }
 
 @media screen and (max-width: 768px) {

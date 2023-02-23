@@ -1,15 +1,46 @@
 <template>
 	<div class="test-box">
-		<div class="nav-box">
-			<gal-link to="/_test/_button">button</gal-link>
-			<gal-link to="/_test/_icon">icon</gal-link>
-			<gal-link to="/_test/_list">list</gal-link>
-		</div>
+		<gal-card>
+			<galCheckbox
+				v-model="isDark"
+				@change="changeDark"
+				:label="isDark ? '黑夜模式' : '白天模式'"
+			></galCheckbox>
+			<br />
+			<galCheckbox
+				v-model="isTransparent"
+				@change="changeTr"
+				label="是否显示背景图片"
+			></galCheckbox>
+			<div class="nav-box">
+				<gal-link to="/_test/_button">button</gal-link>
+				<gal-link to="/_test/_icon">icon</gal-link>
+				<gal-link to="/_test/_list">list</gal-link>
+			</div>
+		</gal-card>
 		<router-view></router-view>
 	</div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+import { useStore } from "@/store/index.js";
+const store = useStore();
+
+const isDark = ref(store.theme.isDark);
+const isTransparent = ref(store.theme.isTransparent);
+
+const changeDark = () => {
+	store.changeTheme({
+		color: isDark.value ? "#000000" : "#f06292"
+	});
+};
+const changeTr = () => {
+	store.changeTheme({
+		isTransparent: isTransparent.value
+	});
+};
+</script>
 
 <style scoped>
 .test-box {
@@ -21,7 +52,6 @@
 	padding-inline-start: 16px;
 	width: 100px;
 	min-height: 100vh;
-	background-color: #fff;
 }
 .nav-box > a {
 	display: block;
