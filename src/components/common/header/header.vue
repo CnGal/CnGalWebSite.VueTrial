@@ -37,8 +37,12 @@
 					v-for="item in colorList"
 					:key="item"
 					class="color"
-					:style="{ '--button-primary-bg-color': item }"
-					type="primary"
+					:style="{
+						'--button-bg-color': item,
+						'--button-hover-bg-color': item,
+						'--button-border-radius': 'unset'
+					}"
+					theme="solid"
 					@click="changeTheme(item)"
 				></gal-button>
 			</div>

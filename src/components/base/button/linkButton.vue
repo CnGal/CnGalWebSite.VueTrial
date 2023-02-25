@@ -30,7 +30,7 @@ const props = defineProps({
 	width: 100%;
 }
 .link-button:hover {
-	background-color: var(--main-hover-color);
+	background-color: var(--main-hover-bg-color);
 }
 
 .link-button.solid,
@@ -52,8 +52,8 @@ html:not(.theme-dark) .link-button.solid:hover {
 	color: var(--main-font-color);
 }
 .theme-dark .link-button.solid:hover {
-	background-color: var(--main-hover-color);
-	border-color: var(--main-hover-color);
+	background-color: var(--main-hover-bg-color);
+	border-color: var(--main-hover-bg-color);
 }
 
 html:not(.theme-dark) .link-button.outline {

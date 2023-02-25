@@ -27,7 +27,7 @@ const props = defineProps({
 	display: flex;
 	align-items: center;
 	min-height: 100px;
-	border-block-end: thin dotted #ccc;
+	border-block-end: thin dotted #000;
 }
 .test-box > :is(div, pre) {
 	min-height: 100px;
@@ -38,7 +38,7 @@ const props = defineProps({
 	align-items: center;
 }
 .test-box > pre {
-	border-inline-end: thin dotted #000;
+	border-inline-start: thin dotted #000;
 }
 
 .test-box.block {

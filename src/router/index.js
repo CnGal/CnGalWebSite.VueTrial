@@ -32,6 +32,7 @@ import _test_home from "../pages/_test/_home.vue";
 import _test_icon from "../pages/_test/_icon.vue";
 import _test_button from "../pages/_test/_button.vue";
 import _test_list from "../pages/_test/_list.vue";
+import _test_linkbutton from "../pages/_test/_linkbutton.vue";
 
 const routes = [
 	{
@@ -162,6 +163,11 @@ routes.push(
 					path: "/_test/_list",
 					name: "_test_list",
 					component: _test_list
+				},
+				{
+					path: "/_test/_linkbutton",
+					name: "_test_linkbutton",
+					component: _test_linkbutton
 				}
 			]
 		}
