@@ -8,7 +8,7 @@
 		>
 			<component
 				class="content"
-				:is="props.type === 'link' ? 'router-link' : 'gal-button'"
+				:is="props.type === 'link' ? 'gal-link' : 'gal-button'"
 				:to="item.link"
 				@click="changeActiveTab(index)"
 			>
@@ -76,6 +76,11 @@ onMounted(() => {
 	--tabs-font-size: 14px;
 	--tabs-font-color: var(--gray-color);
 	--tabs-font-color-active: var(--main-color);
+	--tabs-slider-color: var(--main-color);
+}
+.theme-dark .tabs {
+	--tabs-slider-color: var(--main-font-color);
+	--tabs-font-color-active: var(--main-font-color);
 }
 
 .tabs,
@@ -127,7 +132,7 @@ onMounted(() => {
 	bottom: 0;
 	left: 0;
 	height: 2px;
-	background-color: var(--main-color);
+	background-color: var(--tabs-slider-color);
 	transform: translateX(0);
 	transition: transform 0.3s;
 }

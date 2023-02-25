@@ -1,18 +1,20 @@
 <template>
-	<section
+	<component
+		:is="props.level === 'section' ? 'section' : 'div'"
 		class="card"
 		:class="{
 			noheader: !($slots.headerStart || $slots.headerEnd),
 			[props.width]: true
 		}"
 	>
-		<header
+		<component
+			:is="props.level === 'section' ? 'header' : 'div'"
 			class="card-header"
 			v-if="$slots.headerStart || $slots.headerEnd"
 		>
-			<h2>
+			<component :is="props.headingLevel">
 				<slot name="headerStart"></slot>
-			</h2>
+			</component>
 			<div class="end">
 				<slot name="headerEnd"></slot>
 				<gal-icon-button
@@ -26,16 +28,24 @@
 					@click="toggleRolesCardVisibility"
 				></gal-icon-button>
 			</div>
-		</header>
-		<main class="card-main" v-show="isShow">
+		</component>
+		<div class="card-main" v-show="isShow">
 			<slot></slot>
-		</main>
-	</section>
+		</div>
+	</component>
 </template>
 
 <script setup>
 import { ref } from "vue";
 const props = defineProps({
+	level: {
+		type: String,
+		default: "section" // section, box
+	},
+	headingLevel: {
+		type: String,
+		default: "h2"
+	},
 	width: {
 		type: String,
 		default: "fit"

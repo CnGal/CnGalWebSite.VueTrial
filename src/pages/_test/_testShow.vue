@@ -3,7 +3,9 @@
 		<div>
 			<slot></slot>
 		</div>
-		<div v-text="props.msg"></div>
+		<pre>
+				<slot name="code"></slot>
+		</pre>
 	</div>
 </template>
 
@@ -27,7 +29,7 @@ const props = defineProps({
 	min-height: 100px;
 	border-block-end: thin dotted #ccc;
 }
-.test-box > div {
+.test-box > :is(div, pre) {
 	min-height: 100px;
 	flex: 1;
 	text-align: center;
@@ -35,7 +37,7 @@ const props = defineProps({
 	justify-content: center;
 	align-items: center;
 }
-.test-box > div:nth-child(1) {
+.test-box > pre {
 	border-inline-end: thin dotted #000;
 }
 
