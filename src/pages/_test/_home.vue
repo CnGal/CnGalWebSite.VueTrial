@@ -1,6 +1,6 @@
 <template>
 	<div class="test-box">
-		<gal-card>
+		<gal-card class="left">
 			<galCheckbox
 				v-model="isDark"
 				@change="changeDark"
@@ -16,9 +16,12 @@
 				<gal-link to="/_test/_button">button</gal-link>
 				<gal-link to="/_test/_icon">icon</gal-link>
 				<gal-link to="/_test/_list">list</gal-link>
+				<gal-link to="/_test/_linkbutton">linkbutton</gal-link>
 			</div>
 		</gal-card>
-		<router-view></router-view>
+		<gal-card class="right">
+			<router-view></router-view>
+		</gal-card>
 	</div>
 </template>
 
@@ -57,7 +60,8 @@ const changeTr = () => {
 	display: block;
 	padding-block: 8px;
 }
-.test-box > div:nth-child(2) {
+
+.right {
 	flex: 1;
 }
 </style>

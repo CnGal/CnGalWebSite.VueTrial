@@ -23,7 +23,7 @@ if (attrs.selected !== undefined) {
 }
 .dropdown-select-item {
 	color: var(--main-color);
-	background-color: var(--main-hover-color);
+	background-color: var(--main-hover-bg-color);
 }
 .dropdown-option:not(.dropdown-select-item):hover {
 	background-color: #f6f6f6;

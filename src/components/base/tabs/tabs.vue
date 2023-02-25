@@ -124,7 +124,7 @@ onMounted(() => {
 	background-color: #2e2e2e;
 }
 .tab.active .content:hover {
-	background-color: var(--main-hover-color);
+	background-color: var(--main-hover-bg-color);
 }
 
 .slider {
