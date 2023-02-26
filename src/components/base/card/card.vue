@@ -21,7 +21,7 @@
 					v-if="props.toggle"
 					icon="down"
 					class="icon toggle"
-					type="primary"
+					theme="solid"
 					circle
 					v-gal-tooltip="toggleBtnTooltipTextList.show"
 					:data-tooltip-text="toggleBtnTooltipText"

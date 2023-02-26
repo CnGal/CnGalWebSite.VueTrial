@@ -67,7 +67,7 @@
 					icon="heartOutline"
 					class="icon"
 					:style="{ '--icon-button-size': '40px' }"
-					type="primary"
+					theme="solid"
 					circle
 					v-gal-tooltip="'收藏'"
 				></gal-icon-button>
@@ -75,7 +75,7 @@
 					icon="thumbsUp"
 					class="icon"
 					:style="{ '--icon-button-size': '40px' }"
-					type="primary"
+					theme="solid"
 					circle
 					v-gal-tooltip="'点赞'"
 				></gal-icon-button>

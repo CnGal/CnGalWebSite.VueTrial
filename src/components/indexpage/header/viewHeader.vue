@@ -64,7 +64,7 @@
 						icon="heartOutline"
 						class="icon"
 						:style="{ '--icon-button-size': '40px' }"
-						type="primary"
+						theme="solid"
 						circle
 						v-gal-tooltip="'收藏'"
 					></gal-icon-button>
@@ -73,7 +73,7 @@
 						icon="pencilMdi"
 						class="icon"
 						:style="{ '--icon-button-size': '40px' }"
-						type="primary"
+						theme="solid"
 						circle
 						v-gal-tooltip="'编辑'"
 					></gal-icon-button>
@@ -106,10 +106,6 @@ const props = defineProps({
 	}
 }
 
-a,
-.icon {
-	color: var(--main-color);
-}
 .theme-dark a,
 .theme-dark .icon {
 	color: var(--main-font-color);
@@ -137,6 +133,7 @@ a,
 .publishers-title,
 .publishers-item {
 	font-size: 12px;
+	padding: 1px 8px;
 }
 .production-group,
 .publishers-group {
