@@ -34,7 +34,7 @@
 			@click="prevImg"
 			class="prevImg"
 			icon="left"
-			type="primary"
+			theme="solid"
 			circle
 			v-gal-tooltip.top="'上一张'"
 			tabindex="-1"
@@ -44,7 +44,7 @@
 			@click="nextImg"
 			class="nextImg"
 			icon="right"
-			type="primary"
+			theme="solid"
 			circle
 			v-gal-tooltip.top="'下一张'"
 			tabindex="-1"

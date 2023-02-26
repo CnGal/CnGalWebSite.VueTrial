@@ -6,9 +6,9 @@
 		<template v-slot:headerEnd>
 			<gal-icon-button
 				icon="databaseExport"
-				class="icon export"
+				class="export"
 				:style="{ '--icon-button-size': '36px' }"
-				type="primary"
+				theme="solid"
 				circle
 				v-gal-tooltip="'导出STAFF'"
 				@click="openDialog"
@@ -117,7 +117,7 @@ const copyStaffText = async () => {
 	color: var(--main-font-color);
 }
 
-.icon.export {
+.export {
 	font-size: 20px;
 	margin-inline-end: 16px;
 }

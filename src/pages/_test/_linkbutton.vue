@@ -1,6 +1,6 @@
 <template>
 	<div class="button-box">
-		<gal_testShow msg="<gal-button>按钮</gal-button>">
+		<gal_testShow>
 			<gal-link-button>按钮</gal-link-button>
 			<template v-slot:code>
 				<code>&lt;gal-link-button&gt;按钮&lt;/gal-link-button&gt;</code>

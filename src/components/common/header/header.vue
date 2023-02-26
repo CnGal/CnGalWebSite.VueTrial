@@ -13,12 +13,16 @@
 		></gal-icon-button>
 	</header>
 	<header class="header" v-else>
-		<gal-icon-button class="headerIcon" icon="menu"></gal-icon-button>
+		<gal-icon-button
+			class="small-header-icon"
+			theme="solid"
+			icon="menu"
+		></gal-icon-button>
 		<h1 class="title">CnGal 中文GalGame资料站</h1>
 		<gal-icon-button
-			class="headerIcon"
+			class="small-header-icon"
 			icon="search"
-			type="primary"
+			theme="solid"
 			v-gal-tooltip="'搜索'"
 			role="link"
 			@click="router.push('/search')"
@@ -130,8 +134,6 @@ onMounted(() => {
 	--header-bg-color: #ffffffaa;
 	--header-bg-color-dark: var(--main-bg-color);
 	--header-font-color: var(--gray-color);
-	--header-icon-color: var(--main-color);
-	--header-icon-size: 48px;
 }
 
 .theme-dark .header {
@@ -142,7 +144,6 @@ onMounted(() => {
 	.header {
 		--header-height: 48px;
 		--header-bg-color: var(--main-color);
-		--header-icon-color: var(--white-color);
 		--header-font-color: var(--white-color);
 	}
 }
@@ -168,10 +169,8 @@ onMounted(() => {
 	flex: 1;
 }
 .headerIcon {
-	--icon-button-size: var(--header-icon-size);
 	margin-inline-end: 1em;
 	font-size: 24px;
-	color: var(--header-icon-color);
 }
 
 .title {
@@ -198,9 +197,7 @@ onMounted(() => {
 	vertical-align: bottom;
 }
 
-@media screen and (max-width: 768px) {
-	.headerIcon {
-		margin-inline-end: 0.5em;
-	}
+.small-header-icon {
+	font-size: 24px;
 }
 </style>
