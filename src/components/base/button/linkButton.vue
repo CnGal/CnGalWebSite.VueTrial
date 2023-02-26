@@ -1,5 +1,5 @@
 <template>
-	<gal-link :class="['link-button', props.theme, props.width]">
+	<gal-link :class="['link-button', 'theme-' + props.theme, props.width]">
 		<slot></slot>
 	</gal-link>
 </template>
@@ -8,7 +8,7 @@
 const props = defineProps({
 	theme: {
 		type: String,
-		default: "hollow"
+		default: "text"
 	},
 	width: {
 		type: String,
@@ -19,55 +19,62 @@ const props = defineProps({
 
 <style scoped>
 .link-button {
-	padding: 0.5em 1em;
+	--link-button-padding: 0.5em 1em;
+	--link-button-col-gap: 0.5em;
+	--link-border-radius: unset;
+
+	--link-button-bg-color: unset;
+	--link-button-font-color: var(--main-color);
+	--link-button-border-color: unset;
+
+	--link-button-hover-bg-color: var(--main-hover-bg-color);
+	--link-button-hover-font-color: var(--main-color);
+}
+
+.link-button.theme-solid {
+	--link-border-radius: 4px;
+
+	--link-button-bg-color: var(--main-color);
+	--link-button-font-color: var(--white-color);
+	--link-button-border-color: var(--main-color);
+
+	--link-button-hover-bg-color: unset;
+	--link-button-hover-font-color: var(--main-color);
+}
+
+.link-button.theme-outline {
+	--link-border-radius: 4px;
+
+	--link-button-bg-color: unset;
+	--link-button-font-color: var(--main-color);
+	--link-button-border-color: var(--main-color);
+
+	--link-button-hover-bg-color: var(--main-color);
+	--link-button-hover-font-color: var(--white-color);
+}
+
+.theme-dark .link-button {
+	--link-button-font-color: var(--main-font-color);
+	--link-button-hover-font-color: var(--main-font-color);
+}
+
+.link-button {
+	padding: var(--link-button-padding);
 	display: inline-flex;
-	column-gap: 0.5em;
+	column-gap: var(--link-button-col-gap);
 	justify-content: center;
 	align-items: center;
+	background-color: var(--link-button-bg-color);
+	color: var(--link-button-font-color);
+	border: thin solid var(--link-button-border-color);
+	border-radius: var(--link-border-radius);
 }
 .link-button.full {
 	box-sizing: border-box;
 	width: 100%;
 }
 .link-button:hover {
-	background-color: var(--main-hover-bg-color);
-}
-
-.link-button.solid,
-.link-button.outline {
-	border: thin solid var(--main-color);
-	border-radius: 0.5em;
-	padding: 1px 8px;
-}
-html:not(.theme-dark) .link-button.solid {
-	background-color: var(--main-color);
-	color: var(--white-color);
-}
-html:not(.theme-dark) .link-button.solid:hover {
-	background-color: transparent;
-	color: var(--main-color);
-}
-.theme-dark .link-button.solid {
-	background-color: var(--main-bg-color);
-	color: var(--main-font-color);
-}
-.theme-dark .link-button.solid:hover {
-	background-color: var(--main-hover-bg-color);
-	border-color: var(--main-hover-bg-color);
-}
-
-html:not(.theme-dark) .link-button.outline {
-	color: var(--main-color);
-}
-html:not(.theme-dark) .link-button.outline:hover {
-	background-color: var(--main-color);
-	color: var(--white-color);
-}
-.theme-dark .link-button.outline {
-	color: var(--white-color);
-	border-color: #808080;
-}
-.theme-dark .link-button.outline:hover {
-	background-color: #808080;
+	background-color: var(--link-button-hover-bg-color);
+	color: var(--link-button-hover-font-color);
 }
 </style>
