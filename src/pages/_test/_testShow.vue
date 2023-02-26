@@ -39,13 +39,19 @@ const props = defineProps({
 }
 .test-box > pre {
 	border-inline-start: thin dotted #000;
+	overflow: auto;
+	max-width: calc(100vw - 232px);
 }
 
 .test-box.block {
 	display: block;
 }
-.test-box.block > div:nth-child(1) {
+.test-box.block > div {
 	border-inline-end: none;
-	border-block-end: thin dotted #000;
+	border-block-end: thin dotted #666;
+}
+.test-box.block > :is(div, pre) {
+	justify-content: flex-start;
+	text-align: unset;
 }
 </style>

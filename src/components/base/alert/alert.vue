@@ -1,10 +1,6 @@
 <template>
 	<div class="alert-box" :class="[props.type]">
-		<gal-icon
-			class="icon"
-			:icon="iconNames[props.type]"
-			size="24px"
-		></gal-icon>
+		<gal-icon class="icon" :icon="iconNames[props.type]"></gal-icon>
 		<slot></slot>
 	</div>
 </template>
@@ -26,21 +22,30 @@ const iconNames = {
 .alert-box {
 	--warning-color: #fb8c00;
 	--error-color: #ff5252;
+
+	--alert-width: 100%;
+	--alert-padding: 16px;
+	--alert-col-gap: 8px;
+
+	--alert-text-font-size: 16px;
+	--alert-icon-font-size: 24px;
 	--alert-bg-color: var(--main-bg-color);
 	--alert-box-shadow: var(--main-shadow);
 }
 .alert-box {
-	border-inline-start: 8px solid;
-	font-size: 16px;
 	display: flex;
 	align-items: flex-start;
-	padding: 16px;
-	column-gap: 8px;
+	border-inline-start: 8px solid;
+	width: var(--alert-width);
+	font-size: var(--alert-text-font-size);
+	padding: var(--alert-padding);
+	column-gap: var(--alert-col-gap);
 	background-color: var(--alert-bg-color);
 	box-shadow: var(--alert-box-shadow);
 }
 .icon {
 	flex: none;
+	font-size: var(--alert-icon-font-size);
 }
 .alert-box.warning {
 	border-color: var(--warning-color);
