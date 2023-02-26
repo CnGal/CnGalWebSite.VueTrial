@@ -215,6 +215,6 @@ onMounted(() => {
 <style scoped>
 .icon {
 	width: var(--icon-size);
-	aspect-ratio: 1 / 1;
+	height: var(--icon-size);
 }
 </style>

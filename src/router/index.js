@@ -34,6 +34,7 @@ import _test_button from "../pages/_test/_button.vue";
 import _test_list from "../pages/_test/_list.vue";
 import _test_linkbutton from "../pages/_test/_linkbutton.vue";
 import _test_iconbutton from "../pages/_test/_iconbutton.vue";
+import _test_alert from "../pages/_test/_alert.vue";
 
 const routes = [
 	{
@@ -174,6 +175,11 @@ routes.push(
 					path: "/_test/_iconbutton",
 					name: "_test_iconbutton",
 					component: _test_iconbutton
+				},
+				{
+					path: "/_test/_alert",
+					name: "_test_alert",
+					component: _test_alert
 				}
 			]
 		}
