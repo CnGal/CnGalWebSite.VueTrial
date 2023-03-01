@@ -9,6 +9,7 @@ export const useStore = defineStore("main", {
 				localStorage.getItem("authToken") ||
 				"",
 			isMobile: !!navigator.userAgent.match(/(Android|iPhone|Mobile)/i),
+			isSmallPage: false,
 			theme: (localStorage.getItem("theme") &&
 				JSON.parse(localStorage.getItem("theme"))) || {
 				color: "#f06292",

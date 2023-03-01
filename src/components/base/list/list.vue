@@ -17,10 +17,6 @@ const props = defineProps({
 			medium: 2,
 			small: 1
 		}
-	},
-	heightOverflowScroll: {
-		type: Boolean,
-		default: true
 	}
 });
 
@@ -67,11 +63,13 @@ onUnmounted(() => {
 .list {
 	--col-count: 4;
 	--list-column-gap: 16px;
+	--list-row-gap: 0;
 }
 .list {
 	width: 100%;
 	display: grid;
 	grid-template-columns: repeat(var(--col-count), 1fr);
 	grid-column-gap: var(--list-column-gap);
+	grid-row-gap: var(--list-row-gap);
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-	<header class="header" v-if="!isSmallPage">
+	<header class="header" v-if="!store.isSmallPage">
 		<gal-logo class="logo"></gal-logo>
 		<gal-nav class="nav"></gal-nav>
 		<gal-icon-button
@@ -50,6 +50,17 @@
 					@click="changeTheme(item)"
 				></gal-button>
 			</div>
+			<h3>背景图</h3>
+			<p>
+				显示背景图会将卡片设置为半透明状态，目前建议使用明亮的图片作为背景
+			</p>
+			<div>
+				<galCheckbox
+					v-model="isTransparent"
+					@change="changeTr"
+					label="是否显示背景图片"
+				></galCheckbox>
+			</div>
 		</gal-card>
 	</gal-dialog>
 </template>
@@ -63,8 +74,6 @@ import { useStore } from "@/store/index.js";
 import { useRouter } from "vue-router";
 const router = useRouter();
 const store = useStore();
-
-const isSmallPage = ref(false);
 
 const settingDialog = ref(null);
 const headerIconList = ref([
@@ -118,14 +127,13 @@ const changeTheme = (theme) => {
 	});
 };
 
-const pageWidthChange = () => {
-	isSmallPage.value = window.innerWidth < 768;
-};
+const isTransparent = ref(store.theme.isTransparent);
 
-onMounted(() => {
-	pageWidthChange();
-	window.addEventListener("resize", pageWidthChange);
-});
+const changeTr = () => {
+	store.changeTheme({
+		isTransparent: isTransparent.value
+	});
+};
 </script>
 
 <style scoped>
