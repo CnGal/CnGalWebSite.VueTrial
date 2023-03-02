@@ -46,7 +46,5 @@ provide("changeActive", changeActive);
 article {
 	height: 500px;
 	overflow: auto;
-	background-color: var(--main-bg-color);
-	padding: 0 12px;
 }
 </style>

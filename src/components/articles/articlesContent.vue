@@ -61,7 +61,7 @@
 		</header>
 		<hr />
 		<main class="article-main">
-			<gal-markdown v-html="info.mainPage"></gal-markdown>
+			<gal-markdown v-html="info.mainPage" transparent></gal-markdown>
 			<div class="icon-wrap" v-if="props.showIconWrap">
 				<gal-icon-button
 					icon="heartOutline"
