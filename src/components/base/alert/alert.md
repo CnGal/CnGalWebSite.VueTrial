@@ -1,5 +1,7 @@
 ## 使用
 
+> 访问 http://localhost:8081/\_test/\_alert 页面查看样式与使用
+
 ```
 <gal-alert type="error">
 ......

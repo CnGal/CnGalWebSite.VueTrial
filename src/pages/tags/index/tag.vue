@@ -47,17 +47,30 @@
 		<template v-slot:headerStart>
 			<gal-icon class="icon" icon="objectGroup"></gal-icon>子词条
 		</template>
-		<gal-game-card-list
-			:list="
-				info.childrenEntries.slice(
+		<gal-list
+			class="sub-entry-list"
+			:rowHasCellTotal="{
+				xxLarge: 6,
+				xLarge: 6,
+				large: 4,
+				medium: 3,
+				small: 2
+			}"
+		>
+			<gal-list-item
+				v-for="(item, index) in info.childrenEntries.slice(
 					(currentPage - 1) * 24,
 					currentPage * 24
-				)
-			"
-			cardName="galNormalGameCard"
-			type="entry"
-			class="sub-entry-list"
-		></gal-game-card-list>
+				)"
+				:key="index"
+			>
+				<galNormalGameCard
+					:data="item"
+					type="entry"
+				></galNormalGameCard>
+			</gal-list-item>
+		</gal-list>
+
 		<galPagination
 			class="pagination"
 			v-if="info.childrenEntries.length > 24"
@@ -70,7 +83,6 @@
 
 <script setup>
 import { ref, onMounted, watch } from "vue";
-import galGameCardList from "../../../components/home/gameCard/gameCardList.vue";
 import { useRoute } from "vue-router";
 import { getTag } from "../../../api/tagsAPI/index.js";
 const route = useRoute();
@@ -120,5 +132,9 @@ watch(
 .sub-entry-list,
 .pagination {
 	margin-block-start: 16px;
+}
+
+.sub-entry-list {
+	--list-row-gap: 8px;
 }
 </style>

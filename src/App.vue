@@ -34,7 +34,14 @@ onMounted(() => {
 	if (store.theme.isDark) {
 		document.documentElement.classList.add("theme-dark");
 	}
+
+	pageWidthChange();
+	window.addEventListener("resize", pageWidthChange);
 });
+
+const pageWidthChange = () => {
+	store.isSmallPage = window.innerWidth < 768;
+};
 
 const webBG = ref(null);
 const showWebBG = ref(false);

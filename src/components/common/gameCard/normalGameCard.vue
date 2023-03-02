@@ -1,54 +1,58 @@
 <template>
-	<router-link
-		:to="
-			(type === 'article'
-				? '/articles/index/'
-				: type === 'entry'
-				? '/entries/index/'
-				: type === 'lottery'
-				? '/lotteries/index/'
-				: type === 'vote'
-				? '/vote/index/'
-				: '#') + props.data.id
-		"
-		class="game-card"
-	>
-		<img
-			loading="lazy"
-			class="game-card-img"
-			:src="props.data.mainImage || props.data.mainPicture"
-			:alt="props.data.name"
-		/>
-		<div class="info">
-			<h5 class="name rows-dot">
-				<gal-tag
-					v-if="props.type === 'lottery' || props.type === 'vote'"
-					class="tag"
-					v-text="
-						new Date(props.data.startTime).getTime() < Date.now()
-							? '未开始'
-							: new Date(props.data.endTime).getTime() >=
-							  Date.now()
-							? '正在进行'
-							: '已结束'
-					"
-					:bgColor="
-						new Date(props.data.startTime).getTime() < Date.now()
-							? 'primary'
-							: new Date(props.data.endTime).getTime() >=
-							  Date.now()
-							? 'success'
-							: 'danger'
-					"
-				></gal-tag>
-				{{ props.data.name }}
-			</h5>
-			<div class="brief-introduction rows-dot">
-				{{ props.data.briefIntroduction }}
+	<gal-card width="full" class="card" level="box">
+		<gal-link
+			:to="
+				(type === 'article'
+					? '/articles/index/'
+					: type === 'entry'
+					? '/entries/index/'
+					: type === 'lottery'
+					? '/lotteries/index/'
+					: type === 'vote'
+					? '/vote/index/'
+					: '#') + props.data.id
+			"
+			class="game-card"
+		>
+			<img
+				loading="lazy"
+				class="game-card-img"
+				:src="props.data.mainImage || props.data.mainPicture"
+				:alt="props.data.name"
+			/>
+			<div class="info">
+				<h5 class="name rows-dot">
+					<gal-tag
+						v-if="props.type === 'lottery' || props.type === 'vote'"
+						class="tag"
+						v-text="
+							new Date(props.data.startTime).getTime() <
+							Date.now()
+								? '未开始'
+								: new Date(props.data.endTime).getTime() >=
+								  Date.now()
+								? '正在进行'
+								: '已结束'
+						"
+						:bgColor="
+							new Date(props.data.startTime).getTime() <
+							Date.now()
+								? 'primary'
+								: new Date(props.data.endTime).getTime() >=
+								  Date.now()
+								? 'success'
+								: 'danger'
+						"
+					></gal-tag>
+					{{ props.data.name }}
+				</h5>
+				<div class="brief-introduction rows-dot">
+					{{ props.data.briefIntroduction }}
+				</div>
 			</div>
-		</div>
-		<slot name="sub"></slot>
-	</router-link>
+			<slot name="sub"></slot>
+		</gal-link>
+	</gal-card>
 </template>
 
 <script setup>
@@ -67,18 +71,17 @@ const props = defineProps({
 <style scoped>
 .game-card {
 	--row-dot-line: 4;
-	--game-card-bg-color: var(--main-bg-color);
 }
 .name {
 	--row-dot-line: 2;
 }
+.card {
+	height: 100%;
+}
 .game-card {
-	border-radius: var(--main-border-radius);
 	display: block;
 	height: 100%;
 	overflow: hidden;
-	box-shadow: var(--main-shadow);
-	background-color: var(--game-card-bg-color);
 }
 .game-card-img {
 	width: 100%;

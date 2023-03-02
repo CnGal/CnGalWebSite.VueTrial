@@ -1,13 +1,18 @@
 <template>
-	<div class="new-card">
-		<router-link :to="`/entries/index/${props.newsInfo.groupId}`">
+	<gal-card
+		class="new-card"
+		level="box"
+		width="full"
+		:transparent="store.isSmallPage ? undefined : true"
+	>
+		<gal-link :to="`/entries/index/${props.newsInfo.groupId}`">
 			<img
 				class="new-img"
 				loading="lazy"
 				:src="props.newsInfo.image"
 				:alt="props.newsInfo.title"
 			/>
-		</router-link>
+		</gal-link>
 		<a :href="props.newsInfo.link" class="text-info" target="_blank">
 			<div>
 				<gal-tag class="tag">{{ props.newsInfo.type }}</gal-tag>
@@ -20,11 +25,13 @@
 				<span>{{ props.newsInfo.text }}</span>
 			</div>
 		</a>
-	</div>
+	</gal-card>
 </template>
 
 <script setup>
-import { formatDateWithHowLong } from "../../../assets/common/js/formatDate.js";
+import { formatDateWithHowLong } from "@/assets/common/js/formatDate.js";
+import { useStore } from "@/store/index.js";
+const store = useStore();
 
 const props = defineProps({
 	newsInfo: {
@@ -37,11 +44,8 @@ const props = defineProps({
 <style scoped>
 .new-card {
 	display: flex;
-	box-sizing: border-box;
 	column-gap: 8px;
-	overflow: hidden;
 	padding: 0.5em 0.75em;
-	background-color: var(--main-bg-color);
 }
 .text-info {
 	display: flex;
@@ -64,12 +68,5 @@ const props = defineProps({
 }
 .date {
 	color: var(--gray-color);
-}
-
-@media screen and (max-width: 768px) {
-	.new-card {
-		box-shadow: var(--main-shadow);
-		border-radius: var(--main-border-radius);
-	}
 }
 </style>

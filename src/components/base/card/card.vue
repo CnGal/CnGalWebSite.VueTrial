@@ -7,31 +7,35 @@
 			[props.width]: true
 		}"
 	>
-		<component
-			:is="props.level === 'section' ? 'header' : 'div'"
-			class="card-header"
-			v-if="$slots.headerStart || $slots.headerEnd"
-		>
-			<component :is="props.headingLevel">
-				<slot name="headerStart"></slot>
+		<template v-if="$slots.headerStart || $slots.headerEnd">
+			<component
+				:is="props.level === 'section' ? 'header' : 'div'"
+				class="card-header"
+			>
+				<component :is="props.headingLevel" class="heading">
+					<slot name="headerStart"></slot>
+				</component>
+				<div class="end">
+					<slot name="headerEnd"></slot>
+					<gal-icon-button
+						v-if="props.toggle"
+						icon="down"
+						class="icon toggle"
+						theme="solid"
+						circle
+						v-gal-tooltip="toggleBtnTooltipTextList.show"
+						:data-tooltip-text="toggleBtnTooltipText"
+						@click="toggleRolesCardVisibility"
+					></gal-icon-button>
+				</div>
 			</component>
-			<div class="end">
-				<slot name="headerEnd"></slot>
-				<gal-icon-button
-					v-if="props.toggle"
-					icon="down"
-					class="icon toggle"
-					theme="solid"
-					circle
-					v-gal-tooltip="toggleBtnTooltipTextList.show"
-					:data-tooltip-text="toggleBtnTooltipText"
-					@click="toggleRolesCardVisibility"
-				></gal-icon-button>
+			<div class="card-main" v-show="isShow">
+				<slot></slot>
 			</div>
-		</component>
-		<div class="card-main" v-show="isShow">
+		</template>
+		<template v-else>
 			<slot></slot>
-		</div>
+		</template>
 	</component>
 </template>
 
@@ -76,85 +80,97 @@ const toggleRolesCardVisibility = () => {
 <style scoped>
 .card {
 	--card-box-shadow: var(--main-shadow);
+
 	--card-header-box-shadow: unset;
 	--card-header-bg-color: var(--main-bg-color);
-	--card-body-bg-color: var(--main-bg-color);
+	--card-header-color: var(--main-color);
 	--card-header-padding: 1em 1em 12px;
-	--card-body-fit-size-padding: 16px;
-	--card-body-full-size-padding: 0;
-	--card-header-font-size: 1.2em;
+	--card-heading-font-size: 20px;
+	--card-heading-font-weight: bold;
+	--card-heading-column-gap: 12px;
+	--card-header-end-font-size: 16px;
+
+	--card-body-bg-color: var(--main-bg-color);
+	--card-body-color: var(--main-font-color);
+	--card-body-padding: 0 16px 16px;
 }
+
+.theme-dark .card {
+	--card-header-color: var(--main-font-color);
+}
+
+.noheader {
+	--card-body-padding: 16px;
+}
+
 .full {
-	--card-box-shadow: unset;
+	--card-body-padding: 0 0 16px;
+}
+
+.card[transparent] {
 	--card-header-box-shadow: var(--main-shadow);
+	--card-box-shadow: none;
 	--card-body-bg-color: transparent;
+	--card-body-padding: 16px;
+}
+.full[transparent] {
+	--card-body-padding: 0;
 }
 @media screen and (max-width: 768px) {
 	.card {
-		--card-body-bg-color: transparent;
-		--card-box-shadow: unset;
-		--card-header-box-shadow: var(--main-shadow);
 		--card-header-padding: 0 1em;
-		--card-body-fit-size-padding: 0;
+		--card-heading-font-size: 14px;
+		--card-header-end-font-size: 14px;
+		--card-heading-font-weight: normal;
 	}
+	.card.full {
+		--card-body-padding: 0;
+	}
+}
+
+.noheader {
+	color: var(--card-body-color);
+	background-color: var(--card-body-bg-color);
+	padding: var(--card-body-padding);
 }
 
 .card {
 	box-shadow: var(--card-box-shadow);
-	border-radius: var(--main-border-radius);
 }
 
 .card-header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	color: var(--main-font-color);
 	background-color: var(--card-header-bg-color);
+	color: var(--card-header-color);
 	min-height: 35px;
 	padding: var(--card-header-padding);
 	box-shadow: var(--card-header-box-shadow);
 }
-html:not(.theme-dark) .card-header {
-	color: var(--main-color);
-}
-h2 {
+
+.heading {
 	display: flex;
 	align-items: center;
-	font-size: var(--card-header-font-size);
+	column-gap: var(--card-heading-column-gap);
+	font-size: var(--card-heading-font-size);
+	font-weight: var(--card-heading-font-weight);
 }
 .end {
 	display: flex;
+	align-items: center;
+	font-size: var(--card-header-end-font-size);
 }
 
 .icon.toggle {
-	--icon-button-size: 36px;
+	--icon-button-size: 30px;
+	margin-inline-start: 8px;
 	font-size: 20px;
 }
 
 .card-main {
-	color: var(--main-font-color);
+	color: var(--card-body-color);
 	background-color: var(--card-body-bg-color);
-}
-.fit .card-main {
-	padding: var(--card-body-fit-size-padding);
-	/* 当有 header 的时候，不需要加上方的 padding */
-	padding-block-start: unset;
-}
-.card.noheader.fit .card-main {
-	padding: var(--card-body-fit-size-padding);
-}
-.full .card-main {
-	padding: var(--card-body-full-size-padding);
-}
-
-@media screen and (max-width: 768px) {
-	h2 {
-		font-size: 14px;
-		font-weight: normal;
-	}
-	.card-header {
-		margin-block-end: 12px;
-		border-radius: var(--main-border-radius);
-	}
+	padding: var(--card-body-padding);
 }
 </style>

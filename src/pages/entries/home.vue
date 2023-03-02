@@ -1,7 +1,11 @@
 <template>
-	<gal-card class="card">
+	<gal-card
+		class="card"
+		:width="store.isSmallPage ? 'full' : 'fit'"
+		:transparent="store.isSmallPage ? true : undefined"
+	>
 		<template v-slot:headerStart>
-			<gal-icon class="icon" icon="gift"></gal-icon>&nbsp;&nbsp;免费游戏
+			<gal-icon class="icon" icon="gift"></gal-icon>免费游戏
 		</template>
 		<template v-slot:headerEnd>
 			<gal-link-button to="/" class="link-button">
@@ -10,20 +14,25 @@
 		</template>
 		<gal-no-wrap-game-list
 			cardName="galNormalGameCard"
-			:list="freeGames"
-			v-if="!isMobile"
+			:list="freeGames.showData"
+			v-if="!store.isSmallPage"
 		></gal-no-wrap-game-list>
 		<gal-refresh-game-card-list
 			v-else
 			cardName="galNormalGameCard"
-			:data="freeGames"
+			:data="freeGames.showData"
 			:changeData="changeFreeGames"
 			refreshText="换一组免费游戏"
 		></gal-refresh-game-card-list>
 	</gal-card>
-	<gal-card class="card">
+
+	<gal-card
+		class="card"
+		:width="store.isSmallPage ? 'full' : 'fit'"
+		:transparent="store.isSmallPage ? true : undefined"
+	>
 		<template v-slot:headerStart>
-			<gal-icon class="icon" icon="dollar"></gal-icon>&nbsp;&nbsp;打折游戏
+			<gal-icon class="icon" icon="dollar"></gal-icon>打折游戏
 		</template>
 		<template v-slot:headerEnd>
 			<gal-link-button to="/" class="link-button">
@@ -32,29 +41,29 @@
 		</template>
 		<gal-no-wrap-game-list
 			cardName="galDiscountGameCard"
-			:list="discountGames"
-			v-if="!isMobile"
+			:list="discountGames.showData"
+			v-if="!store.isSmallPage"
 		></gal-no-wrap-game-list>
 		<gal-refresh-game-card-list
 			v-else
 			cardName="galDiscountGameCard"
-			:data="discountGames"
+			:data="discountGames.showData"
 			:changeData="changeDiscountGames"
 			refreshText="换一组打折游戏"
 		></gal-refresh-game-card-list>
 	</gal-card>
+
 	<galEntriesCGsCardList
 		class="card"
 		:list="gameCGs"
-		v-if="!isMobile"
+		v-if="!store.isSmallPage"
 	></galEntriesCGsCardList>
-	<Suspense>
-		<galEntriesGameRolesCardList class="card"></galEntriesGameRolesCardList>
-	</Suspense>
+
+	<galEntriesGameRolesCardList class="card"></galEntriesGameRolesCardList>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, reactive, watch } from "vue";
 import {
 	getFreeGames,
 	getAllDiscountSteamGame,
@@ -69,43 +78,65 @@ const isMobile = store.isMobile;
 const normalShowCardCount = isMobile ? 2 : 12;
 
 // 获取免费游戏
-let freeGames = ref([]);
-let allFreeGames = ref([]);
+let freeGames = reactive({
+	data: [],
+	showData: []
+});
 (async () => {
 	const { data } = await getFreeGames();
-	freeGames.value = getNonRepeatRandomList(data, normalShowCardCount);
-	allFreeGames.value = data;
+	freeGames.data = data;
+	freeGames.showData = getNonRepeatRandomList(
+		data,
+		store.isSmallPage ? 2 : 12
+	);
 })();
 const changeFreeGames = () => {
-	freeGames.value = getNonRepeatRandomList(
-		allFreeGames.value,
-		normalShowCardCount
+	freeGames.showData = getNonRepeatRandomList(
+		freeGames.data,
+		store.isSmallPage ? 2 : 12
 	);
 };
 
 // 获取打折游戏
-let discountGames = ref([]);
-let allDiscountGames = ref([]);
+let discountGames = reactive({
+	data: [],
+	showData: []
+});
 (async () => {
 	const { data } = await getAllDiscountSteamGame();
-	discountGames.value = getNonRepeatRandomList(data, normalShowCardCount);
-	allDiscountGames.value = data;
+	discountGames.data = data;
+	discountGames.showData = getNonRepeatRandomList(
+		data,
+		store.isSmallPage ? 2 : 12
+	);
 })();
 const changeDiscountGames = () => {
-	discountGames.value = getNonRepeatRandomList(
-		allDiscountGames.value,
-		normalShowCardCount
+	discountGames.showData = getNonRepeatRandomList(
+		discountGames.data,
+		store.isSmallPage ? 2 : 12
 	);
 };
 
 // 获取游戏 CG
 let gameCGs = ref([]);
-let allGameCGs = ref([]);
 (async () => {
 	const { data } = await getGameCGs();
 	gameCGs.value = getNonRepeatRandomList(data, 2);
-	allGameCGs.value = data;
 })();
+
+watch(
+	() => store.isSmallPage,
+	() => {
+		freeGames.showData = freeGames.data.slice(
+			0,
+			store.isSmallPage ? 2 : 12
+		);
+		discountGames.showData = discountGames.data.slice(
+			0,
+			store.isSmallPage ? 2 : 12
+		);
+	}
+);
 </script>
 
 <style scoped>

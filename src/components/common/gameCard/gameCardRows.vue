@@ -224,7 +224,6 @@ onUnmounted(() => {
 .container {
 	--row-dot-line: 3;
 	--column-gap: 16px;
-	--rows-bg-color: var(--main-bg-color);
 	--row-item-bg-color: var(--main-bg-color);
 }
 .container.mobile,
@@ -236,7 +235,6 @@ onUnmounted(() => {
 	flex-wrap: wrap;
 	column-gap: var(--column-gap);
 	row-gap: 12px;
-	background-color: var(--rows-bg-color);
 	color: var(--main-font-color);
 }
 .container.canScroll {
@@ -322,7 +320,6 @@ onUnmounted(() => {
 
 @media screen and (max-width: 768px) {
 	.container {
-		background-color: transparent;
 		padding: 0;
 	}
 	.user-item .img {

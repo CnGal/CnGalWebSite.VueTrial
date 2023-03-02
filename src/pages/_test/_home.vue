@@ -19,6 +19,7 @@
 				<gal-link to="/_test/_linkbutton">linkbutton</gal-link>
 				<gal-link to="/_test/_iconbutton">iconbutton</gal-link>
 				<gal-link to="/_test/_alert">alert</gal-link>
+				<gal-link to="/_test/_card">card</gal-link>
 			</div>
 		</gal-card>
 		<gal-card class="right">
