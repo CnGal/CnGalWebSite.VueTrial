@@ -20,7 +20,10 @@
 			</div>
 		</header>
 		<main>
-			<gal-markdown v-html="props.data.briefIntroduction"></gal-markdown>
+			<gal-markdown
+				transparent
+				v-html="props.data.briefIntroduction"
+			></gal-markdown>
 		</main>
 	</article>
 </template>

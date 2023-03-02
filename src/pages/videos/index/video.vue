@@ -11,7 +11,12 @@
 				<gal-cg-card :data="info.pictures[0]"></gal-cg-card>
 			</gal-card>
 
-			<gal-card class="main-card" v-if="info.mainPage">
+			<gal-card
+				class="main-card"
+				v-if="info.mainPage"
+				width="full"
+				transparent
+			>
 				<template v-slot:headerStart>
 					<gal-icon class="icon" icon="homeFill"></gal-icon
 					>&nbsp;&nbsp;介绍

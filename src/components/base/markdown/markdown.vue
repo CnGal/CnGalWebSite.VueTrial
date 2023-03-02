@@ -43,7 +43,7 @@
 	--color-fg-default: #c9d1d9;
 	--color-fg-muted: #8b949e;
 	--color-fg-subtle: #484f58;
-	--color-canvas-default: var(--main-bg-color);
+	--color-canvas-default: var(--markdown-bg-color);
 	--color-canvas-subtle: #161b22;
 	--color-border-default: #30363d;
 	--color-border-muted: #21262d;
@@ -89,7 +89,7 @@ html:not(.theme-dark) .markdown-body {
 	--color-fg-default: #24292f;
 	--color-fg-muted: #57606a;
 	--color-fg-subtle: #6e7781;
-	--color-canvas-default: #ffffff;
+	--color-canvas-default: var(--markdown-bg-color);
 	--color-canvas-subtle: #f6f8fa;
 	--color-border-default: #d0d7de;
 	--color-border-muted: hsla(210, 18%, 87%, 1);
@@ -100,11 +100,19 @@ html:not(.theme-dark) .markdown-body {
 	--color-danger-fg: #cf222e;
 }
 
+.markdown-body {
+	--markdown-padding: 0 16px 16px;
+	--markdown-bg-color: var(--main-bg-color);
+}
+.markdown-body[transparent] {
+	--markdown-bg-color: transparent;
+}
 html:not(.theme-dark) .markdown-body :deep(a) {
 	color: var(--main-color);
 }
 .markdown-body {
 	word-break: break-word;
+	padding: var(--markdown-padding);
 }
 .markdown-body :deep(li) {
 	list-style: unset;
