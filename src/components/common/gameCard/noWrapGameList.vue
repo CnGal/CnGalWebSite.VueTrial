@@ -171,7 +171,6 @@ watch(
 }
 .container {
 	display: flex;
-	background-color: var(--main-bg-color);
 }
 .prev,
 .next {
