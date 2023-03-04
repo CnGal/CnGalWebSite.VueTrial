@@ -1,42 +1,4 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "../pages/home.vue";
-import HomeIndex from "../pages/home/home.vue";
-import EntriesHome from "../pages/entries/home.vue";
-import EntriesIndex from "../pages/entries/index/entries.vue";
-import ArticlesHome from "../pages/article/home.vue";
-import ArticlesIndex from "../pages/article/index/articles.vue";
-import ArticlesNews from "../pages/article/news.vue";
-
-import Search from "../pages/search/search.vue";
-
-import Times from "../pages/times/times.vue";
-
-import Login from "../pages/login/login.vue";
-
-import Square from "../pages/square/square.vue";
-
-import TagsIndex from "../pages/tags/index/tag.vue";
-
-import VideoIndex from "../pages/videos/index/video.vue";
-
-import LotteryHome from "../pages/lottery/home.vue";
-import LotteryIndex from "../pages/lottery/index/index.vue";
-
-import About from "../pages/about/about.vue";
-
-import Data from "../pages/data/data.vue";
-
-import NotFount from "../pages/404.vue";
-
-import _test_home from "../pages/_test/_home.vue";
-import _test_icon from "../pages/_test/_icon.vue";
-import _test_button from "../pages/_test/_button.vue";
-import _test_list from "../pages/_test/_list.vue";
-import _test_linkbutton from "../pages/_test/_linkbutton.vue";
-import _test_iconbutton from "../pages/_test/_iconbutton.vue";
-import _test_alert from "../pages/_test/_alert.vue";
-import _test_card from "../pages/_test/_card.vue";
-import _test_markdown from "../pages/_test/_markdown.vue";
 
 const routes = [
 	{
@@ -46,72 +8,72 @@ const routes = [
 	{
 		path: "/",
 		name: "home",
-		component: Home,
+		component: () => import("../pages/home.vue"),
 		children: [
 			{
 				path: "/",
 				name: "front",
-				component: HomeIndex
+				component: () => import("../pages/home/home.vue")
 			},
 			{
 				path: "/entries",
 				name: "entries",
-				component: EntriesHome
+				component: () => import("../pages/entries/home.vue")
 			},
 			{
 				path: "/entries/index/:id",
 				name: "entriesIndex",
-				component: EntriesIndex
+				component: () => import("../pages/entries/index/entries.vue")
 			},
 			{
 				path: "/articles",
 				name: "articles",
-				component: ArticlesHome
+				component: () => import("../pages/article/home.vue")
 			},
 			{
 				path: "/articles/index/:id",
 				name: "articlesIndex",
-				component: ArticlesIndex
+				component: () => import("../pages/article/index/articles.vue")
 			},
 			{
 				path: "/articles/news",
 				name: "articlesNews",
-				component: ArticlesNews
+				component: () => import("../pages/article/news.vue")
 			},
 			{
 				path: "/search",
 				name: "search",
-				component: Search
+				component: () => import("../pages/search/search.vue")
 			},
 			{
 				path: "/account/login",
 				name: "login",
-				component: Login
+				component: () => import("../pages/login/login.vue")
 			},
 			{
 				path: "/times",
 				name: "times",
-				component: Times
+				component: () => import("../pages/times/times.vue")
 			},
 			{
 				path: "/square",
 				name: "square",
-				component: Square
+				component: () => import("../pages/square/square.vue")
 			},
 			{
 				path: "/tags/index/:id",
 				name: "tagsIndex",
-				component: TagsIndex
+				component: () => import("../pages/tags/index/tag.vue")
 			},
 			{
 				path: "/videos/index/:id",
 				name: "videoIndex",
-				component: VideoIndex
+				component: () => import("../pages/videos/index/video.vue")
 			},
 			{
 				path: "/about",
 				name: "about",
-				component: About
+				component: () => import("../pages/about/about.vue")
 			},
 			{
 				path: "/structure",
@@ -124,23 +86,23 @@ const routes = [
 			{
 				path: "/data",
 				name: "data",
-				component: Data
+				component: () => import("../pages/data/data.vue")
 			},
 			{
 				path: "/lotteries",
 				name: "lottery",
-				component: LotteryHome
+				component: () => import("../pages/lottery/home.vue")
 			},
 			{
 				path: "/lotteries/index/:id",
 				name: "lotteryIndex",
-				component: LotteryIndex
+				component: () => import("../pages/lottery/index/index.vue")
 			},
 			// 404页面，必须放在最后
 			{
 				path: "/:pathMatch(.*)*",
 				name: "notFount",
-				component: NotFount
+				component: () => import("../pages/404.vue")
 			}
 		]
 	}
@@ -151,47 +113,47 @@ routes.push(
 		{
 			path: "/_test",
 			name: "_test",
-			component: _test_home,
+			component: () => import("../pages/_test/_home.vue"),
 			children: [
 				{
 					path: "/_test/_icon",
 					name: "_test_icon",
-					component: _test_icon
+					component: () => import("../pages/_test/_icon.vue")
 				},
 				{
 					path: "/_test/_button",
 					name: "_test_button",
-					component: _test_button
+					component: () => import("../pages/_test/_button.vue")
 				},
 				{
 					path: "/_test/_list",
 					name: "_test_list",
-					component: _test_list
+					component: () => import("../pages/_test/_list.vue")
 				},
 				{
 					path: "/_test/_linkbutton",
 					name: "_test_linkbutton",
-					component: _test_linkbutton
+					component: () => import("../pages/_test/_linkbutton.vue")
 				},
 				{
 					path: "/_test/_iconbutton",
 					name: "_test_iconbutton",
-					component: _test_iconbutton
+					component: () => import("../pages/_test/_iconbutton.vue")
 				},
 				{
 					path: "/_test/_alert",
 					name: "_test_alert",
-					component: _test_alert
+					component: () => import("../pages/_test/_alert.vue")
 				},
 				{
 					path: "/_test/_card",
 					name: "_test_card",
-					component: _test_card
+					component: () => import("../pages/_test/_card.vue")
 				},
 				{
 					path: "/_test/_markdown",
 					name: "_test_markdown",
-					component: _test_markdown
+					component: () => import("../pages/_test/_markdown.vue")
 				}
 			]
 		}
