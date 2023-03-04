@@ -1,5 +1,5 @@
 <template>
-	<gal-card class="card" :toggle="true">
+	<gal-card class="card" :toggle="true" width="full" transparent>
 		<template v-slot:headerStart>
 			<gal-icon class="icon" icon="gamepad"></gal-icon>相关文章
 		</template>
@@ -24,13 +24,7 @@ const props = defineProps({
 </script>
 
 <style scoped>
-.icon {
-	margin-inline-end: 1em;
-}
-
 .rows {
-	padding: 0;
 	padding-block-start: 12px;
-	background-color: transparent;
 }
 </style>

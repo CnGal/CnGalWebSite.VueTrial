@@ -1,83 +1,75 @@
 <template>
-	<gal-card class="index-page-header">
-		<div
-			class="main-header"
-			:class="{
-				isUser:
-					info.type === stateStore.entryType.role ||
-					info.type === stateStore.entryType.staff
-			}"
-		>
-			<img
-				:src="
-					info.type === stateStore.entryType.role ||
-					info.type === stateStore.entryType.staff
-						? info.thumbnail
-						: info.mainPicture
-				"
-				:alt="info.name"
-			/>
-			<div class="main-info">
-				<h1>{{ info.name }}</h1>
+	<gal-card
+		class="main-header"
+		:class="{
+			isUser:
+				info.type === stateStore.entryType.role ||
+				info.type === stateStore.entryType.staff
+		}"
+	>
+		<img
+			:src="
+				info.type === stateStore.entryType.role ||
+				info.type === stateStore.entryType.staff
+					? info.thumbnail
+					: info.mainPicture
+			"
+			:alt="info.name"
+		/>
+		<div class="main-info">
+			<h1>{{ info.name }}</h1>
+			<div class="staff" v-if="info.type === stateStore.entryType.game">
 				<div
-					class="staff"
-					v-if="info.type === stateStore.entryType.game"
+					class="production-group"
+					v-if="info.productionGroups?.length"
 				>
-					<div
-						class="production-group"
-						v-if="info.productionGroups?.length"
+					<gal-tag class="production-title">制作组</gal-tag>
+					<gal-link-button
+						class="production-item"
+						v-for="item in info.productionGroups"
+						:key="item.id"
+						:to="'/entries/index/' + item.id"
+						theme="outline"
 					>
-						<gal-tag class="production-title">制作组</gal-tag>
-						<gal-link-button
-							class="production-item"
-							v-for="item in info.productionGroups"
-							:key="item.id"
-							:to="'/entries/index/' + item.id"
-							theme="outline"
-						>
-							{{ item.displayName }}
-						</gal-link-button>
-					</div>
-					<div
-						class="publishers-group"
-						v-if="info.publishers?.length"
+						{{ item.displayName }}
+					</gal-link-button>
+				</div>
+				<div class="publishers-group" v-if="info.publishers?.length">
+					<gal-tag class="publishers-title">发行商</gal-tag>
+					<gal-link-button
+						class="publishers-item"
+						v-for="item in info.publishers"
+						:key="item.id"
+						:to="'/entries/index/' + item.id"
+						theme="outline"
 					>
-						<gal-tag class="publishers-title">发行商</gal-tag>
-						<gal-link-button
-							class="publishers-item"
-							v-for="item in info.publishers"
-							:key="item.id"
-							:to="'/entries/index/' + item.id"
-							theme="outline"
-						>
-							{{ item.displayName }}
-						</gal-link-button>
-					</div>
+						{{ item.displayName }}
+					</gal-link-button>
 				</div>
-				<p
-					class="brief-introduction"
-					v-if="info.briefIntroduction"
-					v-text="info.briefIntroduction"
-				></p>
-				<div class="icon-wrap">
-					<gal-icon-button
-						icon="heartOutline"
-						class="icon"
-						:style="{ '--icon-button-size': '40px' }"
-						theme="solid"
-						circle
-						v-gal-tooltip="'收藏'"
-					></gal-icon-button>
-					<gal-icon-button
-						v-if="props.type !== 'video'"
-						icon="pencilMdi"
-						class="icon"
-						:style="{ '--icon-button-size': '40px' }"
-						theme="solid"
-						circle
-						v-gal-tooltip="'编辑'"
-					></gal-icon-button>
-				</div>
+			</div>
+			<p
+				class="brief-introduction"
+				v-if="info.briefIntroduction"
+				v-text="info.briefIntroduction"
+			></p>
+			<div class="icon-wrap">
+				<gal-icon-button
+					icon="heartOutline"
+					class="icon"
+					:style="{ '--icon-button-size': '40px' }"
+					theme="solid"
+					circle
+					v-gal-tooltip="'收藏'"
+				></gal-icon-button>
+				<gal-icon-button
+					v-if="props.type !== 'video'"
+					icon="pencilMdi"
+					class="icon"
+					:style="{ '--icon-button-size': '40px' }"
+					theme="solid"
+					circle
+					v-gal-tooltip="'编辑'"
+				></gal-icon-button>
 			</div>
 		</div>
 	</gal-card>
@@ -101,8 +93,8 @@ const props = defineProps({
 
 <style scoped>
 @media screen and (max-width: 992px) {
-	.index-page-header {
-		--card-body-fit-size-padding: 0;
+	.main-header {
+		--card-body-padding: 0;
 	}
 }
 
@@ -112,7 +104,6 @@ const props = defineProps({
 }
 .main-header {
 	display: flex;
-	background-color: var(--main-bg-color);
 	column-gap: 16px;
 	color: var(--main-font-color);
 }

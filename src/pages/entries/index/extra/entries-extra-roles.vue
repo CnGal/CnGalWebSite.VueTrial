@@ -1,5 +1,5 @@
 <template>
-	<gal-card class="roles-card" :toggle="true" width="full">
+	<gal-card class="roles-card" :toggle="true" width="full" transparent>
 		<template v-slot:headerStart>
 			<gal-icon class="icon" icon="child"></gal-icon>登场角色
 		</template>
@@ -24,12 +24,7 @@ const props = defineProps({
 </script>
 
 <style scoped>
-.icon {
-	margin-inline-end: 1em;
-}
-
 .rows {
 	margin-block-start: 12px;
-	--rows-bg-color: transparent;
 }
 </style>

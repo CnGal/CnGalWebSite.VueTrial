@@ -303,6 +303,7 @@ onUnmounted(() => {
 	row-gap: 8px;
 }
 .tags {
+	--link-button-padding: 1px 8px;
 	font-size: 14px;
 	display: inline-block;
 	flex: 0 0 auto;

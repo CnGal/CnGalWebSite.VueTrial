@@ -8,8 +8,7 @@
 		<template v-slot:main>
 			<gal-card class="main-card" v-if="info.pictures?.length">
 				<template v-slot:headerStart>
-					<gal-icon class="icon" icon="picture"></gal-icon
-					>&nbsp;&nbsp;相册
+					<gal-icon class="icon" icon="picture"></gal-icon>相册
 				</template>
 				<gal-cg-card :data="info.pictures[0]"></gal-cg-card>
 			</gal-card>
@@ -21,8 +20,7 @@
 				transparent
 			>
 				<template v-slot:headerStart>
-					<gal-icon class="icon" icon="homeFill"></gal-icon
-					>&nbsp;&nbsp;介绍
+					<gal-icon class="icon" icon="homeFill"></gal-icon>介绍
 				</template>
 				<gal-markdown v-html="info.mainPage"></gal-markdown>
 			</gal-card>
@@ -30,7 +28,7 @@
 			<gal_EntriesMainNews
 				class="extra-card"
 				v-if="info.newsOfEntry?.length"
-				:info="info"
+				:newsOfEntry="info.newsOfEntry"
 			></gal_EntriesMainNews>
 
 			<gal_EntriesMainStaffGames
@@ -76,8 +74,7 @@
 		<template v-slot:extra>
 			<gal-card class="extra-card" v-if="info.type === 0">
 				<template v-slot:headerStart>
-					<gal-icon class="icon" icon="star"></gal-icon
-					>&nbsp;&nbsp;游玩记录
+					<gal-icon class="icon" icon="star"></gal-icon>游玩记录
 				</template>
 				<template v-slot:headerEnd>
 					<gal-link-button to="/" class="link-button">
@@ -142,15 +139,25 @@ import gal_EntriesMainEelevancesArticle from "./main/entries-main-relevances-art
 
 import { getEntryViewByID } from "../../../api/entriesAPI/index.js";
 import { useStateTypeStore } from "@/store/statetype.js";
-import { useRoute } from "vue-router";
+import { useStore } from "@/store/index.js";
+import { useRoute, onBeforeRouteLeave } from "vue-router";
 const route = useRoute();
 const id = ref(route.params.id);
 const stateStore = useStateTypeStore();
+const store = useStore();
+
+let hasWebBG = null;
 
 const info = ref({});
 const getInfo = async () => {
 	const { data } = await getEntryViewByID(id.value);
 	info.value = data;
+	changePageTitle();
+
+	if (data.backgroundPicture) {
+		hasWebBG = true;
+		store.webBG.show = data.backgroundPicture;
+	}
 };
 getInfo();
 
@@ -165,6 +172,16 @@ watch(
 		getInfo();
 	}
 );
+
+onBeforeRouteLeave(() => {
+	if (hasWebBG) {
+		store.webBG.show = store.webBG.user;
+	}
+});
+
+const changePageTitle = () => {
+	document.title = info.value.name + " - CnGal 中文GalGame资料站";
+};
 </script>
 
 <style scoped>

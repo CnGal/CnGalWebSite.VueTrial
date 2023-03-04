@@ -2,7 +2,13 @@
 	<router-view></router-view>
 
 	<teleport :to="'body'">
-		<div class="web-bg" ref="webBG" v-show="showWebBG"></div>
+		<div
+			class="web-bg"
+			v-show="showWebBG"
+			:style="{
+				backgroundImage: `url(${store.webBG.show})`
+			}"
+		></div>
 	</teleport>
 </template>
 
@@ -43,13 +49,12 @@ const pageWidthChange = () => {
 	store.isSmallPage = window.innerWidth < 768;
 };
 
-const webBG = ref(null);
 const showWebBG = ref(false);
 (async () => {
 	const { data } = await getUserView();
 	if (data.mBgImage) {
-		store.webBG = data.mBgImage;
-		webBG.value.style.backgroundImage = `url(${data.mBgImage})`;
+		store.webBG.user = data.mBgImage;
+		store.webBG.show = data.mBgImage;
 		store.changeTheme({
 			isTransparent: true
 		});

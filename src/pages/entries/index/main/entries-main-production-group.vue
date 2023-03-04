@@ -1,5 +1,5 @@
 <template>
-	<gal-card class="production-group" :toggle="true" width="full">
+	<gal-card class="production-group" :toggle="true" width="full" transparent>
 		<template v-slot:headerStart>
 			<gal-icon class="icon" icon="objectGroup"></gal-icon>相关组织
 		</template>
@@ -24,12 +24,7 @@ const props = defineProps({
 </script>
 
 <style scoped>
-.icon {
-	margin-inline-end: 1em;
-}
-
 .rows {
 	margin-block-start: 12px;
-	background-color: transparent;
 }
 </style>

@@ -17,7 +17,10 @@ export const useStore = defineStore("main", {
 				isTransparent: false
 			},
 
-			webBG: null
+			webBG: {
+				user: null,
+				show: null
+			}
 		};
 	},
 	getters: {},

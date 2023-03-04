@@ -7,34 +7,35 @@
 			<gal-icon-button
 				icon="databaseExport"
 				class="export"
-				:style="{ '--icon-button-size': '36px' }"
 				theme="solid"
 				circle
 				v-gal-tooltip="'导出STAFF'"
 				@click="openDialog"
 			></gal-icon-button>
 		</template>
-		<div>
-			<div v-for="(staffs, index) in info.staffs" :key="index">
-				<h3 class="staff-content-head">
-					{{ staffs.modifier }}
-				</h3>
-				<div
-					class="row"
-					v-for="(staffList, index) in staffs.staffList"
-					:key="index"
+		<div
+			v-for="(staffs, index) in info.staffs"
+			:key="index"
+			class="staff-content"
+		>
+			<h3 class="staff-content-head">
+				{{ staffs.modifier }}
+			</h3>
+			<div
+				class="row"
+				v-for="(staffList, index) in staffs.staffList"
+				:key="index"
+			>
+				<gal-tag>{{ staffList.modifier }}</gal-tag>
+				<gal-link-button
+					class="staff-item"
+					v-for="item in staffList.names"
+					:key="item.id"
+					:to="item.id ? '/entries/index/' + item.id : '#'"
+					theme="outline"
 				>
-					<gal-tag>{{ staffList.modifier }}</gal-tag>
-					<gal-link-button
-						class="staff-item"
-						v-for="item in staffList.names"
-						:key="item.id"
-						:to="item.id ? '/entries/index/' + item.id : '#'"
-						theme="outline"
-					>
-						{{ item.displayName }}
-					</gal-link-button>
-				</div>
+					{{ item.displayName }}
+				</gal-link-button>
 			</div>
 		</div>
 
@@ -110,7 +111,6 @@ const copyStaffText = async () => {
 <style scoped>
 .icon {
 	color: var(--main-color);
-	margin-inline-end: 1em;
 }
 
 .theme-dark .icon {
@@ -118,22 +118,29 @@ const copyStaffText = async () => {
 }
 
 .export {
+	--icon-button-size: 30px;
 	font-size: 20px;
-	margin-inline-end: 16px;
+	margin-inline-end: 8px;
 }
 
 .staff-content-head {
 	color: var(--main-color);
-	margin-block-end: 8px;
-	padding-inline-start: 14px;
+}
+.theme-dark .staff-content-head {
+	color: var(--main-font-color);
 }
 .row {
 	display: flex;
-	padding: 1em;
-	padding-block-start: 0;
+	padding-block-start: 8px;
 	flex-wrap: wrap;
 	column-gap: 8px;
 	row-gap: 8px;
+}
+.staff-content {
+	margin-block-start: 8px;
+}
+.staff-item {
+	--link-button-padding: 1px 8px;
 }
 
 .export-dialog {

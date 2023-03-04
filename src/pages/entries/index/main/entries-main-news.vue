@@ -5,24 +5,24 @@
 		</template>
 		<div class="content">
 			<gal-timeline
-				:contentAlign="
-					props.info.newsOfEntry.length < 3 ? 'left' : 'center'
-				"
+				:contentAlign="props.newsOfEntry.length < 3 ? 'left' : 'center'"
 			>
 				<gal-timeline-item
-					v-for="(item, index) in [
-						...props.info.newsOfEntry
-					].reverse()"
+					v-for="(item, index) in [...props.newsOfEntry].reverse()"
 					:key="index"
 				>
 					<template v-slot:divider>
 						<img class="img" :src="item.image" alt="item.title" />
 					</template>
 					<template v-slot:body>
-						<div class="timeline-body-content">
+						<component
+							:is="item.link ? 'gal-link' : 'div'"
+							:to="item.link"
+							class="timeline-body-content"
+						>
 							<h3>{{ item.title }}</h3>
 							<p v-text="item.briefIntroduction"></p>
-						</div>
+						</component>
 					</template>
 					<template v-slot:opposite>
 						<div class="timeline-opposite-content">
@@ -40,8 +40,8 @@
 <script setup>
 import { dateFormat } from "../../../../assets/common/js/formatDate.js";
 const props = defineProps({
-	info: {
-		type: Object,
+	newsOfEntry: {
+		type: [Object],
 		required: true
 	}
 });
@@ -57,9 +57,7 @@ const props = defineProps({
 .content:hover {
 	overflow: auto;
 }
-.icon {
-	margin-inline-end: 1em;
-}
+
 .img {
 	width: 48px;
 	aspect-ratio: 1 / 1;
