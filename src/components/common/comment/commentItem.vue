@@ -1,53 +1,55 @@
 <template>
 	<li class="comment-item">
-		<a class="comment-header">
-			<img
-				class="user-image"
-				:src="props.comment.userImage"
-				:alt="props.comment.userName"
-			/>
-			<div>
+		<gal-card level="box">
+			<a class="comment-header">
+				<img
+					class="user-image"
+					:src="props.comment.userImage"
+					:alt="props.comment.userName"
+				/>
 				<div>
-					<galTag
+					<div>
+						<galTag
+							v-for="(item, index) in props.comment.ranks.filter(
+								(tag) => tag.type === 0
+							)"
+							:key="index"
+							class="tag"
+							:bgColor="item.css.replace('bg-', '')"
+						>
+							{{ item.text }}
+						</galTag>
+						<span>{{ props.comment.userName }}</span>
+					</div>
+					{{
+						dateFormat(props.comment.commentTime)({
+							format: "YMDhm",
+							i18n: "zh"
+						})
+					}}
+				</div>
+				<div
+					v-if="props.comment.ranks.some((tag) => tag.type === 1)"
+					:style="{ 'margin-inline-start': 'auto' }"
+				>
+					<img
+						class="tag-image"
+						:src="item.image"
+						:alt="item.text"
 						v-for="(item, index) in props.comment.ranks.filter(
-							(tag) => tag.type === 0
+							(tag) => tag.type === 1
 						)"
 						:key="index"
-						class="tag"
-						:bgColor="item.css.replace('bg-', '')"
-					>
-						{{ item.text }}
-					</galTag>
-					<span>{{ props.comment.userName }}</span>
+					/>
 				</div>
-				{{
-					dateFormat(props.comment.commentTime)({
-						format: "YMDhm",
-						i18n: "zh"
-					})
-				}}
-			</div>
-			<div
-				v-if="props.comment.ranks.some((tag) => tag.type === 1)"
-				:style="{ 'margin-inline-start': 'auto' }"
-			>
-				<img
-					class="tag-image"
-					:src="item.image"
-					:alt="item.text"
-					v-for="(item, index) in props.comment.ranks.filter(
-						(tag) => tag.type === 1
-					)"
-					:key="index"
-				/>
-			</div>
-		</a>
-		<galMarkdown v-html="props.comment.text"></galMarkdown>
+			</a>
+			<galMarkdown v-html="props.comment.text" transparent></galMarkdown>
 
-		<galCommentsList
-			v-if="props.comment.inverseParentCodeNavigation.length"
-			:comments="props.comment.inverseParentCodeNavigation"
-		></galCommentsList>
+			<galCommentsList
+				v-if="props.comment.inverseParentCodeNavigation.length"
+				:comments="props.comment.inverseParentCodeNavigation"
+			></galCommentsList>
+		</gal-card>
 	</li>
 </template>
 
@@ -64,11 +66,6 @@ const props = defineProps({
 </script>
 
 <style scoped>
-.comment-item {
-	padding: 1em;
-	background-color: var(--main-bg-color);
-	box-shadow: var(--main-shadow);
-}
 .comment-header {
 	display: flex;
 	column-gap: 8px;
@@ -89,5 +86,9 @@ const props = defineProps({
 	width: 50px;
 	height: 50px;
 	aspect-ratio: 1 / 1;
+}
+
+.markdown-body {
+	--markdown-padding: 0;
 }
 </style>

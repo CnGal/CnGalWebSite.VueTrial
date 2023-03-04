@@ -1,5 +1,5 @@
 <template>
-	<gal-card class="staff-games" :toggle="true">
+	<gal-card class="staff-games" :toggle="true" width="full" transparent>
 		<template v-slot:headerStart>
 			<gal-icon class="icon" icon="send2"></gal-icon>参与作品
 		</template>
@@ -14,7 +14,6 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 const props = defineProps({
 	staffGames: {
 		type: [Object],
@@ -24,13 +23,8 @@ const props = defineProps({
 </script>
 
 <style scoped>
-.icon {
-	margin-inline-end: 1em;
-}
 .content {
-	padding: 0;
 	padding-block-start: 12px;
-	background-color: transparent;
 }
 .content :deep(.img) {
 	height: 116px;

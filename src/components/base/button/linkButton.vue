@@ -54,6 +54,7 @@ const props = defineProps({
 }
 
 .theme-dark .link-button {
+	--link-button-bg-color: var(--main-bg-color);
 	--link-button-font-color: var(--main-font-color);
 	--link-button-hover-font-color: var(--main-font-color);
 }

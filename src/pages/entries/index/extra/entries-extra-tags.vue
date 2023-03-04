@@ -34,7 +34,7 @@ const props = defineProps({
 	column-gap: 8px;
 	row-gap: 8px;
 }
-.icon {
-	margin-inline-end: 1em;
+.link-button {
+	--link-button-padding: 1px 8px;
 }
 </style>

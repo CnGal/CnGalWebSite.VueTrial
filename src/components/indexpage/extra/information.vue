@@ -98,20 +98,12 @@ const props = defineProps({
 	color: var(--main-font-color);
 }
 
-.headericon {
-	margin-inline-end: 1em;
-}
-
 .card {
-	background-color: var(--main-bg-color);
 	font-size: 14px;
 	margin-block-start: 12px;
 	color: var(--main-font-color);
 }
-.content {
-	padding: 1em;
-	padding-block-start: 0;
-}
+
 .item {
 	display: flex;
 	column-gap: 14px;

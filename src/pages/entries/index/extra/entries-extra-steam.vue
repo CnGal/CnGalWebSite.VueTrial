@@ -135,11 +135,6 @@ a,
 	color: var(--main-font-color);
 }
 .content {
-	padding: 1em;
-	padding-block-start: 0;
 	color: var(--main-font-color);
-}
-.icon {
-	margin-inline-end: 1em;
 }
 </style>

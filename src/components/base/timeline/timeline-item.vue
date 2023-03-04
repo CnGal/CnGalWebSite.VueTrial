@@ -17,6 +17,21 @@
 
 <style scoped>
 .timeline-item {
+	--itemline-item-box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+		0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+	--itemline-item-arrow-border-color: #ddd;
+}
+.theme-dark .timeline-item {
+	--itemline-item-box-shadow: 0 3px 1px -2px rgba(255, 255, 255, 0.2),
+		0 2px 2px 0 rgba(255, 255, 255, 0.14),
+		0 1px 5px 0 rgba(255, 255, 255, 0.12);
+	--itemline-item-arrow-border-color: #666;
+}
+.theme-transparent .timeline-item {
+	--itemline-item-arrow-border-color: #88888888;
+}
+
+.timeline-item {
 	display: flex;
 	position: relative;
 	padding-block-end: 24px;
@@ -32,8 +47,7 @@
 	max-width: calc(100% - 96px);
 	flex: 1;
 	border-radius: 4px;
-	box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
-		0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+	box-shadow: var(--itemline-item-box-shadow);
 }
 .timeline-item-opposite {
 	flex: 1;
@@ -47,7 +61,7 @@
 	top: calc(50% - 8px);
 	width: 16px;
 	height: 16px;
-	border: 1px solid #ddd;
+	border: 1px solid var(--itemline-item-arrow-border-color);
 	background-color: var(--main-bg-color);
 	transform-origin: center;
 	transform: translate(-50%) rotate(45deg);

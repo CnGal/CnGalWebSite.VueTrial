@@ -30,6 +30,7 @@ const props = defineProps({
 }
 
 .theme-dark .icon-button {
+	--button-bg-color: var(--main-bg-color);
 	--button-font-color: var(--main-font-color);
 	--button-hover-font-color: var(--main-font-color);
 }

@@ -8,12 +8,19 @@
 const props = defineProps({
 	contentAlign: {
 		type: String,
-		default: "left",
-	},
+		default: "left"
+	}
 });
 </script>
 
 <style scoped>
+.time-line {
+	--time-line-line-color: #ddd;
+}
+.theme-dark .time-line {
+	--time-line-line-color: #555;
+}
+
 .time-line {
 	position: relative;
 	padding-block: 24px;
@@ -25,7 +32,7 @@ const props = defineProps({
 	bottom: 0;
 	width: 2px;
 	height: 100%;
-	background-color: #ddd;
+	background-color: var(--time-line-line-color);
 }
 .time-line:not(.center) :deep(.timeline-item-opposite) {
 	display: none;
