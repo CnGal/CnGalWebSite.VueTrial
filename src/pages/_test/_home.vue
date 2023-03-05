@@ -21,6 +21,7 @@
 				<gal-link to="/_test/_alert">alert</gal-link>
 				<gal-link to="/_test/_card">card</gal-link>
 				<gal-link to="/_test/_markdown">markdown</gal-link>
+				<gal-link to="/_test/_search">search</gal-link>
 			</div>
 		</gal-card>
 		<gal-card class="right">

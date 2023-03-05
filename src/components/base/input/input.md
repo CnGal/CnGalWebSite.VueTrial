@@ -4,18 +4,18 @@
 <galInput
     v-model="username"
     type="text"
-    simplt
+    simply
     label="用户名或邮箱"
 ></galInput>
 ```
 
 ### props
 
-| 属性名     | 说明            | 类型   | 必须  | 默认值 | 可选值 | 补充             |
-| ---------- | --------------- | ------ | ----- | ------ | ------ | ---------------- |
-| modelValue | input 值        | String | false | text   |        |                  |
-| type       | 设置 input 类型 | String | false | text   |        | html type 属性值 |
-| label      | 设置 label      | String | false | ""     |        |                  |
+| 属性名     | 说明            | 类型   | 必须  | 默认值 | 可选值      | 补充             |
+| ---------- | --------------- | ------ | ----- | ------ | ----------- | ---------------- |
+| modelValue | input 值        | String | false | text   |             |                  |
+| type       | 设置 input 类型 | String | false | text   | search text | html type 属性值 |
+| label      | 设置 label      | String | false | ""     |             |                  |
 
 ### emits
 
@@ -27,4 +27,4 @@
 
 | 属性名 | 说明           | 补充 |
 | ------ | -------------- | ---- |
-| simplt | 是否为简单样式 |      |
+| simply | 是否为简单样式 |      |
