@@ -49,7 +49,21 @@ const pageWidthChange = () => {
 	store.isSmallPage = window.innerWidth < 768;
 };
 const showWebBG = ref(false);
+
 (async () => {
+	// 打开网站时刷新token
+	if (localStorage.getItem("authToken")) {
+		const {
+			data: { token: token }
+		} = await refreshJWToken();
+		localStorage.setItem("authToken", token);
+		store.authToken = token;
+	}
+
+	getUserData();
+})();
+
+const getUserData = async () => {
 	// 打开网站时判断是否有 authToken, 有就请求 getUserView 获取用户信息。
 	try {
 		if (!store.authToken) {
@@ -60,6 +74,10 @@ const showWebBG = ref(false);
 		if (name === "AxiosError") {
 			return;
 		}
+
+		store.isLogin = true;
+		store.userInfo = data;
+
 		if (data.mBgImage) {
 			store.webBG.user = data.mBgImage;
 			store.webBG.show = data.mBgImage;
@@ -72,19 +90,17 @@ const showWebBG = ref(false);
 	} catch (error) {
 		throw error;
 	}
-})();
+};
 
-(async () => {
-	// 打开网站时刷新token
-	if (!localStorage.getItem("authToken")) {
-		return;
+watch(
+	() => store.authToken,
+	(newToken) => {
+		if (!newToken) {
+			return;
+		}
+		getUserData();
 	}
-	const {
-		data: { token: token }
-	} = await refreshJWToken();
-	localStorage.setItem("authToken", token);
-	store.authToken = token;
-})();
+);
 </script>
 
 <style>

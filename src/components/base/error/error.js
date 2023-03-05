@@ -2,7 +2,9 @@ import { createApp, h } from "vue";
 
 let timer = null;
 export const errorHandlerEvent = (err, vm, info) => {
-	console.log(err, vm, info);
+	console.log(err);
+	console.log(vm);
+	console.log(info);
 
 	if (timer) {
 		return;
@@ -13,6 +15,12 @@ export const errorHandlerEvent = (err, vm, info) => {
 		type = "unhandledrejection";
 		message = err.reason.message;
 	}
+
+	if (err.message) {
+		type = err.name;
+		message = err.message;
+	}
+
 	const errorComponent = {
 		name: "errorHandler",
 		setup() {

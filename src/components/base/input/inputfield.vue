@@ -53,7 +53,7 @@ const props = defineProps({
 	modelValue: String
 });
 
-const emit = defineEmits(["submitEvent"]);
+const emit = defineEmits(["update:modelValue", "submitEvent"]);
 
 const input = ref();
 const label = ref();
@@ -120,7 +120,7 @@ onMounted(() => {
 	border: var(--main-color);
 }
 
-.input[simplt] {
+.input[simply] {
 	border: none;
 }
 
@@ -150,7 +150,7 @@ onMounted(() => {
 	transform: scaleX(0);
 	transition: transform 0.3s;
 }
-.input[simplt]:focus + .bottom::after {
+.input[simply]:focus + .bottom::after {
 	transform: scaleX(1);
 }
 

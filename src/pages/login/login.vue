@@ -7,7 +7,7 @@
 			class="input"
 			v-model="username"
 			type="text"
-			simplt
+			simply
 			label="用户名或邮箱"
 		></galInput>
 
@@ -15,7 +15,7 @@
 			class="input"
 			v-model="password"
 			type="password"
-			simplt
+			simply
 			label="密码"
 			@keypress.enter="loginEvent"
 		></galInput>
