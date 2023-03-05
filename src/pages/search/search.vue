@@ -3,7 +3,7 @@
 		<galInput
 			v-model="searchText"
 			type="search"
-			simplt
+			simply
 			placeholder="可以搜索哦~"
 			autofocus
 			@submitEvent="submitEvent"
@@ -415,11 +415,7 @@ onMounted(() => {
 
 <style scoped>
 .search-area {
-	height: 100px;
-	--card-body-bg-color: var(--main-bg-color);
-}
-.search-area :deep(.card-main) {
-	height: 100%;
+	padding: 16px 0;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -428,9 +424,7 @@ onMounted(() => {
 :deep(.input-wrap) {
 	max-width: 500px;
 }
-:deep(.input) {
-	width: 100%;
-}
+
 .tags-wrap,
 .data-area,
 .data-item {

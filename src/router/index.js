@@ -154,6 +154,11 @@ routes.push(
 					path: "/_test/_markdown",
 					name: "_test_markdown",
 					component: () => import("../pages/_test/_markdown.vue")
+				},
+				{
+					path: "/_test/_search",
+					name: "_test_search",
+					component: () => import("../pages/_test/_search.vue")
 				}
 			]
 		}
