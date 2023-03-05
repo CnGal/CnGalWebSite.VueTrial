@@ -48,18 +48,29 @@ onMounted(() => {
 const pageWidthChange = () => {
 	store.isSmallPage = window.innerWidth < 768;
 };
-
 const showWebBG = ref(false);
 (async () => {
-	const { data } = await getUserView();
-	if (data.mBgImage) {
-		store.webBG.user = data.mBgImage;
-		store.webBG.show = data.mBgImage;
-		store.changeTheme({
-			isTransparent: true
-		});
-		document.documentElement.classList.add("theme-transparent");
-		showWebBG.value = true;
+	// 打开网站时判断是否有 authToken, 有就请求 getUserView 获取用户信息。
+	try {
+		if (!store.authToken) {
+			return;
+		}
+		const { data, name } = await getUserView();
+
+		if (name === "AxiosError") {
+			return;
+		}
+		if (data.mBgImage) {
+			store.webBG.user = data.mBgImage;
+			store.webBG.show = data.mBgImage;
+			store.changeTheme({
+				isTransparent: true
+			});
+			document.documentElement.classList.add("theme-transparent");
+			showWebBG.value = true;
+		}
+	} catch (error) {
+		throw error;
 	}
 })();
 
