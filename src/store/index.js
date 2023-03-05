@@ -17,6 +17,8 @@ export const useStore = defineStore("main", {
 				isTransparent: false
 			},
 
+			isLogin: false,
+			userInfo: null,
 			webBG: {
 				user: null,
 				show: null

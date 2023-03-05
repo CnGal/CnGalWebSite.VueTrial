@@ -49,7 +49,7 @@ const props = defineProps({
 	modelValue: String
 });
 
-const emit = defineEmits(["submitEvent"]);
+const emit = defineEmits(["update:modelValue", "submitEvent"]);
 
 const input = ref();
 const label = ref();

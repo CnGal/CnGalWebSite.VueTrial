@@ -1,6 +1,7 @@
 <template>
 	<component
 		:is="props.type === 'search' ? galSearchfield : galInputfield"
+		:type="props.type"
 		@submitEvent="emit('submitEvent')"
 	/>
 </template>
