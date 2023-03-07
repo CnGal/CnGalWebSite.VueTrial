@@ -159,6 +159,11 @@ routes.push(
 					path: "/_test/_search",
 					name: "_test_search",
 					component: () => import("../pages/_test/_search.vue")
+				},
+				{
+					path: "/_test/_dialog",
+					name: "_test_dialog",
+					component: () => import("../pages/_test/_dialog.vue")
 				}
 			]
 		}
