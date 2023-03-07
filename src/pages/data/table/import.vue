@@ -2,14 +2,7 @@
 	<gal-button ref="importButton" class="import" @click="clickEvent"
 		>导出数据</gal-button
 	>
-	<gal-dialog
-		class="popover"
-		ref="popover"
-		:position="{
-			type: 'element'
-		}"
-		@click="dialogClickEvent"
-	>
+	<gal-dialog class="popover" ref="popover" @click="dialogClickEvent">
 		<gal-button class="import" @click="downloadEXCEL">EXCEL</gal-button>
 	</gal-dialog>
 </template>
@@ -37,7 +30,10 @@ const clickEvent = () => {
 	if (isOpening.value) {
 		return;
 	}
-	popover.value.show(importButton.value.$el);
+	popover.value.show({
+		type: "element",
+		value: importButton.value.$el
+	});
 	isOpening.value = true;
 };
 

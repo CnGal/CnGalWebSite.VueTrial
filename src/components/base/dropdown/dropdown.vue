@@ -16,9 +16,6 @@
 	<gal-dialog
 		class="dropdown-popover"
 		ref="dropdownPopover"
-		:position="{
-			type: 'element'
-		}"
 		@click="dialogClickEvent"
 	>
 		<slot></slot>
@@ -60,7 +57,10 @@ const clickEvent = () => {
 	if (isOpening.value) {
 		return;
 	}
-	dropdownPopover.value.show(dropdownTrigger.value.$el);
+	dropdownPopover.value.show({
+		type: "element",
+		value: dropdownTrigger.value.$el
+	});
 	isOpening.value = true;
 	document.addEventListener("click", documentClickEvent);
 };

@@ -13,13 +13,6 @@
 import { ref, onMounted, nextTick } from "vue";
 
 const props = defineProps({
-	position: {
-		type: [Object, String],
-		default: {
-			type: "direction",
-			value: "center"
-		}
-	},
 	isModal: {
 		type: Boolean,
 		default: false
@@ -28,13 +21,24 @@ const props = defineProps({
 
 const dialog = ref(null);
 const isShow = ref(false);
-const show = (element) => {
+const show = (option = { type: "direction", value: "center" }) => {
 	isShow.value = true;
 	nextTick(() => {
-		if (props.position.type === "element" && element) {
+		if (option.type === "direction") {
+			dialog.value.classList.add(...option.value.split(" "), "direction");
+			document.body.style.overflow = "hidden";
+		} else if (option.type === "element") {
+			dialog.value.classList.add("element");
 			const popRect = dialog.value.getBoundingClientRect();
+			const element = option.value;
 			const rect = element.getBoundingClientRect();
-			dialog.value.style.left = element.offsetLeft + "px";
+
+			if (rect.left + popRect.width > window.innerWidth) {
+				dialog.value.style.right = "8px";
+			} else {
+				dialog.value.style.left = element.offsetLeft + "px";
+			}
+
 			if (rect.top + popRect.height > window.innerHeight) {
 				dialog.value.style.top =
 					element.offsetTop - popRect.height - 4 + "px";
@@ -43,25 +47,16 @@ const show = (element) => {
 					element.offsetTop + element.offsetHeight + "px";
 			}
 			dialog.value.style.minWidth = rect.width + "px";
-		} else {
-			document.body.style.overflow = "hidden";
 		}
 	});
 };
+
 const hide = () => {
 	isShow.value = false;
+	dialog.value.className = "dialog";
+	dialog.value.style = "";
 	document.body.style.overflow = "";
 };
-
-onMounted(() => {
-	if (typeof props.position === "string") {
-		dialog.value.classList.add(props.position, "direction");
-	} else if (props.position.type === "direction") {
-		dialog.value.classList.add(props.position.value, "direction");
-	} else if (props.position.type === "element") {
-		dialog.value.classList.add("element");
-	}
-});
 
 defineExpose({
 	show,
@@ -71,37 +66,77 @@ defineExpose({
 
 <style scoped>
 .dialog {
-	color: var(--main-font-color);
+	--dialog-color: var(--main-font-color);
+	--dialog-bg-color: var(--main-bg-color);
+	--dialog-overlay-bg-color: #21212177;
 }
+.theme-dark .dialog {
+	--dialog-overlay-bg-color: #cccccc77;
+}
+
 .dialog {
 	z-index: 10;
+	color: var(--dialog-color);
 }
+
+.dialog-content {
+	background-color: var(--dialog-bg-color);
+}
+
 .dialog.direction {
 	position: fixed;
 	inset: 0;
 	display: flex;
 }
-.dialog.element {
-	position: absolute;
-	background-color: var(--main-bg-color);
-	box-shadow: 0 0 10px 0 #00000077;
-	border-radius: 4px;
+
+.dialog.direction.top.left {
+	justify-content: flex-start;
+	align-items: flex-start;
 }
-.dialog.center {
+.dialog.direction.top.center {
+	justify-content: center;
+	align-items: flex-start;
+}
+.dialog.direction.top.right {
+	justify-content: flex-end;
+	align-items: flex-start;
+}
+.dialog.direction.center.left {
+	justify-content: flex-start;
+	align-items: center;
+}
+.dialog.direction.center {
 	justify-content: center;
 	align-items: center;
 }
-.dialog-content {
-	background-color: var(--main-bg-color);
+.dialog.direction.center.right {
+	justify-content: flex-end;
+	align-items: center;
 }
+.dialog.direction.bottom.left {
+	justify-content: flex-start;
+	align-items: flex-end;
+}
+.dialog.direction.bottom.center {
+	justify-content: center;
+	align-items: flex-end;
+}
+.dialog.direction.bottom.right {
+	justify-content: flex-end;
+	align-items: flex-end;
+}
+
+.dialog.element {
+	position: absolute;
+	box-shadow: 0 0 10px 0 #00000077;
+	border-radius: 4px;
+}
+
 .overlay {
 	position: fixed;
 	width: 100vw;
 	height: 100vh;
 	z-index: -1;
-	background-color: #21212177;
-}
-.theme-dark .overlay {
-	background-color: #cccccc77;
+	background-color: var(--dialog-overlay-bg-color);
 }
 </style>

@@ -32,7 +32,12 @@
 			icon="menu"
 			circle
 			v-gal-tooltip="'创建'"
-			@click="createDialog.show(createButton.$el)"
+			@click="
+				createDialog.show({
+					type: 'element',
+					value: createButton.$el
+				})
+			"
 		></gal-icon-button>
 	</header>
 	<header class="header" v-else>
