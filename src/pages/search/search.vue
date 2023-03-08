@@ -293,7 +293,7 @@ const getSearch = async () => {
 		query.page = currentPage.value;
 	}
 	if (searchTimes.length) {
-		query.Times = searchTimes.map((timeName) => {
+		query.times = searchTimes.map((timeName) => {
 			if (timeName.includes("-")) {
 				return timeName
 					.split("-")
@@ -310,7 +310,6 @@ const getSearch = async () => {
 	searchData.value = res.data;
 
 	if (searchTimes.length) {
-		delete query.Times;
 		query.times = searchTimes;
 	}
 
