@@ -66,6 +66,7 @@
 					end-placeholder="End"
 					size="small"
 					@change="changeTimeByPicker"
+					@blur="hidePicker"
 				></galDatepicker>
 			</div>
 			<div class="types-area">
@@ -256,7 +257,14 @@ const timeList = [
 		name: "2021",
 		value: `${getTime("2021/01/01")}-${getTime("2022/01/01")}`
 	},
-	{ name: "2022", value: `${getTime("2022/01/01")}-${getTime("2023/01/01")}` }
+	{
+		name: "2022",
+		value: `${getTime("2022/01/01")}-${getTime("2023/01/01")}`
+	},
+	{
+		name: "2023",
+		value: `${getTime("2023/01/01")}-${getTime("2024/01/01")}`
+	}
 ];
 
 const searchText = ref("");
@@ -285,7 +293,7 @@ const getSearch = async () => {
 		query.page = currentPage.value;
 	}
 	if (searchTimes.length) {
-		query.times = searchTimes.map((timeName) => {
+		query.Times = searchTimes.map((timeName) => {
 			if (timeName.includes("-")) {
 				return timeName
 					.split("-")
@@ -302,6 +310,7 @@ const getSearch = async () => {
 	searchData.value = res.data;
 
 	if (searchTimes.length) {
+		delete query.Times;
 		query.times = searchTimes;
 	}
 
@@ -379,9 +388,7 @@ const changeTime = (value) => {
 		if (searchTimes.includes(value)) {
 			searchTimes.splice(searchTimes.indexOf(value), 1);
 		} else {
-			// 多选分支 暂不支持
-			// searchTimes.push(value);
-			searchTimes.splice(0, searchTimes.length, value);
+			searchTimes.push(value);
 			pickerTagTime.value = "";
 		}
 	}
@@ -392,12 +399,15 @@ const changeTime = (value) => {
 const changeTimeByPicker = (value) => {
 	const start = new Intl.DateTimeFormat("zh-CN").format(value[0]);
 	const end = new Intl.DateTimeFormat("zh-CN").format(value[1]);
-	searchTimes.splice(0, searchTimes.length, start + "-" + end);
+	searchTimes.push(start + "-" + end);
 	currentPage.value = 1;
 	pickerIsShow.value = false;
 	pickerTagTime.value =
 		dateFormat(value[0], "YMD") + " ~ " + dateFormat(value[1], "YMD");
 	getSearch();
+};
+const hidePicker = () => {
+	pickerIsShow.value = false;
 };
 const changePage = () => {
 	window.scrollTo({
