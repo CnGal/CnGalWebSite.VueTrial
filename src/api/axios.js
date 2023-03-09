@@ -1,18 +1,21 @@
 import axios from "axios";
+import { useStore } from "@/store/index.js";
 
-export default axios.create(
-	Object.assign(
-		{},
-		{
-			baseURL: "https://api.cngal.org"
-		},
-		localStorage.getItem("authToken")
-			? {
-					headers: {
-						Authorization:
-							"Bearer " + localStorage.getItem("authToken")
-					}
-			  }
-			: {}
-	)
+const http = axios.create({
+	baseURL: "https://api.cngal.org"
+});
+
+http.interceptors.request.use(
+	(config) => {
+		const store = useStore();
+		if (store.authToken) {
+			config.headers.Authorization = "Bearer " + store.authToken;
+		}
+		return config;
+	},
+	(error) => {
+		return Promise.reject(error);
+	}
 );
+
+export default http;

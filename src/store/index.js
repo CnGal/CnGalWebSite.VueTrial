@@ -45,6 +45,15 @@ export const useStore = defineStore("main", {
 				this.elID++;
 			}
 			return el;
+		},
+		logout() {
+			this.isLogin = false;
+			this.userInfo = null;
+			this.webBG.user = null;
+			this.webBG.show = null;
+			this.authToken = "";
+			sessionStorage.removeItem("authToken");
+			localStorage.removeItem("authToken");
 		}
 	}
 });
