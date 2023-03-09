@@ -1,11 +1,6 @@
 <template>
-	<gal-dialog
-		ref="createDialog"
-		:position="{
-			type: 'element'
-		}"
-	>
-		<gal-card class="create-dialog" width="full">
+	<gal-dialog ref="createDialog">
+		<gal-card class="create-dialog" width="full" level="box">
 			<gal-link-button width="full">创建词条</gal-link-button>
 			<gal-link-button width="full">发布文字</gal-link-button>
 			<gal-link-button width="full">发布视频</gal-link-button>
@@ -35,5 +30,6 @@ defineExpose({
 <style scoped>
 .create-dialog {
 	width: 150px;
+	padding: 0;
 }
 </style>

@@ -50,19 +50,6 @@ const pageWidthChange = () => {
 };
 const showWebBG = ref(false);
 
-(async () => {
-	// 打开网站时刷新token
-	if (localStorage.getItem("authToken")) {
-		const {
-			data: { token: token }
-		} = await refreshJWToken();
-		localStorage.setItem("authToken", token);
-		store.authToken = token;
-	}
-
-	getUserData();
-})();
-
 const getUserData = async () => {
 	// 打开网站时判断是否有 authToken, 有就请求 getUserView 获取用户信息。
 	try {
@@ -91,6 +78,19 @@ const getUserData = async () => {
 		throw error;
 	}
 };
+
+(async () => {
+	// 打开网站时刷新token
+	if (localStorage.getItem("authToken")) {
+		const {
+			data: { token: token }
+		} = await refreshJWToken();
+		localStorage.setItem("authToken", token);
+		store.authToken = token;
+	}
+
+	getUserData();
+})();
 
 watch(
 	() => store.authToken,

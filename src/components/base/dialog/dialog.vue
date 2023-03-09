@@ -2,7 +2,7 @@
 	<teleport :to="'body'">
 		<div class="dialog" ref="dialog" v-show="isShow" v-bind="$attrs">
 			<div v-if="isModal" class="overlay" @click="hide"></div>
-			<div class="dialog-content">
+			<div class="dialog-content" ref="content">
 				<slot></slot>
 			</div>
 		</div>
@@ -20,41 +20,51 @@ const props = defineProps({
 });
 
 const dialog = ref(null);
+const content = ref(null);
+
 const isShow = ref(false);
 const show = (option = { type: "direction", value: "center" }) => {
 	isShow.value = true;
 	nextTick(() => {
 		if (option.type === "direction") {
-			dialog.value.classList.add(...option.value.split(" "), "direction");
+			content.value.classList.add(
+				...option.value.split(" "),
+				"direction"
+			);
 			document.body.style.overflow = "hidden";
 		} else if (option.type === "element") {
-			dialog.value.classList.add("element");
-			const popRect = dialog.value.getBoundingClientRect();
+			content.value.classList.add("element");
+
+			if (option.fixed) {
+				content.value.classList.add("fixed");
+			}
+
+			const popRect = content.value.getBoundingClientRect();
 			const element = option.value;
 			const rect = element.getBoundingClientRect();
 
 			if (rect.left + popRect.width > window.innerWidth) {
-				dialog.value.style.right = "8px";
+				content.value.style.right = "8px";
 			} else {
-				dialog.value.style.left = element.offsetLeft + "px";
+				content.value.style.left = element.offsetLeft + "px";
 			}
 
 			if (rect.top + popRect.height > window.innerHeight) {
-				dialog.value.style.top =
+				content.value.style.top =
 					element.offsetTop - popRect.height - 4 + "px";
 			} else {
-				dialog.value.style.top =
+				content.value.style.top =
 					element.offsetTop + element.offsetHeight + "px";
 			}
-			dialog.value.style.minWidth = rect.width + "px";
+			content.value.style.minWidth = rect.width + "px";
 		}
 	});
 };
 
 const hide = () => {
 	isShow.value = false;
-	dialog.value.className = "dialog";
-	dialog.value.style = "";
+	content.value.className = "dialog-content";
+	content.value.style = "";
 	document.body.style.overflow = "";
 };
 
@@ -76,60 +86,68 @@ defineExpose({
 
 .dialog {
 	z-index: 10;
-	color: var(--dialog-color);
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 9999px;
+	bottom: 9999px;
 }
 
 .dialog-content {
+	color: var(--dialog-color);
 	background-color: var(--dialog-bg-color);
 }
 
-.dialog.direction {
+.dialog-content.direction {
 	position: fixed;
 	inset: 0;
 	display: flex;
 }
 
-.dialog.direction.top.left {
+.dialog-content.direction.top.left {
 	justify-content: flex-start;
 	align-items: flex-start;
 }
-.dialog.direction.top.center {
+.dialog-content.direction.top.center {
 	justify-content: center;
 	align-items: flex-start;
 }
-.dialog.direction.top.right {
+.dialog-content.direction.top.right {
 	justify-content: flex-end;
 	align-items: flex-start;
 }
-.dialog.direction.center.left {
+.dialog-content.direction.center.left {
 	justify-content: flex-start;
 	align-items: center;
 }
-.dialog.direction.center {
+.dialog-content.direction.center {
 	justify-content: center;
 	align-items: center;
 }
-.dialog.direction.center.right {
+.dialog-content.direction.center.right {
 	justify-content: flex-end;
 	align-items: center;
 }
-.dialog.direction.bottom.left {
+.dialog-content.direction.bottom.left {
 	justify-content: flex-start;
 	align-items: flex-end;
 }
-.dialog.direction.bottom.center {
+.dialog-content.direction.bottom.center {
 	justify-content: center;
 	align-items: flex-end;
 }
-.dialog.direction.bottom.right {
+.dialog-content.direction.bottom.right {
 	justify-content: flex-end;
 	align-items: flex-end;
 }
 
-.dialog.element {
+.dialog-content.element {
 	position: absolute;
 	box-shadow: 0 0 10px 0 #00000077;
 	border-radius: 4px;
+}
+.dialog-content.element.fixed {
+	position: fixed;
 }
 
 .overlay {

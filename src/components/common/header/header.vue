@@ -35,10 +35,31 @@
 			@click="
 				createDialog.show({
 					type: 'element',
-					value: createButton.$el
+					value: createButton.$el,
+					fixed: true
 				})
 			"
 		></gal-icon-button>
+		<gal-button
+			class="user"
+			ref="userButton"
+			v-if="store.isLogin"
+			theme="text"
+			circle
+			@click="
+				userDialog.show({
+					type: 'element',
+					value: userButton.$el,
+					fixed: true
+				})
+			"
+		>
+			<img
+				class="user-photo"
+				:src="store.userInfo?.basicInfor?.photoPath"
+				:alt="store.userInfo?.basicInfor?.name"
+			/>
+		</gal-button>
 	</header>
 	<header class="header" v-else>
 		<gal-icon-button
@@ -59,6 +80,7 @@
 
 	<galSettingDialog ref="settingDialog"></galSettingDialog>
 	<galCreateDialog ref="createDialog"></galCreateDialog>
+	<galUserDialog ref="userDialog"></galUserDialog>
 </template>
 
 <script setup>
@@ -67,6 +89,7 @@ import galLogo from "../logo/logo.vue";
 import galNav from "../nav/nav.vue";
 import galSettingDialog from "./content/settingdialog.vue";
 import galCreateDialog from "./content/createdialog.vue";
+import galUserDialog from "./content/userdialog.vue";
 import { useStore } from "@/store/index.js";
 
 import { useRouter } from "vue-router";
@@ -76,6 +99,8 @@ const store = useStore();
 const settingDialog = ref(null);
 const createDialog = ref(null);
 const createButton = ref(null);
+const userDialog = ref(null);
+const userButton = ref(null);
 </script>
 
 <style scoped>
@@ -131,5 +156,15 @@ const createButton = ref(null);
 
 .small-header-icon {
 	font-size: 24px;
+}
+
+.user {
+	width: 48px;
+	height: 48px;
+}
+.user-photo {
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
 }
 </style>
