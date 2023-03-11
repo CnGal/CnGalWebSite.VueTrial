@@ -1,5 +1,9 @@
 <template>
-	<gal-dialog ref="createDialog">
+	<gal-dialog
+		ref="createDialog"
+		:style="{ '--dialog-overlay-bg-color': 'transparent' }"
+		:isModal="true"
+	>
 		<gal-card class="create-dialog" width="full" level="box">
 			<gal-link-button width="full">创建词条</gal-link-button>
 			<gal-link-button width="full">发布文字</gal-link-button>
