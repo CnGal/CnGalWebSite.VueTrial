@@ -51,7 +51,9 @@ const show = (option = { type: "direction", value: "center" }) => {
 					element.offsetTop - popRect.height - 4 + "px";
 			} else {
 				content.value.style.top =
-					element.offsetTop + element.offsetHeight + "px";
+					(element.offsetTop || rect.top) +
+					element.offsetHeight +
+					"px";
 			}
 			content.value.style.minWidth = rect.width + "px";
 		}

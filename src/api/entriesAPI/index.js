@@ -26,11 +26,18 @@ async function getPublishGamesByTime(params) {
 	});
 }
 
+async function getRoleBirthdaysByTime(params) {
+	return await axios.get("/api/entries/GetRoleBrithdaysByTime", {
+		params
+	});
+}
+
 export {
 	getFreeGames,
 	getAllDiscountSteamGame,
 	getGameCGs,
 	getGameRoles,
 	getEntryViewByID,
-	getPublishGamesByTime
+	getPublishGamesByTime,
+	getRoleBirthdaysByTime
 };

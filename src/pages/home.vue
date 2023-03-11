@@ -3,6 +3,7 @@
 	<gal-main class="main">
 		<router-view></router-view>
 	</gal-main>
+	<gal-aside></gal-aside>
 	<gal-footer v-if="!isSmallPage" class="footer"></gal-footer>
 	<gal-footer-mobile v-else></gal-footer-mobile>
 </template>
@@ -13,6 +14,7 @@ import galHeader from "../components/common/header/header.vue";
 import galMain from "../components/common/main/main.vue";
 import galFooter from "../components/common/footer/footer.vue";
 import galFooterMobile from "../components/common/footer/footer-mobile.vue";
+import galAside from "../components/common/aside/aside.vue";
 
 const isSmallPage = ref(false);
 
