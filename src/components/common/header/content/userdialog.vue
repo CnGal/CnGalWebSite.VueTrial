@@ -1,6 +1,10 @@
 <template>
-	<gal-dialog ref="userDialog" :isModal="true">
-		<gal-card class="user-dialog" width="full" level="box">
+	<gal-dialog
+		:style="{ '--dialog-overlay-bg-color': 'transparent' }"
+		ref="userDialog"
+		:isModal="true"
+	>
+		<gal-card class="content" width="full" level="box">
 			<div class="header">
 				<img
 					class="user-photo"
@@ -30,7 +34,9 @@
 			<gal-link-button width="full">个人空间</gal-link-button>
 			<gal-link-button width="full">编辑资料</gal-link-button>
 			<gal-link-button width="full">消息通知</gal-link-button>
-			<gal-link-button width="full">主题设置</gal-link-button>
+			<gal-button theme="text" width="full" @click="openSettingDialog()"
+				>主题设置</gal-button
+			>
 			<gal-button theme="text" width="full" @click="logout()"
 				>退出登入</gal-button
 			>
@@ -53,6 +59,14 @@ const logout = () => {
 	router.push("/account/login");
 };
 
+const emit = defineEmits(["openSettingDialog"]);
+
+// 调用父组件的 openSettingDialog 方法
+const openSettingDialog = () => {
+	hide();
+	emit("openSettingDialog");
+};
+
 const show = (arg) => {
 	userDialog.value.show(arg);
 };
@@ -67,10 +81,9 @@ defineExpose({
 </script>
 
 <style scoped>
-.user-dialog {
+.content {
 	width: 300px;
 	padding: 0;
-	--dialog-overlay-bg-color: transparent;
 }
 
 .header {

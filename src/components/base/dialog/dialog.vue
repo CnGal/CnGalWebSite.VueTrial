@@ -27,10 +27,7 @@ const show = (option = { type: "direction", value: "center" }) => {
 	isShow.value = true;
 	nextTick(() => {
 		if (option.type === "direction") {
-			content.value.classList.add(
-				...option.value.split(" "),
-				"direction"
-			);
+			dialog.value.classList.add(...option.value.split(" "), "direction");
 			document.body.style.overflow = "hidden";
 		} else if (option.type === "element") {
 			content.value.classList.add("element");
@@ -64,6 +61,7 @@ const show = (option = { type: "direction", value: "center" }) => {
 const hide = () => {
 	isShow.value = false;
 	content.value.className = "dialog-content";
+	dialog.value.className = "dialog";
 	content.value.style = "";
 	document.body.style.overflow = "";
 };
@@ -98,45 +96,45 @@ defineExpose({
 	background-color: var(--dialog-bg-color);
 }
 
-.dialog-content.direction {
+.dialog.direction {
 	position: fixed;
 	inset: 0;
 	display: flex;
 }
 
-.dialog-content.direction.top.left {
+.dialog.direction.top.left {
 	justify-content: flex-start;
 	align-items: flex-start;
 }
-.dialog-content.direction.top.center {
+.dialog.direction.top.center {
 	justify-content: center;
 	align-items: flex-start;
 }
-.dialog-content.direction.top.right {
+.dialog.direction.top.right {
 	justify-content: flex-end;
 	align-items: flex-start;
 }
-.dialog-content.direction.center.left {
+.dialog.direction.center.left {
 	justify-content: flex-start;
 	align-items: center;
 }
-.dialog-content.direction.center {
+.dialog.direction.center {
 	justify-content: center;
 	align-items: center;
 }
-.dialog-content.direction.center.right {
+.dialog.direction.center.right {
 	justify-content: flex-end;
 	align-items: center;
 }
-.dialog-content.direction.bottom.left {
+.dialog.direction.bottom.left {
 	justify-content: flex-start;
 	align-items: flex-end;
 }
-.dialog-content.direction.bottom.center {
+.dialog.direction.bottom.center {
 	justify-content: center;
 	align-items: flex-end;
 }
-.dialog-content.direction.bottom.right {
+.dialog.direction.bottom.right {
 	justify-content: flex-end;
 	align-items: flex-end;
 }

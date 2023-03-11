@@ -23,7 +23,7 @@
 			icon="settings"
 			circle
 			v-gal-tooltip="'设置'"
-			@click="settingDialog.show()"
+			@click="openSettingDialog()"
 		></gal-icon-button>
 		<gal-icon-button
 			ref="createButton"
@@ -80,7 +80,10 @@
 
 	<galSettingDialog ref="settingDialog"></galSettingDialog>
 	<galCreateDialog ref="createDialog"></galCreateDialog>
-	<galUserDialog ref="userDialog"></galUserDialog>
+	<galUserDialog
+		@openSettingDialog="openSettingDialog"
+		ref="userDialog"
+	></galUserDialog>
 </template>
 
 <script setup>
@@ -101,6 +104,10 @@ const createDialog = ref(null);
 const createButton = ref(null);
 const userDialog = ref(null);
 const userButton = ref(null);
+
+const openSettingDialog = () => {
+	settingDialog.value.show();
+};
 </script>
 
 <style scoped>
