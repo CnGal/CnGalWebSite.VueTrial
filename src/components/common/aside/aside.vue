@@ -12,7 +12,8 @@
 					birthdayDialog.show({
 						type: 'element',
 						value: birthdayButton.$el,
-						fixed: true
+						fixed: true,
+						position: 'top'
 					})
 				"
 			></gal-icon-button>

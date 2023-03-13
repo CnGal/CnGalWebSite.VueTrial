@@ -141,7 +141,18 @@
 			<gal-button
 				ref="button3"
 				@click="dialog3.show({ type: 'element', value: button3.$el })"
-				>open</gal-button
+				>open bottom</gal-button
+			>
+			<gal-button
+				ref="button4"
+				@click="
+					dialog3.show({
+						type: 'element',
+						value: button4.$el,
+						position: 'top'
+					})
+				"
+				>open top</gal-button
 			>
 			<gal-dialog ref="dialog3">
 				dialog content
@@ -174,6 +185,7 @@ const dialog1 = ref(null);
 const dialog2 = ref(null);
 const dialog3 = ref(null);
 const button3 = ref(null);
+const button4 = ref(null);
 </script>
 
 <style scoped>

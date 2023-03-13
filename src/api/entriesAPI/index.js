@@ -27,7 +27,7 @@ async function getPublishGamesByTime(params) {
 }
 
 async function getRoleBirthdaysByTime(params) {
-	return await axios.get("/api/entries/GetRoleBrithdaysByTime", {
+	return await axios.get("/api/entries/GetRoleBirthdaysByTime", {
 		params
 	});
 }

@@ -35,7 +35,11 @@ option
 
 {
 	type: "element",
-	value: HTMLElement
+	value: HTMLElement,
+	fixed: Boolean,
+	position: "top"
 }
-value 为 element 元素，dialog 会以该元素为基准显示
+// value 为 element 元素，dialog 会以该元素为基准显示
+// fixed 元素是否以 fixed 定位，默认为 absolute
+// position 元素显示方向，top 将上方打开，默认为下方
 ```
