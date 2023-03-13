@@ -21,6 +21,7 @@
 				<img
 					class="banner-img"
 					loading="lazy"
+					:decoding="index === 0 ? 'auto' : 'async'"
 					:src="item.image"
 					:alt="item.note"
 				/>

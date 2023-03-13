@@ -11,6 +11,7 @@
 		>
 			<img
 				loading="lazy"
+				encoding="async"
 				class="game-card-img"
 				:src="props.data.image"
 				:alt="props.data.name"

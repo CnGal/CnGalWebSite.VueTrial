@@ -46,13 +46,28 @@ const show = (option = { type: "direction", value: "center" }) => {
 				content.value.style.left = element.offsetLeft + "px";
 			}
 
-			if (rect.top + popRect.height > window.innerHeight) {
-				content.value.style.top =
-					element.offsetTop - popRect.height - 4 + "px";
+			if (option.position === "top") {
+				if (rect.top < popRect.height) {
+					content.value.style.top = "8px";
+				} else {
+					content.value.style.top =
+						(element.offsetTop || rect.top) -
+						popRect.height -
+						8 +
+						"px";
+				}
 			} else {
-				content.value.style.top =
-					element.offsetTop + element.offsetHeight + "px";
+				if (rect.top + popRect.height > window.innerHeight) {
+					content.value.style.top =
+						element.offsetTop - popRect.height - 4 + "px";
+				} else {
+					content.value.style.top =
+						(element.offsetTop || rect.top) +
+						element.offsetHeight +
+						"px";
+				}
 			}
+
 			content.value.style.minWidth = rect.width + "px";
 		}
 	});

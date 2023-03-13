@@ -214,6 +214,7 @@ onMounted(() => {
 
 <style scoped>
 .icon {
+	display: inline-block;
 	width: var(--icon-size);
 	height: var(--icon-size);
 }
