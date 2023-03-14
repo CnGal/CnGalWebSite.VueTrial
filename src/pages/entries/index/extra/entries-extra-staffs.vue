@@ -136,9 +136,6 @@ const copyStaffText = async () => {
 	column-gap: 8px;
 	row-gap: 8px;
 }
-.staff-content {
-	margin-block-start: 8px;
-}
 .staff-item {
 	--link-button-padding: 1px 8px;
 }

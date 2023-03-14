@@ -1,5 +1,5 @@
 <template>
-	<gal-card class="extra-card" width="full">
+	<gal-card class="extra-card" width="full" transparent>
 		<template v-slot:headerStart>
 			<gal-icon class="icon" icon="link"></gal-icon>&nbsp;&nbsp;外部链接
 		</template>

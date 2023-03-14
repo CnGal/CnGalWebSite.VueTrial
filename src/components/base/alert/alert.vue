@@ -35,6 +35,7 @@ const iconNames = {
 .alert-box {
 	display: flex;
 	align-items: flex-start;
+	box-sizing: border-box;
 	border-inline-start: 8px solid;
 	width: var(--alert-width);
 	font-size: var(--alert-text-font-size);
