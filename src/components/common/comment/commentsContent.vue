@@ -20,7 +20,7 @@
 			v-model:currentPage="commentActivePage"
 		></gal-pagination>
 
-		<gal-card lebel="box" class="login-wrap">
+		<gal-card level="box" class="login-wrap">
 			<galLinkButton to="/account/login" theme="solid" class="login">
 				<galIcon icon="login"></galIcon>
 				登入后发表评论

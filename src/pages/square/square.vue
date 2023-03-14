@@ -1,7 +1,7 @@
 <template>
 	<gal-card class="card">
 		<template v-slot:headerStart>
-			<gal-icon class="icon" icon="random"></gal-icon>&nbsp;&nbsp;随机评价
+			<gal-icon class="icon" icon="random"></gal-icon>随机评价
 		</template>
 		<template v-slot:headerEnd>
 			<gal-button class="refresh-button" @click="refreshUserScoresList">
@@ -16,7 +16,7 @@
 
 	<gal-card class="card editOverviewChartCard">
 		<template v-slot:headerStart>
-			<gal-icon class="icon" icon="random"></gal-icon>&nbsp;&nbsp;编辑概览
+			<gal-icon class="icon" icon="random"></gal-icon>编辑概览
 		</template>
 		<template v-slot:headerEnd>
 			<gal-button class="refresh-button">
@@ -53,8 +53,7 @@
 	<div class="info-wrapper">
 		<gal-card class="card">
 			<template v-slot:headerStart>
-				<gal-icon class="icon" icon="homeFill"></gal-icon
-				>&nbsp;&nbsp;CnGal资料站
+				<gal-icon class="icon" icon="homeFill"></gal-icon>CnGal资料站
 			</template>
 			<gal-link-button to="/about" width="full"
 				><gal-icon class="icon" icon="homeFill"></gal-icon
@@ -75,8 +74,7 @@
 		</gal-card>
 		<gal-card class="card">
 			<template v-slot:headerStart>
-				<gal-icon class="icon" icon="homeFill"></gal-icon
-				>&nbsp;&nbsp;标签
+				<gal-icon class="icon" icon="homeFill"></gal-icon>标签
 			</template>
 			<gal-link-button to="/tags/index/1" width="full"
 				><gal-icon class="icon" icon="homeFill"></gal-icon
@@ -99,7 +97,7 @@
 
 	<gal-card class="card lotteryCard">
 		<template v-slot:headerStart>
-			<gal-icon class="icon" icon="random"></gal-icon>&nbsp;&nbsp;抽奖
+			<gal-icon class="icon" icon="random"></gal-icon>抽奖
 		</template>
 		<template v-slot:headerEnd>
 			<gal-link-button to="/lotteries" class="link-button">
@@ -115,7 +113,7 @@
 
 	<gal-card class="card voteCard">
 		<template v-slot:headerStart>
-			<gal-icon class="icon" icon="random"></gal-icon>&nbsp;&nbsp;投票
+			<gal-icon class="icon" icon="random"></gal-icon>投票
 		</template>
 		<template v-slot:headerEnd>
 			<gal-link-button to="/votes/home" class="link-button">
@@ -232,6 +230,7 @@ onMounted(() => {
 }
 .refresh-button {
 	--button-font-color: var(--main-color);
+	background-color: transparent;
 	border: none;
 }
 

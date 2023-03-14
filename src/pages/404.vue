@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onUnmounted } from "vue";
 import { useRouter } from "vue-router";
 const router = useRouter();
 
@@ -29,6 +29,10 @@ const timer = setInterval(() => {
 		localStorage.removeItem("pageRedirect");
 	}
 }, 1000);
+
+onUnmounted(() => {
+	clearInterval(timer);
+});
 </script>
 
 <style scoped>
