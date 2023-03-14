@@ -259,7 +259,6 @@ onUnmounted(() => {
 		"info info" auto
 		/ auto 1fr;
 	column-gap: 1em;
-	row-gap: 12px;
 }
 .img {
 	grid-area: img;

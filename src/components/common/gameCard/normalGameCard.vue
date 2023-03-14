@@ -10,6 +10,8 @@
 					? '/lotteries/index/'
 					: type === 'vote'
 					? '/vote/index/'
+					: type === 'video'
+					? '/videos/index/'
 					: '#') + props.data.id
 			"
 			class="game-card"
@@ -44,6 +46,11 @@
 								: 'danger'
 						"
 					></gal-tag>
+					<gal-tag
+						v-if="props.type === 'video'"
+						class="tag"
+						v-text="props.data.type"
+					></gal-tag>
 					{{ props.data.name }}
 				</h5>
 				<div class="brief-introduction rows-dot">
@@ -76,7 +83,7 @@ const props = defineProps({
 	--row-dot-line: 2;
 }
 .card {
-	height: 100%;
+	padding: 0;
 }
 .game-card {
 	display: block;
@@ -97,6 +104,7 @@ const props = defineProps({
 }
 .brief-introduction {
 	font-size: 14px;
+	word-break: break-all;
 }
 
 .tag {

@@ -13,6 +13,12 @@
 				<gal-cg-card :data="info.pictures[0]"></gal-cg-card>
 			</gal-card>
 
+			<gal_EntriesMainVideo
+				class="main-card"
+				v-if="info.videoRelevances?.length"
+				:videoRelevances="info.videoRelevances"
+			></gal_EntriesMainVideo>
+
 			<gal-card
 				class="main-card"
 				v-if="info.mainPage"
@@ -26,7 +32,7 @@
 			</gal-card>
 
 			<gal_EntriesMainNews
-				class="extra-card"
+				class="main-card"
 				v-if="info.newsOfEntry?.length"
 				:newsOfEntry="info.newsOfEntry"
 			></gal_EntriesMainNews>
@@ -136,6 +142,7 @@ import gal_EntriesMainProductionGroup from "./main/entries-main-production-group
 import gal_EntriesMainStaffGames from "./main/entries-main-staff-games.vue";
 import gal_EntriesMainEelevancesGame from "./main/entries-main-relevances-game.vue";
 import gal_EntriesMainEelevancesArticle from "./main/entries-main-relevances-article.vue";
+import gal_EntriesMainVideo from "./main/entries-main-video.vue";
 
 import { getEntryViewByID } from "../../../api/entriesAPI/index.js";
 import { useStateTypeStore } from "@/store/statetype.js";

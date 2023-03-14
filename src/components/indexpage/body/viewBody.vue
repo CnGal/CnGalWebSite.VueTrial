@@ -16,6 +16,7 @@
 	--index-page-extra-width: clamp(320px, calc((100% - 16px) / 3), 400px);
 }
 .index-page-body {
+	width: 100%;
 	display: flex;
 	column-gap: 24px;
 	margin-block-start: 12px;
