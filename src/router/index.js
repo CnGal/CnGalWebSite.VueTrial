@@ -164,6 +164,11 @@ routes.push(
 					path: "/_test/_dialog",
 					name: "_test_dialog",
 					component: () => import("../pages/_test/_dialog.vue")
+				},
+				{
+					path: "/_test/_tag",
+					name: "_test_tag",
+					component: () => import("../pages/_test/_tag.vue")
 				}
 			]
 		}

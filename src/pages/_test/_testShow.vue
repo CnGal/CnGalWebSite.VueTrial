@@ -18,6 +18,10 @@ const props = defineProps({
 	direction: {
 		type: String,
 		default: "inline"
+	},
+	height: {
+		type: String,
+		default: "100px"
 	}
 });
 </script>
@@ -26,10 +30,10 @@ const props = defineProps({
 .test-box {
 	display: flex;
 	align-items: center;
-	min-height: 100px;
+	min-height: v-bind(height);
 }
 .test-box > :is(div, pre) {
-	min-height: 100px;
+	min-height: v-bind(height);
 	flex: 1;
 	text-align: center;
 	display: flex;

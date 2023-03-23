@@ -36,7 +36,7 @@
 								? '正在进行'
 								: '已结束'
 						"
-						:bgColor="
+						:type="
 							new Date(props.data.startTime).getTime() <
 							Date.now()
 								? 'primary'
