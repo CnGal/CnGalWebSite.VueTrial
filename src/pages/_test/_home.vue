@@ -23,6 +23,7 @@
 				<gal-link to="/_test/_markdown">markdown</gal-link>
 				<gal-link to="/_test/_search">search</gal-link>
 				<gal-link to="/_test/_dialog">dialog</gal-link>
+				<gal-link to="/_test/_tag">tag</gal-link>
 			</div>
 		</gal-card>
 		<gal-card class="right">

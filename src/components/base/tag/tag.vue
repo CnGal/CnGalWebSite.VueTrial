@@ -1,58 +1,61 @@
 <template>
-	<span ref="tag" :class="['tag', props.bgColor]">
+	<span ref="tag" :class="['tag', props.type, 'theme-' + props.theme]">
 		<slot></slot>
 	</span>
 </template>
 
 <script setup>
 const props = defineProps({
-	bgColor: {
+	type: {
 		type: String,
 		default: "normal"
+	},
+	theme: {
+		type: String,
+		default: "solid"
 	}
 });
 </script>
 
 <style scoped>
 .tag {
+	--tag-main-color: var(--main-color);
+	--tag-color: #fff;
+	--tag-border-radius: 5px;
+	--tag-padding: 1px 8px;
+}
+.theme-dark .tag {
+	--tag-main-color: #808080;
+}
+.tag.primary {
+	--tag-main-color: #009ef7;
+}
+.tag.success {
+	--tag-main-color: #50cd89;
+}
+.tag.warning {
+	--tag-main-color: #ffc700;
+}
+.tag.danger {
+	--tag-main-color: #f1416c;
+}
+.tag.info {
+	--tag-main-color: #777777;
+}
+
+.tag {
 	display: inline-flex;
-	padding: 1px 8px;
 	align-items: center;
 	justify-content: center;
 	column-gap: 5px;
-	color: #fff;
-	border-radius: 5px;
+	padding: var(--tag-padding);
+	color: var(--tag-color);
+	border-radius: var(--tag-border-radius);
+	background-color: var(--tag-main-color);
 }
-
-.tag[circle] {
-	border-radius: 1em;
-}
-
-.tag[simple="true"] {
+.tag.theme-outline {
 	background-color: unset;
-	border: thin solid var(--main-color);
-	color: var(--main-color);
-}
-
-.normal {
-	background-color: var(--main-color);
-}
-.theme-dark .normal {
-	background-color: #808080;
-}
-.primary {
-	background-color: #009ef7;
-}
-.success {
-	background-color: #50cd89;
-}
-.warning {
-	background-color: #ffc700;
-}
-.danger {
-	background-color: #f1416c;
-}
-.info {
-	background-color: #777777;
+	border: thin solid var(--tag-main-color);
+	color: var(--tag-main-color);
 }
 </style>

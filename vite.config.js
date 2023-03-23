@@ -25,7 +25,10 @@ export default defineConfig({
 						"./src/pages/_test/_iconbutton.vue",
 						"./src/pages/_test/_alert.vue",
 						"./src/pages/_test/_card.vue",
-						"./src/pages/_test/_markdown.vue"
+						"./src/pages/_test/_markdown.vue",
+						"./src/pages/_test/_search.vue",
+						"./src/pages/_test/_dialog.vue",
+						"./src/pages/_test/_tag.vue"
 					]
 				}
 			}
